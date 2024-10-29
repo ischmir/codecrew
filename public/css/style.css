@@ -1,4 +1,4 @@
-/*  styling */
+/*  style varibles */
 :root {
   --primary-darkmode-button-color: #fd2d00;
   --primary-darkmode-background-color: #23222A;
@@ -6,6 +6,12 @@
   --primary-darkmode-font-color:#fff;
   --primary-darkmode-border-color: #fff;
   --primary-font-family: verdana;
+  --primary-link-color:#DF007C;
+  --primary-gradient-background-image: linear-gradient(90deg, #FD2D00, #DF007C);
+  --primary-round-button-border-radius:25px;
+  --primary-square-button-border-radius:6px;
+
+
 
 }
 
@@ -64,10 +70,11 @@ border: 0px;
 border-radius: 25px;
 padding: 12px 20px;
 }
+
+
 /*Style for login site*/
 .login_form {
-    width: 45%;
- 
+    width: 50%;
 }
 
 .login_container {
@@ -78,29 +85,43 @@ padding: 12px 20px;
   align-items: center;
   color: var(--primary-darkmode-font-color);
   font-family: var(--primary-font-family);
- 
 }
 
 .login_container2 {
   display: flex;
   flex-direction: column;
   background-color: var(--primary-darkmode-container-background-color);
-  padding-top:10%;
-  padding-bottom:10%;
+  padding-top:5%;
+  padding-bottom:7%;
   align-items: center;
-
+  width: 45%;
+  box-shadow: 0 0 15px -2px #181818a0;
 }
 
+/* rgba(14, 14, 14, 0.667);*/
 
 .input_login[type=text], input[type=password] {
   width: 100%;
-  padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
-  border: 1px solid #ccc;
   box-sizing: border-box;
+  border: 1.5px solid var(--primary-darkmode-border-color);
+  background-color: #383939;
+  padding: 10px 10px;
+  border-radius: 5px;
 }
 
+.input_login::-webkit-input-placeholder  {
+  color:#a2a2a4;
+  font-family: var(--primary-font-family);
+
+}
+
+
+label.password_title {
+  margin-top:5%;
+  display: block;
+}
 .login_button {
   background-color: var(--primary-darkmode-button-color);
   color: var(--primary-darkmode-font-color);
@@ -109,23 +130,57 @@ padding: 12px 20px;
   border: none;
   cursor: pointer;
   width: 100%;
+  background-image: var(--primary-gradient-background-image);
+  font-family: var(--primary-font-family);
+  border-radius: var(--primary-square-button-border-radius);
 }
 
-button:hover {
+.login_button:hover {
   opacity: 0.8;
 }
 
 
 
-/* The "Forgot password" text */
-span.forgot_password {
-  float: right;
-
+.logo_login {
+  width: 20%;
+  height: 20%;
+  margin-bottom: 5%;
 }
 
-.logo_login {
-  width: 10%;
-  height: 10%;
-  margin-bottom: 5%;
+.signup_link a {
+  color:var(--primary-link-color);
+}
+
+.forgot_password a {
+  color: #a2a2a4;
+}
+
+.forgot_password {
+  color: #a2a2a4
+}
+
+.signup_forgotpassword {
+display: flex;
+justify-content: space-between;
+font-size: 12px;
+}
+
+/* SIGN UP SITE */
+.input_signup[type=text], input[type=password] {
+  width: 100%;
+  margin: 8px 0;
+  display: inline-block;
+  box-sizing: border-box;
+  border: 1.5px solid var(--primary-darkmode-border-color);
+  background-color: #383939;
+  padding: 10px 10px;
+  border-radius: 5px;
+  color:#a2a2a4;
+}
+
+.input_signup::-webkit-input-placeholder  {
+  color: var(--primary-link-color)
+  font-family: var(--primary-font-family);
+
 }
 
