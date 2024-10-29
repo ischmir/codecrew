@@ -1,54 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/view/css/style.css"/>
-    <title>Kubelab Dashboard</title>
-</head>
-<body>
-    <header>
-        <h1>Projects</h1>
-        <img src="" alt="User Profile Picture">
-        <p>Username</p>
-        <a href="">V button</a>
-    </header>
-    <nav>
-        <img class="logo" src="" alt="">
-        <ul>
-            <li>Projects</li>
-            <li>Teams</li>
-            <li>Settings</li>
-        </ul>
-    </nav>
-    <main>
-        <div class="search">
-            <input type="text" placeholder="search"></input>
-            <button>Search</button>
+<header>
+    <h1>Projects</h1>
+    <img src="" alt="User Profile Picture">
+    <p>Username</p>
+    <a href="">V button</a>
+</header>
+<nav>
+    <img class="logo" src="" alt="">
+    <ul>
+        <li>Projects</li>
+        <li>Teams</li>
+        <li>Settings</li>
+    </ul>
+</nav>
+<main>
+    <div class="search">
+        <input type="text" placeholder="search"></input>
+        <button>Search</button>
+    </div>
+    <div>
+        <div>
+            <a class="sort" href="">Your Stacks</a>
+            <a class="sort" href="">Others Stacks</a>
         </div>
         <div>
-            <div>
-                <a class="sort" href="">Your Stacks</a>
-                <a class="sort" href="">Others Stacks</a>
-            </div>
-            <div>
-                <button>Create New Stack</button>
-            </div>
+            <button>Create New Stack</button>
         </div>
-        <div>
-            <a href="">Name</a>
-            <a href="">Author</a>
-            <a href="">Status</a>
-        </div>
-        <div class="stack-list">
-            {{#each stack}}
-            <p>{{this.name}}</p>
-            <p>{{this.author}}</p>
-            <p>{{this.status}}{{#if this.1}}(Online) {{else}} (There's no sale, you liaar! - Karen){{/if}}</p>
-            <p>{{this.creationDate}}</p>
-            {{/each}}
-        </div>
-    </main>
-    <footer></footer>
-</body>
-</html>
+    </div>
+    <div>
+        <a href="">Name</a>
+        <a href="">Author</a>
+        <a href="">Status</a>
+    </div>
+    <div class="stack-list">
+        {{#each stack}}
+        <p>{{this.name}}</p>
+        <p>{{this.author}}</p>
+        <p>{{this.status}}{{#if this.1}}(Online) {{else}} (There's no sale, you liaar! - Karen){{/if}}</p>
+        <p>{{this.creationDate}}</p>
+        {{/each}}
+    </div>
+</main>
+<footer></footer>

@@ -15,6 +15,15 @@ body {
     color: #9145DC;
   }
 
+/* Change styles for span and cancel button on extra small screens */
+  form {
+    display: block;
+    float: none;
+    width: 100%;
+  }
+  .cancelbtn {
+    width: 100%;
+  }
 }
 
 @media only screen and (min-width: 900px) {
@@ -76,16 +85,4 @@ button:hover {
 span.psw {
   float: right;
  
-}
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 400px) {
-  form {
-    display: block;
-    float: none;
-    width: 100%;
-  }
-  .cancelbtn {
-    width: 100%;
-  }
 }
