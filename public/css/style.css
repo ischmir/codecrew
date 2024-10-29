@@ -1,3 +1,17 @@
+/*  styling */
+:root {
+  --primary-darkmode-button-color: #fd2d00;
+  --primary-darkmode-background-color: #23222a;
+  --secondary-darkmode-background-color: #282b30;
+  --teritary-darkmode-background-color: #36393E;
+  --primary-darkmode-list-info-background-color: #727272;
+  --primary-darkmode-font-color:#fff;
+  --primary-darkmode-inactive-font-color:#a8a8a8;
+  --primary-darkmode-border-color: #fff;
+  --primary-font-family: verdana;
+
+}
+
 @media only screen and (max-width: 431px) {
   .desktopNav {
     display: none;
@@ -62,26 +76,85 @@
   nav .navLink_highlighted::marker {
     font-size: 20px;
   }
-  
 }
 
-/* Main styling */
-:root {
-  --primary-darkmode-button-color: #fd2d00;
-  --primary-darkmode-background-color: #23222A;
-  --primary-darkmode-font-color:#fff;
-  --primary-font-family: verdana;
-}
-
+/* Main Section - Projects */
 body {
   background-color: var(--primary-darkmode-background-color);
   margin: 0;  
   font-family: var(--primary-font-family);
   color: #ccc;
 }
+Main {
+  margin: 0px 50px;
+}
+
+/*Search bar and button*/
+.search_bar {
+border: 2px solid var(--primary-darkmode-border-color);
+border-radius: 20px;
+background-color: var(--primary-darkmode-background-color);
+width: 20%;
+padding: 5px 10px;
+font-size: 1em;
+font-family: verdana;
+color: var(--primary-darkmode-font-color);
+}
+
+.search_button {
+background-color: var(--primary-darkmode-button-color);
+background-image: var(--primary-gradient-background-image);
+color: var(--primary-darkmode-font-color);
+border: 0px;
+border-radius: 25px;
+padding: 8px 20px;
+font-size: 1em;
+font-family: verdana;
+}
+
+/*Sorting Section and Create new stack button*/
+.stack_sorting {
+    display: block;
+    margin: 50px 0px 20px 0px;
+}
+.sort_section{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0px;
+  border-bottom: 2px solid var(--primary-darkmode-border-color);
+}
+
+.sort{
+  color: var(--primary-darkmode-inactive-font-color);
+  padding: 0px 25px;
+  font-family: verdana;
+  text-decoration: none;
+}
+
+.create_button {
+  background-color: var(--primary-darkmode-button-color);
+  background-image: var(--primary-gradient-background-image);
+  color: var(--primary-darkmode-font-color);
+  border: 0px;
+  border-radius: 6px;
+  padding: 8px 20px;
+  font-size: 1em;
+  font-family: verdana;
+  }
+
+/* Stack List*/
+.list_info{
+  background-color: var(--primary-darkmode-list-info-background-color);
+}
+
+.stack_list {
+  background-color: var(--secondary-darkmode-background-color);
+}
+
+
 /*Style for login site*/
-form {
-    width: 25%;
+.login_form {
+    width: 45%;
  
 }
 
@@ -93,18 +166,20 @@ form {
   align-items: center;
   color: var(--primary-darkmode-font-color);
   font-family: var(--primary-font-family);
-  background-color: red;
+ 
 }
 
 .login_container2 {
   display: flex;
   flex-direction: column;
-  background-color: blue;
-  margin:auto;
+  background-color: var(--secondary-darkmode-background-color);
+  padding-top:10%;
+  padding-bottom:10%;
   align-items: center;
+
 }
 
-/* Full-width inputs */
+
 .input_login[type=text], input[type=password] {
   width: 100%;
   padding: 12px 20px;
@@ -128,26 +203,17 @@ button:hover {
   opacity: 0.8;
 }
 
-/* Add padding to containers */
-.logincontainer {
-  padding: 16px;
-}
 
-/* The "Forgot password" text */
-span.psw {
-  float: right;
-}
 
 /* The "Forgot password" text */
 span.forgot_password {
   float: right;
+
 }
 
 .logo_login {
   width: 10%;
   height: 10%;
+  margin-bottom: 5%;
 }
 
-span.signup_link {
-  color: var(--primary-darkmode-font-color);
-}

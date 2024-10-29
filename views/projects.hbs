@@ -15,24 +15,26 @@
 </nav>
 <main>
     <div class="search">
-        <input type="text" placeholder="search"></input>
-        <button>Search</button>
+        <input class="search_bar" type="text" placeholder="search"></input>
+        <button class="search_button">Search</button>
     </div>
-    <div>
-        <div>
-            <a class="sort" href="">Your Stacks</a>
-            <a class="sort" href="">Others Stacks</a>
-        </div>
-        <div>
-            <button>Create New Stack</button>
+    <div class="stack_sorting">
+        <div class="sort_section">
+            <div>
+                <a class="sort" href="">Your Stacks</a>
+                <a class="sort" href="">Others Stacks</a>
+            </div>
+            <div>
+                <button class="create_button">Create New Stack</button>
+            </div>
         </div>
     </div>
-    <div>
+    <div class="list_info">
         <a href="">Name</a>
         <a href="">Author</a>
         <a href="">Status</a>
     </div>
-    <div class="stack-list">
+    <div class="stack_list">
         {{#each stack}}
         <p>{{this.name}}</p>
         <p>{{this.author}}</p>
