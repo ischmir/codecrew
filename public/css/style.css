@@ -60,8 +60,8 @@ font-size: 1em;
 font-family: verdana;
 color: var(--primary-darkmode-font-color);
 }
-
-.search_button {
+/*Buttons - Search and Create new stack*/
+.search_button, .create_button {
 background-color: var(--primary-darkmode-button-color);
 background-image: var(--primary-gradient-background-image);
 color: var(--primary-darkmode-font-color);
@@ -71,8 +71,11 @@ padding: 8px 20px;
 font-size: 1em;
 font-family: verdana;
 }
+.create_button {
+  border-radius: 6px;  
+}
 
-/*Sorting Section and Create new stack button*/
+/*Sorting Section*/
 .stack_sorting {
     display: block;
     margin: 50px 0px 20px 0px;
@@ -91,20 +94,19 @@ font-family: verdana;
   text-decoration: none;
 }
 
-.create_button {
-  background-color: var(--primary-darkmode-button-color);
-  background-image: var(--primary-gradient-background-image);
-  color: var(--primary-darkmode-font-color);
-  border: 0px;
-  border-radius: 6px;
-  padding: 8px 20px;
-  font-size: 1em;
-  font-family: verdana;
-  }
+
 
 /* Stack List*/
 .list_info{
   background-color: var(--primary-darkmode-list-info-background-color);
+  padding: 5px 10px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+}
+.list_info span {
+  color: var(--primary-darkmode-font-color);
+  text-decoration: none;
 }
 
 .stack_list {
