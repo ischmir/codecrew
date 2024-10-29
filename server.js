@@ -5,24 +5,42 @@ const path = require('path');
 const app = express();
 app.use(express.static("public"));
 
-app.engine('hbs', exphbs.engine({ extname: '.hbs' }));
+app.engine('hbs', exphbs.engine({ 
+    defaultLayout: 'main',
+    extname: '.hbs' 
+}));
+
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
-app.get("/", async (req, res) => {
-    try {
-        console.log("don't give up...");
-        res.render("projects");
-    } catch (err) {
-        console.error("Rendering error:", err);
-        res.status(500).send("Error rendering page");
-    }
+//Example data
+const data = {
+    stackOne: [
+        {name: "sandra-nginx"},
+        {author: "codecrew"},
+        {creationDate: "29.10.2024"},
+        {status: 1}
+    ],
+    stackTwo: [
+        {name: "sandra-nginx"},
+        {author: "codecrew"},
+        {creationDate: "29.10.2024"},
+        {status: 1}
+    ]
+}
+
+app.get('/', (req, res) => {
+    res.render('projects', data);
 });
 
 app.get("/nav", (req, res) => {
-    res.render("index", {
+    res.render("nav", {
         isAdmin: true
     })
+});
+
+app.get("/login", (req, res) => {
+    res.render("index")
 });
 
 const PORT = process.env.PORT || 3333;
