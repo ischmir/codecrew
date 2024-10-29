@@ -1,19 +1,16 @@
 /*  styling */
 :root {
   --primary-darkmode-button-color: #fd2d00;
-  --primary-darkmode-background-color: #23222A;
-  --primary-darkmode-container-background-color: #282b30;
+  --primary-darkmode-background-color: #23222a;
+  --secondary-darkmode-background-color: #282b30;
+  --teritary-darkmode-background-color: #36393E;
+  --primary-darkmode-list-info-background-color: #727272;
   --primary-darkmode-font-color:#fff;
+  --primary-darkmode-inactive-font-color:#a8a8a8;
   --primary-darkmode-border-color: #fff;
   --primary-font-family: verdana;
 
 }
-
-body {
-  background-color: var(--primary-darkmode-background-color);
-}
-
-
 
 @media only screen and (max-width: 431px) {
   .desktopNav {
@@ -46,24 +43,75 @@ body {
 /* Main Section - Projects */
 body {
 background-color: var(--primary-darkmode-background-color);
+font-family: var(--primary-font-family);
+}
+Main {
+  margin: 0px 50px;
 }
 
-input.search-bar {
+/*Search bar and button*/
+.search_bar {
 border: 2px solid var(--primary-darkmode-border-color);
 border-radius: 20px;
 background-color: var(--primary-darkmode-background-color);
-width: 40%;
-padding: 10px;
+width: 20%;
+padding: 5px 10px;
+font-size: 1em;
+font-family: verdana;
+color: var(--primary-darkmode-font-color);
 }
 
-.search-button {
+.search_button {
 background-color: var(--primary-darkmode-button-color);
-background-image: linear-gradient(90deg, #FD2D00, #DF007C);
+background-image: var(--primary-gradient-background-image);
 color: var(--primary-darkmode-font-color);
 border: 0px;
 border-radius: 25px;
-padding: 12px 20px;
+padding: 8px 20px;
+font-size: 1em;
+font-family: verdana;
 }
+
+/*Sorting Section and Create new stack button*/
+.stack_sorting {
+    display: block;
+    margin: 50px 0px 20px 0px;
+}
+.sort_section{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0px;
+  border-bottom: 2px solid var(--primary-darkmode-border-color);
+}
+
+.sort{
+  color: var(--primary-darkmode-inactive-font-color);
+  padding: 0px 25px;
+  font-family: verdana;
+  text-decoration: none;
+}
+
+.create_button {
+  background-color: var(--primary-darkmode-button-color);
+  background-image: var(--primary-gradient-background-image);
+  color: var(--primary-darkmode-font-color);
+  border: 0px;
+  border-radius: 6px;
+  padding: 8px 20px;
+  font-size: 1em;
+  font-family: verdana;
+  }
+
+/* Stack List*/
+.list_info{
+  background-color: var(--primary-darkmode-list-info-background-color);
+}
+
+.stack_list {
+  background-color: var(--secondary-darkmode-background-color);
+}
+
+
 /*Style for login site*/
 .login_form {
     width: 45%;
@@ -84,7 +132,7 @@ padding: 12px 20px;
 .login_container2 {
   display: flex;
   flex-direction: column;
-  background-color: var(--primary-darkmode-container-background-color);
+  background-color: var(--secondary-darkmode-background-color);
   padding-top:10%;
   padding-bottom:10%;
   align-items: center;
