@@ -4,6 +4,7 @@
   --primary-darkmode-background-color: #23222A;
   --primary-darkmode-container-background-color: #282b30;
   --primary-darkmode-font-color:#fff;
+  --primary-darkmode-border-color: #fff;
   --primary-font-family: verdana;
 
 }
@@ -40,16 +41,6 @@ body {
   .mobileNav{
     display: none;
   }
-}
-
-/* Style Variables */
-:root {
-  --primary-darkmode-button-color: #fd2d00;
-  --primary-darkmode-background-color: #23222A;
-  --primary-darkmode-border-color: #fff;
-  --primary-darkmode-font-color:#fff;
-  
-  --primary-font-family: verdana;
 }
 
 /* Main Section - Projects */
