@@ -1,3 +1,19 @@
+/*  styling */
+:root {
+  --primary-darkmode-button-color: #fd2d00;
+  --primary-darkmode-background-color: #23222A;
+  --primary-darkmode-container-background-color: #282b30;
+  --primary-darkmode-font-color:#fff;
+  --primary-font-family: verdana;
+
+}
+
+body {
+  background-color: var(--primary-darkmode-background-color);
+}
+
+
+
 @media only screen and (max-width: 431px) {
   .desktopNav {
     display: none;
@@ -26,20 +42,9 @@
   }
 }
 
-/* Main styling */
-:root {
-  --primary-darkmode-button-color: #fd2d00;
-  --primary-darkmode-background-color: #23222A;
-  --primary-darkmode-font-color:#fff;
-  --primary-font-family: verdana;
-}
-
-body {
-  background-color: var(--primary-darkmode-background-color);
-}
 /*Style for login site*/
-form {
-    width: 25%;
+.login_form {
+    width: 45%;
  
 }
 
@@ -51,18 +56,20 @@ form {
   align-items: center;
   color: var(--primary-darkmode-font-color);
   font-family: var(--primary-font-family);
-  background-color: red;
+ 
 }
 
 .login_container2 {
   display: flex;
   flex-direction: column;
-  background-color: blue;
-  margin:auto;
+  background-color: var(--primary-darkmode-container-background-color);
+  padding-top:10%;
+  padding-bottom:10%;
   align-items: center;
+
 }
 
-/* Full-width inputs */
+
 .input_login[type=text], input[type=password] {
   width: 100%;
   padding: 12px 20px;
@@ -86,26 +93,17 @@ button:hover {
   opacity: 0.8;
 }
 
-/* Add padding to containers */
-.logincontainer {
-  padding: 16px;
-}
 
-/* The "Forgot password" text */
-span.psw {
-  float: right;
-}
 
 /* The "Forgot password" text */
 span.forgot_password {
   float: right;
+
 }
 
 .logo_login {
   width: 10%;
   height: 10%;
+  margin-bottom: 5%;
 }
 
-span.signup_link {
-  color: var(--primary-darkmode-font-color);
-}
