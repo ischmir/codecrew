@@ -1,4 +1,4 @@
-/*  styling */
+/*  style varibles */
 :root {
   --primary-darkmode-button-color: #fd2d00;
   --primary-darkmode-background-color: #23222a;
@@ -9,6 +9,13 @@
   --primary-darkmode-inactive-font-color:#a8a8a8;
   --primary-darkmode-border-color: #fff;
   --primary-font-family: verdana;
+  --primary-link-color:#DF007C;
+  --primary-gradient-background-image: linear-gradient(90deg, #FD2D00, #DF007C);
+  --primary-round-button-border-radius:25px;
+  --primary-square-button-border-radius:6px;
+  --secondary-darkmode-font-color: #a2a2a4;
+
+
 
 }
 #wrapper {
@@ -99,15 +106,34 @@
   }
 }
 
-/* Main Section - Projects */
+
 body {
   background-color: var(--primary-darkmode-background-color);
   margin: 0;  
   font-family: var(--primary-font-family);
   color: #ccc;
 }
+
+/* Header Section - Dashboard */
+.header {
+  display: flex;
+    justify-content: space-between;
+}
+
+.user_profile {
+  display: flex;
+}
+
+.user_profile p, a, img {
+margin-top: 2em;
+margin-bottom: 2em;
+margin-left: 1em;
+}
+
+/* Main Section - Dashboard */
 Main {
   margin: 0px 50px;
+  width: 82%;
 }
 
 /*Search bar and button*/
@@ -156,7 +182,6 @@ font-family: verdana;
 }
 
 
-
 /* Stack List*/
 .list_info{
   background-color: var(--primary-darkmode-list-info-background-color);
@@ -172,45 +197,56 @@ font-family: verdana;
 
 .stack_list {
   background-color: var(--secondary-darkmode-background-color);
+  color: var(--primary-darkmode-font-color);
 }
 
 
 /*Style for login site*/
 .login_form {
-    width: 45%;
- 
+    width: 50%;
 }
 
 .login_container {
   display: flex;
   justify-content: center;
-  margin-top: 10%;
+  margin-top: 5%;
   flex-direction: column;
   align-items: center;
   color: var(--primary-darkmode-font-color);
   font-family: var(--primary-font-family);
- 
+  width: 100%;
 }
 
 .login_container2 {
   display: flex;
   flex-direction: column;
   background-color: var(--secondary-darkmode-background-color);
-  padding-top:10%;
-  padding-bottom:10%;
+  padding-top:5%;
+  padding-bottom:7%;
   align-items: center;
+  width: 45%;
+  box-shadow: 0 0 15px -2px #181818a0;
 
 }
 
 
 .input_login[type=text], input[type=password] {
   width: 100%;
-  padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
-  border: 1px solid #ccc;
   box-sizing: border-box;
+  border: 1.5px solid var(--secondary-darkmode-font-color);
+  background-color: #383939;
+  padding: 10px 10px;
+  border-radius: 5px;
+  color: var(--primary-darkmode-font-color);
 }
+
+.input_login::-webkit-input-placeholder  {
+  color:var(--primary-darkmode-font-color);
+  font-family: var(--primary-font-family);
+}
+
 
 .login_button {
   background-color: var(--primary-darkmode-button-color);
@@ -220,23 +256,67 @@ font-family: verdana;
   border: none;
   cursor: pointer;
   width: 100%;
+  background-image: var(--primary-gradient-background-image);
+  font-family: var(--primary-font-family);
+  border-radius: var(--primary-square-button-border-radius);
 }
 
-button:hover {
+.login_button:hover {
   opacity: 0.8;
 }
 
 
 
-/* The "Forgot password" text */
-span.forgot_password {
-  float: right;
-
-}
-
 .logo_login {
-  width: 10%;
-  height: 10%;
+  height:100px;
   margin-bottom: 5%;
 }
 
+.signup_link a {
+  color:var(--primary-link-color);
+}
+
+.forgot_password a {
+  color: var(--secondary-darkmode-font-color);
+}
+
+.forgot_password {
+  color: var(--secondary-darkmode-font-color);
+}
+
+.signup_forgotpassword {
+display: flex;
+justify-content: space-between;
+font-size: 12px;
+}
+
+/* SIGN UP SITE */
+.input_signup[type=text], input[type=password] {
+  width: 100%;
+  margin: 8px 0;
+  display: inline-block;
+  box-sizing: border-box;
+  border: 1.5px solid var(--secondary-darkmode-font-color);
+  background-color: #383939;
+  padding: 10px 10px;
+  border-radius: 5px;
+  color: var(--secondary-darkmode-font-color);
+}
+
+.input_signup::-webkit-input-placeholder  {
+  color: var(--primary-darkmode-font-color);
+  font-family: var(--primary-font-family);
+}
+
+.already_have_a_login {
+  font-size: 0.75em;
+  float: right;
+  color: var(--secondary-darkmode-font-color);
+}
+.already_have_a_login a {
+  color: var(--primary-link-color);
+}
+
+.h2_signup {
+  font-weight: 500;
+}

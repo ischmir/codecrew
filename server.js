@@ -16,24 +16,26 @@ app.set('views', path.join(__dirname, 'views'));
 
 //Example data
 const data = {
-    stackOne: [
-        {name: "sandra-nginx"},
-        {author: "codecrew"},
-        {creationDate: "29.10.2024"},
-        {status: 1}
-    ],
-    stackTwo: [
-        {name: "sandra-nginx"},
-        {author: "codecrew"},
-        {creationDate: "29.10.2024"},
-        {status: 1}
+    stack: [
+        {id: 0[
+            {name: "sandra-nginx"},
+            {author: "codecrew"},
+            {creationDate: "29.10.2024"},
+            {status: 1}
+        ]},
+        {id: 1[
+            {name: "timm-nginx"},
+            {author: "codecrew"},
+            {creationDate: "20.10.2024"},
+            {status: 1}
+        ]}
     ],
     title: "Dashboard",
     isAdmin: true
 }
 
 app.get('/dashboard', (req, res) => {
-    res.render('projects', data);
+    res.render('dashboard', data);
 });
 
 app.get("/nav", (req, res) => {
@@ -44,6 +46,10 @@ app.get("/nav", (req, res) => {
 
 app.get("/login", (req, res) => {
     res.render("index")
+});
+
+app.get("/signup", (req, res) => {
+    res.render("signup")
 });
 
 const PORT = process.env.PORT || 3333;
