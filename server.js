@@ -17,21 +17,25 @@ app.set('views', path.join(__dirname, 'views'));
 //Example data
 const data = {
     stack: [
-        {id: 0[
-            {name: "sandra-nginx"},
-            {author: "codecrew"},
-            {creationDate: "29.10.2024"},
-            {status: 1}
-        ]},
-        {id: 1[
-            {name: "timm-nginx"},
-            {author: "codecrew"},
-            {creationDate: "20.10.2024"},
-            {status: 1}
-        ]}
+        {
+            id: 0,
+            name: "sandra-nginx",
+            author: "codecrew",
+            creationDate: "29.10.2024",
+            status: false,
+            ifEven: 0
+        },
+        {   
+            id: 1,
+            name: "timm-nginx",
+            author: "codecrew",
+            creationDate: "20.10.2024",
+            status: true,
+            ifEven: 1
+        }
     ],
     title: "Dashboard",
-    isAdmin: true
+    isAdmin: true,
 }
 
 app.get('/dashboard', (req, res) => {
