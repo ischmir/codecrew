@@ -19,17 +19,36 @@
 #wrapper {
   display: flex;
 }
-@media only screen and (max-width: 431px) {
+/* mobil width er nok mere 430 */
+@media only screen and (max-width: 600px) { 
+  body {
+    padding: 1em;
+  }
   .desktopNav {
     display: none;
+  }
+  #wrapper {
+    flex-direction: column;
   }
   nav {
     display: flex;
     justify-content: space-between;
   }
   nav i {
-    font-size: 2rem;
+    font-size: 2.5em;
     color: #9145DC;
+    margin-top: -10px;
+  }
+  nav .logo {
+    width: 120px;
+    height: 60px;
+    
+  }
+  nav .userIcon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50px;
+    
   }
 
 /* Change styles for span and cancel button on extra small screens */
@@ -40,7 +59,7 @@
   }
 }
 
-@media only screen and (min-width: 900px) {
+@media only screen and (min-width: 600px) {
   /* //////// */
   /* NAV */
   /* /////// */
