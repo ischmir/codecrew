@@ -1,3 +1,3 @@
-exports.userSetting = function (req, res) {
-    // res.render("userSetting");
-}
+exports.settings = function (req, res) {
+	res.render('settings');
+};
