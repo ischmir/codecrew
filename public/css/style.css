@@ -1,26 +1,26 @@
 /*  style varibles */
 :root {
   --primary-darkmode-button-color: #fd2d00;
-  --primary-darkmode-background-color: #23222A;
-  --primary-darkmode-container-background-color: #282b30;
+  --primary-darkmode-background-color: #23222a;
+  --secondary-darkmode-background-color: #282b30;
+  --teritary-darkmode-background-color: #36393E;
+  --primary-darkmode-list-info-background-color: #727272;
   --primary-darkmode-font-color:#fff;
+  --primary-darkmode-inactive-font-color:#a8a8a8;
   --primary-darkmode-border-color: #fff;
   --primary-font-family: verdana;
   --primary-link-color:#DF007C;
   --primary-gradient-background-image: linear-gradient(90deg, #FD2D00, #DF007C);
   --primary-round-button-border-radius:25px;
   --primary-square-button-border-radius:6px;
+  --secondary-darkmode-font-color: #a2a2a4;
 
 
 
 }
-
-body {
-  background-color: var(--primary-darkmode-background-color);
+#wrapper {
+  display: flex;
 }
-
-
-
 @media only screen and (max-width: 431px) {
   .desktopNav {
     display: none;
@@ -44,31 +44,122 @@ body {
 }
 
 @media only screen and (min-width: 900px) {
+  /* //////// */
+  /* NAV */
+  /* /////// */
   .mobileNav{
     display: none;
+  }
+  nav {
+    /* background-color: #9145DC; */
+    background-color: var(--primary-darkmode-background-color);
+    width: 18%;
+    height: 100vh;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    /* border-right: solid 3px rgba(10, 10, 10, 0.8); */
+    box-shadow: 5px 0 5px -2px black;
+  }
+  nav img {
+    margin: 2em auto;
+  }
+  nav a {
+    color: #ccc;
+    text-decoration: none;
+  }
+  nav li {
+    list-style: none;
+    margin: 1em 0;
+  }
+  nav ul {
+    padding: 0;
+  }
+  nav .navLink_highlighted a{
+    color: white;
+  }
+  nav .navLink_highlighted {
+    list-style-type: disc;
+    color: #FD2D00;
+  }
+  nav .navLink_highlighted::marker {
+    font-size: 20px;
   }
 }
 
 /* Main Section - Projects */
 body {
-background-color: var(--primary-darkmode-background-color);
+  background-color: var(--primary-darkmode-background-color);
+  margin: 0;  
+  font-family: var(--primary-font-family);
+  color: #ccc;
+}
+Main {
+  margin: 0px 50px;
 }
 
-input.search-bar {
+/*Search bar and button*/
+.search_bar {
 border: 2px solid var(--primary-darkmode-border-color);
 border-radius: 20px;
 background-color: var(--primary-darkmode-background-color);
-width: 40%;
-padding: 10px;
+width: 20%;
+padding: 5px 10px;
+font-size: 1em;
+font-family: verdana;
+color: var(--primary-darkmode-font-color);
 }
-
-.search-button {
+/*Buttons - Search and Create new stack*/
+.search_button, .create_button {
 background-color: var(--primary-darkmode-button-color);
-background-image: linear-gradient(90deg, #FD2D00, #DF007C);
+background-image: var(--primary-gradient-background-image);
 color: var(--primary-darkmode-font-color);
 border: 0px;
 border-radius: 25px;
-padding: 12px 20px;
+padding: 8px 20px;
+font-size: 1em;
+font-family: verdana;
+}
+.create_button {
+  border-radius: 6px;  
+}
+
+/*Sorting Section*/
+.stack_sorting {
+    display: block;
+    margin: 50px 0px 20px 0px;
+}
+.sort_section{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0px;
+  border-bottom: 2px solid var(--primary-darkmode-border-color);
+}
+
+.sort{
+  color: var(--primary-darkmode-inactive-font-color);
+  padding: 0px 25px;
+  font-family: verdana;
+  text-decoration: none;
+}
+
+
+
+/* Stack List*/
+.list_info{
+  background-color: var(--primary-darkmode-list-info-background-color);
+  padding: 5px 10px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+}
+.list_info span {
+  color: var(--primary-darkmode-font-color);
+  text-decoration: none;
+}
+
+.stack_list {
+  background-color: var(--secondary-darkmode-background-color);
 }
 
 
@@ -80,48 +171,45 @@ padding: 12px 20px;
 .login_container {
   display: flex;
   justify-content: center;
-  margin-top: 10%;
+  margin-top: 5%;
   flex-direction: column;
   align-items: center;
   color: var(--primary-darkmode-font-color);
   font-family: var(--primary-font-family);
+  width: 100%;
 }
 
 .login_container2 {
   display: flex;
   flex-direction: column;
-  background-color: var(--primary-darkmode-container-background-color);
+  background-color: var(--secondary-darkmode-background-color);
   padding-top:5%;
   padding-bottom:7%;
   align-items: center;
   width: 45%;
   box-shadow: 0 0 15px -2px #181818a0;
+
 }
 
-/* rgba(14, 14, 14, 0.667);*/
 
 .input_login[type=text], input[type=password] {
   width: 100%;
   margin: 8px 0;
   display: inline-block;
   box-sizing: border-box;
-  border: 1.5px solid var(--primary-darkmode-border-color);
+  border: 1.5px solid var(--secondary-darkmode-font-color);
   background-color: #383939;
   padding: 10px 10px;
   border-radius: 5px;
+  color: var(--primary-darkmode-font-color);
 }
 
 .input_login::-webkit-input-placeholder  {
-  color:#a2a2a4;
+  color:var(--primary-darkmode-font-color);
   font-family: var(--primary-font-family);
-
 }
 
 
-label.password_title {
-  margin-top:5%;
-  display: block;
-}
 .login_button {
   background-color: var(--primary-darkmode-button-color);
   color: var(--primary-darkmode-font-color);
@@ -142,8 +230,7 @@ label.password_title {
 
 
 .logo_login {
-  width: 20%;
-  height: 20%;
+  height:100px;
   margin-bottom: 5%;
 }
 
@@ -152,11 +239,11 @@ label.password_title {
 }
 
 .forgot_password a {
-  color: #a2a2a4;
+  color: var(--secondary-darkmode-font-color);
 }
 
 .forgot_password {
-  color: #a2a2a4
+  color: var(--secondary-darkmode-font-color);
 }
 
 .signup_forgotpassword {
@@ -171,16 +258,27 @@ font-size: 12px;
   margin: 8px 0;
   display: inline-block;
   box-sizing: border-box;
-  border: 1.5px solid var(--primary-darkmode-border-color);
+  border: 1.5px solid var(--secondary-darkmode-font-color);
   background-color: #383939;
   padding: 10px 10px;
   border-radius: 5px;
-  color:#a2a2a4;
+  color: var(--secondary-darkmode-font-color);
 }
 
 .input_signup::-webkit-input-placeholder  {
-  color: var(--primary-link-color)
+  color: var(--primary-darkmode-font-color);
   font-family: var(--primary-font-family);
-
 }
 
+.already_have_a_login {
+  font-size: 0.75em;
+  float: right;
+  color: var(--secondary-darkmode-font-color);
+}
+.already_have_a_login a {
+  color: var(--primary-link-color);
+}
+
+.h2_signup {
+  font-weight: 500;
+}

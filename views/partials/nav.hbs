@@ -1,0 +1,33 @@
+<nav class="mobileNav">
+    <i class="uil uil-bars"></i>
+    <img class="logo" src="https://www.dummyimage.com/100x50/e3e3e3" alt="">
+    <img class="userIcon" src="https://www.dummyimage.com/48x48/e3e3e3" alt="">
+</nav>
+
+<nav class="desktopNav">
+    <img src="https://www.dummyimage.com/150x120/e3e3e3" alt="">
+    <ul>
+        <li><a href="">{{title}}</a></li>
+        <li><a href="">Teams</a></li>
+        <li><a href="">User setting</a></li>
+        {{#if isAdmin}}
+        <li><a href="">Admin setting</a></li>
+        {{/if}}
+    </ul>
+</nav>
+
+<script>
+    function ChangeNavFocus() {
+    const allLinks = document.querySelectorAll("nav li");
+    const endpoint = window.location.pathname.replace("/", "");
+    allLinks.forEach((link) => {
+    
+        if(link.firstChild.innerHTML.toLowerCase() === endpoint) {
+            console.log("wel");
+            link.classList.add("navLink_highlighted")
+        }
+        
+    })
+}
+ChangeNavFocus();
+</script>

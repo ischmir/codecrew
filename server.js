@@ -7,7 +7,8 @@ app.use(express.static("public"));
 
 app.engine('hbs', exphbs.engine({ 
     defaultLayout: 'main',
-    extname: '.hbs' 
+    extname: '.hbs',
+    partialsDir: path.join(__dirname, 'views/partials')
 }));
 
 app.set('view engine', 'hbs');
@@ -26,10 +27,12 @@ const data = {
         {author: "codecrew"},
         {creationDate: "29.10.2024"},
         {status: 1}
-    ]
+    ],
+    title: "Dashboard",
+    isAdmin: true
 }
 
-app.get('/', (req, res) => {
+app.get('/dashboard', (req, res) => {
     res.render('projects', data);
 });
 

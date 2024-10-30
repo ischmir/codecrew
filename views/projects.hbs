@@ -1,3 +1,4 @@
+{{> nav}}
 <header>
     <h1>Projects</h1>
     <img src="" alt="User Profile Picture">
@@ -14,24 +15,28 @@
 </nav>
 <main>
     <div class="search">
-        <input class="search-bar" type="text" placeholder="search"></input>
-        <button class="search-button">Search</button>
+        <input class="search_bar" type="text" placeholder="search"></input>
+        <button class="search_button">Search</button>
     </div>
-    <div>
-        <div>
-            <a class="sort" href="">Your Stacks</a>
-            <a class="sort" href="">Others Stacks</a>
+    <div class="stack_sorting">
+        <div class="sort_section">
+            <div>
+                <a class="sort" href="">Your Stacks</a>
+                <a class="sort" href="">Others Stacks</a>
+            </div>
+            <div>
+                <button class="create_button">Create New Stack</button>
+            </div>
         </div>
-        <div>
-            <button>Create New Stack</button>
-        </div>
     </div>
-    <div>
-        <a href="">Name</a>
-        <a href="">Author</a>
-        <a href="">Status</a>
+    <div class="list_info">
+        <span>Name</span>
+        <span>Author</span>
+        <span>Creation Date</span>
+        <span>Status</span>
+        <span>arrow</span>
     </div>
-    <div class="stack-list">
+    <div class="stack_list">
         {{#each stack}}
         <p>{{this.name}}</p>
         <p>{{this.author}}</p>
