@@ -80,15 +80,34 @@
   }
 }
 
-/* Main Section - Projects */
+
 body {
   background-color: var(--primary-darkmode-background-color);
   margin: 0;  
   font-family: var(--primary-font-family);
   color: #ccc;
 }
+
+/* Header Section - Dashboard */
+.header {
+  display: flex;
+    justify-content: space-between;
+}
+
+.user_profile {
+  display: flex;
+}
+
+.user_profile p, a, img {
+margin-top: 2em;
+margin-bottom: 2em;
+margin-left: 1em;
+}
+
+/* Main Section - Dashboard */
 Main {
   margin: 0px 50px;
+  width: 82%;
 }
 
 /*Search bar and button*/
@@ -137,7 +156,6 @@ font-family: verdana;
 }
 
 
-
 /* Stack List*/
 .list_info{
   background-color: var(--primary-darkmode-list-info-background-color);
@@ -153,6 +171,7 @@ font-family: verdana;
 
 .stack_list {
   background-color: var(--secondary-darkmode-background-color);
+  color: var(--primary-darkmode-font-color);
 }
 
 
