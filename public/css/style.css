@@ -3,7 +3,7 @@
 	--primary-darkmode-button-color: #fd2d00;
 	--primary-darkmode-background-color: #23222a;
 	--secondary-darkmode-background-color: #282b30;
-	--teritary-darkmode-background-color: #36393e;
+	--tertiary-darkmode-background-color: #36393e;
 	--primary-darkmode-list-info-background-color: #727272;
 	--primary-darkmode-font-color: #fff;
 	--primary-darkmode-inactive-font-color: #a8a8a8;
@@ -15,20 +15,40 @@
 	--primary-square-button-border-radius: 6px;
 	--secondary-darkmode-font-color: #a2a2a4;
 }
+
 #wrapper {
 	display: flex;
 }
-@media only screen and (max-width: 431px) {
+/* mobil width er nok mere 430 */
+@media only screen and (max-width: 600px) {
+	body {
+		padding: 1em;
+	}
 	.desktopNav {
 		display: none;
+	}
+	#wrapper {
+		flex-direction: column;
 	}
 	nav {
 		display: flex;
 		justify-content: space-between;
 	}
 	nav i {
-		font-size: 2rem;
+		font-size: 2.5em;
 		color: #9145dc;
+		margin-top: -10px;
+	}
+	nav .logo {
+		width: 120px;
+		height: 60px;
+		margin: 0;
+	}
+	nav .userIcon {
+		width: 56px;
+		height: 56px;
+		border-radius: 50px;
+		margin: 0;
 	}
 
 	/* Change styles for span and cancel button on extra small screens */
@@ -39,7 +59,7 @@
 	}
 }
 
-@media only screen and (min-width: 900px) {
+@media only screen and (min-width: 600px) {
 	/* //////// */
 	/* NAV */
 	/* /////// */
@@ -100,9 +120,9 @@ body {
 	display: flex;
 }
 
-.user_profile p,
-a,
-img {
+.user_profile .header_username,
+.header_button,
+.header_profile_picture {
 	margin-top: 2em;
 	margin-bottom: 2em;
 	margin-left: 1em;
@@ -146,6 +166,10 @@ Main {
 	display: block;
 	margin: 50px 0px 20px 0px;
 }
+nav .navLink_highlighted {
+	list-style-type: disc;
+	color: #fd2d00;
+}
 .sort_section {
 	display: flex;
 	justify-content: space-between;
@@ -176,6 +200,59 @@ Main {
 .stack_list {
 	background-color: var(--secondary-darkmode-background-color);
 	color: var(--primary-darkmode-font-color);
+}
+
+.stack_accordion {
+	background-color: var(--secondary-darkmode-background-color);
+	color: var(--primary-darkmode-font-color);
+	cursor: pointer;
+	padding: 18px;
+	width: 100%;
+	border: none;
+	text-align: left;
+	outline: none;
+	font-size: 15px;
+	transition: 0.4s;
+}
+
+.stack_accordion_even {
+	background-color: var(--tertiary-darkmode-background-color);
+	color: var(--primary-darkmode-font-color);
+	cursor: pointer;
+	padding: 18px;
+	width: 100%;
+	border: none;
+	text-align: left;
+	outline: none;
+	font-size: 15px;
+	transition: 0.4s;
+}
+
+.active,
+.stack_accordion,
+.stack_accordion_even:hover {
+	background-color: var(--primary-darkmode-list-info-background-color);
+}
+
+.stack_accordion,
+.stack_accordion_even:after {
+	content: "\002B";
+	color: #777;
+	font-weight: bold;
+	float: right;
+	margin-left: 5px;
+}
+
+.active:after {
+	content: "\2212";
+}
+
+.stack_accordion_panel {
+	padding: 0 18px;
+	background-color: var(--primary-darkmode-inactive-font-color);
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.2s ease-out;
 }
 
 /*Style for login site*/
