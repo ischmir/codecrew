@@ -1,7 +1,5 @@
 const dashboardM = require("../models/dashboardModel");
 
-exports.dashboard = function (req, res) {
-    console.log(dashboardM.mockData());
-    
+exports.dashboard = function (req, res) {  
     res.render('dashboard', dashboardM.mockData());
 }
