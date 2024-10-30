@@ -8,6 +8,7 @@
 	font-family: var(--primary-font-family);
 	padding-inline: 15px;
 	padding-top: 5px;
+	filter: var(--dropshadow);
 }
 
 .input[type="text"],
@@ -41,15 +42,13 @@ input[type="password"] {
 	justify-content: space-between;
 	align-items: flex-end;
 }
-
-@media only screen and (min-width: 768px) {
+/* For tablets & desktop */
+@media only screen and (min-width: 600px) {
 	.container {
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
 		padding: 0px;
-		padding-inline: 30px;
-		padding-bottom: 30px;
 	}
 
 	main {
@@ -59,7 +58,24 @@ input[type="password"] {
 		align-items: center;
 	}
 	.settings_container {
-		border-right: 1px solid #000000;
-		padding: 27px;
+		padding: 25px;
+	}
+	.profileicon {
+		height: 120px;
+	}
+	.profile_container {
+		align-items: normal;
+	}
+
+	.settings {
+		border-right: solid 3px rgba(10, 10, 10, 0.8);
+		/* padding: 30px 40px 30px 40px; */
+		padding: 25px;
+	}
+
+	.settings_container {
+		/* padding: 30px 40px 30px 40px; */
 	}
 }
+
+/* For desktop: */

@@ -14,6 +14,7 @@
 	--primary-round-button-border-radius: 25px;
 	--primary-square-button-border-radius: 6px;
 	--secondary-darkmode-font-color: #a2a2a4;
+	--dropshadow: drop-shadow(5px 5px 4px rgba(0, 0, 0, 0.2));
 }
 
 #wrapper {
