@@ -1,0 +1,37 @@
+{{!-- {{> nav}} --}}
+<main>
+	<h2>Settings</h2>
+	<section class="container">
+		<div class="settings">
+			<h3>Settings</h3>
+			<h4>User settings</h4>
+			<p>Change profile</p>
+			<p>Change password</p>
+			<h4>Admin settings</h4>
+			<p>Upgrade user</p>
+			<p>Change profile picture</p>
+		</div>
+		<div>
+			<div class="profile_container">
+				<div>
+					<h2>Change profile</h2>
+					<h3>Display mode</h3>
+				</div>
+				<svg class="profileicon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+					<path
+						stroke="currentColor"
+						stroke-width="1"
+						d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+					/>
+				</svg>
+			</div>
+
+			<h3>Change name</h3>
+			<form>
+				<input type="text" class="input" placeholder="Firstname" name="firstname" required />
+				<input type="text" class="input" placeholder="Last Name" name="lastname" required />
+			</form>
+			<button type="submit" class="login_button">Change name</button>
+		</div>
+	</section>
+</main>
