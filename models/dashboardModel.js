@@ -18,7 +18,8 @@ exports.mockData = function() {
             }
         ],
         title: "Dashboard",
-        isAdmin: true
+        isAdmin: true,
+        email: "tihi66699@edu.ucl.dk"
     };
     return data;
 };

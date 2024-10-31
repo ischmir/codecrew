@@ -5,7 +5,7 @@
 	--secondary-darkmode-background-color: #282b30;
 	--tertiary-darkmode-background-color: #36393e;
 	--primary-darkmode-list-info-background-color: #727272;
-	--primary-darkmode-font-color: #fff;
+	--primary-darkmode-font-color: #efefef;
 	--primary-darkmode-inactive-font-color: #a8a8a8;
 	--primary-darkmode-border-color: #fff;
 	--primary-font-family: verdana;
@@ -25,7 +25,7 @@
 	body {
 		padding: 1em;
 	}
-	.desktopNav {
+	.desktopNav, header {
 		display: none;
 	}
 	#wrapper {
@@ -41,13 +41,13 @@
 		margin-top: -10px;
 	}
 	nav .logo {
-		width: 120px;
-		height: 60px;
+		width: 7.5em;
+		height: 4em;
 		margin: 0;
 	}
 	nav .userIcon {
-		width: 56px;
-		height: 56px;
+		width: 3.5em;
+		height: 3.5em;
 		border-radius: 50px;
 		margin: 0;
 	}
@@ -102,6 +102,60 @@
 	nav .navLink_highlighted::marker {
 		font-size: 20px;
 	}
+	
+	header {
+		position: absolute;
+		top: 0;
+		display: flex;
+		justify-content: space-between;
+		width: 80%;
+		align-items: center;
+	}
+	header .header_profile_picture {
+		border-radius: 50px;
+		margin-right: 1em;
+	}
+	header .user_profile {
+		margin-top: 2em;
+		width: fit-content;
+		align-items: center;
+		position: relative;
+		cursor: pointer;
+	}
+	header .user_profile i {
+		font-size: 2em;
+	}
+	.dropdown-content {
+		display: none;
+		position: absolute;
+		top: 3.5em;
+		right: 0;
+		background-color: #727272;
+		min-width: 10em;
+		box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+		z-index: 1;
+		border-radius: 5px;
+		overflow: hidden;
+		cursor: default;
+	}
+	.dropdown-content p, .dropdown-content a {
+		color: var(--primary-darkmode-font-color);
+		padding: 0.5em 1em;
+		text-decoration: none;
+		display: block;
+	}
+	.dropdown-content p {
+		cursor: text;
+		margin: 0;
+	}
+	.dropdown-content hr {
+		width: 95%;
+		margin: 0 auto 0.25em;
+		border: solid 1px #23222a79;
+	}
+	.dropdown-content a:hover {
+		background-color: #494D54;
+	}
 }
 
 body {
@@ -111,23 +165,17 @@ body {
 	color: #ccc;
 }
 
-/* Header Section - Dashboard */
-.header {
-	display: flex;
-	justify-content: space-between;
-}
-
 .user_profile {
 	display: flex;
 }
 
-.user_profile .header_username,
+/* .user_profile .header_username,
 .header_button,
 .header_profile_picture {
 	margin-top: 2em;
 	margin-bottom: 2em;
 	margin-left: 1em;
-}
+} */
 
 /* Main Section - Dashboard */
 Main {
