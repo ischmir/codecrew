@@ -23,3 +23,26 @@ exports.mockData = function() {
     };
     return data;
 };
+
+exports.portainerSystemInfo = function () {
+    
+};
+
+exports.portainerSystemStatus = function () {
+    
+};
+exports.portainerStacks = function () {
+    
+};
+exports.portainerEndpoints = function () {
+    
+};
+exports.portainerSystemAuth = function () {
+    
+};
+exports.portainerCreateStack = function () {
+    
+};
+exports.portainerDeleteStack = function () {
+    
+};
