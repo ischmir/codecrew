@@ -9,7 +9,7 @@
     </div>
     <div class="stack_sorting">
         <div class="sort_section">
-            <div>
+            <div class="sorting">
                 <a class="sort" href="">Your Stacks</a>
                 <a class="sort" href="">Others Stacks</a>
             </div>
@@ -18,12 +18,13 @@
             </div>
         </div>
     </div>
-    <div class="list_info">
-        <span>Name</span>
-        <span>Author</span>
-        <span>Creation Date</span>
-        <span>Status</span>
-        <span>arrow</span>
+    <div class="dashboard_list">
+        <div class="list_info">
+        <span class="list_info_span">Name</span>
+        <span class="list_info_span">Author</span>
+        <span class="list_info_span">Creation Date</span>
+        <span class="list_info_span">Status</span>
+        <span class="list_info_span">arrow</span>
     </div>
     {{#each stack}}
         {{#if ifEven}}
@@ -42,6 +43,7 @@
             </div>
         </button>
     {{/each}}
+    </div>
 </main>
 <footer></footer>
 
