@@ -87,10 +87,12 @@
 	}
 	nav li {
 		list-style: none;
-		margin: 1em 0;
+		margin: 1em;
 	}
 	nav ul {
 		padding: 0;
+		min-width: 8.5em;
+		align-items: center;
 	}
 	nav .navLink_highlighted a {
 		color: white;
@@ -98,9 +100,6 @@
 	nav .navLink_highlighted {
 		list-style-type: disc;
 		color: #fd2d00;
-	}
-	nav .navLink_highlighted::marker {
-		font-size: 20px;
 	}
 	
 	header {
