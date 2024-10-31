@@ -2,29 +2,16 @@
     <h1>{{title}}</h1>
     <div class="user_profile" onclick="toggleDropdown()">
         <img class="header_profile_picture" src="https://www.dummyimage.com/48x48/d4d4d4/c2350e" alt="User Profile Picture">
-        <p class="header_username">Timm Tihi</p>
+        <p class="header_username">{{headerUserDetails.name}}</p>
         <i class="uil uil-angle-down"></i>
 
         <div id="dropdown-content" class="dropdown-content">
-            <p onclick="event.stopPropagation()">{{email}}</p>
+            <p onclick="event.stopPropagation()">{{headerUserDetails.email}}</p>
             <hr>
-            <a href="#settings">Settings</a>
+            <a href="/settings">Settings</a>
             <a href="#logout">Logout</a>
         </div>
     </div>
-
-
-{{!-- <div class="user-area" onclick="toggleDropdown()">
-    <img src="profile.jpg" alt="User Profile" class="profile-pic">
-    <span class="username">Username</span>
-    
-    <!-- Dropdown menu -->
-    <div id="dropdown-content" class="dropdown-content">
-        <a href="#profile">View Profile</a>
-        <a href="#settings">Settings</a>
-        <a href="#logout">Logout</a>
-    </div>
-</div> --}}
 
 </header>
 <script>

@@ -1,10 +1,13 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
 const path = require('path');
+const fetchHeaderUserDetails = require("./models/headerModel");
 
 const app = express();
 app.use(express.static('public'));
+app.use(fetchHeaderUserDetails.userDetails);
 require('./routes/getSiteRoutes')(app); // routes
+
 
 app.engine(
 	'hbs',
