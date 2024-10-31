@@ -1,21 +1,13 @@
 {{> nav}}
     
 <main>
-    <section class="header">
-        <h1>Projects</h1>
-        <div class="user_profile">
-            <img class="header_profile_picture" alt="User Profile Picture">
-            <p class="header_username">Username</p>
-            <a class="header_button" href="">V button</a>
-        </div>
-    </section>
     <div class="search">
         <input class="search_bar" type="text" placeholder="search"></input>
         <button class="search_button">Search</button>
     </div>
     <div class="stack_sorting">
         <div class="sort_section">
-            <div>
+            <div class="sorting">
                 <a class="sort" href="">Your Stacks</a>
                 <a class="sort" href="">Others Stacks</a>
             </div>
@@ -24,12 +16,13 @@
             </div>
         </div>
     </div>
-    <div class="list_info">
-        <span>Name</span>
-        <span>Author</span>
-        <span>Creation Date</span>
-        <span>Status</span>
-        <span>arrow</span>
+    <div class="dashboard_list">
+        <div class="list_info">
+        <span class="list_info_span">Name</span>
+        <span class="list_info_span">Author</span>
+        <span class="list_info_span">Creation Date</span>
+        <span class="list_info_span">Status</span>
+        <span class="list_info_span">arrow</span>
     </div>
     {{#each stack}}
         {{#if ifEven}}
@@ -48,6 +41,7 @@
             </div>
         </button>
     {{/each}}
+    </div>
 </main>
 <footer></footer>
 
