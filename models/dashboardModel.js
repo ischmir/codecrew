@@ -18,7 +18,31 @@ exports.mockData = function() {
             }
         ],
         title: "Dashboard",
-        isAdmin: true
+        isAdmin: true,
+        email: "tihi66699@edu.ucl.dk"
     };
     return data;
+};
+
+exports.portainerSystemInfo = function () {
+    
+};
+
+exports.portainerSystemStatus = function () {
+    
+};
+exports.portainerStacks = function () {
+    
+};
+exports.portainerEndpoints = function () {
+    
+};
+exports.portainerSystemAuth = function () {
+    
+};
+exports.portainerCreateStack = function () {
+    
+};
+exports.portainerDeleteStack = function () {
+    
 };

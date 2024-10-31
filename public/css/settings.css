@@ -42,6 +42,15 @@ input[type="password"] {
 	justify-content: space-between;
 	align-items: flex-end;
 }
+
+.Link {
+	color: var(--primary-darkmode-font-color);
+}
+
+.settingsText {
+	padding-left: 10px;
+}
+
 /* For tablets & desktop */
 @media only screen and (min-width: 600px) {
 	.container {
@@ -59,6 +68,7 @@ input[type="password"] {
 	}
 	.settings_container {
 		padding: 25px;
+		max-width: 44rem;
 	}
 	.profileicon {
 		height: 120px;
@@ -71,10 +81,6 @@ input[type="password"] {
 		border-right: solid 3px rgba(10, 10, 10, 0.8);
 		/* padding: 30px 40px 30px 40px; */
 		padding: 25px;
-	}
-
-	.settings_container {
-		/* padding: 30px 40px 30px 40px; */
 	}
 }
 
