@@ -4,9 +4,9 @@
     <section class="header">
         <h1>Projects</h1>
         <div class="user_profile">
-            <img src="" alt="User Profile Picture">
-            <p>Username</p>
-            <a href="">V button</a>
+            <img class="header_profile_picture" alt="User Profile Picture">
+            <p class="header_username">Username</p>
+            <a class="header_button" href="">V button</a>
         </div>
     </section>
     <div class="search">
@@ -31,16 +31,39 @@
         <span>Status</span>
         <span>arrow</span>
     </div>
-    <div class="stack_list">
-
+    {{#each stack}}
+        {{#if ifEven}}
+            <button class="stack_accordion_even">
+        {{else}}
+            <button class="stack_accordion">
+        {{/if}}
+            <div class="stack_accordion_panel">
                 <ul>
-                    {{#each stack}}
+                    <li>{{id}}</li>
                     <li>{{name}}</li>
                     <li>{{author}}</li>
                     <li>{{creationDate}}</li>
-                    <li>{{status}}</li>                
-                    {{/each}}
+                    <li>{{#if status}}Online{{else}}Offline{{/if}}</li>
                 </ul>
-    </div>
+            </div>
+        </button>
+    {{/each}}
 </main>
 <footer></footer>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+</script>
