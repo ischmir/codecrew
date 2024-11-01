@@ -1,13 +1,18 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
 const path = require('path');
+const bodyParser = require('body-parser');
 const fetchHeaderUserDetails = require("./models/headerModel");
 
 const app = express();
+
+// Middlewares
 app.use(express.static('public'));
 app.use(fetchHeaderUserDetails.userDetails);
-require('./routes/getSiteRoutes')(app); // routes
+app.use(bodyParser.urlencoded({ extended: false })); // HEEKING... den SKAL være før routes.. den irreterede mig lidt :D (bruger den til at få data fra forms)
 
+require('./routes/getSiteRoutes')(app); // GET routes
+require('./routes/postSiteRoutes')(app); // POST routes
 
 app.engine(
 	'hbs',

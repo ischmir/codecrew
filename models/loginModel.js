@@ -1,8 +1,9 @@
 const db = require("../config/db");
 const headerM = require("../models/headerModel")
 
-exports.getSingelUserByEmail = function(userEmail, userPassword) {
-    const [rows, fields] = db.query(`
+exports.getSingelUserForLogin = async function(userEmail, userPassword) {
+    
+    const [rows, fields] = await db.query(`
         SELECT 
             Users.UserId, 
             Roles.Name AS RoleName, 
@@ -17,8 +18,7 @@ exports.getSingelUserByEmail = function(userEmail, userPassword) {
         INNER JOIN UserProfiles ON Users.FK_UserProfile = UserProfiles.Username
         WHERE Credentials.Email = ? AND Credentials.Password = ?
         `, 
-        [userEmail, userPassword])
-
+        [userEmail, userPassword]);
         
     return rows;
 }
