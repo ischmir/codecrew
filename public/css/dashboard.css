@@ -100,10 +100,14 @@ transition: max-height 0.2s ease-out;
 
 @media only screen and (max-width: 600px) {
     .dashboard_main {
-        display: flex;
-        flex-direction: column;
-        margin: 0;
-        width: 100%;
+        .dashboard_main {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 auto;
+            width: 80%;
+        }
     }
 
     /*Mobile - Search bar and button*/
@@ -150,8 +154,12 @@ transition: max-height 0.2s ease-out;
 @media only screen and (min-width: 900px) {
     /* Main Section - Dashboard */
     .dashboard_main {
-        margin: 1em 2em;
-        width: 82%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+        width: 80%;
     }
     
     /*Search bar and button*/

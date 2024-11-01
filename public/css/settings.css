@@ -60,11 +60,12 @@ input[type="password"] {
 		padding: 0px;
 	}
 
-	main {
+	.main_settings {
 		display: flex;
 		justify-content: center;
 		flex-direction: column;
 		align-items: center;
+		margin: 0 auto;
 	}
 	.settings_container {
 		padding: 25px;
