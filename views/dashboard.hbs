@@ -1,6 +1,7 @@
+<script type="text/javascript" src="/script/script.js" defer></script>
 {{> nav}}
     
-<main>
+<main class="dashboard_main">
     {{> header}}
     
     <div class="search">
@@ -20,46 +21,33 @@
     </div>
     <div class="dashboard_list">
         <div class="list_info">
-        <span class="list_info_span">Name</span>
-        <span class="list_info_span">Author</span>
-        <span class="list_info_span">Creation Date</span>
-        <span class="list_info_span">Status</span>
-        <span class="list_info_span">arrow</span>
-    </div>
-    {{#each stack}}
-        {{#if ifEven}}
-            <button class="stack_accordion_even">
-        {{else}}
-            <button class="stack_accordion">
-        {{/if}}
-            <div class="stack_accordion_panel">
-                <ul>
-                    <li>{{id}}</li>
-                    <li>{{name}}</li>
-                    <li>{{author}}</li>
-                    <li>{{creationDate}}</li>
-                    <li>{{#if status}}Online{{else}}Offline{{/if}}</li>
-                </ul>
+            <div class="list_spacer">
+                <span class="list_info_span">Name</span>
+                <span class="list_info_span">Author</span>
+                <span class="list_info_span">Creation Date</span>
+                <span class="list_info_span">Status</span>
+                <span class="list_info_span">arrow</span>
             </div>
-        </button>
-    {{/each}}
+        </div>
+        {{#each stack}}
+            <button class="accordion">
+                <span class="stack_info_head">{{name}}</span>
+                <span class="stack_info_head">{{author}}</span>
+                <span class="stack_info_head">{{creationDate}}</span>
+                <span class="stack_info_head">{{#if status}}Online{{else}}Offline{{/if}}</span>
+            </button>
+            <div class="panel">
+                    <li>{{id}}</li>
+                </ul>
+            </div> 
+        {{/each}}
     </div>
 </main>
 <footer></footer>
-
-<script>
-var acc = document.getElementsByClassName("accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    } 
-  });
-}
-</script>
+<!--
+{{#if ifEven}}
+            <button id="accordion" class="stack_accordion_even">
+        {{else}}
+            <button id="accordion" class="stack_accordion">
+        {{/if}}
+            <div class="stack_accordion_panel">
