@@ -40,11 +40,11 @@ CREATE TABLE Users (
     FK_UserProfile varchar(20),
     FK_Credential varchar(200),
     FK_Role int,
-    FK_TeamId int,
+    FK_Team int,
     FOREIGN KEY (FK_UserProfile) REFERENCES UserProfiles(Username),
     FOREIGN KEY (FK_Credential) REFERENCES Credentials(Email),
     FOREIGN KEY (FK_Role) REFERENCES Roles(RoleId),
-    FOREIGN KEY (FK_TeamId) REFERENCES Teams(TeamId)
+    FOREIGN KEY (FK_Team) REFERENCES Teams(TeamId)
 );
 
 -- Composition table with foreign keys to Users and Teams
@@ -116,7 +116,7 @@ INSERT INTO UserProfiles (Username, FirstName, LastName) VALUES
     ('jedi42099', 'Jessica', 'Davis');       
 
 -- USERS
-INSERT INTO Users (ExpirationDate, FK_Credential, FK_Role, FK_TeamId, FK_UserProfile) VALUES 
+INSERT INTO Users (ExpirationDate, FK_Credential, FK_Role, FK_Team, FK_UserProfile) VALUES 
     ('2025-12-31', 'kenneth@example.com', 3, 1, 'kjc69123'),           
     ('2024-06-15', 'bob.johnson@example.com', 1, 2, 'bob82134'),       
     ('2024-07-01', 'charlie.brown@example.com', 2, 2, 'chbr22231'),    
