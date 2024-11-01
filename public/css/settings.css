@@ -17,11 +17,11 @@ input[type="password"] {
 	margin: 8px 0;
 	display: inline-block;
 	box-sizing: border-box;
-	border: 1.5px solid var(--secondary-darkmode-font-color);
+	border: 1.5px solid var(--primary-darkmode-border-color);
 	background-color: #383939;
 	padding: 10px 10px;
 	border-radius: 5px;
-	color: var(--secondary-darkmode-font-color);
+	color: var(--primary-darkmode-font-color);
 }
 
 .input {
@@ -49,6 +49,10 @@ input[type="password"] {
 
 .settingsText {
 	padding-left: 10px;
+}
+
+.passwordLink {
+	color: var(--primary-link-color);
 }
 
 /* For tablets & desktop */
