@@ -17,7 +17,7 @@ input[type="password"] {
 	margin: 8px 0;
 	display: inline-block;
 	box-sizing: border-box;
-	border: 1.5px solid var( --primary-darkmode-border-color);
+	border: 1.5px solid var(--secondary-darkmode-font-color);
 	background-color: #383939;
 	padding: 10px 10px;
 	border-radius: 5px;
@@ -51,13 +51,6 @@ input[type="password"] {
 	padding-left: 10px;
 }
 
-.settingsText a {
-	color:var( --primary-link-color);
-}
-
-.passwordLink {
-	color: var(--primary-link-color);
-}
 /* For tablets & desktop */
 @media only screen and (min-width: 600px) {
 	.container {
