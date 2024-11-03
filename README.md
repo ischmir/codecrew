@@ -1,20 +1,20 @@
 # Kubelab(Cutelab) Dashboard 
 
 ## Arbejds noter:
-- Vi gøre brug af MVC (Model, View, Controller) sturkturen.
-- Vi køre en NodeJS-server.
-- Vi bruger handlebars som view/template engine (HTML med dynamisk brug af JS, til at gøre livet lættere)
+- Vi gør brug af MVC (Model, View, Controller) sturkturen.
+- Vi kører en NodeJS-server.
+- Vi bruger handlebars som view/template engine (HTML med dynamisk brug af JS, til at gøre livet lettere)
 - Vi bruger github som vores kodebase/repository.
 - Vi bruger MySQL som database.
-- - Vi gøre brug af docker til at hoste en lokal MySQL database, hvor vi laver et script til struktur og basisndhold, som bliver delt med gruppen.
+- - Vi gør brug af docker til at hoste en lokal MySQL database, hvor vi laver et script til struktur og basisndhold, som bliver delt med gruppen.
 
 ## Forklaring af hvordan projektet fungere, med filerne, MVC osv.
 - **server.js** Står for at kunne køre vores project som en **NodeJS** server via express. Her bliver der også lavet imports(require) og opsætning til handlebars og express.
 - **routes mappen** Indeholder JavaScript-filer til at modtage endpoint-requests. For eksempel kræver ruten "/login" en route som "app.get("/login")" for at serveren kan modtage requestet og sende det videre til controlleren.
 - **controllers mappen** indeholder JS filer til håndtering af hvilken **View** (handlebars) fil som skal vises. Controlleren sørger også for at sende den nødvendige data til View filen, såsom oplysninger om stacks, som hentes via **Model**. Controller er C i MVC.
 - **models mappen** indeholder JS filer til indhentning af al data, såsom mockdata, api data, database data. Model er M i MVC. 
-- **views mappen** indeholer alle vores handlebars filler, som er der hvor vi skriver html, samt handlebars måde at lave dynamisk data på via JS, hvor vi har dataen fra **controlleren** (som har fra **model**). **view mappen** har en bestemt struktur, med en **partials mappe** hvor der ligger genanvendelig kode til elementer så som: nav, header og footer, i form af handlebars filer. 
-**views mappen** har også en **layouts mappe**, som er der hvor "main.hbs" lever. Den har til formål at altid blive indlæst på alle sider, hvor handlebars filerne som bare ligger i roden af **views mappen** (såsom dashboard.hbs, login.hbs) bliver lagt ind i. Hvilket er derfor vi ikke skriver den grundlæggende html start hver gang. Dette er noget som sker uden opsætning, hvis man følger handlebars standart måde at implementere det på. Som er det vi gøre. 
+- **views mappen** indeholer alle vores handlebars filer, som er der hvor vi skriver html, samt handlebars måde at lave dynamisk data på via JS, hvor vi har dataen fra **controlleren** (som har fra **model**). **view mappen** har en bestemt struktur, med en **partials mappe** hvor der ligger genanvendelig kode til elementer så som: nav, header og footer, i form af handlebars filer. 
+**views mappen** har også en **layouts mappe**, som er der hvor "main.hbs" lever. Den har til formål at altid blive indlæst på alle sider, hvor handlebars filerne som bare ligger i roden af **views mappen** (såsom dashboard.hbs, login.hbs) bliver lagt ind i. Hvilket er derfor vi ikke skriver den grundlæggende html start hver gang. Dette er noget som sker uden opsætning, hvis man følger handlebars standart måde at implementere det på. Som er det vi gør. 
 **Views** er V i MVC.
   
 ``` html

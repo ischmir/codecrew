@@ -5,16 +5,24 @@ exports.mockData = function() {
             {
                 id: 0,
                 name: "sandra-nginx",
-                author: "codecrew",
+                author: "Sandra Storm",
                 creationDate: "29.10.2024",
-                status: 1
+                status: 1,
+                lastActive: "11:55:24 31.10.2024",
+                subDomain: "sast.kubelab.dk",
+                team: "CodeCrew",
+                template: "Wordpress"
             },
             {
                 id: 1,
                 name: "timm-nginx",
-                author: "codecrew",
+                author: "Timm Hinsch",
                 creationDate: "20.10.2024",
-                status: 1
+                status: 1,
+                lastActive: "14:34:11 02.11.2024",
+                subDomain: "tihi.kubelab.dk",
+                team: "CodeCrew",
+                template: "Umbraco"
             }
         ],
         title: "Dashboard",

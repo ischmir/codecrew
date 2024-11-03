@@ -22,28 +22,32 @@
     <div class="dashboard_list">
         <div class="list_info">
             <div class="list_spacer">
-                <span class="list_info_span">Name</span>
-                <span class="list_info_span">Author</span>
-                <span class="list_info_span">Creation Date</span>
-                <span class="list_info_span">Status</span>
-                <span class="list_info_span">arrow</span>
+                <span class="list_info_name">Name</span>
+                <span class="list_info_author">Author</span>
+                <span class="list_info_creation_date">Creation Date</span>
+                <span class="list_info_status">Status</span>
+                <span class="list_info_actions">Actions</span>
             </div>
         </div>
         {{#each stack}}
             <button class="accordion">
-                <span class="stack_info_head">{{name}}</span>
-                <span class="stack_info_head">{{author}}</span>
-                <span class="stack_info_head">{{creationDate}}</span>
-                <span class="stack_info_head">{{#if status}}Online{{else}}Offline{{/if}}</span>
+                <span class="stack_info_name">{{name}}</span>
+                <span class="stack_info_author">{{author}}</span>
+                <span class="stack_info_creation_date">{{creationDate}}</span>
+                <span class="stack_info_status">{{#if status}}Online{{else}}Offline{{/if}}</span>
             </button>
             <div class="panel">
-                    <li>{{id}}</li>
+                    <li class="panel_info_author_mobile">{{author}}</li>
+                    <li class="panel_info_sub_domain">{{subDomain}}</li>
+                    <li class="panel_info_team">{{team}}</li>
+                    <li class="panel_info_template">{{template}}</li>
+                    <li class="panel_info_last_active">{{lastActive}}</li>
+                    <li class="panel_info_creation_date_mobile">{{creationDate}}</li>
                 </ul>
             </div> 
         {{/each}}
     </div>
 </main>
-<footer></footer>
 <!--
 {{#if ifEven}}
             <button id="accordion" class="stack_accordion_even">

@@ -1,27 +1,36 @@
 /*  style varibles */
 :root {
-  --primary-darkmode-button-color: #fd2d00;
-  --primary-darkmode-background-color: #23222a;
-  --secondary-darkmode-background-color: #282b30;
-  --teritary-darkmode-background-color: #36393E;
-  --primary-darkmode-list-info-background-color: #727272;
-  --primary-darkmode-font-color:#efefef;
-  --primary-darkmode-inactive-font-color:#a8a8a8;
-  --primary-darkmode-border-color: #f2f2f6;
+  /*Font Variables*/
   --primary-font-family: verdana;
-  --primary-link-color:#a2a2a4;
+
+  /*Button Color Variables*/
+  --primary-darkmode-button-color: #fd2d00;
   --primary-gradient-background-image: linear-gradient(90deg, #FD2D00, #DF007C);
   --primary-round-button-border-radius:25px;
   --primary-square-button-border-radius:6px;
+
+  /*Darkmode Background Color Variables*/
+  --primary-darkmode-background-color: #23222a;
+  --secondary-darkmode-background-color: #282b30;
+  --third-darkmode-background-color: #3e4147;
+  --primary-darkmode-list-info-background-color: #3e4147;
+  
+  /*Darkmode Font Color Variables*/  
+  --primary-darkmode-font-color:#efefef;
   --secondary-darkmode-font-color: #a2a2a4;
+  --primary-link-color:#a2a2a4;
+  --primary-darkmode-inactive-font-color:#a8a8a8;
+
+  /*Darkmode other Variables*/
+  --primary-darkmode-border-color: #f2f2f6;
   --dropshadow: drop-shadow(5px 5px 4px rgba(0, 0, 0, 0.2));
 }
 
 #wrapper {
 	display: flex;
 }
-/* mobil width er nok mere 430 */
-@media only screen and (max-width: 600px) {
+/*Mobile and tablet*/
+@media only screen and (max-width: 900px) {
 	body {
 		padding: 1em;
 	}
@@ -37,7 +46,7 @@
 	}
 	nav i {
 		font-size: 2.5em;
-		color: #9145dc;
+		color: var(--primary-darkmode-border-color);
 		margin-top: -10px;
 	}
 	nav .logo {
@@ -59,8 +68,8 @@
 		width: 100%;
 	}
 }
-
-@media only screen and (min-width: 600px) {
+/*Desktop*/
+@media only screen and (min-width: 900px) {
 	/* //////// */
 	/* NAV */
 	/* /////// */

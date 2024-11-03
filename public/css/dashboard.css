@@ -52,7 +52,7 @@
 }
 
 .list_info_span {
-    color: var(--primary-darkmode-font-color);
+    color: var(--primary-darkmode-list-info-background-color);
     text-decoration: none;
 }
   
@@ -82,6 +82,7 @@ color: #777;
 font-weight: bold;
 float: right;
 margin-left: 5px;
+text-align: end;
 }
 
 .active:after {
@@ -89,25 +90,25 @@ content: "\2212";
 }
 
 .panel {
-background-color: white;
+background-color: var(--primary-darkmode-list-info-background-color);
 max-height: 0;
 overflow: hidden;
 transition: max-height 0.2s ease-out;
 }
+
 /*:::::::::::::::::::::::::::::::::::::*/
-/*:::::::::::::: MOBILE :::::::::::::::*/
+/*:::::::::::::: Mobile :::::::::::::::*/
 /*:::::::::::::::::::::::::::::::::::::*/
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 425px) {
     .dashboard_main {
-        .dashboard_main {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            align-items: center;
-            margin: 0 auto;
-            width: 80%;
-        }
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 1em;
+        margin-bottom: 2em;
+        width: 100%;
     }
 
     /*Mobile - Search bar and button*/
@@ -130,20 +131,104 @@ transition: max-height 0.2s ease-out;
         justify-content: space-around;
     }
 
-    /*Mobile Stack List*/
-    .dashboard_list {
-        overflow-x: auto;
-    }
-    .list_info, .stack_accordion{
-        width: 200%;
-    }
-    
-    .accordion {
-        width: 200%;
+    .list_spacer {
+        grid-template-columns: 50% 25% 25%;
     }
 
-    .panel {
-        width: 200%;
+    .accordion {
+        grid-template-columns: 50% 25% 25%;
+    }
+    
+
+    /*Mobile Stack List*/
+    .list_info_creation_date,
+    .list_info_author,
+    .stack_info_creation_date,
+    .stack_info_author {
+        display: none;
+    }
+    
+    .list_info_actions,
+    .stack_info_actions {
+        text-align: end;
+    }
+}
+
+/*:::::::::::::::::::::::::::::::::::::*/
+/*:::::::::::::: Tablet :::::::::::::::*/
+/*:::::::::::::::::::::::::::::::::::::*/
+
+@media only screen and (min-width:426px) and (max-width:899px) {
+        .dashboard_main {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            margin: 0 auto;
+            width: 100%;
+        }
+    
+        /*Tablet - Search bar and button*/
+        .search {
+            display: flex;
+            margin-top: 2em;
+            margin-bottom: 2em;
+            width: 100%;
+        }
+        .search_bar {
+            width: 60%;
+            margin-right: 1em;
+        }
+    
+        /*Tablet - Sorting section*/
+        .sort {
+            padding: 0 2em;
+        }
+        
+        .sort_section {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+        }
+        .sorting {
+            display: flex;
+            justify-content: space-around;
+        }
+    
+        .list_spacer {
+            grid-template-columns: 50% 25% 25%;
+        }
+    
+        .accordion {
+            grid-template-columns: 50% 25% 25%;
+        }
+        
+    
+        /*Tablet Stack List*/
+        .list_info_creation_date,
+        .list_info_author,
+        .stack_info_creation_date,
+        .stack_info_author {
+            display: none;
+        }
+        
+        .list_info_actions,
+        .stack_info_actions {
+            text-align: end;
+        }
+
+        .search_button,
+    .create_button {
+    background-color: var(--primary-darkmode-button-color);
+    background-image: var(--primary-gradient-background-image);
+    color: var(--primary-darkmode-font-color);
+    border: 0px;
+    border-radius: 25px;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    font-family: verdana;
+    }
+    .create_button {
+    border-radius: 6px;
     }
 }
 
@@ -157,18 +242,19 @@ transition: max-height 0.2s ease-out;
         display: flex;
         justify-content: center;
         flex-direction: column;
-        align-items: center;
         margin: 0 auto;
         width: 80%;
+        margin-top: 6em;
+        margin-bottom: 2em;
     }
     
     /*Search bar and button*/
     .search {
-        width: 100%;
+        width: 70%;
     }
 
     .search_bar {
-        width: 35%;
+        width: 60%;
         margin-right: 1em;
     }
 
@@ -204,9 +290,8 @@ transition: max-height 0.2s ease-out;
         text-decoration: none;
     }
 
-    /*=========================*/
-    /*=========================*/
-    /*=========================*/
-
-
+    .panel_info_author_mobile,
+    .panel_info_creation_date_mobile {
+        display: none;
+    }
 }
