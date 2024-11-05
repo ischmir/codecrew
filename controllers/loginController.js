@@ -1,5 +1,4 @@
 const loginM = require("../models/loginModel");
-const userM = require("../models/userModel");
 
 exports.login = function (req, res) {
     res.render("index");
@@ -18,11 +17,11 @@ exports.postLogin = async function(req, res) {
                 lastName: finalResult.LastName
             }; 
 
-            res.locals.userDetails = userData; // dosn't work yet. but it does store. untill a redirect happens...
+            res.locals.userDetails = userData; // dosn't work yet. but it does store. untill a redirect happens... but it dosn't break anything :)
             console.log(res.locals.userDetails);
             
             
-            res.redirect("/dashboard") // burde nok bruge redirect, siden det ikke er GET. 
+            res.redirect("/dashboard")
         }   
         else {
             console.log("wrong login credientals");
@@ -39,7 +38,7 @@ exports.postLogin = async function(req, res) {
 }
 
 exports.signup = function (req, res) {
-    res.render("signup", userM.getAllUsersWithAllData());
+    res.render("signup");
 }
 
 exports.forgot_password = function (req, res) {
