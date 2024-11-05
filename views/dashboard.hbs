@@ -1,21 +1,16 @@
+<script type="text/javascript" src="/script/script.js" defer></script>
 {{> nav}}
     
-<main>
-    <section class="header">
-        <h1>Projects</h1>
-        <div class="user_profile">
-            <img src="" alt="User Profile Picture">
-            <p>Username</p>
-            <a href="">V button</a>
-        </div>
-    </section>
+<main class="dashboard_main">
+    {{> header}}
+    
     <div class="search">
         <input class="search_bar" type="text" placeholder="search"></input>
         <button class="search_button">Search</button>
     </div>
     <div class="stack_sorting">
         <div class="sort_section">
-            <div>
+            <div class="sorting">
                 <a class="sort" href="">Your Stacks</a>
                 <a class="sort" href="">Others Stacks</a>
             </div>
@@ -24,23 +19,39 @@
             </div>
         </div>
     </div>
-    <div class="list_info">
-        <span>Name</span>
-        <span>Author</span>
-        <span>Creation Date</span>
-        <span>Status</span>
-        <span>arrow</span>
-    </div>
-    <div class="stack_list">
-
-                <ul>
-                    {{#each stack}}
-                    <li>{{name}}</li>
-                    <li>{{author}}</li>
-                    <li>{{creationDate}}</li>
-                    <li>{{status}}</li>                
-                    {{/each}}
+    <div class="dashboard_list">
+        <div class="list_info">
+            <div class="list_spacer">
+                <span class="list_info_name">Name</span>
+                <span class="list_info_author">Author</span>
+                <span class="list_info_creation_date">Creation Date</span>
+                <span class="list_info_status">Status</span>
+                <span class="list_info_actions">Actions</span>
+            </div>
+        </div>
+        {{#each stack}}
+            <button class="accordion">
+                <span class="stack_info_name">{{name}}</span>
+                <span class="stack_info_author">{{author}}</span>
+                <span class="stack_info_creation_date">{{creationDate}}</span>
+                <span class="stack_info_status">{{#if status}}Online{{else}}Offline{{/if}}</span>
+            </button>
+            <div class="panel">
+                    <li class="panel_info_author_mobile">{{author}}</li>
+                    <li class="panel_info_sub_domain">{{subDomain}}</li>
+                    <li class="panel_info_team">{{team}}</li>
+                    <li class="panel_info_template">{{template}}</li>
+                    <li class="panel_info_last_active">{{lastActive}}</li>
+                    <li class="panel_info_creation_date_mobile">{{creationDate}}</li>
                 </ul>
+            </div> 
+        {{/each}}
     </div>
 </main>
-<footer></footer>
+<!--
+{{#if ifEven}}
+            <button id="accordion" class="stack_accordion_even">
+        {{else}}
+            <button id="accordion" class="stack_accordion">
+        {{/if}}
+            <div class="stack_accordion_panel">

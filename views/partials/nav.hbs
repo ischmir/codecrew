@@ -7,12 +7,12 @@
 <nav class="desktopNav">
     <img src="https://www.dummyimage.com/150x120/e3e3e3" alt="">
     <ul>
-        <li><a href="">{{title}}</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
         <li><a href="">Teams</a></li>
-        <li><a href="">User setting</a></li>
-        {{#if isAdmin}}
-        <li><a href="">Admin setting</a></li>
-        {{/if}}
+        <li><a href="/settings">User setting</a></li>
+        {{!-- {{#if isAdmin}}  it works. aslong as the controller sends a isAdmin with it --}}
+        <li><a href="/settings-upgrade-user">Admin setting</a></li>
+        {{!-- {{/if}} --}}
     </ul>
 </nav>
 
@@ -20,10 +20,16 @@
     function ChangeNavFocus() {
     const allLinks = document.querySelectorAll("nav li");
     const endpoint = window.location.pathname.replace("/", "");
-    allLinks.forEach((link) => {
     
+    allLinks.forEach((link) => {
+        if(link.firstChild.innerHTML === "Admin setting" && endpoint === "settings-upgrade-user" ) {
+            link.classList.add("navLink_highlighted")
+        }
+        if(link.firstChild.innerHTML === "User setting" && endpoint === "settings" ||
+           link.firstChild.innerHTML === "User setting" && endpoint === "settings-password" ) {
+            link.classList.add("navLink_highlighted")
+        }
         if(link.firstChild.innerHTML.toLowerCase() === endpoint) {
-            console.log("wel");
             link.classList.add("navLink_highlighted")
         }
         

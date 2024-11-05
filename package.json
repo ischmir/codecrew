@@ -9,9 +9,12 @@
   },
   "author": "CodeCrew",
   "dependencies": {
+    "body-parser": "^1.20.3",
     "express": "^4.21.1",
     "express-handlebars": "^8.0.1",
     "hbs": "^4.2.0",
+    "mysql2": "^3.11.3",
+    "node": "^22.11.0",
     "nodemon": "^3.1.7"
   }
 }
