@@ -10,7 +10,7 @@ module.exports = function (app) {
 	app.get('/signup', loginC.signup);
 	app.get('/settings', settingsC.settings);
 	app.get('/settings-password', settingsC.password);
-	app.get('/settings-upgrade-user', settingsC.upgrade);
+	app.get('/admin_user_settings', settingsC.upgrade);
 	app.get('/teams', teamsC.teams);
 	app.get('/forgot_password', loginC.forgot_password);
 

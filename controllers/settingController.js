@@ -10,5 +10,5 @@ exports.password = function (req, res) {
 };
 
 exports.upgrade = function (req, res) {
-	res.render('settings_upgradeUser', adminSettingsM.adminSettingsUpgradeUser());
+	res.render('admin_user_settings', adminSettingsM.adminSettingsUpgradeUser());
 };
