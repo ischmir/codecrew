@@ -1,4 +1,4 @@
-<script type="text/javascript" src="/script/script.js" defer></script>
+<script type="text/javascript" src="/script/dashboard.js" defer></script>
 {{> nav}}
     
 <main class="dashboard_main">
@@ -44,6 +44,12 @@
                     <li class="panel_info_last_active">{{lastActive}}</li>
                     <li class="panel_info_creation_date_mobile">{{creationDate}}</li>
                 </ul>
+                <div>
+                    <i onclick="myFunction(this)" class="uil-play-circle"></i>
+                    <i class="uil-redo"></i>
+                </div>
+                
+
             </div> 
         {{/each}}
     </div>

@@ -55,6 +55,10 @@
 	header {
 		display: none;
 	}
+	.desktopNav {
+		position: fixed;
+		left: -120%;
+	}
 	#wrapper {
 		flex-direction: column;
 	}
@@ -65,7 +69,7 @@
 	nav i {
 		font-size: 2.5em;
 		color: var(--primary-darkmode-border-color);
-		margin-top: -10px;
+		margin-top: -0.2em;
 	}
 	nav .logo {
 		width: 7.5em;
@@ -79,54 +83,80 @@
 		margin: 0;
 	}
 
+	/* //////////////////// */
+	/* Slide-in overlay NAV */
+	/* //////////////////// */
+
+	.nav-overlay i {
+		margin: 0.2em 83% 1em 0; /* i do not like this method, but it does the job~ */
+	}
+	.nav-overlay {
+		position: fixed;
+		left: -120%; /* "Hidden" aka, off screen */
+		width: 100%;
+		height: 100%;
+		background-color: var(--primary-darkmode-background-color);
+		display: flex;
+		align-items: center;
+		justify-content: start;
+		transition: left 0.4s ease;
+		z-index: 1;
+		margin-top: -1em;
+		flex-direction: column;
+	}
+
+	.nav-overlay.navActive {
+		left: 0; /* Slides in */
+	}
+	.navActive img {
+		margin-bottom: 5em;
+	}
+	.navActive ul li a {
+		font-size: 1.5em;
+	}
+	.navActive button {
+		background-color: var(--primary-darkmode-button-color);
+		background-image: var(--primary-gradient-background-image);
+		color: var(--primary-darkmode-font-color);
+		border: 0px;
+		padding: 0.5em 1em;
+		font-size: 1em;
+		border-radius: 6px;
+		font-size: 1.5em;
+	}
+
+	.mobileNav_bottomSettings {
+		position: absolute;
+		bottom: 0;
+	}
 	/* Change styles for span and cancel button on extra small screens */
 	form {
 		display: block;
 		float: none;
 		width: 100%;
 	}
-}
+} /* END OF MOBILE */
+
 /*Desktop*/
 @media only screen and (min-width: 900px) {
 	/* //////// */
 	/* NAV */
 	/* /////// */
-	.mobileNav {
+	.mobileNav,
+	.mobileNav_extra {
 		display: none;
 	}
-	nav {
-		/* background-color: #9145DC; */
+	.desktopNav {
 		background-color: var(--primary-darkmode-background-color);
 		width: 18%;
 		height: 100vh;
 		align-items: center;
 		display: flex;
 		flex-direction: column;
-		/* border-right: solid 3px rgba(10, 10, 10, 0.8); */
 		box-shadow: 5px 0 5px -2px black;
 	}
 	nav img {
 		margin: 2em auto;
-	}
-	nav a {
-		color: #ccc;
-		text-decoration: none;
-	}
-	nav li {
-		list-style: none;
-		margin: 1em;
-	}
-	nav ul {
-		padding: 0;
-		min-width: 8.5em;
-		align-items: center;
-	}
-	nav .navLink_highlighted a {
-		color: white;
-	}
-	nav .navLink_highlighted {
-		list-style-type: disc;
-		color: #fd2d00;
 	}
 
 	header {
@@ -183,7 +213,7 @@
 	.dropdown-content a:hover {
 		background-color: #494d54;
 	}
-}
+} /* END OF DESKTOP */
 
 body {
 	background-color: var(--primary-darkmode-background-color);
@@ -196,6 +226,22 @@ body {
 	display: flex;
 }
 
+nav a {
+	color: #ccc;
+	text-decoration: none;
+}
+nav li {
+	list-style: none;
+	margin: 1em;
+}
+nav ul {
+	padding: 0;
+	min-width: 8.5em;
+	align-items: center;
+}
+nav .navLink_highlighted a {
+	color: white;
+}
 nav .navLink_highlighted {
 	list-style-type: disc;
 	color: #fd2d00;
