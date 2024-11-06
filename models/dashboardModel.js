@@ -29,6 +29,7 @@ exports.mockData = function() {
         isAdmin: true,
         email: "tihi66699@edu.ucl.dk"
     };
+    // data.stack.sort((k) => k.author).reverse();
     return data;
 };
 
