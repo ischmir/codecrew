@@ -1,5 +1,5 @@
-const userSettingsM = require("../models/userSettingModel");
-const adminSettingsM = require("../models/adminSettingModel");
+const userSettingsM = require('../models/userSettingModel');
+const adminSettingsM = require('../models/adminSettingModel');
 
 exports.settings = function (req, res) {
 	res.render('settings', userSettingsM.userSettings());
