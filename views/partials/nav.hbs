@@ -5,24 +5,24 @@
 </nav>
 
 <nav class="desktopNav" id="desktopNav">
-    <i class="uil uil-bars mobileNav_extra" onclick="openMobileNav()"></i>
+	<i class="uil uil-bars mobileNav_extra" onclick="openMobileNav()"></i>
 
     <img src="img/logo_1.png" alt="">
 
-    <button class="mobileNav_extra">Create new stack</button>
+	<button class="mobileNav_extra">Create new stack</button>
 
-    <ul>
-        <li><a href="/dashboard">Dashboard</a></li>
-        <li><a href="">Teams</a></li>
-        <li><a href="/settings">User setting</a></li>
-        {{!-- {{#if isAdmin}}  it works. aslong as the controller sends a isAdmin with it --}}
-        <li><a href="/settings-upgrade-user">Admin setting</a></li>
-        {{!-- {{/if}} --}}
-    </ul>
+	<ul>
+		<li><a href="/dashboard">Dashboard</a></li>
+		<li><a href="">Teams</a></li>
+		<li><a href="/settings">User setting</a></li>
+		{{!-- {{#if isAdmin}}  it works. aslong as the controller sends a isAdmin with it --}}
+		<li><a href="/admin_user_settings">Admin setting</a></li>
+		{{!-- {{/if}} --}}
+	</ul>
 
-    <ul class="mobileNav_bottomSettings">
-        <li><a href="/settings">Settings</a></li>
-    </ul>
+	<ul class="mobileNav_bottomSettings">
+		<li><a href="/settings">Settings</a></li>
+	</ul>
 </nav>
 
 <script src="script/nav.js"></script>
