@@ -47,6 +47,7 @@
 	nav {
 		display: flex;
 		justify-content: space-between;
+		margin-bottom: 1em;
 	}
 	nav i {
 		font-size: 2.5em;
@@ -55,7 +56,7 @@
 	}
 	nav .logo {
 		width: 7.5em;
-		height: 4em;
+		height: 3em;
 		margin: 0;
 	}
 	nav .userIcon {
@@ -92,6 +93,9 @@
 	}
 	.navActive img {
 		margin-bottom: 5em;
+	}
+	.desktopNav img {
+		display: none; /* TODO */ 
 	}
 	.navActive ul li a {
 		font-size: 1.5em;
@@ -138,8 +142,8 @@
 	}
 	nav img {
 		margin: 2em auto;
+		width: 80%;
 	}
-	
 	header {
 		position: absolute;
 		top: 0;
