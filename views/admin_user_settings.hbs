@@ -1,0 +1,64 @@
+{{> nav}}
+<main class="main_settings">
+	{{> header}}
+
+	<section class="container">
+{{> settingsnav}}
+		<div class="settings_container">
+			<div class="profile_container">
+				<div>
+					<h2>Upgrade user</h2>
+			
+				</div>
+				<svg class="profileicon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+					<path
+						stroke="currentColor"
+						stroke-width="1"
+						d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+					/>
+				</svg>
+			</div>
+
+			<h3>Change name</h3>
+			<section class="drop-section">
+				<form action="/teams" class="dropdown">
+				<div class="dropd">
+					{{!-- Name --}}
+  <select name="userId" id="userId"  >
+	   <option value="0">Insert user name</option>
+    <option value="1">Mai</option>
+    <option value="2">Timm</option>
+    <option value="3">Sandra</option>
+	<option value="4">Marcus</option>
+<option value="5">Oliver</option>
+<option value="6">Emma</option>
+<option value="7">Lucas</option>
+<option value="8">Ava</option>
+<option value="9">Liam</option>
+<option value="10">Mia</option>
+<option value="11">Ethan</option>
+<option value="12">Charlotte</option>
+<option value="13">Noah</option>
+<option value="14">Amelia</option>
+<option value="15">James</option>
+<option value="16">Isabella</option>
+<option value="17">Benjamin</option>
+<option value="18">Harper</option>
+<option value="19">Elijah</option>
+<option value="20">Evelyn</option>
+  </select>
+{{!-- Role --}}
+  <select name="userRole" id="userRole">
+	    <option value="role">Choose role</option>
+    <option value="Student">Student</option>
+    <option value="Teacher">Teacher</option>
+    <option value="Admin">Admin</option>
+  </select>
+				</div>
+
+  <input type="submit" class="button" value="Upgrade user">
+</form>
+			</section>
+
+
+</main>

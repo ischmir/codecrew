@@ -1,39 +1,28 @@
 <nav class="mobileNav">
-    <i class="uil uil-bars"></i>
-    <img class="logo" src="https://www.dummyimage.com/100x50/e3e3e3" alt="">
-    <img class="userIcon" src="https://www.dummyimage.com/48x48/e3e3e3" alt="">
+	<i class="uil uil-bars" onclick="openMobileNav()"></i>
+	<img class="logo" src="https://www.dummyimage.com/100x50/e3e3e3" alt="" />
+	<img class="userIcon" src="https://www.dummyimage.com/48x48/e3e3e3" alt="" />
 </nav>
 
-<nav class="desktopNav">
-    <img src="https://www.dummyimage.com/150x120/e3e3e3" alt="">
-    <ul>
-        <li><a href="/dashboard">Dashboard</a></li>
-        <li><a href="">Teams</a></li>
-        <li><a href="/settings">User setting</a></li>
-        {{!-- {{#if isAdmin}}  it works. aslong as the controller sends a isAdmin with it --}}
-        <li><a href="/settings-upgrade-user">Admin setting</a></li>
-        {{!-- {{/if}} --}}
-    </ul>
+<nav class="desktopNav" id="desktopNav">
+	<i class="uil uil-bars mobileNav_extra" onclick="openMobileNav()"></i>
+
+	<img src="https://www.dummyimage.com/150x120/e3e3e3" alt="" />
+
+	<button class="mobileNav_extra">Create new stack</button>
+
+	<ul>
+		<li><a href="/dashboard">Dashboard</a></li>
+		<li><a href="">Teams</a></li>
+		<li><a href="/settings">User setting</a></li>
+		{{!-- {{#if isAdmin}}  it works. aslong as the controller sends a isAdmin with it --}}
+		<li><a href="/admin_user_settings">Admin setting</a></li>
+		{{!-- {{/if}} --}}
+	</ul>
+
+	<ul class="mobileNav_bottomSettings">
+		<li><a href="/settings">Settings</a></li>
+	</ul>
 </nav>
 
-<script>
-    function ChangeNavFocus() {
-    const allLinks = document.querySelectorAll("nav li");
-    const endpoint = window.location.pathname.replace("/", "");
-    
-    allLinks.forEach((link) => {
-        if(link.firstChild.innerHTML === "Admin setting" && endpoint === "settings-upgrade-user" ) {
-            link.classList.add("navLink_highlighted")
-        }
-        if(link.firstChild.innerHTML === "User setting" && endpoint === "settings" ||
-           link.firstChild.innerHTML === "User setting" && endpoint === "settings-password" ) {
-            link.classList.add("navLink_highlighted")
-        }
-        if(link.firstChild.innerHTML.toLowerCase() === endpoint) {
-            link.classList.add("navLink_highlighted")
-        }
-        
-    })
-}
-ChangeNavFocus();
-</script>
+<script src="script/nav.js"></script>

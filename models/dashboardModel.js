@@ -27,8 +27,10 @@ exports.mockData = function() {
         ],
         title: "Dashboard",
         isAdmin: true,
-        email: "tihi66699@edu.ucl.dk"
+        email: "tihi66699@edu.ucl.dk",
+        userName:"Timm Hinsch"
     };
+    // data.stack.sort((k) => k.author).reverse();
     return data;
 };
 

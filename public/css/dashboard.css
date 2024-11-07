@@ -96,6 +96,26 @@ overflow: hidden;
 transition: max-height 0.2s ease-out;
 }
 
+i.uil-play-circle, 
+i.uil-stop-circle,
+i.uil-redo {
+    font-size: 2em;
+    cursor: pointer;
+    user-select: none;
+}
+
+i.uil-stop-circle {
+    color: #E94545;
+}
+
+i.uil-play-circle {
+    color: #41AF7D;
+}
+
+i.uil-redo {
+    color: #FCA41D;
+}
+
 /*:::::::::::::::::::::::::::::::::::::*/
 /*:::::::::::::: Mobile :::::::::::::::*/
 /*:::::::::::::::::::::::::::::::::::::*/
@@ -116,6 +136,7 @@ transition: max-height 0.2s ease-out;
         display: flex;
         justify-content: space-between;
         margin: 2em 0;
+        width: 100%;
     }
     .search_bar {
         width: 100%;

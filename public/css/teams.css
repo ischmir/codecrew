@@ -1,0 +1,74 @@
+.FUNKY {
+	font-size: 3em;
+	font-weight: bold;
+	text-align: center;
+	color: #ffffff; /* Skarpere farve for mørk baggrund */
+	position: relative;
+	animation: glow 1.5s ease-in-out infinite alternate, bounce 0.5s ease-in-out infinite;
+	text-shadow: 0 0 5px #ff66ff, 0 0 10px #ff66ff, 0 0 20px #ff66ff, 0 0 30px #ff33cc, 0 0 40px hotpink,
+		0 0 50px deeppink;
+}
+
+/* Glimmer-effekt */
+.FUNKY:after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: url("https://www.transparenttextures.com/patterns/shattered.png") repeat;
+	animation: shimmer 2s linear infinite;
+	opacity: 0.2; /* Lidt mere gennemsigtig for subtil effekt */
+	z-index: -1; /* Sørger for glimmeren er bag teksten */
+}
+
+/* Glødende effekt */
+@keyframes glow {
+	0% {
+		text-shadow: 0 0 5px #ff66ff, 0 0 10px #ff66ff, 0 0 20px #ff66ff, 0 0 30px #ff33cc, 0 0 40px #ff33cc,
+			0 0 50px #ff33cc;
+	}
+	100% {
+		text-shadow: 0 0 10px #ff66ff, 0 0 20px #ff66ff, 0 0 30px #ff66ff, 0 0 40px #ff33cc, 0 0 50px #ff33cc,
+			0 0 60px #ff33cc;
+	}
+}
+
+/* Hoppe-animation */
+@keyframes bounce {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-10px);
+	}
+}
+
+/* Shimmer-effekt */
+@keyframes shimmer {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 100% 100%;
+	}
+}
+
+.rotate-text {
+	display: inline-block;
+	font-size: 2em;
+	animation: rotation 3s linear infinite;
+	color: deeppink;
+	font-size: 8em;
+}
+
+@keyframes rotation {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
