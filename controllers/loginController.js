@@ -1,10 +1,12 @@
 const loginM = require('../models/loginModel');
 
 exports.login = function (req, res) {
+	res.locals.loginErrorMsg = "";
 	res.render('login');
 };
 exports.postLogin = async function (req, res) {
 	try {
+		res.locals.loginErrorMsg = "";
 		const { email, password } = req.body;
 
 		const result = await loginM.getSingelUserForLogin(email, password);
@@ -18,12 +20,13 @@ exports.postLogin = async function (req, res) {
 			};
 
 			res.locals.userDetails = userData; // dosn't work yet. but it does store. untill a redirect happens... but it dosn't break anything :)
-			console.log(res.locals.userDetails);
+			res.locals.loginErrorMsg = "Wrong creditials. Cant find a user with that email and password";
 
 			res.redirect('/dashboard');
 		} else {
+			res.locals.loginErrorMsg = "Wrong creditials. Cant find a user with that email and password";
 			console.log('wrong login credientals');
-			res.redirect('/dashboard'); // should be "/login" and giving an error msg.
+			res.render('login');
 		}
 	} catch (error) {
 		console.log('An error has occured');

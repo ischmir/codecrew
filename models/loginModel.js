@@ -15,9 +15,9 @@ exports.getSingelUserForLogin = async function(userEmail, userPassword) {
         FROM Users
         INNER JOIN Roles ON Users.FK_role = Roles.roleId
 
-        WHERE userEmail = "?" AND userPassword = "?";
+        WHERE userEmail = ? AND userPassword = ?;
         `, 
         [userEmail, userPassword]);
-        
+
     return rows;
 }

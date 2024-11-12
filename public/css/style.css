@@ -147,7 +147,8 @@
 	/* NAV */
 	/* /////// */
 	.mobileNav,
-	.mobileNav_extra {
+	.mobileNav_extra, 
+	.mobileNav_bottomSettings {
 		display: none;
 	}
 	.desktopNav {
@@ -249,4 +250,7 @@ nav .navLink_highlighted a {
 nav .navLink_highlighted {
 	list-style-type: disc;
 	color: #fd2d00;
+}
+.error_msg {
+	color: #E94545;
 }
