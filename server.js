@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const exphbs = require('express-handlebars');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -6,10 +7,19 @@ const fetchHeaderUserDetails = require('./models/headerModel');
 
 const app = express();
 
+app.use(session({
+    secret: 'NotKeyboardCat',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false } // Set `secure: true` if using HTTPS
+}));
+
 // Middlewares
 app.use(express.static('public'));
 app.use(fetchHeaderUserDetails.userDetails);
 app.use(bodyParser.urlencoded({ extended: false })); // HEEKING... den SKAL være før routes.. den irreterede mig lidt :D (bruger den til at få data fra forms)
+
+
 
 require('./routes/getSiteRoutes')(app); // GET routes
 require('./routes/postSiteRoutes')(app); // POST routes

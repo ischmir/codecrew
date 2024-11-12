@@ -10,16 +10,19 @@ exports.postLogin = async function (req, res) {
 		const { email, password } = req.body;
 
 		const result = await loginM.getSingelUserForLogin(email, password);
+		
 		if (result[0] !== undefined) {
 			const finalResult = result[0];
+			console.log(finalResult);
+			
 			const userData = {
-				userRole: finalResult.RoleName,
-				email: finalResult.Email,
-				firstName: finalResult.FirstName,
-				lastName: finalResult.LastName,
+				email: finalResult.userEmail,
+				firstName: finalResult.firstName,
+				lastName: finalResult.lastName
 			};
 
-			res.locals.userDetails = userData; // dosn't work yet. but it does store. untill a redirect happens... but it dosn't break anything :)
+			req.session.userDetails = userData;
+			
 			res.locals.loginErrorMsg = "Wrong creditials. Cant find a user with that email and password";
 
 			res.redirect('/dashboard');
