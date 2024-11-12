@@ -34,22 +34,25 @@
                 <span class="stack_info_name">{{name}}</span>
                 <span class="stack_info_author">{{author}}</span>
                 <span class="stack_info_creation_date">{{creationDate}}</span>
-                <span class="stack_info_status">{{#if status}}Online{{else}}Offline{{/if}}</span>
+                <span class="stack_info_status_offline">{{#if status}}Online{{else}}Offline{{/if}}</span>
             </button>
             <div class="panel">
-                    <li class="panel_info_author_mobile">{{author}}</li>
-                    <li class="panel_info_sub_domain">{{subDomain}}</li>
-                    <li class="panel_info_team">{{team}}</li>
-                    <li class="panel_info_template">{{template}}</li>
-                    <li class="panel_info_last_active">{{lastActive}}</li>
-                    <li class="panel_info_creation_date_mobile">{{creationDate}}</li>
-                </ul>
                 <div>
-                    <i onclick="myFunction(this)" class="uil-play-circle"></i>
-                    <i class="uil-redo"></i>
+                    <p class="panel_info_author_mobile">Author: {{author}}</p>
+                    <p class="panel_info_team">Team: {{team}}</p>
+                    <p class="panel_info_sub_domain">Subdomain: {{subDomain}}</p>
+                    <p class="panel_info_template">Template: {{template}}</p>
+                </div>
+                <div>
+                    <p class="panel_info_last_active">Last Active: {{lastActive}}</p>
+                    <p class="panel_info_creation_date_mobile">Creation Date:{{creationDate}}</p>
+                    <div class="stack_actions">
+                        <i onclick="myFunction(this)" class="uil-play-circle"></i>
+                        <i class="uil-redo"></i>
+                        <i class="uil uil-trash-alt"></i>
+                    </div>
                 </div>
                 
-
             </div> 
         {{/each}}
     </div>

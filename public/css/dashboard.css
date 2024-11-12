@@ -89,6 +89,22 @@ text-align: end;
 content: "\2212";
 }
 
+.stack_info_status_online {
+    margin-right: auto;
+    text-align: center;
+    background-color: #41AF7D;
+    border-radius: 3px;
+    padding: 4px;
+}
+
+.stack_info_status_offline {
+    margin-right: auto;
+    text-align: center;
+    background-color: #E94545;
+    border-radius: 3px;
+    padding: 4px;
+}
+
 .panel {
 background-color: var(--primary-darkmode-list-info-background-color);
 max-height: 0;
@@ -98,6 +114,7 @@ transition: max-height 0.2s ease-out;
 
 i.uil-play-circle, 
 i.uil-stop-circle,
+i.uil-trash-alt,
 i.uil-redo {
     font-size: 2em;
     cursor: pointer;
@@ -114,6 +131,22 @@ i.uil-play-circle {
 
 i.uil-redo {
     color: #FCA41D;
+}
+
+.panel p {
+    line-height: 2em;
+    padding: 0 2em;
+}
+
+.stack_actions {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 1em;
+}
+
+.stack_actions i {
+    padding: 0.5em;
 }
 
 /*:::::::::::::::::::::::::::::::::::::*/
