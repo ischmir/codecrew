@@ -2,6 +2,9 @@ const loginM = require('../models/loginModel');
 
 exports.login = function (req, res) {
 	res.locals.loginErrorMsg = "";
+	if(req.session && req.session.userDetails) {
+		// res.redirect("/dashboard") // this if statement redirects, if we are allready logged in.
+	}
 	res.render('login');
 };
 exports.postLogin = async function (req, res) {
@@ -46,3 +49,8 @@ exports.signup = function (req, res) {
 exports.forgot_password = function (req, res) {
 	res.render('forgot_password');
 };
+exports.logout = function(req, res) {
+	req.session.destroy();
+
+	res.redirect("login");
+}
