@@ -175,6 +175,8 @@
 	header .header_profile_picture {
 		border-radius: 50px;
 		margin-right: 1em;
+		width: 2.5em;
+		height: fit-content;
 	}
 	header .user_profile {
 		margin-top: 2em;
