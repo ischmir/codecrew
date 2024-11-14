@@ -7,9 +7,10 @@ exports.userSettings = () => {
     return data;
 }
 
-exports.userSettingsPassword = () => {
+exports.userSettingsPassword = (message) => {
     const data = {
-        title: "Settings"
+    message,
+    title: "Settings"    
     }
 
     return data;
