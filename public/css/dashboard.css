@@ -12,6 +12,11 @@
     padding: 0.4em 0.8em;
     font-size: 1em;
 }
+
+.search_bar:hover {
+    background-color: var(--primary-darkmode-list-info-background-color);
+}
+
 /*Sorting Section*/
 .stack_sorting {
     display: block;
@@ -27,6 +32,11 @@
     color: var(--primary-darkmode-inactive-font-color);
     font-family: verdana;
     text-decoration: none;
+}
+
+.highlight, .sort:hover {
+    color: var(--primary-darkmode-font-color);
+    cursor: pointer;
 }
 
 .dashboard_list {
@@ -73,12 +83,12 @@
 }
   
 .active, .accordion:hover {
-background-color: #ccc;
+background-color: var(--secondary-darkmode-list-info-background-color);
 }
 
 .accordion:after {
 content: '\002B';
-color: #777;
+color: var(--primary-darkmode-font-color);
 font-weight: bold;
 float: right;
 margin-left: 5px;
@@ -162,6 +172,7 @@ i.uil-redo {
         margin-top: 1em;
         margin-bottom: 2em;
         width: 100%;
+        justify-content: flex-start;
     }
 
     /*Mobile - Search bar and button*/
@@ -180,7 +191,7 @@ i.uil-redo {
     }
 
     /*Mobile - Sorting section*/
-    .sorting {
+    #sorting {
         display: flex;
         justify-content: space-around;
     }
@@ -219,6 +230,7 @@ i.uil-redo {
             flex-direction: column;
             margin: 0 auto;
             width: 100%;
+            justify-content: flex-start;
         }
     
         /*Tablet - Search bar and button*/
@@ -243,7 +255,7 @@ i.uil-redo {
             display: flex;
             justify-content: space-between;
         }
-        .sorting {
+        #sorting {
             display: flex;
             justify-content: space-around;
         }
@@ -300,6 +312,7 @@ i.uil-redo {
         width: 80%;
         margin-top: 6em;
         margin-bottom: 2em;
+        justify-content: flex-start;
     }
     
     /*Search bar and button*/
@@ -323,6 +336,7 @@ i.uil-redo {
     padding: 0.5em 1em;
     font-size: 1em;
     font-family: verdana;
+    cursor: pointer;
     }
     .create_button {
     border-radius: 6px;

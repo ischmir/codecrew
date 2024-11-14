@@ -42,9 +42,9 @@ exports.portainerSystemInfo = function () {
 exports.portainerSystemStatus = function () {
     
 };
-exports.portainerStacks = function () {
-    
+exports.portainerStacks = async function () {
 };
+
 exports.portainerEndpoints = function () {
     
 };
@@ -62,9 +62,11 @@ exports.portainerSystemAuth = async function () {
     .catch(error => console.error(error))
 
 };
+
 exports.portainerCreateStack = function () {
     
 };
+
 exports.portainerDeleteStack = function () {
     
 };
