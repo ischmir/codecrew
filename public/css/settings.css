@@ -134,6 +134,7 @@ select {
 	.settings_container {
 		padding: 25px;
 		max-width: 44rem;
+		width: 20rem;
 	}
 	.profileicon {
 		height: 120px;

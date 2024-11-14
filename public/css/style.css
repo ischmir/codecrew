@@ -164,16 +164,18 @@
 		margin: 2em auto;
 		width: 80%;
 	}
-
-  header {
-    position: absolute;
-    top: 0;
-    left: 19%;
-    display: flex;
-    margin: auto;
-    width: 80%;
-    justify-content: space-between;
-}
+	nav ul li a:hover {
+		color: #ffffff;
+	}
+	header {
+		position: absolute;
+		top: 0;
+		left: 19%;
+		display: flex;
+		margin: auto;
+		width: 80%;
+		justify-content: space-between;
+	}
 
 	header .header_profile_picture {
 		border-radius: 50px;
