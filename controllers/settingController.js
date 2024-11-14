@@ -16,14 +16,21 @@ exports.upgrade = function (req, res) {
 	res.render('admin_user_settings', adminSettingsM.adminSettingsUpgradeUser());
 };
 
-exports.updatePassword = function(req, res) {
+exports.updatePassword = async function(req, res) {
 	
-	// check if password is correct
-    if (req.body.curPassword == "1") {
-        req.session.message = { type: "success", text: "Password changed successfully!" };
-        res.redirect('/settings-password');
-    } else {
-        req.session.message = { type: 'danger', text: "Wrong current password." };
-        res.redirect('/settings-password');
-    }
+	if(req.session.userDetails != undefined) {
+		if (await userSettingsM.CheckIfPasswordMatch(req.body.curPassword, req.session.userDetails.email)) {
+			req.session.message = { type: "success", text: "Psst! Password changed - don't tell anyone!" };
+			res.redirect('/settings-password');
+		} else {
+			req.session.message = { type: 'danger', text: "Wrong current password." };
+			res.redirect('/settings-password');
+		}
+	}
+	else {
+			req.session.message = { type: 'danger', text: "Not logged in" };
+			res.redirect('/settings-password');
+	}
+	
+    
 }
