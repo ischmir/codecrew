@@ -14,7 +14,4 @@ module.exports = function (app) {
 	app.get('/admin_user_settings', settingsC.upgrade);
 	app.get('/teams', teamsC.teams);
 	app.get('/forgot_password', loginC.forgot_password);
-
-	// app.get("/UserSetting", settingsC.userSetting);
-	// app.get("/AdminSetting", siteC.singleUser)
 };
