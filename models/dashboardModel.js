@@ -55,16 +55,12 @@ exports.portainerSystemAuth = async function () {
         password: "Ladida.12"
     };
 
-    try {
-        axios.post(url, body)
-          .then(response => {
-            console.log(response.data)
-        })
-          .catch(error => console.error(error))
+    axios.post(url, body)
+    .then(response => {
+        console.log(response.data)
+    })
+    .catch(error => console.error(error))
 
-  } catch (error) {
-    console.error(error.message);
-  }
 };
 exports.portainerCreateStack = function () {
     
