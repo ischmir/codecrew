@@ -1,19 +1,20 @@
-const acc = document.getElementsByClassName("accordion");
-let i;
+// Toggle Accordion
+
+var acc = document.getElementsByClassName("accordion");
 
 for (i = 0; i < acc.length; i++) {
   acc[i].addEventListener("click", function() {
     this.classList.toggle("active");
-    var panel = this.nextElementSibling;
+    let panel = this.nextElementSibling;
     if (panel.style.maxHeight) {
       panel.style.maxHeight = null;
     } else {
-      panel.style.maxHeight = "fit-content";
+      panel.style.maxHeight = panel.scrollHeight + "px";
     } 
   });
 }
 
-
+// toggle Actions
 
 function myFunction(toggleIcon) {
   console.log(toggleIcon)
@@ -26,7 +27,13 @@ function myFunction(toggleIcon) {
   }
   
 }
-
-
-
 /*on click show stacks where author equals userName*/
+
+const sortingBtns = document.querySelectorAll(".sort");
+
+sortingBtns.forEach((btn) => {
+  btn.addEventListener("click", (i) => {
+    sortingBtns.forEach(f => f.classList.remove('highlight'));
+    i.target.classList.toggle("highlight");
+  });
+});
