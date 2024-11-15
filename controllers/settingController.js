@@ -15,6 +15,19 @@ exports.password = function (req, res) {
 exports.upgrade = function (req, res) {
 	res.render('admin_user_settings', adminSettingsM.adminSettingsUpgradeUser());
 };
+exports.upgradeUser = async function (req, res) {
+	if(req.body.userId <= 0 || req.body.userRole == "") {
+		res.redirect("admin_user_settings") // should be send with a error message. 
+	}
+	
+	const affectedRows = await adminSettingsM.upgradeUser(req.body.userId, req.body.userRole);
+	if(affectedRows < 1) {
+		res.redirect("/admin_user_settings"); // if there wasn't any change in the db. mostly becourse there was no match, typo.
+	}
+	else {
+		res.redirect("/admin_user_settings"); // on success, send a toast?
+	}
+}
 
 exports.updateStackLimit = async function (req, res) { // should be a different redirect URL
 	if(req.body.newStackLimit < 0 || req.body.accessLevel == "") {
@@ -28,11 +41,9 @@ exports.updateStackLimit = async function (req, res) { // should be a different 
 	else {
 		res.redirect("/admin_user_settings"); // on success, send a toast?
 	}
-
 }
 
 exports.updatePassword = async function(req, res) {
-	
 	if(req.session.userDetails != undefined) {
 		if (await userSettingsM.CheckIfPasswordMatch(req.body.curPassword, req.session.userDetails.email)) {
 			req.session.message = { type: "success", text: "Psst! Password changed - don't tell anyone!" };
@@ -45,7 +56,5 @@ exports.updatePassword = async function(req, res) {
 	else {
 		req.session.message = { type: 'danger', text: "Not logged in" };
 		res.redirect('/settings-password');
-	}
-	
-    
+	}   
 }

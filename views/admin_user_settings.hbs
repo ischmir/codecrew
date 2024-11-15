@@ -21,7 +21,7 @@
 
 			<h3>Change name</h3>
 			<section class="drop-section">
-				<form action="/teams" class="dropdown">
+				<form action="/upgradeUser" method="post" class="dropdown">
 				<div class="dropd">
 					{{!-- Name --}}
   <select name="userId" id="userId"  >
@@ -50,9 +50,9 @@
 {{!-- Role --}}
   <select name="userRole" id="userRole">
 	    <option value="role">Choose role</option>
-    <option value="Student">Student</option>
-    <option value="Teacher">Teacher</option>
-    <option value="Admin">Admin</option>
+    <option value="1">Student</option>
+    <option value="2">Teacher</option>
+    <option value="3">Admin</option>
   </select>
 				</div>
 
