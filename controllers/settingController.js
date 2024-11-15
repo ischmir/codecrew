@@ -16,6 +16,21 @@ exports.upgrade = function (req, res) {
 	res.render('admin_user_settings', adminSettingsM.adminSettingsUpgradeUser());
 };
 
+exports.updateStackLimit = async function (req, res) { // should be a different redirect URL
+	if(req.body.newStackLimit < 0 || req.body.accessLevel == "") {
+		res.redirect('/admin_user_settings') // should be send with a error message. but the frontend should also handle this case.
+	}
+
+	const affectedRows = await adminSettingsM.updateStackLimit(99, "admin"); // should come from the same, as the if statement checks.
+	if (affectedRows < 1) {
+		res.redirect("/admin_user_settings"); // if there wasn't any change in the db. mostly becourse there was no match, typo.
+	}
+	else {
+		res.redirect("/admin_user_settings"); // on success, send a toast?
+	}
+
+}
+
 exports.updatePassword = async function(req, res) {
 	
 	if(req.session.userDetails != undefined) {
@@ -28,8 +43,8 @@ exports.updatePassword = async function(req, res) {
 		}
 	}
 	else {
-			req.session.message = { type: 'danger', text: "Not logged in" };
-			res.redirect('/settings-password');
+		req.session.message = { type: 'danger', text: "Not logged in" };
+		res.redirect('/settings-password');
 	}
 	
     
