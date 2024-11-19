@@ -1,15 +1,15 @@
 <header>
     <h1>{{title}}</h1>
     <div class="user_profile" onclick="toggleDropdown()">
-        <img class="header_profile_picture" src="https://www.dummyimage.com/48x48/d4d4d4/c2350e" alt="User Profile Picture">
-        <p class="header_username">{{headerUserDetails.name}}</p>
+        <img class="header_profile_picture" src="/img/genericUserIcon.png" alt="User Profile Picture">
+        <p class="header_username">{{userDetails.firstName}} {{userDetails.lastName}}</p>
         <i class="uil uil-angle-down"></i>
 
         <div id="dropdown-content" class="dropdown-content">
-            <p onclick="event.stopPropagation()">{{headerUserDetails.email}}</p>
+            <p onclick="event.stopPropagation()">{{userDetails.email}}</p>
             <hr>
             <a href="/settings">Settings</a>
-            <a href="#logout">Logout</a>
+            <a href="/logout">Logout</a>
         </div>
     </div>
 

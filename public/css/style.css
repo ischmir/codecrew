@@ -13,6 +13,7 @@
 	--secondary-darkmode-background-color: #282b30;
 	--third-darkmode-background-color: #3e4147;
 	--primary-darkmode-list-info-background-color: #3e4147;
+  --secondary-darkmode-list-info-background-color: #727272;
 
 	/*Darkmode Font Color Variables*/
 	--primary-darkmode-font-color: #ffffff;
@@ -64,6 +65,7 @@
 	nav {
 		display: flex;
 		justify-content: space-between;
+		margin-bottom: 1em;
 	}
 	nav i {
 		font-size: 2.5em;
@@ -72,7 +74,7 @@
 	}
 	nav .logo {
 		width: 7.5em;
-		height: 4em;
+		height: 3em;
 		margin: 0;
 	}
 	nav .userIcon {
@@ -110,6 +112,9 @@
 	.navActive img {
 		margin-bottom: 5em;
 	}
+	.desktopNav img {
+		display: none; /* TODO */ 
+	}
 	.navActive ul li a {
 		font-size: 1.5em;
 	}
@@ -142,7 +147,8 @@
 	/* NAV */
 	/* /////// */
 	.mobileNav,
-	.mobileNav_extra {
+	.mobileNav_extra, 
+	.mobileNav_bottomSettings {
 		display: none;
 	}
 	.desktopNav {
@@ -156,22 +162,28 @@
 	}
 	nav img {
 		margin: 2em auto;
+		width: 80%;
 	}
-
+	nav ul li a:hover {
+		color: #ffffff;
+	}
 	header {
 		position: absolute;
 		top: 0;
+		left: 19%;
 		display: flex;
-		justify-content: space-between;
+		margin: auto;
 		width: 80%;
-		align-items: center;
+		justify-content: space-between;
 	}
+
 	header .header_profile_picture {
 		border-radius: 50px;
 		margin-right: 1em;
+		width: 2.5em;
+		height: fit-content;
 	}
 	header .user_profile {
-		margin-top: 2em;
 		width: fit-content;
 		align-items: center;
 		position: relative;
@@ -181,6 +193,7 @@
 		font-size: 2em;
 	}
 	.dropdown-content {
+    margin-top: 1em;
 		display: none;
 		position: absolute;
 		top: 3.5em;
@@ -244,4 +257,7 @@ nav .navLink_highlighted a {
 nav .navLink_highlighted {
 	list-style-type: disc;
 	color: #fd2d00;
+}
+.error_msg {
+	color: #E94545;
 }

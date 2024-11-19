@@ -1,5 +1,22 @@
 # Kubelab(Cutelab) Dashboard 
 
+## Login noter:
+Jeg har lavet 3 nye users "student", "admin", "superadmin". med følgende login oplysninger:
+mail:password
+- student@mail.com, 1
+- admin@mail.com, 1, 
+- superAdmin@mail.com, 1
+lættere at teste sådan :D
+jeg har ændret DB.sql med de 3 nye, men her er INSERT for dem også:
+``` sql
+INSERT INTO Users (username, firstName, lastName, userEmail, userPassword, FK_role) 
+VALUES 
+    ('student', 'student', 'studentLast', 'student@mail.com', '1', 1),
+    ('admin', 'admin', 'adminLast', 'admin@mail.com', '1', 2),
+    ('superAdmin', 'superAdmin', 'superAdminLast', 'superAdmin@mail.com', '1', 3);
+
+```
+
 ## Arbejds noter:
 - Vi gør brug af MVC (Model, View, Controller) sturkturen.
 - Vi kører en NodeJS-server.

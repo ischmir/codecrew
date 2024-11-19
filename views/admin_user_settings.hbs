@@ -21,38 +21,51 @@
 
 			<h3>Change name</h3>
 			<section class="drop-section">
-				<form action="/teams" class="dropdown">
+				<form action="/upgradeUser" method="post" class="dropdown">
 				<div class="dropd">
 					{{!-- Name --}}
-  <select name="userId" id="userId"  >
+  	<select name="userId" id="userId"  >
 	   <option value="0">Insert user name</option>
-    <option value="1">Mai</option>
-    <option value="2">Timm</option>
-    <option value="3">Sandra</option>
-	<option value="4">Marcus</option>
-<option value="5">Oliver</option>
-<option value="6">Emma</option>
-<option value="7">Lucas</option>
-<option value="8">Ava</option>
-<option value="9">Liam</option>
-<option value="10">Mia</option>
-<option value="11">Ethan</option>
-<option value="12">Charlotte</option>
-<option value="13">Noah</option>
-<option value="14">Amelia</option>
-<option value="15">James</option>
-<option value="16">Isabella</option>
-<option value="17">Benjamin</option>
-<option value="18">Harper</option>
-<option value="19">Elijah</option>
-<option value="20">Evelyn</option>
-  </select>
+	   {{#if names}}
+			{{#each names}}
+				<option value="{{userId}}">{{firstName}} {{lastName}}</option>
+			
+			{{/each}}
+		{{else}}
+		<option value="2">Timm</option>
+		<option value="3">Sandra</option>
+		<option value="4">Marcus</option>
+		<option value="5">Oliver</option>
+		<option value="6">Emma</option>
+		<option value="7">Lucas</option>
+		<option value="8">Ava</option>
+		<option value="9">Liam</option>
+		<option value="10">Mia</option>
+		<option value="11">Ethan</option>
+		<option value="12">Charlotte</option>
+		<option value="13">Noah</option>
+		<option value="14">Amelia</option>
+		<option value="15">James</option>
+		<option value="16">Isabella</option>
+		<option value="17">Benjamin</option>
+		<option value="18">Harper</option>
+		<option value="19">Elijah</option>
+		<option value="20">Evelyn</option>
+		{{/if}}
+  	</select>
 {{!-- Role --}}
+
   <select name="userRole" id="userRole">
 	    <option value="role">Choose role</option>
-    <option value="Student">Student</option>
-    <option value="Teacher">Teacher</option>
-    <option value="Admin">Admin</option>
+	{{#if roles}}
+		{{#each roles}}
+			<option value="{{roleId}}">{{roleName}}</option>
+		{{/each}}
+	{{else}}
+		<option value="1">Student</option>
+		<option value="2">Teacher</option>
+		<option value="3">Admin</option>
+	{{/if}}
   </select>
 				</div>
 

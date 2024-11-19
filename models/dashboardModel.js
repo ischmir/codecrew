@@ -1,3 +1,4 @@
+const axios = require('axios');
 exports.mockData = function() {
     // Corrected example data :)
     const data = {
@@ -41,18 +42,31 @@ exports.portainerSystemInfo = function () {
 exports.portainerSystemStatus = function () {
     
 };
-exports.portainerStacks = function () {
-    
+exports.portainerStacks = async function () {
 };
+
 exports.portainerEndpoints = function () {
     
 };
-exports.portainerSystemAuth = function () {
-    
+exports.portainerSystemAuth = async function () {
+    const url = "https://portainer.kubelab.dk/api/auth";
+    const body = {
+        username: "codecrew",
+        password: "Ladida.12"
+    };
+
+    axios.post(url, body)
+    .then(response => {
+        console.log(response.data)
+    })
+    .catch(error => console.error(error))
+
 };
+
 exports.portainerCreateStack = function () {
     
 };
+
 exports.portainerDeleteStack = function () {
     
 };

@@ -1,29 +1,37 @@
 const loginM = require('../models/loginModel');
 
 exports.login = function (req, res) {
+	res.locals.loginErrorMsg = "";
+	if(req.session && req.session.userDetails) {
+		// res.redirect("/dashboard") // this if statement redirects, if we are allready logged in.
+	}
 	res.render('login');
 };
 exports.postLogin = async function (req, res) {
 	try {
+		res.locals.loginErrorMsg = "";
 		const { email, password } = req.body;
 
 		const result = await loginM.getSingelUserForLogin(email, password);
+		
 		if (result[0] !== undefined) {
 			const finalResult = result[0];
 			const userData = {
-				userRole: finalResult.RoleName,
-				email: finalResult.Email,
-				firstName: finalResult.FirstName,
-				lastName: finalResult.LastName,
+				accessLevel: finalResult.accessLevel,
+				email: finalResult.userEmail,
+				firstName: finalResult.firstName,
+				lastName: finalResult.lastName
 			};
 
-			res.locals.userDetails = userData; // dosn't work yet. but it does store. untill a redirect happens... but it dosn't break anything :)
-			console.log(res.locals.userDetails);
+			req.session.userDetails = userData;
+			
+			res.locals.loginErrorMsg = "Wrong creditials. Cant find a user with that email and password";
 
 			res.redirect('/dashboard');
 		} else {
+			res.locals.loginErrorMsg = "Wrong creditials. Cant find a user with that email and password";
 			console.log('wrong login credientals');
-			res.redirect('/dashboard'); // should be "/login" and giving an error msg.
+			res.render('login');
 		}
 	} catch (error) {
 		console.log('An error has occured');
@@ -40,3 +48,8 @@ exports.signup = function (req, res) {
 exports.forgot_password = function (req, res) {
 	res.render('forgot_password');
 };
+exports.logout = function(req, res) {
+	req.session.destroy();
+
+	res.redirect("login");
+}
