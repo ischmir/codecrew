@@ -1,8 +1,90 @@
 {{> nav}}
 <main class="main_settings">
 	{{> header}}
+<div>
+	<div> 
+		{{!-- KASSE 1 --}}
+	<h2>Edit or Create Team</h2>
+		<section class="drop-section">
+				<form action="/upgradeUser" method="post" class="dropdown">
+				<div class="dropd">
+					{{!-- Name --}}
+  	<select name="userId" id="userId"  >
+	   <option value="0">Choose/Create Team</option>
+	   {{#if names}}
+			{{#each names}}
+				<option value="{{userId}}">{{firstName}} {{lastName}}</option>
+			{{/each}}
+		{{else}}
+		<option value="1">Team 1</option>
+		<option value="2">Team 2</option>
+		<option value="3">Teams 3</option>
+		{{/if}}
+  	</select>
+{{!-- Role --}}
 
-<h1 class="FUNKY">YOU ARE NOW ADMIN!!!</h1>
-<h1 class="rotate-text">:-)</h1>
+  <select name="userRole" id="userRole">
+	    <option value="role">Search / Enter Name</option>
+	{{#if roles}}
+		{{#each roles}}
+			<option value="{{roleId}}">{{roleName}}</option>
+		{{/each}}
+	{{else}}
+		<option value="1">Mai</option>
+		<option value="2">Timm</option>
+		<option value="3">Marcus</option>
+	{{/if}}
+  </select>
+				</div>
+</form>
+		</section>
+	</div>
+
+	<div> 
+		{{!-- KASSE 2 --}}
+	<h2>Configure Team Members</h2>
+		<section class="drop-section">
+				<form action="/upgradeUser" method="post" class="dropdown">
+				<div class="dropd">
+					{{!-- Name --}}
+  	<select name="userId" id="userId"  >
+	   <option value="0">Add Team Members</option>
+	   {{#if names}}
+			{{#each names}}
+				<option value="{{userId}}">{{firstName}} {{lastName}}</option>
+			{{/each}}
+		{{else}}
+		<option value="1">Team Member 1</option>
+		<option value="2">Team Member 2</option>
+		<option value="3">Team Member 3</option>
+		{{/if}}
+  	</select>
+{{!-- Role --}}
+
+  <select name="userRole" id="userRole">
+	    <option value="role">Team Members Added</option>
+	{{#if roles}}
+		{{#each roles}}
+			<option value="{{roleId}}">{{roleName}}</option>
+		{{/each}}
+	{{else}}
+		<option value="1">name 1</option>
+		<option value="2">name 2</option>
+		<option value="3">name 3</option>
+	{{/if}}
+  </select>
+  <h2>Or</h2>
+    <div class="file-input-container">
+        <input type="file" name="csvFile" id="csvFile" accept=".csv">
+        <label for="csvFile">Choose CSV File</label>
+    </div>
+
+				</div>
+
+  <input type="submit" class="button" value="Upgrade user">
+</form>
+		</section>
+	</div>
+</div>
 
 </main>
