@@ -1,3 +1,5 @@
+<script src="/script/teams.js" defer></script>
+
 {{> nav}}
 <main class="main_settings">
 	{{> header}}
@@ -74,14 +76,15 @@
 	{{/if}}
   </select>
   <h2>Or</h2>
-    <div class="file-input-container">
-        <input type="file" name="csvFile" id="csvFile" accept=".csv">
-        <label for="csvFile">Choose CSV File</label>
-    </div>
+{{!-- multiline input felt --}}
+<div id="csv-dropzone" role="button" aria-label="Upload CSV File">
+    Upload CSV File
+</div>
 
 				</div>
 
-  <input type="submit" class="button" value="Upgrade user">
+  <input type="submit" class="button" value="Update Team / Create Team">
+
 </form>
 		</section>
 	</div>

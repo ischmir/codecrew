@@ -1,0 +1,14 @@
+#csv-dropzone {
+	background-color: var(--secondary-darkmode-background-color);
+	color: var(--primary-darkmode-font-color);
+	padding: 10px;
+	margin: 8px 0;
+	font-size: larger;
+	border: 1px solid var(--primary-darkmode-border-color);
+	border-radius: 6px;
+	transition: background-color 0.3s;
+}
+
+#csv-dropzone.dragover {
+	background-color: #e0f7ff;
+}
