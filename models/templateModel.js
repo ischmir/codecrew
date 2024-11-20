@@ -1,6 +1,6 @@
 const db = require("../config/db");
 
-exports.getAllTemplates = async function() {
+exports.getAllTemplates = async function(message) {
     const [templates, fields] = await db.query(`SELECT 
         templateId, 
         templateTitle, 
@@ -11,7 +11,8 @@ exports.getAllTemplates = async function() {
     
     const data = {
         title: "Template",
-        templates
+        templates,
+        message
     }
     
     return data;

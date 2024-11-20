@@ -36,9 +36,9 @@ const showToast = (
     document.body.appendChild(box)
 	};
     
-	if (isCurrentPasswordCorrectType == "danger") {
-		showToast(isCurrentPasswordCorrectText, "danger", 3500); //text, type(for the code), durationbar (NOT TOAST DURATION, that is in the css)
-	} else if (isCurrentPasswordCorrectType == "success") {
-		showToast(isCurrentPasswordCorrectText, "success", 3500); //text, type(for the code), durationbar (NOT TOAST DURATION, that is in the css)
+	if (messageType == "danger") {
+		showToast(messageText, "danger", 3500); //text, type(for the code), durationbar (NOT TOAST DURATION, that is in the css)
+	} else if (messageType == "success") {
+		showToast(messageText, "success", 3500); //text, type(for the code), durationbar (NOT TOAST DURATION, that is in the css)
 	}
 	wrongPassword = null;
