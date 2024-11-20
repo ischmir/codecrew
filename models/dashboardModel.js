@@ -113,26 +113,60 @@ exports.portainerEndpoints = async function (token) {
 
 // Function to create a new stack in Portainer
 exports.portainerCreateStack = async function (token, fromTemplate, stackName, stackFileContent, swarmId) {
+    const url = `${portainerBaseUrl}/stacks/create/swarm/string?endpointId=5`;
+    const payload = {
+        "fromTemplate": fromTemplate,
+        "name": stackName,
+        "stackFileContent": stackFileContent,
+        "swarmId": "v1pkdou24tzjtncewxhvpmjms" // i think its static and therefor we can just hardcode it.
+        }
+
     try {
-        const stacksUrl = `${portainerBaseUrl}/stacks/create/swarm/string?endpoint=5`; // Defines the URL for the stacks creation endpoint
-        const response = await axios.post(
-            stacksUrl,
-            {
-                "fromTemplate": false,
-                "name": "pretest-nginx2",
-                "stackFileContent": "",
-                "swarmId": "v1pkdou24tzjtncewxhvpmjms"
+        const response = await axios.post(url, payload, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
             },
-            {
-                headers: { Authorization: `Bearer ${token}`, // Includes the token in the Authorization header
-                'Content-Type': 'application/json'} 
-            }
-        );
-        //console.log(`Stack "${stackName}" created successfully:`, response.data); // Logs success message with stack details
+        });
+
+        console.log(`Stack "${stackName}" created successfully:`, response.data); // Logs success message with stack details
         return response.data; // Returns the response data
+
+
     } catch (error) {
         console.error(`Error creating stack "${stackName}":`, error.message); // Logs any errors
     }
+
+
+
+
+
+
+
+    // const payload = {
+    //     "fromTemplate": false,
+    //     "name": "testoBestoPesto",
+    //     "stackFileContent": "{\"networks\":{\"traefik-proxy\":{\"external\":true}},\"services\":{\"test\":{\"image\":\"nginx:latest\",\"networks\":[\"traefik-proxy\"],\"deploy\":{\"labels\":[\"traefik.enable=true\",\"traefik.http.routers.marcus.rule=Host(`marcus.kubelab.dk`)\",\"traefik.http.routers.marcus.entrypoints=web,websecure\",\"traefik.http.routers.marcus.tls.certresolver=letsencrypt\",\"traefik.http.services.marcus.loadbalancer.server.port=80\"]}}}}",
+    //     "swarmId": "v1pkdou24tzjtncewxhvpmjms"
+    //     }
+
+    // try {
+    //     const response = await axios.post(url, payload, {
+    //         headers: {
+    //             'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJjb2RlY3JldyIsInJvbGUiOjIsInNjb3BlIjoiZGVmYXVsdCIsImZvcmNlQ2hhbmdlUGFzc3dvcmQiOmZhbHNlLCJleHAiOjE3MzIxNDQwMTYsImlhdCI6MTczMjExNTIxNiwianRpIjoiOTdjNDcwNGUtMDlkNy00NzZiLThkY2MtZDNkYjU2YjI0MmUzIn0.aTjjPNa1JDbQMD44Ud-ErFKIu8AVLRNgRWrEyshqIAA`,
+    //             'Content-Type': 'application/json',
+    //         },
+    //     });
+    //     console.log(response.data);
+    // }
+    // catch(err) {
+    //     console.log(err);
+        
+    // }
+
+
+
+
 }
 
 // Function to delete a stack by ID
