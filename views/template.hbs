@@ -1,15 +1,23 @@
 {{> nav}}
 
-<main class="template_main">
+<main class="dashboard_main">
     {{> header}}
 
     {{#each templates}}
     <div class="templateWrapper">
-        {{templateTitle}}
-        {{templateContent}}
-        {{templateCreationDate}}
-        {{templateLastUpdate}}
+        <h3>{{templateTitle}}</h3>
+
+        {{!-- <h4>Content: </h4> --}}
+        <p> <b>Creation Date: </b> {{creationDate}}</p>
+        <p> <b>Last Update: </b>{{lastUpdate}}</p>
+
+        <form action="/updateTemplate" method="post">
+            <textarea name="newContent" id="">{{templateContent}}</textarea>
+            <input type="hidden" name="templateId" value="{{templateId}}">
+            <button type="submit">Save</button>
+        </form>
+
     </div>
     {{/each}}
-    
+
 </main>

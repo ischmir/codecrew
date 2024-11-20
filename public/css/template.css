@@ -1,0 +1,12 @@
+.templateWrapper {
+    height: 70vh;
+    margin-bottom: 4em;
+}
+.templateWrapper textarea {
+    border: solid 2px black;
+    padding: 1em;
+    font-size: 1.25em;
+    width: 50%;
+    height: 80%;
+    
+}
