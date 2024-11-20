@@ -1,0 +1,15 @@
+{{> nav}}
+
+<main class="template_main">
+    {{> header}}
+
+    {{#each templates}}
+    <div class="templateWrapper">
+        {{templateTitle}}
+        {{templateContent}}
+        {{templateCreationDate}}
+        {{templateLastUpdate}}
+    </div>
+    {{/each}}
+    
+</main>

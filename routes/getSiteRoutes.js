@@ -2,6 +2,7 @@ const dashboardC = require('../controllers/dashboardController');
 const loginC = require('../controllers/loginController');
 const settingsC = require('../controllers/settingController');
 const teamsC = require('../controllers/teamsController');
+const templateC = require('../controllers/templateController');
 
 module.exports = function (app) {
 	app.get('/', dashboardC.dashboardRedirect);
@@ -14,4 +15,5 @@ module.exports = function (app) {
 	app.get('/admin_user_settings', settingsC.upgrade);
 	app.get('/teams', teamsC.teams);
 	app.get('/forgot_password', loginC.forgot_password);
+	app.get('/template', templateC.allTemplates);
 };

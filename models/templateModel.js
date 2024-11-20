@@ -1,9 +1,13 @@
 const db = require("../config/db");
 
-exports.getAllUser = async function() {
-    const [rows, fields] = await db.query("SELECT * FROM Templates");
+exports.getAllTemplates = async function() {
+    const [templates, fields] = await db.query("SELECT * FROM Templates");
 
-    console.log(rows);
+    const data = {
+        title: "Template",
+        templates
+    }    
+    console.log(data);
     
-    return rows;
+    return data;
 };
