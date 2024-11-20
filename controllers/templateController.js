@@ -32,7 +32,7 @@ exports.updateTemplate = async function (req, res) {
     else {
         
         req.session.message = { type: "success", text: templateFromDB[0].templateTitle + " got updated" };
-        res.redirect("/template") // TOAST
+        res.redirect("/template")
     }
 
 }
