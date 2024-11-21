@@ -16,4 +16,5 @@ module.exports = function (app) {
 	app.get('/teams', teamsC.teams);
 	app.get('/forgot_password', loginC.forgot_password);
 	app.get('/template', templateC.allTemplates);
+	app.get("/create_template", templateC.createTemplate)
 };

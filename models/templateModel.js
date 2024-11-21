@@ -38,3 +38,10 @@ exports.updateTemplate = async function (id, newContent) {
 
     return rows;   
 }
+exports.createTemplate = async function () {
+    let data = {
+        title: "Create template"
+    }
+
+    return data;
+}

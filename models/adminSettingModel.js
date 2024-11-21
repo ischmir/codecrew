@@ -4,14 +4,12 @@ exports.adminSettingsUpgradeUser = async function() {
     try {
         const [roles, fields] = await db.query("SELECT roleId, roleName FROM Roles");
         const [names] = await db.query("SELECT userId, firstName, lastName FROM Users")
-        console.log(names);
-        
+
         const data = {
             title: "Admin settings",
             roles, 
             names
         }
-            console.log(data);
             
         return data;
     }

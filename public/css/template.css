@@ -2,11 +2,50 @@
     height: 70vh;
     margin-bottom: 4em;
 }
-.templateWrapper textarea {
+.templateWrapper textarea, .templateCreationForm textarea {
     border: solid 2px black;
     padding: 1em;
     font-size: 1.25em;
     width: 50%;
-    height: 80%;
-    
+    height: 80%;   
+}
+.createTemplate_link {
+    width: fit-content;
+    padding: 0.75em;
+    text-decoration: none;
+}
+.templateCreationForm {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 50%;
+    height: 80vh;
+}
+.templateCreationForm fieldset {
+    margin: 0 0 1em 0;
+    align-items: center;
+    padding: 0.5em;
+}
+.templateCreationForm fieldset:has(textarea) {
+    height: 100%;
+}
+.templateCreationForm textarea {
+    height: 90%;
+    width: 100%;
+}
+.templateCreationForm input {
+    width: 100%;
+    margin: 0.5em 0;
+    box-sizing: border-box;
+    border: 1.5px solid var(--primary-darkmode-border-color);
+    background-color: #383939;
+    padding: 10px 10px;
+    border-radius: 5px;
+    color: var(--primary-darkmode-font-color);
+}
+.templateCreationForm input[name=title], .templateCreationForm input[type=file] {
+    margin-top: 0.5em;
+}
+.templateCreationForm fieldset:has(input[type=file]) {
+    margin-bottom: 0.5em;
 }

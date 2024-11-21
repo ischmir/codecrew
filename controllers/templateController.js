@@ -6,6 +6,10 @@ exports.allTemplates = async function(req, res) {
 
     res.render("template", await templateM.getAllTemplates(message))
 }
+exports.createTemplate = async function (req, res) {
+    res.render("template_creation", await templateM.createTemplate());
+}
+
 exports.updateTemplate = async function (req, res) {
     const {templateId, newContent} = req.body
 
