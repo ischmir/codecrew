@@ -12,11 +12,28 @@
         <p> <b>Creation Date: </b> {{creationDate}}</p>
         <p> <b>Last Update: </b>{{lastUpdate}}</p>
 
+    
         <form action="/updateTemplate" method="post">
             <textarea name="newContent" id="">{{templateContent}}</textarea>
             <input type="hidden" name="templateId" value="{{templateId}}">
             <button type="submit">Save</button>
         </form>
+
+        <button class="templateDeletionBtn" onclick="popUpForm()">Utterly Destruction</button>
+        
+        <div id="confirmModal" class="templateFormModal_wrapper">
+            <div class="templateFormModal_content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Are you sure you want to delete <br> "{{templateTitle}}"?</h2>
+                <div>
+                    <form class="templateModalForm_deletion" action="/deleteTemplate" method="post">
+                        <input type="hidden" name="templateId" value="{{templateId}}">
+                        <button type="submit">Yes, delete</button>
+                    </form>
+                    <button onclick="closeModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
 
     </div>
     {{/each}}
@@ -34,4 +51,26 @@
     <script src="script/updatePasswordToast.js"></script>
 
     {{!-- {{/if}} --}}
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("confirmModal");
+
+        // Function to show the modal
+        function popUpForm() {
+            modal.style.display = "block";
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // Close the modal if the user clicks anywhere outside of the modal
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
 </main>

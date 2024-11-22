@@ -8,4 +8,5 @@ module.exports = function(app) {
     app.post("/upgradeUser", settingC.upgradeUser);
     app.post("/updateTemplate", templateC.updateTemplate);
     app.post("/templateCreation", templateC.templateCreation);
+    app.post("/deleteTemplate", templateC.deleteTemplate);
 }

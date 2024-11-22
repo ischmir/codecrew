@@ -83,8 +83,30 @@ exports.templateCreation = async function (req, res) {
     } catch (error) {
         req.session.message = { type: "danger", text: "Something went wrong with creation.", errMsg: error.reason, cachedTitle: req.body.title, cachedContent: error.mark.buffer};
         console.error(error);
-        res.redirect("/create_template");
-        
+        res.redirect("/create_template");       
+    }
+}
+
+exports.deleteTemplate = async function (req, res) {
+    const {templateId} = req.body
+
+    if(!templateId) {
+        throw new Error("There was no templateId with the request");
     }
 
+    const templateFromDB = (await templateM.getTemplateById(templateId))
+    if(templateFromDB.length == 0) {
+        // could not find any template with that id
+    }
+
+    const result = await templateM.templateDeletion(templateId);
+    if(result.affectedRows < 1) {
+        // it didnt update in the db
+        throw new Error("Nothing got updated")
+    } 
+    else {
+        templateFromDB[0].templateTitle ? templateFromDB[0].templateTitle : ""
+        req.session.message = { type: "success", text: templateFromDB[0].templateTitle + " got utterly destroyed" };
+        res.redirect("/template")
+    }
 }

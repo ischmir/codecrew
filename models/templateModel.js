@@ -54,3 +54,8 @@ exports.templateCreation = async function (title, content) {
 
     return rows;
 }
+exports.templateDeletion = async function (id) {
+    const [rows] = await db.execute("DELETE FROM Templates WHERE templateId = ?", [id])
+
+    return rows;
+}
