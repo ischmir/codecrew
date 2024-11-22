@@ -7,11 +7,11 @@
         <fieldset>
             <label for="title">Title</label>
             <br>
-            <input type="text" name="title" placeholder="Title of the new template">
+            <input type="text" name="title" value="{{message.cachedTitle}}" placeholder="Title of the new template">
         </fieldset>
         <fieldset>
             <label for="content">Content of the new template</label>
-            <textarea name="content" id=""></textarea>
+            <textarea name="content" id="">{{message.cachedContent}}</textarea>
         </fieldset>
         <fieldset>
             <label for="">Upload a file instead</label>
@@ -20,7 +20,7 @@
         </fieldset>
         <button type="submit" class="button">Create template</button>
     </form>
-
+    <p style="color: #E94545">{{message.errMsg}}</p>
 
         <div class="toast-overlay" 
 		id="toast-overlay"></div>

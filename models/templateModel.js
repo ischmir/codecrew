@@ -22,7 +22,7 @@ exports.getTemplateById = async function (id) {
         templateId, 
         templateTitle, 
         templateContent, 
-        DATE_FORMAT(templateCreationDate, '%Y %m %d %H:%i:%s') AS creationDate,
+        DATE_FORMAT(templateCreationDate, '%Y %m %d') AS creationDate,
         DATE_FORMAT(templateLastUpdate, '%Y %m %d %H:%i:%s') AS lastUpdate
         FROM Templates
         WHERE templateId = ?`, [id])        // Javascript ser funky på måden den skal konventere DATETIME fra databasen. 
@@ -38,9 +38,10 @@ exports.updateTemplate = async function (id, newContent) {
 
     return rows;   
 }
-exports.createTemplate = async function () {
+exports.createTemplate = async function (message) {
     let data = {
-        title: "Create template"
+        title: "Create template",
+        message
     }
 
     return data;
