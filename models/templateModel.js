@@ -5,7 +5,7 @@ exports.getAllTemplates = async function(message) {
         templateId, 
         templateTitle, 
         templateContent, 
-        DATE_FORMAT(templateCreationDate, '%Y %m %d %H:%i:%s') AS creationDate,
+        DATE_FORMAT(templateCreationDate, '%Y %m %d') AS creationDate,
         DATE_FORMAT(templateLastUpdate, '%Y %m %d %H:%i:%s') AS lastUpdate
         FROM Templates`);
     
@@ -44,4 +44,12 @@ exports.createTemplate = async function () {
     }
 
     return data;
+}
+exports.templateCreation = async function (title, content) {
+    const dates = new Date();
+
+    const [rows] = await db.execute("INSERT INTO Templates (templateTitle, templateContent, templateCreationDate, templateLastUpdate) VALUES (?,?,?,?)", 
+        [title, content, dates, dates ])
+
+    return rows;
 }

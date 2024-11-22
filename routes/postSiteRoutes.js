@@ -7,4 +7,5 @@ module.exports = function(app) {
     app.post("/settings-password", settingC.updatePassword);
     app.post("/upgradeUser", settingC.upgradeUser);
     app.post("/updateTemplate", templateC.updateTemplate);
+    app.post("/templateCreation", templateC.templateCreation);
 }

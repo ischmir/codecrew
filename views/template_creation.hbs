@@ -20,4 +20,15 @@
         </fieldset>
         <button type="submit" class="button">Create template</button>
     </form>
+
+
+        <div class="toast-overlay" 
+		id="toast-overlay"></div>
+
+	<script>
+		// We need make a variable to pass on a value from handlebars to script file.
+		const messageType = "{{message.type}}";
+		const messageText = "{{message.text}}";
+	</script>
+    <script src="script/updatePasswordToast.js"></script>
 </main>

@@ -136,37 +136,6 @@ exports.portainerCreateStack = async function (token, fromTemplate, stackName, s
     } catch (error) {
         console.error(`Error creating stack "${stackName}":`, error.message); // Logs any errors
     }
-
-
-
-
-
-
-
-    // const payload = {
-    //     "fromTemplate": false,
-    //     "name": "testoBestoPesto",
-    //     "stackFileContent": "{\"networks\":{\"traefik-proxy\":{\"external\":true}},\"services\":{\"test\":{\"image\":\"nginx:latest\",\"networks\":[\"traefik-proxy\"],\"deploy\":{\"labels\":[\"traefik.enable=true\",\"traefik.http.routers.marcus.rule=Host(`marcus.kubelab.dk`)\",\"traefik.http.routers.marcus.entrypoints=web,websecure\",\"traefik.http.routers.marcus.tls.certresolver=letsencrypt\",\"traefik.http.services.marcus.loadbalancer.server.port=80\"]}}}}",
-    //     "swarmId": "v1pkdou24tzjtncewxhvpmjms"
-    //     }
-
-    // try {
-    //     const response = await axios.post(url, payload, {
-    //         headers: {
-    //             'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJjb2RlY3JldyIsInJvbGUiOjIsInNjb3BlIjoiZGVmYXVsdCIsImZvcmNlQ2hhbmdlUGFzc3dvcmQiOmZhbHNlLCJleHAiOjE3MzIxNDQwMTYsImlhdCI6MTczMjExNTIxNiwianRpIjoiOTdjNDcwNGUtMDlkNy00NzZiLThkY2MtZDNkYjU2YjI0MmUzIn0.aTjjPNa1JDbQMD44Ud-ErFKIu8AVLRNgRWrEyshqIAA`,
-    //             'Content-Type': 'application/json',
-    //         },
-    //     });
-    //     console.log(response.data);
-    // }
-    // catch(err) {
-    //     console.log(err);
-        
-    // }
-
-
-
-
 }
 
 // Function to delete a stack by ID
@@ -183,43 +152,3 @@ exports.portainerDeleteStack = async function (token, stackId) {
         console.error(`Error deleting stack with ID ${stackId}:`, error.message); // Logs any errors
     }
 }
-
-
-/*
-exports.portainerSystemAuth = async function () {
-    const url = "https://portainer.kubelab.dk/api/auth";
-    const body = {
-        username: "codecrew",
-        password: "Ladida.12"
-    };
-
-    axios.post(url, body)
-    .then(response => {
-        console.log(response.data)
-    })
-    .catch(error => console.error(error))
-
-};
-
-exports.portainerSystemInfo = function () {
-    
-};
-
-exports.portainerSystemStatus = function () {
-    
-};
-exports.portainerStacks = async function () {
-};
-
-exports.portainerEndpoints = function () {
-    
-};
-
-exports.portainerCreateStack = function () {
-    
-};
-
-exports.portainerDeleteStack = function () {
-    
-};
-*/
