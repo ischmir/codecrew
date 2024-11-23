@@ -11,7 +11,6 @@
         {{!-- <h4>Content: </h4> --}}
         <p> <b>Creation Date: </b> {{creationDate}}</p>
         <p> <b>Last Update: </b>{{lastUpdate}}</p>
-
     
         <form action="/updateTemplate" method="post">
             <textarea name="newContent" id="">{{templateContent}}</textarea>
@@ -20,7 +19,7 @@
         </form>
 
         <button class="templateDeletionBtn" onclick="popUpForm()">Utterly Destruction</button>
-        
+
         <div id="confirmModal" class="templateFormModal_wrapper">
             <div class="templateFormModal_content">
                 <span class="close" onclick="closeModal()">&times;</span>
