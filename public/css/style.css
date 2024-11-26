@@ -24,6 +24,10 @@
 	/*Darkmode other Variables*/
 	--primary-darkmode-border-color: #ffffff;
 	--dropshadow: drop-shadow(5px 5px 4px rgba(0, 0, 0, 0.2));
+	
+	/*other Variables*/
+	--positive-status-color: #41AF7D;
+	--negative-status-color: #E94545;
 }
 
 #wrapper {
