@@ -1,0 +1,92 @@
+{{!-- line height, settings stored in localstorage, rem is reletive to the html tag, where em is reletive to the parent --}}
+
+
+
+{{> nav}}
+<main class="main_settings">
+	{{> header}}
+
+	<section class="container">
+{{> settingsnav}}
+		<div class="settings_container">
+            <h2>Accessibility settings</h2>
+			<section class="accessibilitySection_wrapper">
+                <h4>Color mode</h4>
+                <div class="btn_container">
+                    <div class="colorMode_btn">
+                        <span>System</span>
+                    </div>
+                    <div class="colorMode_btn">
+                        <span>Light</span>
+                    </div>
+                    <div class="colorMode_btn">
+                        <span>Dark</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="accessibilitySection_wrapper">
+                <h4>Font family</h4>
+                <div class="btn_container">
+                    <div class="fontFamilyMode_btn">
+                        <span>Default</span>
+                    </div>
+                    <div class="fontFamilyMode_btn">
+                        <span>Dyslexic</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="accessibilitySection_wrapper">
+                <h4>Font size</h4>
+                <div class="btn_container">
+                    <div class="fontSizeMode_btn" onclick="fontSizeChange(this)">
+                        <span>Default</span>
+                    </div>
+                    <div class="fontSizeMode_btn" onclick="fontSizeChange(this)">
+                        <span>Large</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="accessibilitySection_wrapper">
+                <h4>Line height</h4>
+                <div class="btn_container">
+                    <div class="lineHeightMode_btn">
+                        <span>Default</span>
+                    </div>
+                    <div class="lineHeightMode_btn">
+                        <span>Large</span>
+                    </div>
+                </div>
+            </section>
+
+		</div>
+	</section>
+
+</main>
+
+<script>
+    function ChangeFontSize() {
+        if(localStorage.getItem("fontSize")) {
+            let fontSize = localStorage.getItem("fontSize");
+            document.querySelectorAll("li, a, p, span").forEach((element) => {
+            if (element.tagName === "SPAN" || element.tagName === "P") {
+                element.style.fontSize = fontSize;
+            }
+            });
+        }
+    }
+</script>
+
+<script>
+    function fontSizeChange(font) {
+        let textContent = font.querySelector("span").textContent.toLowerCase();
+        if(!textContent || textContent == "default") {
+            textContent = "unset";
+        }
+        localStorage.setItem("fontSize", textContent)
+
+        ChangeFontSize()
+    }
+</script>

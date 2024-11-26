@@ -13,8 +13,9 @@ module.exports = function (app) {
 	app.get('/settings', settingsC.settings);
 	app.get('/settings-password', settingsC.password);
 	app.get('/admin_user_settings', settingsC.upgrade);
+	app.get('/accessibility', settingsC.accessibility);
 	app.get('/teams', teamsC.teams);
 	app.get('/forgot_password', loginC.forgot_password);
 	app.get('/template', templateC.allTemplates);
-	app.get("/create_template", templateC.createTemplate)
+	app.get("/create_template", templateC.createTemplate);
 };

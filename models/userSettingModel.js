@@ -19,6 +19,14 @@ exports.userSettings = () => {
     return data;
 }
 
+exports.accessibility = () => {
+    const data = {
+        title: "Settings"    
+    }
+
+    return data;
+}
+
 exports.userSettingsPassword = (message) => {
     const data = {
         message,

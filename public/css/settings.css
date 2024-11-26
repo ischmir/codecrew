@@ -315,3 +315,62 @@ button.danger-toast {
 }
 
 /* teams */
+
+
+/* /////////////////////// */
+/* //// Accessibility //// */
+/* /////////////////////// */
+
+.accessibilitySection_wrapper {
+	width: 100%;
+	height: fit-content;
+	padding: 0.5em;
+	display: flex;
+	flex-direction: column;
+}
+.accessibilitySection_wrapper h4 {
+	margin-bottom: 0.5em;
+}
+
+.colorMode_btn, .fontFamilyMode_btn, .fontSizeMode_btn, .lineHeightMode_btn {
+	width: 33%;
+	height: 2em;
+	margin: 0;
+	background-color: #2c3036;
+	border: solid 1.5px var(--secondary-darkmode-font-color);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+.colorMode_btn:hover, .fontFamilyMode_btn:hover, .fontSizeMode_btn:hover, .lineHeightMode_btn:hover {
+	background-color: var(--third-darkmode-background-color);
+}
+
+.colorMode_btn:nth-child(1),
+.fontFamilyMode_btn:nth-child(1),
+.fontSizeMode_btn:nth-child(1),
+.lineHeightMode_btn:nth-child(1)
+{
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-right: none;
+}
+.colorMode_btn:nth-child(3),
+.fontFamilyMode_btn:nth-child(2),
+.fontSizeMode_btn:nth-child(2),
+.lineHeightMode_btn:nth-child(2)
+{
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+	border-left: none;
+}
+.btn_container {
+	display: flex;
+}
+.fontFamilyMode_btn:nth-child(1),
+.fontSizeMode_btn:nth-child(1),
+.lineHeightMode_btn:nth-child(1)
+{
+	border-right: solid 1.5px var(--secondary-darkmode-font-color);
+}
