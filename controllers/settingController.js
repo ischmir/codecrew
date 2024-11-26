@@ -16,6 +16,10 @@ exports.upgrade = async function (req, res) {
 	res.render('admin_user_settings', await adminSettingsM.adminSettingsUpgradeUser());
 };
 
+exports.accessibility = async function (req, res) {
+	res.render('accessibility', await userSettingsM.accessibility())
+}
+
 exports.upgradeUser = async function (req, res) {
 	if(req.body.userId <= 0 || req.body.userRole == "") {
 		res.redirect("admin_user_settings") // should be send with a error message. 

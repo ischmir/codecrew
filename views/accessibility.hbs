@@ -1,0 +1,63 @@
+{{> nav}}
+<main class="main_settings">
+	{{> header}}
+
+	<section class="container">
+{{> settingsnav}}
+		<div class="settings_container">
+            <h2>Accessibility settings</h2>
+			<section class="colorMode_wrapper">
+                <h3>Color mode</h3>
+                <div class="btn_container">
+                    <div class="colorMode_btn">
+                        <span>System</span>
+                    </div>
+                    <div class="colorMode_btn">
+                        <span>Light</span>
+                    </div>
+                    <div class="colorMode_btn">
+                        <span>Dark</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="fontFamilyMode_wrapper">
+                <h3>Font mode</h3>
+                <div class="btn_container">
+                    <div class="fontFamilyMode_btn">
+                        <span>Default</span>
+                    </div>
+                    <div class="fontFamilyMode_btn">
+                        <span>Dyslexic</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="fontSizeMode_wrapper">
+                <h3>Font mode</h3>
+                <div class="btn_container">
+                    <div class="fontSizeMode_btn">
+                        <span>Default</span>
+                    </div>
+                    <div class="fontSizeMode_btn">
+                        <span>Larger</span>
+                    </div>
+                </div>
+            </section>
+		</div>
+	</section>
+
+    <div class="toast-overlay" 
+		id="toast-overlay"></div>
+
+	{{#if message}}
+		 
+	<script>
+		// We need make a variable to pass on a value from handlebars to script file.
+		const isCurrentPasswordCorrectType = "{{message.type}}";
+		const isCurrentPasswordCorrectText = "{{message.text}}";
+	</script>
+    <script src="script/updatePasswordToast.js"></script>
+
+	{{/if}}
+</main>
