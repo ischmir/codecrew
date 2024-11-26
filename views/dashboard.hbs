@@ -15,8 +15,31 @@
                 <a class="sort">Others Stacks</a>
             </div>
             <div>
-                <button class="create_button">Create New Stack</button>
+                <button id="create_stack_button" class="create_button">Create New Stack</button>
             </div>
+        </div>
+    </div>
+    <div id="create_stack_modal" class="create_modal">
+        <div class="create_stack_modal_content">
+            <span class="create_stack_model_close">&times;</span>
+            <h2> Create New Project</h2>
+            <form id="create_stack_form">
+                <input class="create_stack_input" type="text" placeholder="Project Name">
+                <input class="create_stack_input" type="text" placeholder="DomaineName.Kubelab.dk">
+                <select name="add_team" id="create_stack_select_team">
+                    <option value="#">Add Team Member</option>
+                    <option value="User1">Sandra</option>
+                    <option value="User2">Mai</option>
+                    <option value="User3">Markus</option>
+                </select>
+                <select name="add_team" id="create_stack_select_template">
+                    <option value="#">Choose Template</option>
+                    <option value="User1">Wordpress</option>
+                    <option value="User2">Umbraco</option>
+                    <option value="User3">Other</option>
+                </select>
+                <input class="create_modal_submit_button" type="submit" value="Submit">
+            </form>
         </div>
     </div>
     <div class="dashboard_list">
