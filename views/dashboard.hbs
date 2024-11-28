@@ -24,16 +24,17 @@
             <span class="create_stack_model_close">&times;</span>
             <h2> Create New Project</h2>
             <form id="create_stack_form">
-                <input class="create_stack_input" type="text" placeholder="Project Name">
-                <input class="create_stack_input" type="text" placeholder="DomaineName.Kubelab.dk">
+                <input id="create_stack_name" class="create_stack_input" type="text" placeholder="Project Name">
+                <input id="create_stack_domain" class="create_stack_input_Domain" type="text" placeholder="DomaineName.Kubelab.dk">
                 <select name="add_team" id="create_stack_select_team">
-                    <option value="#">Add Team Member</option>
+                    <option value="" disabled selected>Add Team Member</option>
+                    <option value="">none</option>
                     <option value="User1">Sandra</option>
                     <option value="User2">Mai</option>
                     <option value="User3">Markus</option>
                 </select>
                 <select name="add_team" id="create_stack_select_template">
-                    <option value="#">Choose Template</option>
+                    <option value="" disabled selected>Choose Template</option>
                     <option value="User1">Wordpress</option>
                     <option value="User2">Umbraco</option>
                     <option value="User3">Other</option>

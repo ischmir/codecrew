@@ -55,3 +55,19 @@ window.addEventListener("click", (event) => {
     modal.style.display = "none";
   }
 });
+
+const form = document.getElementById ("create_stack_form");
+
+form.addEventListener("submit"), async (e) => {
+  e.preventDefault();
+}
+
+const stackName = document.getElementById ("create_stack_name");
+const stackDomain = document.getElementById ("create_stack_domain");
+
+try {
+  const response = await axios.post("https://portainer.kubelab.dk/api", {stackName}); //hvilken url skal vi bruge her? den med vores endpoint til at finde stacken eller til url filecontent for at rette i det?
+  console.log(response.data.message);
+} catch (error) {
+  console.error("Error creating stack", error.message);
+}
