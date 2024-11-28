@@ -59,3 +59,11 @@ exports.templateDeletion = async function (id) {
 
     return rows;
 }
+exports.replacePlaceholder = async function (id, domain) {
+    const [rows] = await db.query(`SELECT 
+    REPLACE(REPLACE(templateContent, 'CHANGEME', ?),'SUBDOMAIN', ?)
+    FROM Templates WHERE templateId = ?;
+`, [domain, domain, id])
+    return rows;
+
+}

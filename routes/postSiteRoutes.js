@@ -1,7 +1,7 @@
 const loginC = require("../controllers/loginController");
 const settingC = require("../controllers/settingController");
 const templateC = require("../controllers/templateController");
-//const stackC = require("../controllers/dashboardController");
+const stackC = require("../controllers/dashboardController");
 
 module.exports = function(app) {
     app.post("/login", loginC.postLogin);
@@ -10,6 +10,6 @@ module.exports = function(app) {
     app.post("/updateTemplate", templateC.updateTemplate);
     app.post("/templateCreation", templateC.templateCreation);
     app.post("/deleteTemplate", templateC.deleteTemplate);
-    //app.post("/createStack", stackC.createStack);
+    app.post("/createStack", stackC.createStack);
 
 }

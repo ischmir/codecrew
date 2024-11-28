@@ -11,11 +11,11 @@
     <div class="stack_sorting">
         <div class="sort_section">
             <div id="sorting">
-                <a class="sort highlight">Your Stacks</a>
-                <a class="sort">Others Stacks</a>
+                <a class="sort highlight">My Projects</a>
+                <a class="sort">Others' Projects</a>
             </div>
             <div>
-                <button id="create_stack_button" class="create_button">Create New Stack</button>
+                <button id="create_stack_button" class="create_button">Create New Project</button>
             </div>
         </div>
     </div>
@@ -23,9 +23,9 @@
         <div class="create_stack_modal_content">
             <span class="create_stack_model_close">&times;</span>
             <h2> Create New Project</h2>
-            <form id="create_stack_form">
-                <input id="create_stack_name" class="create_stack_input" type="text" placeholder="Project Name">
-                <input id="create_stack_domain" class="create_stack_input_Domain" type="text" placeholder="DomaineName.Kubelab.dk">
+            <form id="create_stack_form" method="post" action="/createStack">
+                <input id="create_stack_name" class="create_stack_input" type="text" placeholder="Project Name" name="stack_name">
+                <input id="create_stack_domain" class="create_stack_input_Domain" type="text" placeholder="DomaineName.Kubelab.dk" name="domain_name">
                 <select name="add_team" id="create_stack_select_team">
                     <option value="" disabled selected>Add Team Member</option>
                     <option value="">none</option>
@@ -33,7 +33,7 @@
                     <option value="User2">Mai</option>
                     <option value="User3">Markus</option>
                 </select>
-                <select name="add_team" id="create_stack_select_template">
+                <select name="chosen_template" id="create_stack_select_template">
                     <option value="" disabled selected>Choose Template</option>
                     <option value="User1">Wordpress</option>
                     <option value="User2">Umbraco</option>
