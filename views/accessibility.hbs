@@ -37,25 +37,40 @@
                 </div>
             </section>
 
-            <section class="accessibilitySection_wrapper">
-                <h4>Font size</h4>
-                <div class="btn_container">
-                    <div class="fontSizeMode_btn" onclick="fontSizeChange(this)">
-                        <span>Small</span>
+            <button id="advDyslexiaOptions_btn" onclick="showAdvDyslexiaOptions()">Show advanced options</button>
+            <div class="advDyslexiaOptions_wrapper">
+                <section class="accessibilitySection_wrapper">
+                    <h4>Font size</h4>
+                    <div class="btn_container">
+                        <div class="fontSizeMode_btn" onclick="fontSizeChange(this)">
+                            <span>Small</span>
+                        </div>
+                        <div class="fontSizeMode_btn" onclick="fontSizeChange(this)">
+                            <span>Default</span>
+                        </div>
+                        <div class="fontSizeMode_btn" onclick="fontSizeChange(this)">
+                            <span>Large</span>
+                        </div>
                     </div>
-                    <div class="fontSizeMode_btn" onclick="fontSizeChange(this)">
-                        <span>Default</span>
-                    </div>
-                    <div class="fontSizeMode_btn" onclick="fontSizeChange(this)">
-                        <span>Large</span>
-                    </div>
-                </div>
-            </section>
+                </section>
+            </div>
 
 		</div>
 	</section>
 
 </main>
+
+<script>
+    const btn = document.getElementById("advDyslexiaOptions_btn");
+    function showAdvDyslexiaOptions() {
+        let wrapper = document.querySelector(".advDyslexiaOptions_Wrapper");
+        console.log(wrapper.style.display)
+        if(wrapper.style.display == "none" || wrapper.style.display == "")
+            wrapper.style.display = "block"
+        else 
+            wrapper.style.display = "none";
+    }
+</script>
 
 <script>
     function ChangeFontSize() {

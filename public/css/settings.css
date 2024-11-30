@@ -370,3 +370,10 @@ button.danger-toast {
 {
 	border-right: solid 1.5px var(--secondary-darkmode-font-color);
 }
+.advDyslexiaOptions_wrapper {
+	display: none;
+	margin: 0 0 0 2em;
+}
+.advDyslexiaOptions_wrapper h4 {
+	margin-top: 0.5em;
+}
