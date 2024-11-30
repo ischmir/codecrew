@@ -26,3 +26,9 @@
 </nav>
 
 <script src="script/nav.js"></script>
+<script defer>
+	if(localStorage.getItem("dyslexia") === "true")
+	{
+		document.querySelector("body").classList.add("dyslexia_mode")
+	}
+</script>

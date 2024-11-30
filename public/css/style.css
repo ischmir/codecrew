@@ -236,7 +236,17 @@ body {
 	margin: 0;
 	font-family: var(--primary-font-family);
 	color: #ccc;
+	line-height: 1.5;
 }
+.dyslexia_mode {
+	font-size: large;
+	line-height: 1.6;
+	font-family: Helvetica, 'Times New Roman', 'Verdana';
+	letter-spacing: 0.25ch;
+	word-spacing: 0.33ch;
+	font-variant-ligatures: none;
+} /* https://www.smashingmagazine.com/2021/11/dyslexia-friendly-mode-website/
+	Taget inspiration her fra */
 
 .user_profile {
 	display: flex;

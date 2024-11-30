@@ -72,8 +72,10 @@ exports.templateCreation = async function (req, res) {
         res.redirect("/template")
     }
     } catch (error) {
-        let contentError = error.mark.buffer ? error.mark.buffer : "";
-        req.session.message = { type: "danger", text: "Something went wrong with creation.", errMsg: error.reason, cachedTitle: req.body.title, cachedContent: contentError};
+        console.log(error);
+        
+        // let contentError = error.mark.buffer ? error.mark.buffer : "";
+        req.session.message = { type: "danger", text: "Something went wrong with creation.", errMsg: error.reason, cachedTitle: req.body.title, cachedContent: ""/*contentError*/};
         console.error(error);
         res.redirect("/create_template");       
     }

@@ -332,7 +332,7 @@ button.danger-toast {
 	margin-bottom: 0.5em;
 }
 
-.colorMode_btn, .fontFamilyMode_btn, .fontSizeMode_btn, .lineHeightMode_btn {
+.colorMode_btn, .fontFamilyMode_btn, .fontSizeMode_btn{
 	width: 33%;
 	height: 2em;
 	margin: 0;
@@ -343,14 +343,13 @@ button.danger-toast {
 	align-items: center;
 	cursor: pointer;
 }
-.colorMode_btn:hover, .fontFamilyMode_btn:hover, .fontSizeMode_btn:hover, .lineHeightMode_btn:hover {
+.colorMode_btn:hover, .fontFamilyMode_btn:hover, .fontSizeMode_btn:hover{
 	background-color: var(--third-darkmode-background-color);
 }
 
 .colorMode_btn:nth-child(1),
 .fontFamilyMode_btn:nth-child(1),
-.fontSizeMode_btn:nth-child(1),
-.lineHeightMode_btn:nth-child(1)
+.fontSizeMode_btn:nth-child(1)
 {
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
@@ -358,8 +357,7 @@ button.danger-toast {
 }
 .colorMode_btn:nth-child(3),
 .fontFamilyMode_btn:nth-child(2),
-.fontSizeMode_btn:nth-child(2),
-.lineHeightMode_btn:nth-child(2)
+.fontSizeMode_btn:nth-child(3)
 {
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
@@ -368,9 +366,7 @@ button.danger-toast {
 .btn_container {
 	display: flex;
 }
-.fontFamilyMode_btn:nth-child(1),
-.fontSizeMode_btn:nth-child(1),
-.lineHeightMode_btn:nth-child(1)
+.fontFamilyMode_btn:nth-child(1)
 {
 	border-right: solid 1.5px var(--secondary-darkmode-font-color);
 }

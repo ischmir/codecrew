@@ -26,12 +26,12 @@
             </section>
 
             <section class="accessibilitySection_wrapper">
-                <h4>Font family</h4>
+                <h4>Font</h4>
                 <div class="btn_container">
-                    <div class="fontFamilyMode_btn">
+                    <div class="fontFamilyMode_btn" onclick="defaultMode()">
                         <span>Default</span>
                     </div>
-                    <div class="fontFamilyMode_btn">
+                    <div class="fontFamilyMode_btn" onclick="dyslexicMode()">
                         <span>Dyslexic</span>
                     </div>
                 </div>
@@ -41,21 +41,12 @@
                 <h4>Font size</h4>
                 <div class="btn_container">
                     <div class="fontSizeMode_btn" onclick="fontSizeChange(this)">
+                        <span>Small</span>
+                    </div>
+                    <div class="fontSizeMode_btn" onclick="fontSizeChange(this)">
                         <span>Default</span>
                     </div>
                     <div class="fontSizeMode_btn" onclick="fontSizeChange(this)">
-                        <span>Large</span>
-                    </div>
-                </div>
-            </section>
-
-            <section class="accessibilitySection_wrapper">
-                <h4>Line height</h4>
-                <div class="btn_container">
-                    <div class="lineHeightMode_btn">
-                        <span>Default</span>
-                    </div>
-                    <div class="lineHeightMode_btn">
                         <span>Large</span>
                     </div>
                 </div>
@@ -70,15 +61,19 @@
     function ChangeFontSize() {
         if(localStorage.getItem("fontSize")) {
             let fontSize = localStorage.getItem("fontSize");
+            let lineHeight = localStorage.getItem("lineHeight");
             document.querySelectorAll("li, a, p, span").forEach((element) => {
             if (element.tagName === "SPAN" || element.tagName === "P") {
                 element.style.fontSize = fontSize;
+                element.style.lineHeight = lineHeight;
             }
             });
         }
     }
 </script>
-
+{{!--
+lav en samlet dyslexia pakke
++ posentielt adv hvor man så kan ændre individuelle --}}
 <script>
     function fontSizeChange(font) {
         let textContent = font.querySelector("span").textContent.toLowerCase();
@@ -86,7 +81,28 @@
             textContent = "unset";
         }
         localStorage.setItem("fontSize", textContent)
+        
+        if(textContent == "small")
+            localStorage.setItem("lineHeight", 1.4);
+        if(textContent == "unset")
+            localStorage.setItem("lineHeight", 1.5);
+        if(textContent == "large") 
+            localStorage.setItem("lineHeight", 1.6);
 
         ChangeFontSize()
+    }
+
+
+    let body = document.querySelector("body");
+    function dyslexicMode() {
+        localStorage.setItem("dyslexia", true)
+
+        if(!body.classList.contains("dyslexia_mode"))
+            body.classList.add("dyslexia_mode");
+    }
+    function defaultMode() {
+        localStorage.setItem("dyslexia", false);
+        if(body.classList.contains("dyslexia_mode"))
+            body.classList.remove("dyslexia_mode");
     }
 </script>
