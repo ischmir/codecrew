@@ -8,17 +8,19 @@
     <div class="templateWrapper">
         <h3>{{templateTitle}}</h3>
 
-        {{!-- <h4>Content: </h4> --}}
         <p> <b>Creation Date: </b> {{creationDate}}</p>
         <p> <b>Last Update: </b>{{lastUpdate}}</p>
     
         <form action="/updateTemplate" method="post">
             <textarea name="newContent" id="">{{templateContent}}</textarea>
             <input type="hidden" name="templateId" value="{{templateId}}">
-            <button type="submit">Save</button>
+            <br>
+            <div class="templateFormBtn_wrapper">
+                <button class="templateSaveBtn" type="submit">Save</button>
+                <button type="button" class="templateDeletionBtn" onclick="popUpForm()">Utterly Destruction</button>
+            </div>
         </form>
 
-        <button class="templateDeletionBtn" onclick="popUpForm()">Utterly Destruction</button>
 
         <div id="confirmModal" class="templateFormModal_wrapper">
             <div class="templateFormModal_content">
@@ -29,7 +31,7 @@
                         <input type="hidden" name="templateId" value="{{templateId}}">
                         <button type="submit">Yes, delete</button>
                     </form>
-                    <button onclick="closeModal()">Cancel</button>
+                    <button onclick="closeModal()" class="templateFormModalBtn_cancel">Cancel</button>
                 </div>
             </div>
         </div>
