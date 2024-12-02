@@ -13,7 +13,7 @@
 	--secondary-darkmode-background-color: #282b30;
 	--third-darkmode-background-color: #3e4147;
 	--primary-darkmode-list-info-background-color: #3e4147;
-  --secondary-darkmode-list-info-background-color: #727272;
+	--secondary-darkmode-list-info-background-color: #727272;
 
 	/*Darkmode Font Color Variables*/
 	--primary-darkmode-font-color: #ffffff;
@@ -24,10 +24,10 @@
 	/*Darkmode other Variables*/
 	--primary-darkmode-border-color: #ffffff;
 	--dropshadow: drop-shadow(5px 5px 4px rgba(0, 0, 0, 0.2));
-	
+
 	/*other Variables*/
-	--positive-status-color: #41AF7D;
-	--negative-status-color: #E94545;
+	--positive-status-color: #41af7d;
+	--negative-status-color: #e94545;
 }
 
 #wrapper {
@@ -117,7 +117,7 @@
 		margin-bottom: 5em;
 	}
 	.desktopNav img {
-		display: none; /* TODO */ 
+		display: none; /* TODO */
 	}
 	.navActive ul li a {
 		font-size: 1.5em;
@@ -151,7 +151,7 @@
 	/* NAV */
 	/* /////// */
 	.mobileNav,
-	.mobileNav_extra, 
+	.mobileNav_extra,
 	.mobileNav_bottomSettings {
 		display: none;
 	}
@@ -197,7 +197,7 @@
 		font-size: 2em;
 	}
 	.dropdown-content {
-    margin-top: 1em;
+		margin-top: 1em;
 		display: none;
 		position: absolute;
 		top: 3.5em;
@@ -238,10 +238,11 @@ body {
 	color: #ccc;
 	line-height: 1.5;
 }
-.dyslexia_mode {
+
+body .dyslexia_mode {
 	font-size: large;
 	line-height: 1.6;
-	font-family: 'Helvetica', 'Times New Roman', 'Verdana';
+	font-family: "Helvetica", "Times New Roman", "Verdana";
 	letter-spacing: 0.25ch;
 	word-spacing: 0.33ch;
 	font-variant-ligatures: none;
@@ -273,7 +274,7 @@ nav .navLink_highlighted {
 	color: #fd2d00;
 }
 .error_msg {
-	color: #E94545;
+	color: #e94545;
 }
 
 /* FIXED NAV DESKTOP */
