@@ -1,7 +1,3 @@
-{{!-- line height, settings stored in localstorage, rem is reletive to the html tag, where em is reletive to the parent --}}
-
-
-
 {{> nav}}
 <main class="main_settings">
 	{{> header}}
@@ -37,7 +33,7 @@
                 </div>
             </section>
 
-            <button id="advDyslexiaOptions_btn" onclick="showAdvDyslexiaOptions()">Show advanced options</button>
+            <button class="advDyslexiaOptions_btn" id="advDyslexiaOptions_btn" onclick="showAdvDyslexiaOptions()">Show advanced options</button>
             <div class="advDyslexiaOptions_wrapper">
                 <section class="accessibilitySection_wrapper">
                     <h4>Font size</h4>
@@ -64,11 +60,15 @@
     const btn = document.getElementById("advDyslexiaOptions_btn");
     function showAdvDyslexiaOptions() {
         let wrapper = document.querySelector(".advDyslexiaOptions_Wrapper");
-        console.log(wrapper.style.display)
-        if(wrapper.style.display == "none" || wrapper.style.display == "")
+        
+        if(wrapper.style.display == "none" || wrapper.style.display == "") {
             wrapper.style.display = "block"
-        else 
+            btn.innerHTML = "Close advanced options";
+        }
+        else {
             wrapper.style.display = "none";
+            btn.innerHTML = "Show advanced options";
+        }
     }
 </script>
 
@@ -86,9 +86,7 @@
         }
     }
 </script>
-{{!--
-lav en samlet dyslexia pakke
-+ posentielt adv hvor man så kan ændre individuelle --}}
+
 <script>
     function fontSizeChange(font) {
         let textContent = font.querySelector("span").textContent.toLowerCase();
