@@ -65,3 +65,28 @@ exports.getSingelUserByEmailWithAllData = async function (userEmail) {
         
     return rows;
 }
+
+exports.saveJWTtoUser = async function (jwt, userId) {
+    try {
+        if(!userId) {
+            throw new Error("The supplied userId, is undefined")
+        }
+        if(!jwt) {
+            throw new Error("The supplied JWT, is not valid or is undefined")
+        }
+    
+        const [res] = await db.execute("INSERT INTO Options (optionsName, optionValue, optionsLastUpdate) VALUES (?, ?, ?)", ["JWT", jwt, new Date()])
+        if(res.insertId) {
+            const [affectedRows] = await db.execute("UPDATE Users SET FK_options = ? WHERE userId = ?", [res.insertId, userId])
+            if(affectedRows < 1) {
+                throw new Error("Could not save the new jwt to the user.");
+            }
+        }
+        else {
+            throw new Error("There was an error with inserting the jwt to database.");
+        }    
+    } 
+    catch (error) {
+        console.error(error);
+    }
+}

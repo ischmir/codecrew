@@ -1,4 +1,6 @@
 const loginM = require('../models/loginModel');
+const dashboardM  = require('../models/dashboardModel');
+const userM = require('../models/userModel');
 
 exports.login = function (req, res) {
 	res.locals.loginErrorMsg = "";
@@ -25,8 +27,10 @@ exports.postLogin = async function (req, res) {
 			};
 
 			req.session.userDetails = userData;
-			
 			res.locals.loginErrorMsg = "Wrong creditials. Cant find a user with that email and password";
+			req.session.jwt = await dashboardM.portainerSystemAuth();
+
+			await userM.saveJWTtoUser(req.session.jwt, finalResult.userId);
 
 			res.redirect('/dashboard');
 		} else {
@@ -41,6 +45,10 @@ exports.postLogin = async function (req, res) {
 		res.send('An internal error has occured\n\n' + error);
 	}
 };
+
+exports.sendJWTtoUser = async function () {
+	return dashboardM.portainerSystemAuth();
+}
 
 exports.signup = function (req, res) {
 	res.render('signup');

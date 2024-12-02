@@ -8,7 +8,7 @@ USE KubelabDashboard;
 CREATE TABLE Options (
     optionsId int AUTO_INCREMENT PRIMARY KEY,
     optionsName varchar(100),
-    optionValue TEXT,
+    optionsValue TEXT,
     optionsLastUpdate DATETIME
 );
 

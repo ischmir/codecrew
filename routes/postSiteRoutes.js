@@ -4,7 +4,7 @@ const templateC = require("../controllers/templateController");
 const stackC = require("../controllers/dashboardController");
 
 module.exports = function(app) {
-    app.post("/login", loginC.postLogin);
+    app.post("/login", loginC.postLogin, loginC.sendJWTtoUser);
     app.post("/settings-password", settingC.updatePassword);
     app.post("/upgradeUser", settingC.upgradeUser);
     app.post("/updateTemplate", templateC.updateTemplate);

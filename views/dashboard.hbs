@@ -81,6 +81,10 @@
         {{/each}}
     </div>
 </main>
+
+<script>
+    localStorage.setItem("jwt", '{{jwt}}')
+</script>
 <!--
 {{#if ifEven}}
             <button id="accordion" class="stack_accordion_even">
