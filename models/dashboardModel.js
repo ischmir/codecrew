@@ -1,4 +1,5 @@
-const axios = require('axios'); // Import the Axios library for making HTTP requests
+// Import the Axios library for making HTTP requests
+const axios = require('axios'); 
 exports.mockData = function() {
     // Corrected example data :)
     const data = {
@@ -31,13 +32,11 @@ exports.mockData = function() {
         email: "tihi66699@edu.ucl.dk",
         userName:"Timm Hinsch"
     };
-    // data.stack.sort((k) => k.author).reverse();
+    // Sorting data.stack.sort((k) => k.author).reverse();
     return data;
 };
 
-// Defines the base URL for the Portainer API
 const portainerBaseUrl = "https://portainer.kubelab.dk/api"; 
-// Defines the credentials for authentication
 const credentials = {
     username: "codecrew",
     password: "Ladida.12"
@@ -46,68 +45,68 @@ const credentials = {
 // Function to authenticate and get a JWT token
 exports.portainerSystemAuth = async function () {
     try {
-        const authUrl = `${portainerBaseUrl}/auth`; // Defines the URL for the authentication endpoint
-        const response = await axios.post(authUrl, credentials); // Sends a POST request with the credentials
-        console.log("Authentication successful."); // Logs success message
-        return response.data.jwt; // Returns the token from the response
+        const authUrl = `${portainerBaseUrl}/auth`;
+        const response = await axios.post(authUrl, credentials); 
+        console.log("Authentication successful."); 
+        return response.data.jwt;
     } catch (error) {
-        console.error("Error authenticating:", error.message); // Logs any errors
+        console.error("Error authenticating:", error.message);
     }
 }
 
 // Function to fetch system information
 exports.portainerSystemInfo = async function (token) {
     try {
-        const infoUrl = `${portainerBaseUrl}/system/info`; // Defines the URL for the system info endpoint
+        const infoUrl = `${portainerBaseUrl}/system/info`; 
         const response = await axios.get(infoUrl, {
-            headers: { Authorization: `Bearer ${token}` }, // Includes the token in the Authorization header
+            headers: { Authorization: `Bearer ${token}` }, 
         });
-        console.log("System Info:", response.data); // Logs the fetched system information
-        return response.data; // Returns the system info data
+        console.log("System Info:", response.data);
+        return response.data;
     } catch (error) {
-        console.error("Error fetching system info:", error.message); // Logs any errors
+        console.error("Error fetching system info:", error.message);
     }
 }
 
 // Function to fetch system status
 exports.portainerSystemStatus = async function (token) {
     try {
-        const statusUrl = `${portainerBaseUrl}/system/status`; // Defines the URL for the system status endpoint
+        const statusUrl = `${portainerBaseUrl}/system/status`;
         const response = await axios.get(statusUrl, {
-            headers: { Authorization: `Bearer ${token}` }, // Includes the token in the Authorization header
+            headers: { Authorization: `Bearer ${token}` },
         });
-        console.log("System Status:", response.data); // Logs the fetched system status
-        return response.data; // Returns the system status data
+        console.log("System Status:", response.data); 
+        return response.data;
     } catch (error) {
-        console.error("Error fetching system status:", error.message); // Logs any errors
+        console.error("Error fetching system status:", error.message);
     }
 }
 
 // Function to fetch Portainer stacks
 exports.portainerStacks = async function (token) {
     try {
-        const stacksUrl = `${portainerBaseUrl}/stacks`; // Defines the URL for the stacks endpoint
+        const stacksUrl = `${portainerBaseUrl}/stacks`;
         const response = await axios.get(stacksUrl, {
-            headers: { Authorization: `Bearer ${token}` }, // Includes the token in the Authorization header
+            headers: { Authorization: `Bearer ${token}` },
         });
-        console.log("Portainer Stacks:", response.data); // Logs the fetched stacks
-        return response.data; // Returns the stacks data
+        console.log("Portainer Stacks:", response.data);
+        return response.data;
     } catch (error) {
-        console.error("Error fetching Portainer stacks:", error.message); // Logs any errors
+        console.error("Error fetching Portainer stacks:", error.message);
     }
 }
 
 // Function to fetch Portainer endpoints
 exports.portainerEndpoints = async function (token) {
     try {
-        const endpointsUrl = `${portainerBaseUrl}/endpoints`; // Defines the URL for the endpoints endpoint
+        const endpointsUrl = `${portainerBaseUrl}/endpoints`;
         const response = await axios.get(endpointsUrl, {
-            headers: { Authorization: `Bearer ${token}` }, // Includes the token in the Authorization header
+            headers: { Authorization: `Bearer ${token}` },
         });
-        console.log("Portainer Endpoints:", response.data); // Logs the fetched endpoints
-        return response.data; // Returns the endpoints data
+        console.log("Portainer Endpoints:", response.data);
+        return response.data;
     } catch (error) {
-        console.error("Error fetching Portainer endpoints:", error.message); // Logs any errors
+        console.error("Error fetching Portainer endpoints:", error.message);
     }
 }
 
@@ -129,26 +128,26 @@ exports.portainerCreateStack = async function (token, fromTemplate, stackName, s
             },
         });
 
-        console.log(`Stack "${stackName}" created successfully:`, response.data); // Logs success message with stack details
-        return response.data; // Returns the response data
+        console.log(`Stack "${stackName}" created successfully:`, response.data);
+        return response.data;
 
 
     } catch (error) {
-        console.error(`Error creating stack "${stackName}":`, error.message); // Logs any errors
+        console.error(`Error creating stack "${stackName}":`, error.message);
     }
 }
 
 // Function to delete a stack by ID
 exports.portainerDeleteStack = async function (token, stackId) {
     try {
-        const stackUrl = `${portainerBaseUrl}/stacks/${stackId}?endpointId=5`; // Defines the URL for the specific stack
+        const stackUrl = `${portainerBaseUrl}/stacks/${stackId}?endpointId=5`;
         const response = await axios.delete(stackUrl, {
-            headers: { Authorization: `Bearer ${token}` }, // Includes the token in the Authorization header
-            params: { external: false }, // Set `external` to `false` unless deleting an external stack
+            headers: { Authorization: `Bearer ${token}` },
+            params: { external: false }
         });
-        console.log(`Stack with ID ${stackId} deleted successfully.`); // Logs success message
-        return response.data; // Returns the response data
+        console.log(`Stack with ID ${stackId} deleted successfully.`);
+        return response.data;
     } catch (error) {
-        console.error(`Error deleting stack with ID ${stackId}:`, error.message); // Logs any errors
+        console.error(`Error deleting stack with ID ${stackId}:`, error.message);
     }
 }

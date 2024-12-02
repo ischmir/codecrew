@@ -159,6 +159,72 @@ i.uil-redo {
     padding: 0.5em;
 }
 
+.create_modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */      
+    overflow: auto; /* Enable scroll if needed */
+}
+
+.create_stack_modal_content {
+    width: 30%;
+    background-color: var(--secondary-darkmode-background-color);
+    color: var(--primary-darkmode-font-color);
+    margin: auto;
+    padding: 1em 1em 2em 1em;
+}
+
+.create_stack_model_close {
+    color: var(--primary-darkmode-font-color);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.create_stack_model_close:hover,
+.create_stack_model_close:focus {
+    color: var(--primary-darkmode-button-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+form#create_stack_form {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 80%;
+}
+
+.create_stack_input,
+.create_stack_input_Domain {
+    background-color: var(--secondary-darkmode-background-color);
+    color: var(--primary-darkmode-font-colo);
+    padding: 10px;
+    margin: 8px 0;
+    font-size: larger;
+    border: 1px solid var(--primary-darkmode-border-color);
+    border-radius: 6px;
+}
+
+.input-container {
+    position: relative;
+    float: left;
+}
+
+.input-container:after {
+    position: absolute;
+    right: 0;
+    top: 0;
+    content: '@gmail.com';
+}
+
+
 /*:::::::::::::::::::::::::::::::::::::*/
 /*:::::::::::::: Mobile :::::::::::::::*/
 /*:::::::::::::::::::::::::::::::::::::*/
@@ -216,6 +282,81 @@ i.uil-redo {
     .list_info_actions,
     .stack_info_actions {
         text-align: end;
+    }
+    .create_modal_submit_button {
+        background-color: var(--primary-darkmode-button-color);
+        background-image: var(--primary-gradient-background-image);
+        color: var(--primary-darkmode-font-color);
+        border: 0px;
+        border-radius: 9px;
+        padding: 0.5em 1em;
+        font-size: 1em;
+        font-family: verdana;
+    }
+    
+    .create_modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */      
+        overflow: auto; /* Enable scroll if needed */
+    }
+    
+    .create_stack_modal_content {
+        width: 80%;
+        background-color: var(--secondary-darkmode-background-color);
+        color: var(--primary-darkmode-font-color);
+        margin: auto;
+        padding: 1em 1em 2em 1em;
+    }
+    
+    .create_stack_model_close {
+        color: var(--primary-darkmode-font-color);
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+    .create_stack_model_close:hover,
+    .create_stack_model_close:focus {
+        color: var(--primary-darkmode-button-color);
+        text-decoration: none;
+        cursor: pointer;
+    }
+    
+    form#create_stack_form {
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        width: 80%;
+    }
+    
+    .create_stack_input,
+    .create_stack_input_Domain {
+        background-color: var(--secondary-darkmode-background-color);
+        color: var(--primary-darkmode-font-colo);
+        padding: 10px;
+        margin: 8px 0;
+        font-size: larger;
+        border: 1px solid var(--primary-darkmode-border-color);
+        border-radius: 6px;
+    }
+    
+    .input-container {
+        position: relative;
+        float: left;
+    }
+    
+    .input-container:after {
+        position: absolute;
+        right: 0;
+        top: 0;
+        content: '@gmail.com';
     }
 }
 
@@ -327,7 +468,8 @@ i.uil-redo {
 
     /*Buttons - Search and Create new stack*/
     .search_button,
-    .create_button {
+    .create_button, 
+    .create_modal_submit_button {
     background-color: var(--primary-darkmode-button-color);
     background-image: var(--primary-gradient-background-image);
     color: var(--primary-darkmode-font-color);
@@ -338,9 +480,11 @@ i.uil-redo {
     font-family: verdana;
     cursor: pointer;
     }
-    .create_button {
+    .create_button,
+    .create_modal_submit_button {
     border-radius: 6px;
     }
+    
     /*Sorting Section*/
     .sort {
         padding: 0 2em;

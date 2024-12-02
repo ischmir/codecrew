@@ -37,3 +37,27 @@ sortingBtns.forEach((btn) => {
     i.target.classList.toggle("highlight");
   });
 });
+
+let modal = document.getElementById("create_stack_modal");
+let btn = document.getElementById("create_stack_button");
+let btnMobile = document.getElementById("create_stack_button_mobile");
+let span = document.getElementsByClassName("create_stack_model_close")[0];
+
+btn.addEventListener("click", () => {
+  modal.style.display = "block";
+});
+
+btnMobile.addEventListener("click", () => {
+  modal.style.display = "block";
+  openMobileNav()
+});
+
+span.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+window.addEventListener("click", (event) => {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+});
