@@ -17,9 +17,9 @@
 
 	/*Darkmode Font Color Variables*/
 	--primary-darkmode-font-color: #ffffff;
-	--secondary-darkmode-font-color: #a2a2a4;
+	--secondary-darkmode-font-color: #cfcfcf;
 	--primary-link-color: #a2a2a4;
-	--primary-darkmode-inactive-font-color: #a8a8a8;
+	--primary-darkmode-inactive-font-color: #8a8a8a;
 
 	/*Darkmode other Variables*/
 	--primary-darkmode-border-color: #ffffff;
@@ -28,6 +28,47 @@
 	/*other Variables*/
 	--positive-status-color: #41af7d;
 	--negative-status-color: #e94545;
+}
+
+[data-theme="light"] {
+	/*Lightmode Background Color Variables*/
+	--primary-darkmode-background-color: #efefef;
+	--secondary-darkmode-background-color: #d9d9d9;
+	--third-darkmode-background-color: #e8e8e8;
+	--primary-darkmode-list-info-background-color: #e8e8e8;
+	--secondary-darkmode-list-info-background-color: #f5f5f5;
+	/*Lightmode Font Color Variables*/
+	--primary-darkmode-font-color: #1e1e1e;
+	--secondary-darkmode-font-color: #727272;
+	--primary-link-color: #727272;
+	--primary-darkmode-inactive-font-color: #727272;
+	/*Lightmode other Variables*/
+	--primary-darkmode-border-color: #1e1e1e;
+}
+body {
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1 {
+	color: var(--primary-darkmode-font-color);
+}
+h2 {
+	color: var(--primary-darkmode-font-color);
+}
+h3 {
+	color: var(--primary-darkmode-font-color);
+}
+h4 {
+	color: var(--primary-darkmode-font-color);
+}
+h5 {
+	color: var(--primary-darkmode-font-color);
+}
+h6 {
+	color: var(--primary-darkmode-font-color);
+}
+p {
+	color: var(--primary-darkmode-font-color);
 }
 
 #wrapper {
@@ -235,7 +276,7 @@ body {
 	background-color: var(--primary-darkmode-background-color);
 	margin: 0;
 	font-family: var(--primary-font-family);
-	color: #ccc;
+	color: var(--primary-darkmode-inactive-font-color);
 	line-height: 1.5;
 }
 
@@ -254,7 +295,7 @@ body .dyslexia_mode {
 }
 
 nav a {
-	color: #ccc;
+	color: var(--primary-darkmode-font-color);
 	text-decoration: none;
 }
 nav li {
@@ -267,7 +308,7 @@ nav ul {
 	align-items: center;
 }
 nav .navLink_highlighted a {
-	color: white;
+	color: var(--primary-darkmode-inactive-font-color);
 }
 nav .navLink_highlighted {
 	list-style-type: disc;

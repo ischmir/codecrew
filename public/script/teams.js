@@ -1,10 +1,5 @@
 console.log('Script is running!');
 
-function myFunction() {
-	var element = document.body;
-	element.classList.toggle('light-mode');
-}
-
 // const csvDropzone = document.getElementById('csv-dropzone');
 // console.log(csvDropzone ? 'Dropzone found!' : 'Dropzone not found!');
 // csvDropzone.addEventListener('dragover', function (event) {
