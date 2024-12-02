@@ -61,3 +61,12 @@ window.addEventListener("click", (event) => {
     modal.style.display = "none";
   }
 });
+
+function updatePreview() {
+  const inputField = document.getElementById('create_stack_domain');
+  const preview = document.getElementById('domain_preview');
+  
+  const inputValue = inputField.value.trim();
+  preview.textContent = '.kubelab.dk';
+  //inputValue ? `${inputValue}.kubelab.dk` : '.kubelab.dk';
+}
