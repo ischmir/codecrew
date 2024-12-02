@@ -20,7 +20,8 @@ exports.postLogin = async function (req, res) {
 				accessLevel: finalResult.accessLevel,
 				email: finalResult.userEmail,
 				firstName: finalResult.firstName,
-				lastName: finalResult.lastName
+				lastName: finalResult.lastName,
+				isAdmin: finalResult.accessLevel == "admin" || finalResult.accessLevel == "superAdmin" ? true : false
 			};
 
 			req.session.userDetails = userData;
