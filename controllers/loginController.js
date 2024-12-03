@@ -19,6 +19,7 @@ exports.postLogin = async function (req, res) {
 		if (result[0] !== undefined) {
 			const finalResult = result[0];
 			const userData = {
+				userId: finalResult.userId,
 				accessLevel: finalResult.accessLevel,
 				email: finalResult.userEmail,
 				firstName: finalResult.firstName,

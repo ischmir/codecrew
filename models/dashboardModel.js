@@ -1,6 +1,6 @@
 // Import the Axios library for making HTTP requests
 const axios = require('axios'); 
-exports.mockData = async function(jwt) {   
+exports.mockData = async function() {   
     // Corrected example data :)
     const data = {
         stack: [
@@ -30,8 +30,7 @@ exports.mockData = async function(jwt) {
         title: "Dashboard",
         isAdmin: true,
         email: "tihi66699@edu.ucl.dk",
-        userName:"Timm Hinsch",
-        jwt: jwt
+        userName:"Timm Hinsch"
     };
     // Sorting data.stack.sort((k) => k.author).reverse();
     return data;
