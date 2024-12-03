@@ -19,6 +19,7 @@
     justify-content: space-between;
     margin: 2em 0;
     width: 100%;
+    margin-bottom: 5em;
 }
 .search_bar {
     border: 2px solid var(--primary-darkmode-border-color);
@@ -76,19 +77,24 @@
     transition: 0.4s;
     display: grid;
     grid-template-columns: 50% 25% 25%;
+    align-items: center;
+
 }
 
 .accordion:after {
-    content: '\002B';
+    font-family: 'Font Awesome 5 Free';
+    content: '\f107';
     color: var(--primary-darkmode-font-color);
     font-weight: bold;
     float: right;
     margin-left: 5px;
     text-align: end;
+    margin-right: 1em;
     }
     
 .active:after {
-content: "\2212";
+    font-family: 'Font Awesome 5 Free';
+    content: '\f106';
 }
 
 .stack_info_status_online {
@@ -288,6 +294,7 @@ form#create_stack_form {
         margin-top: 2em;
         margin-bottom: 2em;
         width: 100%;
+        margin-bottom: 5em;
         
     }
     .search_bar {
@@ -345,15 +352,11 @@ form#create_stack_form {
     padding: 0.5em 1em;
     font-size: 1em;
     font-family: verdana;
+    display: block;
     }
     .create_button {
     border-radius: 6px;
     }
-
-    .search_button,
-    .create_button  {
-    display: block;
-}
 }
 
 /*:::::::::::::::::::::::::::::::::::::*/
@@ -379,6 +382,7 @@ form#create_stack_form {
     .search {
         width: 70%;
         justify-content: flex-start;
+        margin-bottom: 6em;
     }
 
     .search_bar {
