@@ -1,4 +1,5 @@
 const db = require("../config/db");
+const extra = require("../models/extraModel");
 
 exports.getAllUsersWithAllData = async function (){
     const [rows, fields] = await db.query(`
@@ -78,15 +79,9 @@ exports.saveJWTtoUser = async function (jwt, userId) {
         const [verify] = await db.query(`SELECT optionsLastUpdate as lastUpdate FROM Users 
                                         INNER JOIN Options On Users.FK_options = Options.optionsId
                                         WHERE userId = ?`, [userId]);
-
-        const verifyNow = Date.now();
-        const lastUpdate = Date.parse(verify[0].lastUpdate)
-        
-        let seconds = Math.floor((verifyNow - (lastUpdate)) / 1000);
-        let minutes = Math.floor(seconds/60);
-        let hours = Math.floor(minutes/60);
-        
-        if(hours >= 8) { // if no JWT = INSERT; else UPDATe
+            
+        if(verify.length == 0) {
+            
             const [res] = await db.execute("INSERT INTO Options (optionsName, optionValue, optionsLastUpdate) VALUES (?, ?, ?)", ["JWT", jwt, new Date()])
             if(res.insertId) {
                 const [affectedRows] = await db.execute("UPDATE Users SET FK_options = ? WHERE userId = ?", [res.insertId, userId])
@@ -97,6 +92,13 @@ exports.saveJWTtoUser = async function (jwt, userId) {
             else {
                 throw new Error("There was an error with inserting the jwt to database.");
             }    
+        }
+
+        const result = await extra.updateJWTtoUser(jwt, verify[0].lastUpdate, userId);
+
+        if(result == false || result < 1) {
+            console.log("updateJWt fail " + result);
+            throw new Error("Update for jwt on user, failed");
         }
     } 
     catch (error) {
