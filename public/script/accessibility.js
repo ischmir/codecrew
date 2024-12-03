@@ -3,3 +3,61 @@ function setColormode(newTheme) {
 	// Gem det valgte tema i localStorage, så det huskes
 	localStorage.setItem('theme', newTheme);
 }
+
+let body = document.querySelector("body");
+const btn = document.getElementById("advDyslexiaOptions_btn");
+
+function showAdvDyslexiaOptions() {
+	let wrapper = document.querySelector(".advDyslexiaOptions_Wrapper");
+	
+	if(wrapper.style.display == "none" || wrapper.style.display == "") {
+		wrapper.style.display = "block"
+		btn.innerHTML = "Close advanced options";
+	}
+	else {
+		wrapper.style.display = "none";
+		btn.innerHTML = "Show advanced options";
+	}
+}
+
+function ChangeFontSize() {
+	if(localStorage.getItem("fontSize")) {
+		let fontSize = localStorage.getItem("fontSize");
+		let lineHeight = localStorage.getItem("lineHeight");
+		document.querySelectorAll("li, a, p, span").forEach((element) => {
+		if (element.tagName === "SPAN" || element.tagName === "P") {
+			element.style.fontSize = fontSize;
+			element.style.lineHeight = lineHeight;
+		}
+		});
+	}
+}
+
+function fontSizeChange(font) {
+	let textContent = font.querySelector("span").textContent.toLowerCase();
+	if(!textContent || textContent == "default") {
+		textContent = "unset";
+	}
+	localStorage.setItem("fontSize", textContent)
+	
+	if(textContent == "small")
+		localStorage.setItem("lineHeight", 1.4);
+	if(textContent == "unset")
+		localStorage.setItem("lineHeight", 1.5);
+	if(textContent == "large") 
+		localStorage.setItem("lineHeight", 1.6);
+
+	ChangeFontSize()
+}
+
+function dyslexicMode() {
+	localStorage.setItem("dyslexia", true);
+
+	if(!body.classList.contains("dyslexia_mode"))
+		body.classList.add("dyslexia_mode");
+}
+function defaultMode() {
+	localStorage.setItem("dyslexia", false);
+	if(body.classList.contains("dyslexia_mode"))
+		body.classList.remove("dyslexia_mode");
+}
