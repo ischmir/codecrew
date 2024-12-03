@@ -159,10 +159,10 @@ button.custom-toast:hover {
 }
 
 button.success-toast {
-	background-color: #2ecc71;
+	background-color: var(--positive-status-color);
 }
 button.danger-toast {
-	background-color: #e74c3c;
+	background-color: var(--negative-status-color);
 }
 
 .toast {
@@ -173,7 +173,7 @@ button.danger-toast {
 	background: var(--primary-darkmode-font-color);
 	padding: 0.5rem;
 	border-radius: 4px;
-	box-shadow: -1px 1px 10px rgba(0, 0, 0, 0.3);
+	box-shadow: -1px 1px 10px var(--primary-darkmode-background-color);
 	z-index: 1023;
 	animation: slideInRight 0.3s ease-in-out forwards, fadeOut 0.5s ease-in-out 3s forwards;
 }
@@ -210,16 +210,16 @@ button.danger-toast {
 }
 
 .toast.toast-success {
-	background: #41af7d;
+	background: var(--positive-status-color);
 } /* actual background */
 .toast.toast-success .toast-progress {
-	background-color: #95eab8;
+	background-color: var(--success-color);
 } /* duration bar */
 .toast.toast-danger {
-	background: #e94545;
+	background: var(--negative-status-color);
 } /* actual background */
 .toast.toast-danger .toast-progress {
-	background-color: #efaca5;
+	background-color: var(--danger-color);
 } /* duration bar */
 
 @keyframes slideInRight {
@@ -285,7 +285,7 @@ button.danger-toast {
 	width: 33%;
 	height: 2em;
 	margin: 0;
-	background-color: #2c3036;
+	background-color: var(--secondary-darkmode-background-color);
 	border: solid 1.5px var(--secondary-darkmode-font-color);
 	display: flex;
 	justify-content: center;
@@ -327,11 +327,11 @@ button.danger-toast {
 	margin-top: 0.5em;
 }
 .advDyslexiaOptions_btn {
-	background: rgba(255, 255, 255, 0.2);
-	border: 1px solid rgba(255, 255, 255, 0.5);
+	background: var(--third-darkmode-background-color);
+	border: 1px solid var(--primary-darkmode-border-color);
 	border-radius: 10px;
 	padding: 10px 20px;
-	color: white;
+	color: var(--primary-darkmode-font-color);
 	font-family: "Roboto", sans-serif;
 	font-size: 15px;
 	backdrop-filter: blur(8px);
@@ -340,8 +340,8 @@ button.danger-toast {
 	margin: 1em 0 0 0.5em;
 }
 .advDyslexiaOptions_btn:hover {
-	background: rgba(255, 255, 255, 0.3);
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	background: var(--hover-color);
+	box-shadow: 0 4px 6px var(--box-shadow-color);
 }
 
 /* Der skal være toast både på desktop og mobil */
@@ -377,7 +377,7 @@ button.danger-toast {
 	}
 
 	.settings {
-		border-right: solid 3px rgba(10, 10, 10, 0.8);
+		border-right: solid 3px var(--box-shadow-color);
 		/* padding: 30px 40px 30px 40px; */
 		padding: 25px;
 	}

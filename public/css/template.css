@@ -1,176 +1,179 @@
 .templateWrapper {
-    min-height: 70vh;
-    margin-bottom: 6em;
-    width: 50%;
+	min-height: 70vh;
+	margin-bottom: 6em;
+	width: 50%;
 }
-.templateWrapper textarea, .templateCreationForm textarea {
-    border: solid 2px black;
-    padding: 1em;
-    font-size: 1.25em;
-    width: 100%;
-    height: 70%;   
+.templateWrapper textarea,
+.templateCreationForm textarea {
+	border: solid 2px var(--primary-darkmode-background-color);
+	padding: 1em;
+	font-size: 1.25em;
+	width: 100%;
+	height: 70%;
 }
 .createTemplate_link {
-    width: fit-content;
-    padding: 0.75em;
-    text-decoration: none;
+	width: fit-content;
+	padding: 0.75em;
+	text-decoration: none;
 }
 .templateCreationForm {
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    width: 50%;
-    height: 80vh;
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+	width: 50%;
+	height: 80vh;
 }
 .templateCreationForm fieldset {
-    margin: 0 0 1em 0;
-    align-items: center;
-    padding: 0.5em;
+	margin: 0 0 1em 0;
+	align-items: center;
+	padding: 0.5em;
 }
 .templateCreationForm fieldset:has(textarea) {
-    height: 100%;
+	height: 100%;
 }
 .templateCreationForm textarea {
-    height: 90%;
-    width: 100%;
+	height: 90%;
+	width: 100%;
 }
 .templateCreationForm input {
-    width: 100%;
-    margin: 0.5em 0;
-    box-sizing: border-box;
-    border: 1.5px solid var(--primary-darkmode-border-color);
-    background-color: #383939;
-    padding: 10px 10px;
-    border-radius: 5px;
-    color: var(--primary-darkmode-font-color);
+	width: 100%;
+	margin: 0.5em 0;
+	box-sizing: border-box;
+	border: 1.5px solid var(--primary-darkmode-border-color);
+	background-color: var(--secondary-darkmode-background-color);
+	padding: 10px 10px;
+	border-radius: 5px;
+	color: var(--primary-darkmode-font-color);
 }
-.templateCreationForm input[name=title], .templateCreationForm input[type=file] {
-    margin-top: 0.5em;
+.templateCreationForm input[name="title"],
+.templateCreationForm input[type="file"] {
+	margin-top: 0.5em;
 }
-.templateCreationForm fieldset:has(input[type=file]) {
-    margin-bottom: 0.5em;
+.templateCreationForm fieldset:has(input[type="file"]) {
+	margin-bottom: 0.5em;
 }
 
 /* Modal styling */
 .templateFormModal_wrapper {
-    display: none;
-    color: var(--primary-darkmode-background-color);
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
-    padding-top: 4em;
+	display: none;
+	color: var(--primary-darkmode-background-color);
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: var(--primary-darkmode-background-color);
+	background-color: var(--box-shadow-color);
+	padding-top: 4em;
 }
 
 #confirmModal .templateFormModal_content {
-    background-color: #fff;
-    margin: 0 auto;
-    padding: 30px;
-    border-radius: 10px;
-    width: 400px;
-    position: relative;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+	background-color: var(--primary-darkmode-font-color);
+	margin: 0 auto;
+	padding: 30px;
+	border-radius: 10px;
+	width: 400px;
+	position: relative;
+	box-shadow: 0 4px 15px var(--box-shadow-color);
 }
 
 #confirmModal .close {
-    color: #aaa;
-    font-size: 2em;
-    font-weight: bold;
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    cursor: pointer;
+	color: var(--primary-link-color);
+	font-size: 2em;
+	font-weight: bold;
+	position: absolute;
+	top: 10px;
+	right: 20px;
+	cursor: pointer;
 }
 
 #confirmModal .close:hover,
 #confirmModal .close:focus {
-    color: #000;
-    text-decoration: none;
+	color: var(--primary-darkmode-background-color);
+	text-decoration: none;
 }
 
 #confirmModal h2 {
-    text-align: center;
-    margin-bottom: 1em;
-    color: #333;
+	text-align: center;
+	margin-bottom: 1em;
+	color: var(--secondary-darkmode-background-color);
 }
 
-#confirmModal .templateModalForm_deletion button{
-    width: 100%;
+#confirmModal .templateModalForm_deletion button {
+	width: 100%;
 }
 #confirmModal .templateModalForm_deletion {
-    width: 33%;
+	width: 33%;
 }
 .templateFormModal_content div {
-    display: flex;
-    justify-content: space-around;
+	display: flex;
+	justify-content: space-around;
 }
 #confirmModal button {
-    font-size: 1em;
-    border: none;
-    padding: 1em 1.5em;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+	font-size: 1em;
+	border: none;
+	padding: 1em 1.5em;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
 }
 
 #confirmModal .templateModalForm_deletion button[type="submit"] {
-    background-color: #9c3e3e;
-    color: white;
+	background-color: var(--negative-status-color);
+	color: var(--primary-darkmode-border-color);
 }
 
 #confirmModal .templateModalForm_deletion button[type="submit"]:hover {
-    background-color: #7b2f2f;
+	background-color: var(--negative-status-color);
 }
 
 #confirmModal .templateFormModalBtn_cancel {
-    height: fit-content;
-    width: 33%;
-    background-color: #3f484c;
-    color: white;
+	height: fit-content;
+	width: 33%;
+	background-color: var(--third-darkmode-background-color);
+	color: var(--primary-darkmode-border-color);
 }
 
 #confirmModal .templateFormModalBtn_cancel:hover {
-    background-color: #2e353a;
+	background-color: var(--secondary-darkmode-background-c);
 }
 
 .templateFormBtn_wrapper {
-    margin: 1em 0;
-    display: flex;
-    justify-content: space-between;
+	margin: 1em 0;
+	display: flex;
+	justify-content: space-between;
 }
 
-.templateSaveBtn, .templateDeletionBtn {
-    padding: 0.75em 1.5em;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    cursor: pointer;
+.templateSaveBtn,
+.templateDeletionBtn {
+	padding: 0.75em 1.5em;
+	font-weight: bold;
+	border: none;
+	border-radius: 8px;
+	transition: all 0.3s ease;
+	cursor: pointer;
 }
 
 .templateSaveBtn {
-    background-color: #3f484c;
-    color: #e1e1e1;
-    border: 1px solid #5a6166;
+	background-color: var(--secondary-darkmode-background-c);
+	color: var(--secondary-darkmode-font-color);
+	border: 1px solid var(--secondary-darkmode-list-info-background-color);
 }
 
 .templateSaveBtn:hover {
-    background-color: #50575b;
-    border-color: #70787d;
+	background-color: var(--third-darkmode-background-color);
+	border-color: var(--secondary-darkmode-list-info-background-color);
 }
 
 .templateDeletionBtn {
-    background-color: #9c3e3e;
-    color: #f1d0d0;
-    border: 1px solid #b45d5d;
+	background-color: var(--negative-status-color);
+	color: var(--primary-darkmode-border-color);
+	border: 1px solid var(--danger-color);
 }
 
 .templateDeletionBtn:hover {
-    background-color: #ae4545;
-    border-color: #cc7070;
+	background-color: var(--negative-status-color);
+	border-color: var(--danger-color);
 }

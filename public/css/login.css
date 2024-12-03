@@ -16,7 +16,7 @@
 	flex-direction: column;
 	background-color: var(--secondary-darkmode-background-color);
 	align-items: center;
-	box-shadow: 0 0 15px -2px #181818a0;
+	box-shadow: 0 0 15px -2px var(--primary-darkmode-background-color);
 }
 
 .input_login[type="text"],
@@ -25,7 +25,7 @@ input[type="password"] {
 	margin: 0.5em 0;
 	box-sizing: border-box;
 	border: 1.5px solid var(--primary-darkmode-border-color);
-	background-color: #383939;
+	background-color: var(--secondary-darkmode-background-color);
 	padding: 10px 10px;
 	border-radius: 5px;
 	color: var(--primary-darkmode-font-color);
@@ -55,7 +55,7 @@ input[type="password"] {
 
 .logo_login {
 	margin-bottom: 5%;
-  height: 10em;
+	height: 10em;
 }
 
 .signup_link a {
@@ -98,60 +98,56 @@ input[type="password"] {
 	padding-top: 3%;
 	padding-bottom: 3%;
 	align-items: center;
-	box-shadow: 0 0 15px -2px #181818a0;
+	box-shadow: 0 0 15px -2px var(--primary-darkmode-background-color);
 	margin: 2%;
 }
-
 
 /* password criteria box*/
 
 #message {
-  display: none;
-  background: transparent;
-  color: var(--primary-darkmode-font-color);
-  position: relative;
-  margin-bottom: 1em;
-
+	display: none;
+	background: transparent;
+	color: var(--primary-darkmode-font-color);
+	position: relative;
+	margin-bottom: 1em;
 }
 
 #message.show-message {
-  display: block;
-
+	display: block;
 }
 
 #message p {
-  font-size: 12px;
-  padding: 0;
-  margin: 0;
-  padding-left: 38px;
+	font-size: 12px;
+	padding: 0;
+	margin: 0;
+	padding-left: 38px;
 }
 
 .password_contains {
-  margin: 0;
-  font-weight: 100;
-  margin-bottom: 0.5em;
+	margin: 0;
+	font-weight: 100;
+	margin-bottom: 0.5em;
 }
 
 .valid {
-  color: #41af7d;
+	color: var(--positive-status-color);
 }
 
 .valid:before {
-  position: relative;
-  left: -35px;
-  content: "✔";
+	position: relative;
+	left: -35px;
+	content: "✔";
 }
 
 .invalid {
-  color: #E94545;
+	color: var(--negative-status-color);
 }
 
 .invalid:before {
-  position: relative;
-  left: -35px;
-  content: "✖";
+	position: relative;
+	left: -35px;
+	content: "✖";
 }
-
 
 .input_signup[type="text"],
 input[type="password"] {
@@ -159,13 +155,13 @@ input[type="password"] {
 	margin: 0.5em 0;
 	box-sizing: border-box;
 	border: 1.5px solid var(--primary-darkmode-border-color) !important;
-	background-color: #383939;
+	background-color: var(--secondary-darkmode-background-color);
 	border-radius: 5px;
 	color: var(--primary-darkmode-font-color);
 }
 
 .input_signup::-webkit-input-placeholder {
-	color: rgb(133, 133, 133);
+	color: var(--secondary-darkmode-list-info-background-color);
 	font-family: var(--primary-font-family);
 }
 
@@ -231,7 +227,8 @@ input[type="password"] {
 		padding: 0.8em 0.8em;
 	}
 
-	.logo_login { /* this css styling is now dubblicate with the desktop on. if they keep being dubblicate, delete one and put the other out of @media (media queary) -marcus */
+	.logo_login {
+		/* this css styling is now dubblicate with the desktop on. if they keep being dubblicate, delete one and put the other out of @media (media queary) -marcus */
 		height: fit-content;
 		width: 75%;
 		margin-bottom: 5%;
@@ -243,23 +240,21 @@ input[type="password"] {
 		margin-top: 0;
 	}
 
-    #message p {
-      font-size: 14px;
-      padding-left:40px;
-    }
-    
+	#message p {
+		font-size: 14px;
+		padding-left: 40px;
+	}
 
-/*SIGN UP */
-    .h2_signup {
-       margin-top:0;
-      }
+	/*SIGN UP */
+	.h2_signup {
+		margin-top: 0;
+	}
 	.signup_container {
 		height: 96vh;
 	}
 	.signup_container2 {
 		margin: 5%;
 	}
-
 }
 /* DESKTOP  */
 
@@ -284,7 +279,7 @@ input[type="password"] {
 	}
 
 	.logo_login {
-		height: fit-content; /* was 6.8em. fit-content makes the height to be based on width. in this case - marcus*/ 
+		height: fit-content; /* was 6.8em. fit-content makes the height to be based on width. in this case - marcus*/
 		width: 75%; /* added width, so it scales with its container. 75% is what the form is set to. but maybe the img is too big, maybe. - marcus */
 		margin-bottom: 5%;
 		margin-top: 5%;
