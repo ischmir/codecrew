@@ -13,21 +13,62 @@
 	--secondary-darkmode-background-color: #282b30;
 	--third-darkmode-background-color: #3e4147;
 	--primary-darkmode-list-info-background-color: #3e4147;
-  	--secondary-darkmode-list-info-background-color: #727272;
+	--secondary-darkmode-list-info-background-color: #727272;
 
 	/*Darkmode Font Color Variables*/
 	--primary-darkmode-font-color: #ffffff;
-	--secondary-darkmode-font-color: #a2a2a4;
+	--secondary-darkmode-font-color: #cfcfcf;
 	--primary-link-color: #a2a2a4;
-	--primary-darkmode-inactive-font-color: #a8a8a8;
+	--primary-darkmode-inactive-font-color: #8a8a8a;
 
 	/*Darkmode other Variables*/
 	--primary-darkmode-border-color: #ffffff;
 	--dropshadow: drop-shadow(5px 5px 4px rgba(0, 0, 0, 0.2));
-	
+
 	/*other Variables*/
-	--positive-status-color: #41AF7D;
-	--negative-status-color: #E94545;
+	--positive-status-color: #41af7d;
+	--negative-status-color: #e94545;
+}
+
+[data-theme="light"] {
+	/*Lightmode Background Color Variables*/
+	--primary-darkmode-background-color: #efefef;
+	--secondary-darkmode-background-color: #d9d9d9;
+	--third-darkmode-background-color: #e8e8e8;
+	--primary-darkmode-list-info-background-color: #e8e8e8;
+	--secondary-darkmode-list-info-background-color: #f5f5f5;
+	/*Lightmode Font Color Variables*/
+	--primary-darkmode-font-color: #1e1e1e;
+	--secondary-darkmode-font-color: #727272;
+	--primary-link-color: #727272;
+	--primary-darkmode-inactive-font-color: #727272;
+	/*Lightmode other Variables*/
+	--primary-darkmode-border-color: #1e1e1e;
+}
+body {
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1 {
+	color: var(--primary-darkmode-font-color);
+}
+h2 {
+	color: var(--primary-darkmode-font-color);
+}
+h3 {
+	color: var(--primary-darkmode-font-color);
+}
+h4 {
+	color: var(--primary-darkmode-font-color);
+}
+h5 {
+	color: var(--primary-darkmode-font-color);
+}
+h6 {
+	color: var(--primary-darkmode-font-color);
+}
+p {
+	color: var(--primary-darkmode-font-color);
 }
 
 #wrapper {
@@ -88,6 +129,8 @@
 		margin: 0;
 	}
 
+
+
 	/* //////////////////// */
 	/* Slide-in overlay NAV */
 	/* //////////////////// */
@@ -117,7 +160,7 @@
 		margin-bottom: 5em;
 	}
 	.desktopNav img {
-		display: none; /* TODO */ 
+		display: none; /* TODO */
 	}
 	.navActive ul li a {
 		font-size: 1.5em;
@@ -151,7 +194,7 @@
 	/* NAV */
 	/* /////// */
 	.mobileNav,
-	.mobileNav_extra, 
+	.mobileNav_extra,
 	.mobileNav_bottomSettings {
 		display: none;
 	}
@@ -197,7 +240,7 @@
 		font-size: 2em;
 	}
 	.dropdown-content {
-    margin-top: 1em;
+		margin-top: 1em;
 		display: none;
 		position: absolute;
 		top: 3.5em;
@@ -235,13 +278,14 @@ body {
 	background-color: var(--primary-darkmode-background-color);
 	margin: 0;
 	font-family: var(--primary-font-family);
-	color: #ccc;
+	color: var(--primary-darkmode-inactive-font-color);
 	line-height: 1.5;
 }
-.dyslexia_mode {
+
+body .dyslexia_mode {
 	font-size: large;
 	line-height: 1.6;
-	font-family: 'Helvetica', 'Times New Roman', 'Verdana';
+	font-family: "Helvetica", "Times New Roman", "Verdana";
 	letter-spacing: 0.25ch;
 	word-spacing: 0.33ch;
 	font-variant-ligatures: none;
@@ -253,7 +297,7 @@ body {
 }
 
 nav a {
-	color: #ccc;
+	color: var(--primary-darkmode-font-color);
 	text-decoration: none;
 }
 nav li {
@@ -266,14 +310,14 @@ nav ul {
 	align-items: center;
 }
 nav .navLink_highlighted a {
-	color: white;
+	color: var(--primary-darkmode-inactive-font-color);
 }
 nav .navLink_highlighted {
 	list-style-type: disc;
 	color: #fd2d00;
 }
 .error_msg {
-	color: #E94545;
+	color: #e94545;
 }
 
 /* FIXED NAV DESKTOP */

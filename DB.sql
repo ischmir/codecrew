@@ -1,4 +1,4 @@
-DROP Database KubelabDashboard;
+DROP DATABASE IF EXISTS KubelabDashboard;
 
 CREATE DATABASE KubelabDashboard;
 
@@ -127,10 +127,7 @@ INSERT INTO Users (username, firstName, lastName, userEmail, userPassword, userP
     ('gomi13375', 'George', 'Miller', 'george.miller@example.com', 'Password@415', NULL, '2024-11-15', 1, 3),
     ('hawm09090', 'Hannah', 'Williams', 'hannah.williams@example.com', 'Password@161', NULL, '2026-01-31', 3, 2),
     ('mdam13579', 'Morten', 'Damgaard', 'morten@example.com', 'Password@718', NULL, '2024-08-05', 2, 2),
-    ('jedi42099', 'Jessica', 'Davis', 'jessica.davis@example.com', 'Password@192', NULL, '2025-09-30', 2, 3),
-    ('student', 'student', 'studentLast', 'student@mail.com', '1', 1),
-    ('admin', 'admin', 'adminLast', 'admin@mail.com', '1', 2),
-    ('superAdmin', 'superAdmin', 'superAdminLast', 'superAdmin@mail.com', '1', 3);
+    ('jedi42099', 'Jessica', 'Davis', 'jessica.davis@example.com', 'Password@192', NULL, '2025-09-30', 2, 3);
 
 -- USER-TEAM COMPOSITION
 INSERT INTO Composition_User_Team (UserId, TeamId) VALUES

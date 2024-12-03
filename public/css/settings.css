@@ -37,7 +37,7 @@
 
 .imput_group {
 	border-radius: 0px 0px 6px 6px;
-	border: 2px solid var(--Schemes-On-Error, #fff);
+	border: 2px solid var(--Schemes-On-Error, --primary-darkmode-border-color);
 	width: 100%;
 	height: 50px;
 	margin: 8px 0;
@@ -72,7 +72,7 @@ h4 {
 	padding: 0 30px;
 	line-height: 60px;
 	border-radius: 5px;
-	border: 2px solid #f0ffff;
+	border: 2px solid var(--primary-darkmode-border-color);
 	background: transparent;
 	transition: 0.1s ease;
 	z-index: 1111;
@@ -81,7 +81,7 @@ h4 {
 .labelline {
 	position: absolute;
 	/* font-size: 1.6em; */
-	color: #f0ffff;
+	color: var(--primary-darkmode-font-color);
 	padding: 0 25px;
 	/* margin: 0 20px; */
 	background-color: var(--secondary-darkmode-background-color);
@@ -106,7 +106,7 @@ h4 {
 
 select {
 	background-color: var(--secondary-darkmode-background-color);
-	color: var(--primary-darkmode-font-colo);
+	color: var(--primary-darkmode-inactive-font-color);
 	padding: 10px;
 	margin: 8px 0;
 	font-size: larger;
@@ -142,7 +142,7 @@ button.custom-toast {
 	width: 8em;
 	padding: 0.5rem 1rem;
 	border: none;
-	color: #fff;
+	color: var(--primary-darkmode-font-color);
 	font-weight: 500;
 	border-radius: 5px;
 	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.785);
@@ -170,7 +170,7 @@ button.danger-toast {
 	top: 2em;
 	right: 2em;
 	max-width: 16em;
-	background: #fff;
+	background: var(--primary-darkmode-font-color);
 	padding: 0.5rem;
 	border-radius: 4px;
 	box-shadow: -1px 1px 10px rgba(0, 0, 0, 0.3);
@@ -188,7 +188,7 @@ button.danger-toast {
 	left: 0;
 	height: 4px;
 	width: 100%;
-	background: #b7b7b7;
+	background: var(--secondary-darkmode-list-info-background-color);
 	animation: toastProgress 3s ease-in-out forwards;
 }
 
@@ -205,7 +205,7 @@ button.danger-toast {
 .toast-message {
 	flex: 1;
 	font-size: 0.9rem;
-	color: #000000;
+	color: var(--primary-darkmode-background-color);
 	padding: 0.5rem;
 }
 
@@ -263,6 +263,87 @@ button.danger-toast {
 		width: 0%;
 	}
 }
+
+/* /////////////////////// */
+/* //// Accessibility //// */
+/* /////////////////////// */
+
+.accessibilitySection_wrapper {
+	width: 100%;
+	height: fit-content;
+	padding: 0.5em;
+	display: flex;
+	flex-direction: column;
+}
+.accessibilitySection_wrapper h4 {
+	margin-bottom: 0.5em;
+}
+
+.colorMode_btn,
+.fontFamilyMode_btn,
+.fontSizeMode_btn {
+	width: 33%;
+	height: 2em;
+	margin: 0;
+	background-color: #2c3036;
+	border: solid 1.5px var(--secondary-darkmode-font-color);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+.colorMode_btn:hover,
+.fontFamilyMode_btn:hover,
+.fontSizeMode_btn:hover,
+.colorMode_btn.selected {
+	background-color: var(--third-darkmode-background-color);
+}
+
+.colorMode_btn:nth-child(1),
+.fontFamilyMode_btn:nth-child(1),
+.fontSizeMode_btn:nth-child(1) {
+	border-top-left-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border-right: none;
+}
+.colorMode_btn:nth-child(3),
+.fontFamilyMode_btn:nth-child(2),
+.fontSizeMode_btn:nth-child(3) {
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+	border-left: none;
+}
+.btn_container {
+	display: flex;
+}
+.fontFamilyMode_btn:nth-child(1) {
+	border-right: solid 1.5px var(--secondary-darkmode-font-color);
+}
+.advDyslexiaOptions_wrapper {
+	display: none;
+	margin: 0 0 0 2em;
+}
+.advDyslexiaOptions_wrapper h4 {
+	margin-top: 0.5em;
+}
+.advDyslexiaOptions_btn {
+	background: rgba(255, 255, 255, 0.2);
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	border-radius: 10px;
+	padding: 10px 20px;
+	color: white;
+	font-family: "Roboto", sans-serif;
+	font-size: 15px;
+	backdrop-filter: blur(8px);
+	cursor: pointer;
+	transition: all 0.3s ease;
+	margin: 1em 0 0 0.5em;
+}
+.advDyslexiaOptions_btn:hover {
+	background: rgba(255, 255, 255, 0.3);
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 /* Der skal være toast både på desktop og mobil */
 /* END OF TOAST */
 
@@ -315,82 +396,3 @@ button.danger-toast {
 }
 
 /* teams */
-
-
-/* /////////////////////// */
-/* //// Accessibility //// */
-/* /////////////////////// */
-
-.accessibilitySection_wrapper {
-	width: 100%;
-	height: fit-content;
-	padding: 0.5em;
-	display: flex;
-	flex-direction: column;
-}
-.accessibilitySection_wrapper h4 {
-	margin-bottom: 0.5em;
-}
-
-.colorMode_btn, .fontFamilyMode_btn, .fontSizeMode_btn{
-	width: 33%;
-	height: 2em;
-	margin: 0;
-	background-color: #2c3036;
-	border: solid 1.5px var(--secondary-darkmode-font-color);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
-}
-.colorMode_btn:hover, .fontFamilyMode_btn:hover, .fontSizeMode_btn:hover{
-	background-color: var(--third-darkmode-background-color);
-}
-
-.colorMode_btn:nth-child(1),
-.fontFamilyMode_btn:nth-child(1),
-.fontSizeMode_btn:nth-child(1)
-{
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-    border-right: none;
-}
-.colorMode_btn:nth-child(3),
-.fontFamilyMode_btn:nth-child(2),
-.fontSizeMode_btn:nth-child(3)
-{
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-	border-left: none;
-}
-.btn_container {
-	display: flex;
-}
-.fontFamilyMode_btn:nth-child(1)
-{
-	border-right: solid 1.5px var(--secondary-darkmode-font-color);
-}
-.advDyslexiaOptions_wrapper {
-	display: none;
-	margin: 0 0 0 2em;
-}
-.advDyslexiaOptions_wrapper h4 {
-	margin-top: 0.5em;
-}
-.advDyslexiaOptions_btn {
-	background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 10px;
-  padding: 10px 20px;
-  color: white;
-  font-family: 'Roboto', sans-serif;
-  font-size: 15px;
-  backdrop-filter: blur(8px);
-  cursor: pointer;
-  transition: all 0.3s ease;	
-  margin: 1em 0 0 0.5em;
-}
-.advDyslexiaOptions_btn:hover {
-	background: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
