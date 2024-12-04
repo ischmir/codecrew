@@ -80,7 +80,7 @@
 }
 
 .accordion:nth-of-type(odd) {
-    background-color: var(--fourth-darkmode-background-color);
+	background-color: var(--fourth-darkmode-background-color);
 }
 
 .accordion:after {
@@ -154,9 +154,9 @@ i.uil-redo {
 }
 
 .list_info {
-    background-color: var(--third-darkmode-list-info-background-color);
-    padding: 0.5em 1em;
-    border-radius: 6px;
+	background-color: var(--third-darkmode-list-info-background-color);
+	padding: 0.5em 1em;
+	border-radius: 6px;
 }
 
 .list_info,

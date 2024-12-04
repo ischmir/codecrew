@@ -1,6 +1,6 @@
-const dashboardM = require("../models/dashboardModel");
-const userM = require("../models/userModel");
-const { replacePlaceholder } = require("../models/templateModel");
+const dashboardM = require('../models/dashboardModel');
+const userM = require('../models/userModel');
+const { replacePlaceholder } = require('../models/templateModel');
 
 exports.dashboard = async function (req, res) {
     try {
