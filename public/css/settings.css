@@ -294,8 +294,7 @@ button.danger-toast {
 }
 .colorMode_btn:hover,
 .fontFamilyMode_btn:hover,
-.fontSizeMode_btn:hover,
-.colorMode_btn.selected {
+.fontSizeMode_btn:hover {
 	background-color: var(--third-darkmode-background-color);
 }
 
@@ -316,7 +315,7 @@ button.danger-toast {
 .btn_container {
 	display: flex;
 }
-.fontFamilyMode_btn:nth-child(1),
+.fontFamilyMode_btn:nth-child(1), 
 .colorMode_btn:nth-child(1) {
 	border-right: solid 1.5px var(--secondary-darkmode-font-color);
 }
@@ -343,6 +342,9 @@ button.danger-toast {
 .advDyslexiaOptions_btn:hover {
 	background: var(--hover-color);
 	box-shadow: 0 4px 6px var(--box-shadow-color);
+}
+.accessabilitybtn_selected {
+	background-color: var(--third-darkmode-background-color);
 }
 
 /* Der skal være toast både på desktop og mobil */

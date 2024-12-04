@@ -9,12 +9,17 @@ function ChangeNavFocus() {
 	const endpoint = window.location.pathname.replace('/', '');
 
 	allLinks.forEach(link => {
-		if (link.firstChild.innerHTML === 'Admin setting' && endpoint === 'admin_user_settings') {
+		if (
+			(link.firstChild.innerHTML === 'Admin setting' && endpoint === 'admin_user_settings') ||
+			(link.firstChild.innerHTML === 'Admin setting' && endpoint === 'template') || 
+			(link.firstChild.innerHTML === 'Admin setting' && endpoint === 'create_template')
+		) {
 			link.classList.add('navLink_highlighted');
 		}
 		if (
 			(link.firstChild.innerHTML === 'User setting' && endpoint === 'settings') ||
-			(link.firstChild.innerHTML === 'User setting' && endpoint === 'settings-password')
+			(link.firstChild.innerHTML === 'User setting' && endpoint === 'settings-password') ||
+			(link.firstChild.innerHTML === 'User setting' && endpoint === 'accessibility')
 		) {
 			link.classList.add('navLink_highlighted');
 		}
