@@ -70,3 +70,9 @@ function updatePreview() {
   preview.textContent = '.kubelab.dk';
   //inputValue ? `${inputValue}.kubelab.dk` : '.kubelab.dk';
 }
+
+const filteredData = {
+  ...datas,
+  stack: data.stack.filter((item) => item.author == "Timm Hinsch")
+};
+console.log(filteredData);    

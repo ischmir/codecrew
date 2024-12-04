@@ -2,7 +2,7 @@
 const axios = require('axios'); 
 exports.mockData = async function() {   
     // Corrected example data :)
-    const data = {
+    let data = {
         stack: [
             {
                 id: 0,
@@ -25,6 +25,17 @@ exports.mockData = async function() {
                 subDomain: "tihi.kubelab.dk",
                 team: "CodeCrew",
                 template: "Umbraco"
+            },
+            {
+                id: 3,
+                name: "timm-nginx",
+                author: "Timm Hinsch",
+                creationDate: "20.10.2024",
+                status: 0,
+                lastActive: "14:34:11 02.11.2024",
+                subDomain: "tihi.kubelab.dk",
+                team: "CodeCrew",
+                template: "Umbraco"
             }
         ],
         title: "Dashboard",
@@ -32,7 +43,8 @@ exports.mockData = async function() {
         email: "tihi66699@edu.ucl.dk",
         userName:"Timm Hinsch"
     };
-    // Sorting data.stack.sort((k) => k.author).reverse();
+    
+    
     return data;
 };
 

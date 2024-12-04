@@ -79,6 +79,10 @@
 	align-items: center;
 }
 
+.accordion:nth-of-type(odd) {
+    background-color: var(--fourth-darkmode-background-color);
+}
+
 .accordion:after {
 	font-family: "Font Awesome 5 Free";
 	content: "\f107";
@@ -150,9 +154,15 @@ i.uil-redo {
 }
 
 .list_info {
+<<<<<<< Updated upstream
 	background-color: var(--primary-darkmode-list-info-background-color);
 	padding: 0.5em 1em;
 	border-radius: 6px;
+=======
+    background-color: var(--third-darkmode-list-info-background-color);
+    padding: 0.5em 1em;
+    border-radius: 6px;
+>>>>>>> Stashed changes
 }
 
 .list_info,
