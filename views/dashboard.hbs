@@ -63,7 +63,8 @@
                 <span class="stack_info_name">{{name}}</span>
                 <span class="stack_info_author">{{author}}</span>
                 <span class="stack_info_creation_date">{{creationDate}}</span>
-                <span class={{#if status}}"stack_info_status offline"{{else}}"stack_info_status online"{{/if}}>{{#if status}}Offline{{else}}Online{{/if}}</span>
+                <span class="stack_info_status">{{status}}</span>
+                <span class={{#if status}}"stack_info_status online"{{else}}"stack_info_status offline"{{/if}}>{{#if status}}Online{{else}}Offline{{/if}}</span>
             </button>
             <div class="panel">
                 <div>
