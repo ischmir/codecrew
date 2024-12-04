@@ -70,10 +70,30 @@ function updatePreview() {
   preview.textContent = '.kubelab.dk';
   //inputValue ? `${inputValue}.kubelab.dk` : '.kubelab.dk';
 }
-console.log('{{userDetails.firstName}}'+ ' ' + '{{userDetails.lastName}}');
 
-const filteredData = {
-  ...data,
-  stack: data.stack.filter((item) => item.author == '{{userDetails.firstName}} {{userDetails.lastName}}')
-};
-console.log(filteredData);    
+// console.log(fName);
+
+// const filteredData = {
+//   ...data,
+//   stack: data.stack.filter((item) => item.author == fName)
+// };
+// console.log(filteredData);    
+
+const stacks = res.stack;
+const statusElements = document.getElementsByClassName("stack_info_status");
+
+stacks.forEach((stack, index) => {
+    const status = reeeeee.stack.status[3];
+    const element = statusElements[index];
+
+    if (element) {
+        if (status === 0) {
+          if (status === 0) {
+            element.innerHTML = "Offline";
+        } else if (status === 1) {
+            element.innerHTML = "Online";
+        } else {
+            console.error("Status error");
+        }
+}};
+});
