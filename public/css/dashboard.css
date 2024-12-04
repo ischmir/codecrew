@@ -154,15 +154,9 @@ i.uil-redo {
 }
 
 .list_info {
-<<<<<<< Updated upstream
-	background-color: var(--primary-darkmode-list-info-background-color);
-	padding: 0.5em 1em;
-	border-radius: 6px;
-=======
     background-color: var(--third-darkmode-list-info-background-color);
     padding: 0.5em 1em;
     border-radius: 6px;
->>>>>>> Stashed changes
 }
 
 .list_info,
