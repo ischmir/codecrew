@@ -7,6 +7,35 @@ function setColormode(newTheme) {
 let body = document.querySelector("body");
 const btn = document.getElementById("advDyslexiaOptions_btn");
 
+function highlightThemeBtn(btn) {
+	let wrapper = document.querySelectorAll(".colorMode_btn");
+	
+	wrapper.forEach((k) => {		
+		k.classList.remove("accessabilitybtn_selected");
+	});
+	btn.classList.add("accessabilitybtn_selected")
+}
+function highlightModeBtn(btn) {
+	let wrapper = document.querySelectorAll(".fontFamilyMode_btn");
+	
+	wrapper.forEach((k) => {		
+		k.classList.remove("accessabilitybtn_selected");
+	});
+	btn.classList.add("accessabilitybtn_selected")
+}
+function highlightFontSizeBtn(btn) {
+	let wrapper = document.querySelectorAll(".fontSizeMode_btn");
+	
+	wrapper.forEach((k) => {		
+		k.classList.remove("accessabilitybtn_selected");
+	});
+	btn.classList.add("accessabilitybtn_selected")
+}
+
+function presetLocalStorageSelected() {
+	
+}
+
 function showAdvDyslexiaOptions() {
 	let wrapper = document.querySelector(".advDyslexiaOptions_Wrapper");
 	
