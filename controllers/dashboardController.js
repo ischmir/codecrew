@@ -20,7 +20,6 @@ exports.dashboard = async function (req, res) {
 		const reeeeee = [];
 
 		for (let i = 0; i < stacks.length; i++) {
-			console.log(stacks[i]);
 			reeeeee.push({
 				userId: req.session.userDetails || 8,
 				name: stacks[i].Name,
@@ -83,7 +82,7 @@ exports.dashboard = async function (req, res) {
 
 		console.log('welp');
 
-		// console.log(testo);
+		console.log(testo);
 		//await dashboardM.portainerEndpoints("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJjb2RlY3JldyIsInJvbGUiOjIsInNjb3BlIjoiZGVmYXVsdCIsImZvcmNlQ2hhbmdlUGFzc3dvcmQiOmZhbHNlLCJleHAiOjE3MzIxMzYzNDMsImlhdCI6MTczMjEwNzU0MywianRpIjoiYzdhMGZlZGQtYTQ5Yy00YTA2LTllNTItYTU5YWRkMzZhNTNiIn0.tM-Bi6y7EBUagHcFRQ60FrHiT3amCGAtcvtikP5evno")
 		//console.log(await replacePlaceholder(4, 'domain_name'));
 
