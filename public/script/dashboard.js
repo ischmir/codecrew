@@ -70,3 +70,10 @@ function updatePreview() {
   preview.textContent = '.kubelab.dk';
   //inputValue ? `${inputValue}.kubelab.dk` : '.kubelab.dk';
 }
+console.log('{{userDetails.firstName}}'+ ' ' + '{{userDetails.lastName}}');
+
+const filteredData = {
+  ...data,
+  stack: data.stack.filter((item) => item.author == '{{userDetails.firstName}} {{userDetails.lastName}}')
+};
+console.log(filteredData);    

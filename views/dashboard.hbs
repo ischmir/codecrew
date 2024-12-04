@@ -1,4 +1,4 @@
-<script type="text/javascript" src="/script/dashboard.js" defer></script>
+
 {{> nav}}
     
 <main class="dashboard_main">
@@ -11,8 +11,8 @@
     <div class="stack_sorting">
         <div class="sort_section">
             <div id="sorting">
-                <a class="sort highlight">My Projects</a>
-                <a class="sort">Others' Projects</a>
+                <a id="sort_my_projects" class="sort highlight">My Projects</a>
+                <a id="sort_other_projects" class="sort">Others' Projects</a>
             </div>
             <div>
                 <button id="create_stack_button" class="create_button">Create New Project</button>
@@ -24,24 +24,26 @@
             <span class="create_stack_model_close">&times;</span>
             <h2> Create New Project</h2>
             <form id="create_stack_form" method="post" action="/createStack">
+            <div>
                 <input id="create_stack_name" class="create_stack_input" type="text" placeholder="Project Name" name="stack_name">
-                <div class="create_stack_input_domain_container">
-                    <input id="create_stack_domain" class="create_stack_input_domain" oninput="updatePreview()" type="text" placeholder="DomaineName" name="domain_name">
-                    <span id="domain_preview" class="preview">.kubelab.dk</span>
-                </div>
-                <select name="add_team" id="create_stack_select_team">
-                    <option value="" disabled selected>Add Team Member</option>
-                    <option value="">none</option>
-                    <option value="User1">Sandra</option>
-                    <option value="User2">Mai</option>
-                    <option value="User3">Markus</option>
-                </select>
-                <select name="chosen_template" id="create_stack_select_template">
-                    <option value="" disabled selected>Choose Template</option>
-                    <option value="User1">Wordpress</option>
-                    <option value="User2">Umbraco</option>
-                    <option value="User3">Other</option>
-                </select>
+            </div>
+            <div class="create_stack_input_domain_container">
+                <input id="create_stack_domain" class="create_stack_input_domain" oninput="updatePreview()" type="text" placeholder="DomaineName" name="domain_name">
+                <span id="domain_preview" class="preview">.kubelab.dk</span>
+            </div>
+            <select name="add_team" id="create_stack_select_team">
+                <option value="" disabled selected>Add Team Member</option>
+                <option value="">none</option>
+                <option value="User1">Sandra</option>
+                <option value="User2">Mai</option>
+                <option value="User3">Markus</option>
+            </select>
+            <select name="chosen_template" id="create_stack_select_template">
+                <option value="" disabled selected>Choose Template</option>
+                <option value="User1">Wordpress</option>
+                <option value="User2">Umbraco</option>
+                <option value="User3">Other</option>
+            </select>
                 <input class="create_modal_submit_button" type="submit" value="Submit">
             </form>
         </div>
@@ -85,6 +87,11 @@
     </div>
 </main>
 
+<script>
+    let data = {{{datas}}}
+    console.log(data)
+</script>
+<script defer type="text/javascript" src="/script/dashboard.js"></script>
 <!--
 {{#if ifEven}}
             <button id="accordion" class="stack_accordion_even">

@@ -12,8 +12,11 @@
 	--primary-darkmode-background-color: #23222a;
 	--secondary-darkmode-background-color: #282b30;
 	--third-darkmode-background-color: #3e4147;
+	--fourth-darkmode-background-color: #36393e;
 	--primary-darkmode-list-info-background-color: #3e4147;
 	--secondary-darkmode-list-info-background-color: #727272;
+	--third-darkmode-list-info-background-color: #505459;
+
 
 	/*Darkmode Font Color Variables*/
 	--primary-darkmode-font-color: #ffffff;
@@ -40,8 +43,10 @@
 	--primary-darkmode-background-color: #efefef;
 	--secondary-darkmode-background-color: #d9d9d9;
 	--third-darkmode-background-color: #e8e8e8;
+	--fourth-darkmode-background-color: #36393e;
 	--primary-darkmode-list-info-background-color: #e8e8e8;
 	--secondary-darkmode-list-info-background-color: #f5f5f5;
+	--third-darkmode-list-info-background-color: #505459;
 	/*Lightmode Font Color Variables*/
 	--primary-darkmode-font-color: #1e1e1e;
 	--secondary-darkmode-font-color: #727272;
