@@ -3,12 +3,27 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const path = require('path');
 const bodyParser = require('body-parser');
+const MySQLStore = require('express-mysql-session')(session);
+
 const fetchHeaderUserDetails = require('./models/headerModel');
 
 const app = express();
 
+// we set up a connection to our DB, so the package can use it to store the session, automaticly.
+// that way, we have a persistent session, since its stored in the db, instead of the browser.
+// that is the reason, why we gets logged out, whenever we restart the server (such as saving a change).
+const sessionStore = new MySQLStore({
+    host: 'localhost',
+    port: 3306,
+    user: 'root',
+    password: 'root',
+    database: 'KubelabDashboard',
+	createDatabaseTable: true,
+});
+
 app.use(session({
     secret: 'NotKeyboardCat',
+	store: sessionStore,
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false } // Set `secure: true` if using HTTPS

@@ -33,8 +33,18 @@ function highlightFontSizeBtn(btn) {
 }
 
 function presetLocalStorageSelected() {
-	
+	let wrapper = document.querySelectorAll(".colorMode_btn");
+	wrapper.forEach((k) => {
+		console.log(k);
+		
+		if(k.tagName == "DIV") {
+			console.log("boop");
+			
+		}
+	});
+	localStorage.getItem("theme")
 }
+presetLocalStorageSelected();
 
 function showAdvDyslexiaOptions() {
 	let wrapper = document.querySelector(".advDyslexiaOptions_Wrapper");

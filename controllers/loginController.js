@@ -30,6 +30,7 @@ exports.postLogin = async function (req, res) {
 			req.session.userDetails = userData;
 			res.locals.loginErrorMsg = "Wrong creditials. Cant find a user with that email and password";
 			req.session.jwt = await dashboardM.portainerSystemAuth();
+			req.session.save(); // to save it immediatly. if not, we would have to refresh the first site we use after login. which is dashboard.
 
 			await userM.saveJWTtoUser(req.session.jwt, finalResult.userId);
 
