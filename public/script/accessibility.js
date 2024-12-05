@@ -4,7 +4,6 @@ function setColormode(newTheme) {
 	localStorage.setItem('theme', newTheme);
 }
 
-let body = document.querySelector("body");
 const btn = document.getElementById("advDyslexiaOptions_btn");
 
 function highlightThemeBtn(btn) {
@@ -33,18 +32,47 @@ function highlightFontSizeBtn(btn) {
 }
 
 function presetLocalStorageSelected() {
-	let wrapper = document.querySelectorAll(".colorMode_btn");
-	wrapper.forEach((k) => {
-		console.log(k);
-		
+	let colorWrapper = document.querySelectorAll(".colorMode_btn");
+	colorWrapper.forEach((k) => {
 		if(k.tagName == "DIV") {
-			console.log("boop");
+			k.childNodes.forEach((j) => {
+				if(j.textContent.toLowerCase() == localStorage.getItem("theme")) {
+					k.classList.add("accessabilitybtn_selected");
+				}
+			})
 			
 		}
 	});
-	localStorage.getItem("theme")
-}
-presetLocalStorageSelected();
+
+	let modeWrapper = document.querySelectorAll(".fontFamilyMode_btn");
+	let modeNameConvert = localStorage.getItem("dyslexia") == "true" ? "dyslexic" : "default";
+	modeWrapper.forEach((k) => {
+		if(k.tagName == "DIV") {
+			k.childNodes.forEach((j) => {
+				if(j.textContent.toLowerCase() == modeNameConvert) {
+					k.classList.add("accessabilitybtn_selected");
+				}
+			})
+		}
+	});
+
+	let fontSizeWrapper = document.querySelectorAll(".fontSizeMode_btn");
+	fontSizeWrapper.forEach((k) => {
+		if(k.tagName == "DIV") {
+			k.childNodes.forEach((j) => {
+				if(j.textContent.toLowerCase() == localStorage.getItem("fontSize")) {
+					k.classList.add("accessabilitybtn_selected");
+				}
+				else if(localStorage.getItem("fontSize") == "medium") {
+					if(j.textContent.toLowerCase() == "default") {
+						k.classList.add("accessabilitybtn_selected");
+					}
+				}
+			})
+		}
+	});
+};
+presetLocalStorageSelected()
 
 function showAdvDyslexiaOptions() {
 	let wrapper = document.querySelector(".advDyslexiaOptions_Wrapper");
@@ -64,10 +92,12 @@ function ChangeFontSize() {
 		let fontSize = localStorage.getItem("fontSize");
 		let lineHeight = localStorage.getItem("lineHeight");
 		document.querySelectorAll("li, a, p, span").forEach((element) => {
-		if (element.tagName === "SPAN" || element.tagName === "P") {
-			element.style.fontSize = fontSize;
-			element.style.lineHeight = lineHeight;
-		}
+			if (element.tagName === "SPAN" || element.tagName === "P") {
+				element.style.fontSize = fontSize;
+				element.style.lineHeight = lineHeight;
+				body.style.fontSize = fontSize;
+				body.style.lineHeight = lineHeight;
+			}
 		});
 	}
 }
@@ -75,13 +105,13 @@ function ChangeFontSize() {
 function fontSizeChange(font) {
 	let textContent = font.querySelector("span").textContent.toLowerCase();
 	if(!textContent || textContent == "default") {
-		textContent = "unset";
+		textContent = "medium";
 	}
 	localStorage.setItem("fontSize", textContent)
 	
 	if(textContent == "small")
 		localStorage.setItem("lineHeight", 1.4);
-	if(textContent == "unset")
+	if(textContent == "medium")
 		localStorage.setItem("lineHeight", 1.5);
 	if(textContent == "large") 
 		localStorage.setItem("lineHeight", 1.6);
