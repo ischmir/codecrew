@@ -1,3 +1,4 @@
+const db = require("../config/db");
 // Import the Axios library for making HTTP requests
 const axios = require('axios'); 
 exports.mockData = async function() {   
@@ -101,13 +102,36 @@ exports.portainerStacks = async function (token) {
         const response = await axios.get(stacksUrl, {
             headers: { Authorization: `Bearer ${token}` },
         });
-        console.log("Portainer Stacks:", response.data);
+        //console.log("Portainer Stacks:", response.data);
+
+
+
+        // find hvad vi skal bruge og læg lortet i en array
+        // gem lortet i db 
+        // return den filteret array
+        // win
+
         return response.data;
     } catch (error) {
         console.error("Error fetching Portainer stacks:", error.message);
     }
 }
 
+exports.filterStackCall = async function(res, userId) {
+    let data = {
+        
+        res
+    };
+
+    // data.res.creationDate = new Date(data.res.creationDate * 1000);
+    // data.res.lastUpdate = data.res.lastUpdate == 0 ? data.res.creationDate : new Date(data.res.lastUpdate * 1000);
+     // why sql error (ncorrect datetime value: '56858-07-16 07:03:20.000' for column 'stackCreationDate' at row 2)
+     // but it executes the query correctly 
+    await db.query("INSERT INTO Stacks (subDomain, FK_templateId, FK_userId, stackName, stackCreationDate, stackLastUpdate, stackLastActive) VALUES (?,(SELECT templateId FROM Templates WHERE templateTitle = 'welp'),?,?,?,?,?)", 
+        [data.subDomain/*, data.res.template*/, res.userId, data.res.name, data.res.creationDate, data.res.lastUpdate, data.lastActive]
+    )
+    return data;
+}
 // Function to fetch Portainer endpoints
 exports.portainerEndpoints = async function (token) {
     try {

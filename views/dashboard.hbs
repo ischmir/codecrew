@@ -63,7 +63,7 @@
                 <span class="stack_info_name">{{name}}</span>
                 <span class="stack_info_author">{{author}}</span>
                 <span class="stack_info_creation_date">{{creationDate}}</span>
-                <span class="stack_info_status_offline">{{#if status}}Online{{else}}Offline{{/if}}</span>
+                <span class={{#if status}}"stack_info_status online"{{else}}"stack_info_status offline"{{/if}}>{{#if status}}Online{{else}}Offline{{/if}}</span>
             </button>
             <div class="panel">
                 <div>
@@ -88,8 +88,11 @@
 </main>
 
 <script>
-    let data = {{{datas}}}
-    console.log(data)
+    //let data = {{{datas}}}
+    //console.log(data)
+    //let pData = JSON.parse({{{stack}}});
+    //console.log(pData)
+    //let fName = '{{userDetails.firstName}}' + ' ' + 'Hinsch'
 </script>
 <script defer type="text/javascript" src="/script/dashboard.js"></script>
 <!--

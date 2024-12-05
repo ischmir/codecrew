@@ -107,12 +107,19 @@
 	padding: 4px;
 }
 
-.stack_info_status_offline {
+.stack_info_status {
 	margin-right: auto;
 	text-align: center;
-	background-color: var(--negative-status-color);
 	border-radius: 3px;
 	padding: 4px;
+}
+
+.offline {
+    background-color: var(--negative-status-color);
+}
+
+.online {
+    background-color: var(--positive-status-color);
 }
 
 .panel {
