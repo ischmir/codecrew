@@ -67,7 +67,7 @@ exports.getSingelUserByEmailWithAllData = async function (userEmail) {
     return rows;
 }
 
-exports.saveJWTtoUser = async function (jwt, userId) {
+exports.saveJWTtoUser = async function (jwt, userId) {    
     try {
         if(!userId) {
             throw new Error("The supplied userId, is undefined")
@@ -93,10 +93,10 @@ exports.saveJWTtoUser = async function (jwt, userId) {
                 throw new Error("There was an error with inserting the jwt to database.");
             }    
         }
-
+        
         const result = await extra.updateJWTtoUser(jwt, verify[0].lastUpdate, userId);
 
-        if(result == false || result < 1) {
+        if(result < 1) {
             console.log("updateJWt fail " + result);
             throw new Error("Update for jwt on user, failed");
         }
@@ -114,7 +114,7 @@ exports.getJWTfromUser = async function (userId) {
                                     INNER JOIN Options ON Users.FK_options = Options.optionsId
                                     WHERE userId = ?`, [userId]);
         
-        return rows;
+        return rows[0].jwt;
     } catch (error) {
         console.log(error);
         

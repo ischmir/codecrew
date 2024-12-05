@@ -11,7 +11,7 @@ function convertingDateFormat(date) {
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit',
-    }).replaceAll('/', '-').replaceAll(".", "-")
+    }).replaceAll('/', '-').replaceAll(",", "")
 }
 
 exports.dashboard = async function (req, res) {
@@ -20,12 +20,13 @@ exports.dashboard = async function (req, res) {
 		if(!req.session.userDetails) {
 		     throw new Error("You are not logged in")
 		}
-		const jwt = await userM.getJWTfromUser(req.session.userDetails.userId);
+		const jwt = await userM.getJWTfromUser(req.session.userDetails.userId) || await dashboardM.portainerSystemAuth(); // last half, shouldn't reaaaaly be there. but we dont have to login then
+        
 		let testo;
 		// console.log(await dashboardM.portainerSystemAuth())
 		//await dashboardM.portainerSystemInfo("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJjb2RlY3JldyIsInJvbGUiOjIsInNjb3BlIjoiZGVmYXVsdCIsImZvcmNlQ2hhbmdlUGFzc3dvcmQiOmZhbHNlLCJleHAiOjE3MzIxMzYzNDMsImlhdCI6MTczMjEwNzU0MywianRpIjoiYzdhMGZlZGQtYTQ5Yy00YTA2LTllNTItYTU5YWRkMzZhNTNiIn0.tM-Bi6y7EBUagHcFRQ60FrHiT3amCGAtcvtikP5evno")
 		//await dashboardM.portainerSystemStatus("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJjb2RlY3JldyIsInJvbGUiOjIsInNjb3BlIjoiZGVmYXVsdCIsImZvcmNlQ2hhbmdlUGFzc3dvcmQiOmZhbHNlLCJleHAiOjE3MzIxMzYzNDMsImlhdCI6MTczMjEwNzU0MywianRpIjoiYzdhMGZlZGQtYTQ5Yy00YTA2LTllNTItYTU5YWRkMzZhNTNiIn0.tM-Bi6y7EBUagHcFRQ60FrHiT3amCGAtcvtikP5evno")
-		const stacks = await dashboardM.portainerStacks('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJjb2RlY3JldyIsInJvbGUiOjIsInNjb3BlIjoiZGVmYXVsdCIsImZvcmNlQ2hhbmdlUGFzc3dvcmQiOmZhbHNlLCJleHAiOjE3MzM0NDI2OTUsImlhdCI6MTczMzQxMzg5NSwianRpIjoiNGI1M2M3YjQtZjU3ZS00OGJjLTk1NDMtOTU0OGQ2MjBiZTQ4In0.CWvNwUT8lbaCYUu9qUnxv7xLMg4piHxGQuiQs6eagSY');
+		const stacks = await dashboardM.portainerStacks(jwt);
 		const reeeeee = [];
 
 		for (let i = 0; i < stacks.length; i++) {
@@ -51,9 +52,10 @@ exports.dashboard = async function (req, res) {
 		await dashboardM.filterStackCall(reeeeee);
 		testo = {
 			stack: reeeeee,
+            title: "Dashboard"
 		};
 
-		//console.log(testo);
+		console.log(testo.stack[2].creationDate);
 		//await dashboardM.portainerEndpoints("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJjb2RlY3JldyIsInJvbGUiOjIsInNjb3BlIjoiZGVmYXVsdCIsImZvcmNlQ2hhbmdlUGFzc3dvcmQiOmZhbHNlLCJleHAiOjE3MzIxMzYzNDMsImlhdCI6MTczMjEwNzU0MywianRpIjoiYzdhMGZlZGQtYTQ5Yy00YTA2LTllNTItYTU5YWRkMzZhNTNiIn0.tM-Bi6y7EBUagHcFRQ60FrHiT3amCGAtcvtikP5evno")
 		//console.log(await replacePlaceholder(4, 'domain_name'));
 
