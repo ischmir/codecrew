@@ -117,7 +117,7 @@ exports.portainerStacks = async function (token) {
     }
 }
 
-exports.filterStackCall = async function(res, userId) {
+exports.filterStackCall = async function(res, userId) { // rename should happen
     let data = {
         
         res
@@ -128,7 +128,7 @@ exports.filterStackCall = async function(res, userId) {
      // why sql error (ncorrect datetime value: '56858-07-16 07:03:20.000' for column 'stackCreationDate' at row 2)
      // but it executes the query correctly 
     await db.query("INSERT INTO Stacks (subDomain, FK_templateId, FK_userId, stackName, stackCreationDate, stackLastUpdate, stackLastActive) VALUES (?,(SELECT templateId FROM Templates WHERE templateTitle = 'welp'),?,?,?,?,?)", 
-        [data.subDomain/*, data.res.template*/, res.userId, data.res.name, data.res.creationDate, data.res.lastUpdate, data.lastActive]
+        [data.res.subDomain/*, data.res.template*/, res.userId, data.res.name, data.res.creationDate, data.res.lastUpdate, data.lastActive]
     )
     return data;
 }

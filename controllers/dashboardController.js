@@ -77,12 +77,39 @@ exports.dashboardRedirect = function (req, res) {
 	res.redirect('/dashboard');
 };
 exports.createStack = async function (req, res) {
-	const { stack_name, domain_name, chosen_template } = req.body;
-	
-	const jwt = await userM.getJWTfromUser(req.session.userDetails.userId)
-	const template = await templateM.replacePlaceholder(chosen_template, domain_name)	
+	try {
+		const { stack_name, domain_name, chosen_template } = req.body; // get content from form
+		
+		const jwt = await userM.getJWTfromUser(req.session.userDetails.userId) // gets the logged in user's JWT
+		const template = await templateM.replacePlaceholder(chosen_template, domain_name) // if the choosen template has "CHANGEME" and/or "SUBDOMAIN" it will be replace with the subDomain and return the whole template.
 
-	//dashboardM.portainerCreateStack(jwt, stack_name, template);
-
-	res.redirect('/dashboard');
+		//const result = await dashboardM.portainerCreateStack(jwt, stack_name, template); // comment, so we dont create a new stack, on the live server by accident. 
+		console.log(result);
+		
+		if(result) {
+			let saveToDb = {
+				userId: req.session.userDetails.userId || 8,
+				name: result.Name,
+				status: result.Status == 1,
+				creationDate: new Date(result.CreationDate * 1000),
+				lastUpdate:
+					result.UpdateDate == 0
+						? new Date(result.CreationDate * 1000)
+						: new Date(result.UpdateDate * 1000),
+				createdBy: result.CreatedBy,
+				template: chosen_template,
+				subDomain: domain_name,
+				lastActive: Date.now(),
+				author: `${req.session.userDetails.firstName} ${req.session.userDetails.lastName}`,
+			}
+			await dashboardM.portainerDeleteStack(jwt, result.Id); // just if we want to delete the stack right after creation, so we dont flod the live server. we still get whatever we log.
+			await dashboardM.filterStackCall(saveToDb, saveToDb.userId); // save it to DB. runs twice??
+			console.log(saveToDb);	
+		}
+		res.redirect('/dashboard');
+	}
+	catch(error) {
+		console.warn("Dashboard : " + error);
+		res.redirect('/dashboard');
+	}
 };
