@@ -40,9 +40,15 @@
             </select>
             <select name="chosen_template" id="create_stack_select_template">
                 <option value="" disabled selected>Choose Template</option>
-                <option value="User1">Wordpress</option>
-                <option value="User2">Umbraco</option>
-                <option value="User3">Other</option>
+                {{#if templates}}
+                    {{#each templates}}
+                        <option value="{{templateId}}">{{templateTitle}}</option>
+                    {{/each}}
+                {{else}}
+                    <option value="User1">Wordpress</option>
+                    <option value="User2">Umbraco</option>
+                    <option value="User3">Other</option>
+                {{/if}}
             </select>
                 <input class="create_modal_submit_button" type="submit" value="Submit">
             </form>

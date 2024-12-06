@@ -48,8 +48,12 @@ exports.dashboard = async function (req, res) {
 
 		//console.log(await dashboardM.filterStackCall(reeeeee));
 		await dashboardM.filterStackCall(reeeeee);
+
+		const allTemplates = await templateM.getAllTemplatesIdAndTitle();
+		
 		testo = {
 			stack: reeeeee,
+			templates: allTemplates,
             title: "Dashboard"
 		};
 
@@ -76,9 +80,9 @@ exports.createStack = async function (req, res) {
 	const { stack_name, domain_name, chosen_template } = req.body;
 	
 	const jwt = await userM.getJWTfromUser(req.session.userDetails.userId)
-	const template = await templateM.replacePlaceholder(18, domain_name)
-	
-	//dashboardM.portainerCreateStack(jwt, stack_name, template);	
+	const template = await templateM.replacePlaceholder(chosen_template, domain_name)	
+
+	//dashboardM.portainerCreateStack(jwt, stack_name, template);
 
 	res.redirect('/dashboard');
 };

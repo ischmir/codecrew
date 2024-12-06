@@ -17,6 +17,14 @@ exports.getAllTemplates = async function(message) {
     
     return data;
 };
+exports.getAllTemplatesIdAndTitle = async function () {
+    const [templates, fields] = await db.query(`SELECT 
+        templateId, 
+        templateTitle
+        FROM Templates`);
+    
+    return templates;
+}
 exports.getTemplateById = async function (id) {
     const [rows] = await db.query(`SELECT 
         templateId, 
