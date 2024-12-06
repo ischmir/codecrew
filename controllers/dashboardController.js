@@ -1,7 +1,6 @@
 const dashboardM = require('../models/dashboardModel');
 const userM = require('../models/userModel');
-const { replacePlaceholder } = require('../models/templateModel');
-const async = require('hbs/lib/async');
+const templateM = require('../models/templateModel');
 
 function convertingDateFormat(date) {
     return new Date(date).toLocaleDateString('en-GB', {
@@ -16,11 +15,10 @@ function convertingDateFormat(date) {
 
 exports.dashboard = async function (req, res) {
 	try {
-		const { stack_name, domain_name, chosen_template } = req.body;
 		if(!req.session.userDetails) {
 		     throw new Error("You are not logged in")
 		}
-		const jwt = await userM.getJWTfromUser(req.session.userDetails.userId) || await dashboardM.portainerSystemAuth(); // last half, shouldn't reaaaaly be there. but we dont have to login then
+		const jwt = await userM.getJWTfromUser(req.session.userDetails.userId) || await dashboardM.portainerSystemAuth(); // last half shouldn't reaaaaly be there. but we dont have to login then
         
 		let testo;
 		// console.log(await dashboardM.portainerSystemAuth())
@@ -74,6 +72,13 @@ exports.dashboard = async function (req, res) {
 exports.dashboardRedirect = function (req, res) {
 	res.redirect('/dashboard');
 };
-exports.createStack = function (req, res) {
+exports.createStack = async function (req, res) {
+	const { stack_name, domain_name, chosen_template } = req.body;
+	
+	const jwt = await userM.getJWTfromUser(req.session.userDetails.userId)
+	const template = await templateM.replacePlaceholder(18, domain_name)
+	
+	//dashboardM.portainerCreateStack(jwt, stack_name, template);	
+
 	res.redirect('/dashboard');
 };

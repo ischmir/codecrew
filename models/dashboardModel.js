@@ -147,10 +147,10 @@ exports.portainerEndpoints = async function (token) {
 }
 
 // Function to create a new stack in Portainer
-exports.portainerCreateStack = async function (token, fromTemplate, stackName, stackFileContent, swarmId) {
+exports.portainerCreateStack = async function (token, stackName, stackFileContent) {
     const url = `${portainerBaseUrl}/stacks/create/swarm/string?endpointId=5`;
     const payload = {
-        "fromTemplate": fromTemplate,
+        "fromTemplate": "false",
         "name": stackName,
         "stackFileContent": stackFileContent,
         "swarmId": "v1pkdou24tzjtncewxhvpmjms" // i think its static and therefor we can just hardcode it.

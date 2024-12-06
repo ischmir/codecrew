@@ -1,4 +1,3 @@
-const fs = require("fs");
 const templateM = require("../models/templateModel");
 const yaml = require("js-yaml");
 

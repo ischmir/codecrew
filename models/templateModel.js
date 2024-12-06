@@ -5,8 +5,8 @@ exports.getAllTemplates = async function(message) {
         templateId, 
         templateTitle, 
         templateContent, 
-        DATE_FORMAT(templateCreationDate, '%Y %m %d') AS creationDate,
-        DATE_FORMAT(templateLastUpdate, '%Y %m %d %H:%i:%s') AS lastUpdate
+        DATE_FORMAT(templateCreationDate, '%d %m %Y') AS creationDate,
+        DATE_FORMAT(templateLastUpdate, '%d %m %Y %H:%i:%s') AS lastUpdate
         FROM Templates`);
     
     const data = {
@@ -22,8 +22,8 @@ exports.getTemplateById = async function (id) {
         templateId, 
         templateTitle, 
         templateContent, 
-        DATE_FORMAT(templateCreationDate, '%Y %m %d') AS creationDate,
-        DATE_FORMAT(templateLastUpdate, '%Y %m %d %H:%i:%s') AS lastUpdate
+        DATE_FORMAT(templateCreationDate, '%d %m %Y') AS creationDate,
+        DATE_FORMAT(templateLastUpdate, '%d %m %Y %H:%i:%s') AS lastUpdate
         FROM Templates
         WHERE templateId = ?`, [id])        // Javascript ser funky på måden den skal konventere DATETIME fra databasen. 
                                             // JS: Tue Oct 29 2024 00:00:00 GMT+0100 (Centraleuropæisk normaltid)
@@ -60,10 +60,20 @@ exports.templateDeletion = async function (id) {
     return rows;
 }
 exports.replacePlaceholder = async function (id, domain) {
-    const [rows] = await db.query(`SELECT 
-    REPLACE(REPLACE(templateContent, 'CHANGEME', ?),'SUBDOMAIN', ?)
-    FROM Templates WHERE templateId = ?;
-`, [domain, domain, id])
-    return rows;
+    try {
+        const [rows] = await db.query(`
+            SELECT 
+                REPLACE(REPLACE(templateContent, 'CHANGEME', ?), 'SUBDOMAIN', ?) AS updatedContent
+            FROM Templates WHERE templateId = ?;
+        `, [domain, domain, id]);
 
+        if (!rows[0]) {
+            throw new Error(`No template found with id: ${id}`);
+        }
+
+        return rows[0].updatedContent;
+    } catch (error) {
+        console.error("Error in replacePlaceholder:", error.message);
+        throw error;
+    }
 }
