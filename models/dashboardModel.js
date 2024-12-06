@@ -10,7 +10,7 @@ exports.mockData = async function() {
                 name: "sandra-nginx",
                 author: "Sandra Storm",
                 creationDate: "29.10.2024",
-                status: 0,
+                status: 1,
                 lastActive: "11:55:24 31.10.2024",
                 subDomain: "sast.kubelab.dk",
                 team: "CodeCrew",
