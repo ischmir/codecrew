@@ -10,16 +10,16 @@ function ChangeNavFocus() {
 
 	allLinks.forEach(link => {
 		if (
-			(link.firstChild.innerHTML === 'Admin setting' && endpoint === 'admin_user_settings') ||
-			(link.firstChild.innerHTML === 'Admin setting' && endpoint === 'template') || 
-			(link.firstChild.innerHTML === 'Admin setting' && endpoint === 'create_template')
+			(link.firstChild.innerHTML === 'Admin settings' && endpoint === 'admin_user_settings') ||
+			(link.firstChild.innerHTML === 'Admin settings' && endpoint === 'template') || 
+			(link.firstChild.innerHTML === 'Admin settings' && endpoint === 'create_template')
 		) {
 			link.classList.add('navLink_highlighted');
 		}
 		if (
-			(link.firstChild.innerHTML === 'User setting' && endpoint === 'settings') ||
-			(link.firstChild.innerHTML === 'User setting' && endpoint === 'settings-password') ||
-			(link.firstChild.innerHTML === 'User setting' && endpoint === 'accessibility')
+			(link.firstChild.innerHTML === 'User settings' && endpoint === 'settings') ||
+			(link.firstChild.innerHTML === 'User settings' && endpoint === 'settings-password') ||
+			(link.firstChild.innerHTML === 'User settings' && endpoint === 'accessibility')
 		) {
 			link.classList.add('navLink_highlighted');
 		}
