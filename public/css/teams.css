@@ -20,17 +20,23 @@
 }
 
 .tab {
-	padding: 0.5rem 1rem;
-	background-color: var(--primary-darkmode-font-color);
-	color: var(--secondary-darkmode-background-color);
+	background-color: var(--primary-darkmode-inactive-font-color);
+	color: var(--primary-darkmode-font-color);
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
 	cursor: pointer;
-	border-radius: 5px;
-	transition: background-color 0.3s ease;
+	width: 100%;
+	font-family: var(--primary-font-family);
+	border-radius: var(--primary-square-button-border-radius);
+	cursor: pointer;
+	transition: all 0.3s ease;
 }
 
 .tab.active {
-	background-color: var(--positive-status-color);
+	background-color: var(--primary-darkmode-button-color);
 	color: var(--primary-darkmode-font-color);
+	background-image: var(--primary-gradient-background-image);
 }
 .tab:hover {
 	background-color: var(--primary-link-color);
