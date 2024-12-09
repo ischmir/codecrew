@@ -49,9 +49,7 @@
 	border-radius: 5px;
 	color: var(--primary-darkmode-font-color);
 }
-h4 {
-	font-weight: bold;
-}
+
 /* 
 .input_container {
 	width: 680px;
@@ -335,8 +333,8 @@ button.danger-toast {
 .advDyslexiaOptions_wrapper h4 {
 	margin-top: 0.5em;
 }
-.advDyslexiaOptions_btn {
-	background: var(--third-darkmode-background-color);
+/* .advDyslexiaOptions_btn {
+	background-color: var(--primary-darkmode-button-color);
 	border: 1px solid var(--primary-darkmode-border-color);
 	border-radius: 10px;
 	padding: 10px 20px;
@@ -354,7 +352,7 @@ button.danger-toast {
 }
 .accessabilitybtn_selected {
 	background-color: var(--third-darkmode-background-color);
-}
+} */
 
 /* Der skal være toast både på desktop og mobil */
 /* END OF TOAST */
@@ -382,7 +380,7 @@ button.danger-toast {
 		width: 20rem;
 	}
 	.profileicon {
-		height: 120px;
+		height: 90px;
 	}
 	.profile_container {
 		align-items: normal;

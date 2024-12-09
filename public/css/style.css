@@ -49,24 +49,65 @@
 	--third-darkmode-list-info-background-color: #505459;
 	/*Lightmode Font Color Variables*/
 	--primary-darkmode-font-color: #000000;
-	--secondary-darkmode-font-color: #727272;
+	--secondary-darkmode-font-color: #32283b;
 	--primary-link-color: #727272;
 	--primary-darkmode-inactive-font-color: #727272;
 	/*Lightmode other Variables*/
 	--primary-darkmode-border-color: #1e1e1e;
+	/*other Variables*/
 	--nav-shadow-color: #bdbdbd;
+	--hover-color: #ffffffca;
+	--box-shadow-color: #5959591a;
 }
 body {
 	transition: background-color 0.3s ease, color 0.3s ease;
+	font-family: var(--primary-font-family);
+	color: var(--primary-darkmode-font-color);
+	line-height: 1.4;
+	margin: 0;
+	padding: 0;
 }
 
+/* Overskrift-styling */
 h1,
 h2,
 h3,
 h4,
-h5,
-h6,
+h5 {
+	color: var(--primary-darkmode-font-color);
+	font-family: var(--primary-font-family);
+	font-weight: bold;
+	margin: 0.8em 0 0.6em;
+	line-height: 1.2;
+}
+
+/* Specifik styling pr. overskriftsniveau */
+h1 {
+	font-size: 2rem;
+	color: var(--secondary-darkmode-font-color);
+}
+
+h2 {
+	font-size: 1.5rem;
+	color: var(--secondary-darkmode-font-color);
+}
+
+h3 {
+	font-size: 1.2rem;
+}
+
+h4 {
+	font-size: 1.1rem;
+}
+
+h5 {
+	font-size: 1rem;
+}
+
+/* Paragraf-styling */
 p {
+	margin: 0.4em 0;
+	font-size: 1rem;
 	color: var(--primary-darkmode-font-color);
 }
 
@@ -85,10 +126,17 @@ p {
 	background-image: var(--primary-gradient-background-image);
 	font-family: var(--primary-font-family);
 	border-radius: var(--primary-square-button-border-radius);
+	cursor: pointer;
+	transition: all 0.3s ease;
 }
 
 .button:hover {
 	opacity: 0.8;
+	box-shadow: 0 4px 6px var(--box-shadow-color);
+}
+
+.button_selected {
+	background-color: var(--third-darkmode-background-color);
 }
 /*Mobile and tablet*/
 @media only screen and (max-width: 900px) {
