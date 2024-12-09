@@ -67,13 +67,26 @@ exports.templateDeletion = async function (id) {
 
     return rows;
 }
+
+
 exports.replacePlaceholder = async function (id, domain) {
+    const generateRandomString = (length) => {
+        let result = '';
+        const characters =
+          'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+        const charactersLength = characters.length;
+        for (let i = 0; i < length; i++) {
+          result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    };
+    
     try {
         const [rows] = await db.query(`
             SELECT 
-                REPLACE(REPLACE(templateContent, 'CHANGEME', ?), 'SUBDOMAIN', ?) AS updatedContent
+                REPLACE(REPLACE(REPLACE(templateContent, 'CHANGEME', ?), 'SUBDOMAIN01', ?), 'SUBDOMAIN02, ?) AS updatedContent
             FROM Templates WHERE templateId = ?;
-        `, [domain, domain, id]);
+        `, [generateRandomString(5), domain, generateRandomString(5), id]); // det er vist kun SUBDOMAIN01 som skal være det som brugeren skriver. resten skal være random. skal lige dobbelt tjekkes
 
         if (!rows[0]) {
             throw new Error(`No template found with id: ${id}`);
