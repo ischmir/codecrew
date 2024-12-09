@@ -11,6 +11,16 @@ function convertingDateFormat(date) {
         minute: '2-digit',
         second: '2-digit',
     }).replaceAll('/', '-').replaceAll(",", "")
+};
+async function isNewStackAllowed(accessLevel, userId) {
+	const stackLimit = await dashboardM.stackLimitForUser(accessLevel);
+	const amountOfStacksByUser = await dashboardM.amountOfStacksByUser(userId);
+
+	if(stackLimit <= amountOfStacksByUser) {
+		return false;
+	}
+	
+	return true;
 }
 
 exports.dashboard = async function (req, res) {
@@ -19,8 +29,9 @@ exports.dashboard = async function (req, res) {
 		     throw new Error("You are not logged in")
 		}
 		const jwt = await userM.getJWTfromUser(req.session.userDetails.userId) || await dashboardM.portainerSystemAuth(); // last half shouldn't reaaaaly be there. but we dont have to login then
-        
+
 		let testo;
+
 		// console.log(await dashboardM.portainerSystemAuth())
 		//await dashboardM.portainerSystemInfo("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJjb2RlY3JldyIsInJvbGUiOjIsInNjb3BlIjoiZGVmYXVsdCIsImZvcmNlQ2hhbmdlUGFzc3dvcmQiOmZhbHNlLCJleHAiOjE3MzIxMzYzNDMsImlhdCI6MTczMjEwNzU0MywianRpIjoiYzdhMGZlZGQtYTQ5Yy00YTA2LTllNTItYTU5YWRkMzZhNTNiIn0.tM-Bi6y7EBUagHcFRQ60FrHiT3amCGAtcvtikP5evno")
 		//await dashboardM.portainerSystemStatus("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJjb2RlY3JldyIsInJvbGUiOjIsInNjb3BlIjoiZGVmYXVsdCIsImZvcmNlQ2hhbmdlUGFzc3dvcmQiOmZhbHNlLCJleHAiOjE3MzIxMzYzNDMsImlhdCI6MTczMjEwNzU0MywianRpIjoiYzdhMGZlZGQtYTQ5Yy00YTA2LTllNTItYTU5YWRkMzZhNTNiIn0.tM-Bi6y7EBUagHcFRQ60FrHiT3amCGAtcvtikP5evno")
@@ -51,10 +62,12 @@ exports.dashboard = async function (req, res) {
 
 		const allTemplates = await templateM.getAllTemplatesIdAndTitle();
 		
+			
 		testo = {
 			stack: reeeeee,
 			templates: allTemplates,
-            title: "Dashboard"
+            title: "Dashboard",
+			isNewStackAllowed: await isNewStackAllowed(req.session.userDetails.accessLevel, req.session.userDetails.userId) ? true : false
 		};
 
 		//await dashboardM.portainerEndpoints("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJjb2RlY3JldyIsInJvbGUiOjIsInNjb3BlIjoiZGVmYXVsdCIsImZvcmNlQ2hhbmdlUGFzc3dvcmQiOmZhbHNlLCJleHAiOjE3MzIxMzYzNDMsImlhdCI6MTczMjEwNzU0MywianRpIjoiYzdhMGZlZGQtYTQ5Yy00YTA2LTllNTItYTU5YWRkMzZhNTNiIn0.tM-Bi6y7EBUagHcFRQ60FrHiT3amCGAtcvtikP5evno")
@@ -78,6 +91,11 @@ exports.dashboardRedirect = function (req, res) {
 };
 exports.createStack = async function (req, res) {
 	try {
+
+		if(await isNewStackAllowed(req.session.userDetails.accessLevel, req.session.userDetails.userId)) {
+			res.redirect("back");
+		}
+
 		const { stack_name, domain_name, chosen_template } = req.body; // get content from form
 		
 		const jwt = await userM.getJWTfromUser(req.session.userDetails.userId) // gets the logged in user's JWT

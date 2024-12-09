@@ -187,3 +187,23 @@ exports.portainerDeleteStack = async function (token, stackId) {
         console.error(`Error deleting stack with ID ${stackId}:`, error.message);
     }
 }
+
+exports.stackLimitForUser = async function (userAccess) {
+    try {
+        const [rows] = await db.query("SELECT stackLimit FROM Roles WHERE accessLevel = ?", [userAccess]);
+
+        return rows[0].stackLimit;
+    } catch (error) {
+        console.error(error);   
+    }
+}
+exports.amountOfStacksByUser = async function (userId) {
+    try {
+        const [rows] = await db.query("SELECT COUNT(*) as amount FROM Stacks WHERE FK_userId = ?", [userId]);
+
+        return rows[0].amount
+    } catch (error) {
+        console.error(error);
+        
+    }
+}
