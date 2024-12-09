@@ -269,7 +269,6 @@ button.danger-toast {
 .accessibilitySection_wrapper {
 	width: 100%;
 	height: fit-content;
-	padding: 0.5em;
 	display: flex;
 	flex-direction: column;
 }
@@ -358,6 +357,22 @@ button.danger-toast {
 /* END OF TOAST */
 
 /* For tablets */
+
+/* Styling til tekstboksen */
+#csv-textbox {
+	width: 100%;
+	height: 300px;
+	border: 1px solid #ccc;
+	padding: 10px;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	resize: both;
+}
+
+/* Fil input er usynlig, men stadig funktionel */
+#csv-file-input {
+	display: none;
+}
 @media only screen and (min-width: 600px) {
 	.container {
 		display: flex;
@@ -377,7 +392,7 @@ button.danger-toast {
 	.settings_container {
 		padding: 25px;
 		max-width: 44rem;
-		width: 20rem;
+		width: 30rem;
 	}
 	.profileicon {
 		height: 90px;

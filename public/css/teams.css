@@ -1,14 +1,79 @@
-#csv-dropzone {
-	background-color: var(--secondary-darkmode-background-color);
-	color: var(--primary-darkmode-inactive-font-color);
-	padding: 10px;
-	margin: 8px 0;
-	font-size: larger;
-	border: 1px solid var(--primary-darkmode-border-color);
-	border-radius: 6px;
-	transition: background-color 0.3s;
+.team-container {
+	display: flex;
+	justify-content: space-between;
+	gap: 2rem;
+	margin: 2rem 0;
 }
 
-#csv-dropzone.dragover {
-	background-color: #2290b5;
+.team-setup,
+.team-members {
+	flex: 1;
+	/* background-color: var(--secondary-darkmode-background-color); */
+	padding: 1.5rem;
+	border-radius: 8px;
+}
+
+.tabs {
+	display: flex;
+	gap: 1rem;
+	margin-bottom: 1rem;
+}
+
+.tab {
+	padding: 0.5rem 1rem;
+	background-color: var(--primary-darkmode-font-color);
+	color: var(--secondary-darkmode-background-color);
+	cursor: pointer;
+	border-radius: 5px;
+	transition: background-color 0.3s ease;
+}
+
+.tab.active {
+	background-color: var(--positive-status-color);
+	color: var(--primary-darkmode-font-color);
+}
+.tab:hover {
+	background-color: var(--primary-link-color);
+}
+
+.input_group,
+textarea {
+	width: 100%;
+	border-radius: 5px;
+	border: 1.5px solid var(--primary-darkmode-border-color);
+	background-color: var(--secondary-darkmode-background-color);
+	color: var(--primary-darkmode-font-color);
+	padding: 0.5rem;
+	margin-bottom: 1rem;
+	box-sizing: border-box;
+}
+.button {
+	margin: 8px 0px;
+}
+
+.team-members {
+	/* background-color: var(--secondary-darkmode-background-color); */
+	padding: 1rem;
+	border-radius: 8px;
+	border: 1px solid var(--primary-darkmode-border-color);
+}
+
+#added-members-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+#added-members-list li {
+	padding: 0.5rem;
+	background-color: var(--primary-darkmode-font-color);
+	color: var(--secondary-darkmode-background-color);
+	border-radius: 4px;
+	margin-bottom: 0.5rem;
+}
+
+@media only screen and (max-width: 600px) {
+	.team-container {
+		flex-direction: column;
+	}
 }

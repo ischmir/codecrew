@@ -1,33 +1,43 @@
 console.log('Script is running!');
 
-// const csvDropzone = document.getElementById('csv-dropzone');
-// console.log(csvDropzone ? 'Dropzone found!' : 'Dropzone not found!');
-// csvDropzone.addEventListener('dragover', function (event) {
-// 	event.preventDefault();
-// 	csvDropzone.classList.add('dragover');
+document.querySelectorAll('.tab').forEach(tab => {
+	tab.addEventListener('click', function () {
+		document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+		this.classList.add('active');
+	});
+});
 
-// 	console.log('Dragover event triggered!');
-// });
-// csvDropzone.addEventListener('dragleave', function (event) {
-// 	event.preventDefault();
-// 	csvDropzone.classList.remove('dragover');
+// Når knappen (dropzone) bliver klikket, åbner fil-input
+document.getElementById('csv-dropzone').addEventListener('click', function () {
+	document.getElementById('csv-file-input').click();
+});
 
-// 	console.log('Drop event triggered!');
-// 	console.log('Files:', event.dataTransfer.files);
-// });
-// csvDropzone.addEventListener('drop', function (event) {
-// 	event.preventDefault();
-// 	csvDropzone.classList.remove('dragover');
-// 	const csvFile = event.dataTransfer.files[0];
-// 	if (csvFile && (csvFile.type === 'text/csv' || csvFile.name.endsWith('.csv'))) {
-// 		alert('CSV file has been selected');
-// 		handleCsvFile(csvFile);
-// 	} else {
-// 		alert('Please drop a CSV file.');
-// 	}
-// });
+// Når filen er valgt, læses den og vises i tekstboksen
+document.getElementById('csv-file-input').addEventListener('change', function (event) {
+	const file = event.target.files[0]; // Hent den valgte fil
+	if (file) {
+		const reader = new FileReader(); // FileReader til at læse filindhold
+		reader.onload = function (e) {
+			const csvContent = e.target.result; // CSV-indholdet
+			const formattedCSV = formatCSV(csvContent); // Formater CSV-indholdet
+			document.getElementById('csv-textbox').value = formattedCSV; // Indsæt i tekstboksen
+		};
+		reader.readAsText(file); // Læs filen som tekst
+	}
+});
 
-// function handleCsvFile(file) {
-// 	console.log(file.name);
-// 	// Implement file handling logic here
-// }
+// Funktion til at formatere CSV til tekst, der kan vises
+function formatCSV(csv) {
+	// Split CSV-indholdet på linjer (hver linje repræsenterer en post)
+	const lines = csv.split('\n');
+	let formattedText = '';
+
+	// Gennemgå hver linje og tilføj den til den formaterede tekst
+	lines.forEach(function (line) {
+		// Erstat kommaer med tabulatorer eller mellemrum (for nemmere læsning)
+		const formattedLine = line.replace(/,/g, '\t');
+		formattedText += formattedLine + '\n'; // Tilføj linjen til tekstboksen
+	});
+
+	return formattedText;
+}
