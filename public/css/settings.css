@@ -382,11 +382,11 @@ button.danger-toast {
 	}
 
 	.main_settings {
-		display: flex;
-		justify-content: center;
-		flex-direction: column;
-		align-items: center;
 		margin: 0 auto;
+		width: 80%;
+		margin-top: 6em;
+		margin-bottom: 2em;
+		justify-content: flex-start;
 	}
 
 	.settings_container {
