@@ -117,7 +117,7 @@ exports.portainerStacks = async function (token) {
     }
 }
 
-exports.filterStackCall = async function(res, userId) { // rename should happen
+exports.filterStackCall = async function(res) { // rename should happen
     let data = {
         
         res

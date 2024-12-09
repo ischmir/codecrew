@@ -1,14 +1,19 @@
 const db = require("../config/db");
+const extraM = require("../models/extraModel");
 
 exports.getAllTemplates = async function(message) {
     const [templates, fields] = await db.query(`SELECT 
         templateId, 
         templateTitle, 
         templateContent, 
-        DATE_FORMAT(templateCreationDate, '%d %m %Y') AS creationDate,
-        DATE_FORMAT(templateLastUpdate, '%d %m %Y %H:%i:%s') AS lastUpdate
+        templateCreationDate AS creationDate,
+        templateLastUpdate AS lastUpdate
         FROM Templates`);
     
+    templates.forEach((d) => {
+        d.creationDate = extraM.convertingDateFormat(d.creationDate),
+        d.lastUpdate = extraM.convertingDateFormat(d.lastUpdate)
+    });
     const data = {
         title: "Template",
         templates,
@@ -30,14 +35,15 @@ exports.getTemplateById = async function (id) {
         templateId, 
         templateTitle, 
         templateContent, 
-        DATE_FORMAT(templateCreationDate, '%d %m %Y') AS creationDate,
-        DATE_FORMAT(templateLastUpdate, '%d %m %Y %H:%i:%s') AS lastUpdate
+        templateCreationDate AS creationDate,
+        templateLastUpdate AS lastUpdate
         FROM Templates
-        WHERE templateId = ?`, [id])        // Javascript ser funky på måden den skal konventere DATETIME fra databasen. 
-                                            // JS: Tue Oct 29 2024 00:00:00 GMT+0100 (Centraleuropæisk normaltid)
-                                            // DB: 2024-10-29T00:00:00.000Z
-                                            // Med den her konventering fra DB: 2024 10 29 00:00:00
+        WHERE templateId = ?`, [id]);
         
+        rows.forEach((d) => {
+            d.creationDate = extraM.convertingDateFormat(d.creationDate),
+            d.lastUpdate = extraM.convertingDateFormat(d.lastUpdate)
+        });
         return rows;
 }
 exports.updateTemplate = async function (id, newContent) {

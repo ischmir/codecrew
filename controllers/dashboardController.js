@@ -1,17 +1,7 @@
 const dashboardM = require('../models/dashboardModel');
 const userM = require('../models/userModel');
 const templateM = require('../models/templateModel');
-
-function convertingDateFormat(date) {
-    return new Date(date).toLocaleDateString('en-GB', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-    }).replaceAll('/', '-').replaceAll(",", "")
-};
+const extraM = require("../models/extraModel");
 
 exports.dashboard = async function (req, res) {
 	try {
@@ -23,6 +13,7 @@ exports.dashboard = async function (req, res) {
 		let response;
 
 		const stacks = await dashboardM.portainerStacks(jwt);
+		
 		const allStacks = [];
 
 		for (let i = 0; i < stacks.length; i++) {
@@ -30,15 +21,15 @@ exports.dashboard = async function (req, res) {
 				userId: req.session.userDetails.userId || 8,
 				name: stacks[i].Name,
 				status: stacks[i].Status === 1,
-				creationDate: convertingDateFormat(stacks[i].CreationDate * 1000),
+				creationDate: extraM.convertingDateFormat(stacks[i].CreationDate * 1000),
 				lastUpdate:
 					stacks[i].UpdateDate == 0
-						? convertingDateFormat(stacks[i].CreationDate * 1000)
-						: convertingDateFormat(stacks[i].UpdateDate * 1000),
+						? extraM.convertingDateFormat(stacks[i].CreationDate * 1000)
+						: extraM.convertingDateFormat(stacks[i].UpdateDate * 1000),
 				createdBy: stacks[i].CreatedBy,
 				template: stacks[i].EntryPoint,
 				subDomain: 'ehhh, brain no work',
-				lastActive: convertingDateFormat(new Date()),
+				lastActive: extraM.convertingDateFormat(new Date()),
 				author: 'welp', // firstname lastname function based on userId
 			});
 		}
@@ -93,6 +84,7 @@ exports.createStack = async function (req, res) {
 				subDomain: domain_name,
 				lastActive: Date.now(),
 				author: `${req.session.userDetails.firstName} ${req.session.userDetails.lastName}`,
+				portainerId: result.Id,
 			}
 			await dashboardM.portainerDeleteStack(jwt, result.Id); // just if we want to delete the stack right after creation, so we dont flod the live server. we still get whatever we log.
 			await dashboardM.filterStackCall(saveToDb, saveToDb.userId); // save it to DB. runs twice??
