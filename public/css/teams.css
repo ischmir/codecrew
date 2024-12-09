@@ -15,7 +15,6 @@
 
 .tabs {
 	display: flex;
-	gap: 1rem;
 	margin-bottom: 1rem;
 }
 
@@ -42,6 +41,17 @@
 	background-color: var(--primary-link-color);
 }
 
+/* .select {
+	outline: none;
+	padding: 0 30px;
+	line-height: 43px;
+	border-radius: 5px;
+	border: 2px solid var(--primary-darkmode-border-color);
+	background: transparent;
+	transition: 0.1s ease;
+	z-index: 1111;
+} */
+
 .input_group,
 textarea {
 	width: 100%;
@@ -59,7 +69,6 @@ textarea {
 
 .team-members {
 	/* background-color: var(--secondary-darkmode-background-color); */
-	padding: 1rem;
 	border-radius: 8px;
 	border: 1px solid var(--primary-darkmode-border-color);
 }
@@ -72,8 +81,7 @@ textarea {
 
 #added-members-list li {
 	padding: 0.5rem;
-	background-color: var(--primary-darkmode-font-color);
-	color: var(--secondary-darkmode-background-color);
+	color: var(--primary-darkmode-font-color);
 	border-radius: 4px;
 	margin-bottom: 0.5rem;
 }

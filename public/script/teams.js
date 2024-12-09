@@ -19,25 +19,8 @@ document.getElementById('csv-file-input').addEventListener('change', function (e
 		const reader = new FileReader(); // FileReader til at læse filindhold
 		reader.onload = function (e) {
 			const csvContent = e.target.result; // CSV-indholdet
-			const formattedCSV = formatCSV(csvContent); // Formater CSV-indholdet
-			document.getElementById('csv-textbox').value = formattedCSV; // Indsæt i tekstboksen
+			document.getElementById('csv-textbox').value = csvContent; // Indsæt i tekstboksen
 		};
 		reader.readAsText(file); // Læs filen som tekst
 	}
 });
-
-// Funktion til at formatere CSV til tekst, der kan vises
-function formatCSV(csv) {
-	// Split CSV-indholdet på linjer (hver linje repræsenterer en post)
-	const lines = csv.split('\n');
-	let formattedText = '';
-
-	// Gennemgå hver linje og tilføj den til den formaterede tekst
-	lines.forEach(function (line) {
-		// Erstat kommaer med tabulatorer eller mellemrum (for nemmere læsning)
-		const formattedLine = line.replace(/,/g, '\t');
-		formattedText += formattedLine + '\n'; // Tilføj linjen til tekstboksen
-	});
-
-	return formattedText;
-}
