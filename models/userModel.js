@@ -95,7 +95,7 @@ exports.saveJWTtoUser = async function (jwt, userId) {
         }
         
         const result = await extra.updateJWTtoUser(jwt, verify[0].lastUpdate, userId);
-
+        
         if(result < 1) {
             console.log("updateJWt fail " + result);
             throw new Error("Update for jwt on user, failed");

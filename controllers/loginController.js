@@ -9,6 +9,17 @@ exports.login = function (req, res) {
 	}
 	res.render('login');
 };
+async function isNewStackAllowed(accessLevel, userId) {
+	const stackLimit = await dashboardM.stackLimitForUser(accessLevel);
+	const amountOfStacksByUser = await dashboardM.amountOfStacksByUser(userId);
+
+	if(stackLimit <= amountOfStacksByUser) {
+		return false;
+	}
+	
+	return true;
+}
+
 exports.postLogin = async function (req, res) {
 	try {
 		res.locals.loginErrorMsg = "";
@@ -24,7 +35,8 @@ exports.postLogin = async function (req, res) {
 				email: finalResult.userEmail,
 				firstName: finalResult.firstName,
 				lastName: finalResult.lastName,
-				isAdmin: finalResult.accessLevel == "admin" || finalResult.accessLevel == "superAdmin" ? true : false
+				isAdmin: finalResult.accessLevel == "admin" || finalResult.accessLevel == "superAdmin" ? true : false,
+				isNewStackAllowed: await isNewStackAllowed(finalResult.accessLevel, finalResult.userId) ? true : false
 			};
 
 			req.session.userDetails = userData;

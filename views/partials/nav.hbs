@@ -9,7 +9,9 @@
 
     <img src="img/logo_1.png" alt="">
 
-	<button id="create_stack_button_mobile" class="mobileNav_extra">Create New Project</button>
+	{{#if userDetails.isNewStackAllowed}}
+		<button id="create_stack_button_mobile" class="mobileNav_extra">Create New Project</button>
+	{{/if}}
 
 	<ul>
 		<li><a href="/dashboard">Dashboard</a></li>
