@@ -3,7 +3,10 @@
 <main class="dashboard_main">
     {{> header}}
 
-    <a href="/create_template" class="button createTemplate_link">Create a new template</a>
+    {{#if userDetails.isNewStackAllowed}}
+        <a href="/create_template" class="button createTemplate_link">Create a new template</a>
+    {{/if}}
+    
     {{#each templates}}
     <div class="templateWrapper">
         <h3>{{templateTitle}}</h3>
@@ -20,7 +23,6 @@
                 <button type="button" class="templateDeletionBtn" onclick="popUpForm()">Utterly Destruction</button>
             </div>
         </form>
-
 
         <div id="confirmModal" class="templateFormModal_wrapper">
             <div class="templateFormModal_content">

@@ -12,16 +12,6 @@ function convertingDateFormat(date) {
         second: '2-digit',
     }).replaceAll('/', '-').replaceAll(",", "")
 };
-async function isNewStackAllowed(accessLevel, userId) {
-	const stackLimit = await dashboardM.stackLimitForUser(accessLevel);
-	const amountOfStacksByUser = await dashboardM.amountOfStacksByUser(userId);
-
-	if(stackLimit <= amountOfStacksByUser) {
-		return false;
-	}
-	
-	return true;
-}
 
 exports.dashboard = async function (req, res) {
 	try {
@@ -60,7 +50,7 @@ exports.dashboard = async function (req, res) {
 			stack: allStacks,
 			templates: allTemplates,
             title: "Dashboard",
-			isNewStackAllowed: await isNewStackAllowed(req.session.userDetails.accessLevel, req.session.userDetails.userId) ? true : false
+			isNewStackAllowed: req.session.userDetails.isNewStackAllowed
 		};
 
 		res.render('dashboard', response);
@@ -76,7 +66,7 @@ exports.dashboardRedirect = function (req, res) {
 exports.createStack = async function (req, res) {
 	try {
 
-		if(await isNewStackAllowed(req.session.userDetails.accessLevel, req.session.userDetails.userId)) {
+		if(req.session.userDetails.isNewStackAllowed) {
 			res.redirect("back");
 		}
 
