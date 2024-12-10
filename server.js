@@ -43,7 +43,6 @@ function loginRequired(req, res, next) {
   if (excludedPaths.includes(req.path)) {
     return next(); // Skip the middleware for these paths
   }
-  console.log(req.session.userDetails);
   
   // Check if the user is logged in
   if (!req.session.userDetails) {

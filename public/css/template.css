@@ -1,3 +1,15 @@
+.template_main {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: flex-start;
+	margin: 0 auto;
+	width: 80%;
+	margin-top: 1em;
+	margin-bottom: 2em;
+	justify-content: flex-start;
+}
+
 .templateWrapper {
 	min-height: 70vh;
 	margin-bottom: 6em;
@@ -7,7 +19,7 @@
 .templateCreationForm textarea {
 	border: solid 2px var(--primary-darkmode-background-color);
 	padding: 1em;
-	font-size: 1.25em;
+	font-size: 1em;
 	width: 100%;
 	height: 70%;
 }
