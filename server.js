@@ -35,22 +35,21 @@ app.use(fetchHeaderUserDetails.userDetails);
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-app.all('*', loginRequired);
+app.all('*', loginRequired); // target ALLE routes/sider
 
 function loginRequired(req, res, next) {
-  // Exclude the `/login` route and other public routes as needed
-  const excludedPaths = ['/login', '/register']; // Add other routes to exclude if necessary
-  if (excludedPaths.includes(req.path)) {
-    return next(); // Skip the middleware for these paths
-  }
-  
-  // Check if the user is logged in
-  if (!req.session.userDetails) {
-    return res.redirect("/login");
-  }
 
-  // Continue to the next middleware or route
-  return next();
+    const excludedPaths = ['/login', '/signup', '/forgot_password']; // sider man godt må komme på, hvis man ikke er logged ind
+    if (excludedPaths.includes(req.path)) {
+        return next();
+    }
+    
+    // Check if the user is logged in
+    if (!req.session.userDetails) {
+        return res.redirect("/login");
+    }
+
+    return next();
 };
 
 require('./routes/getSiteRoutes')(app); // GET routes

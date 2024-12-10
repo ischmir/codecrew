@@ -112,12 +112,13 @@ exports.portainerStacks = async function (token) {
         // win
 
         return response.data;
-    } catch (error) {
+    } catch (error) {        
         console.error("Error fetching Portainer stacks:", error.message);
+        return error.cause
     }
 }
 
-exports.filterStackCall = async function(res) { // rename should happen
+exports.addNewStackToDB = async function(res) { // rename should happen
     let data = {
         
         res
@@ -239,3 +240,4 @@ exports.amountOfStacksByUser = async function (userId) {
         
     }
 }
+exports.getAllStacksFromDB

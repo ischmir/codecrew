@@ -349,9 +349,10 @@ button.danger-toast {
 	background: var(--hover-color);
 	box-shadow: 0 4px 6px var(--box-shadow-color);
 }
+*/
 .accessabilitybtn_selected {
 	background-color: var(--third-darkmode-background-color);
-} */
+}
 
 /* Der skal være toast både på desktop og mobil */
 /* END OF TOAST */

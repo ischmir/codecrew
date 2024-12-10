@@ -35,11 +35,10 @@ exports.dashboard = async function (req, res) {
 				subDomain: 'ehhh, brain no work',
 				lastActive: extraM.convertingDateFormat(new Date()),
 				author: 'welp', // firstname lastname function based on userId
-				portainerStackId: stacks[i].Id
+				portainerStackId: stacks[i].Id,
+				isCreator: true // should be an if statement with (req.session.userDetails.userId == FK_userId) from the Stacks table
 			});
 		}
-
-		await dashboardM.filterStackCall(allStacks);
 
 		const allTemplates = await templateM.getAllTemplatesIdAndTitle();			
 		response = {
@@ -92,7 +91,7 @@ exports.createStack = async function (req, res) {
 				portainerId: result.Id,
 			}
 			await dashboardM.portainerDeleteStack(await getJWT(req.session.userDetails.userId), result.Id); // just if we want to delete the stack right after creation, so we dont flod the live server. we still get whatever we log.
-			await dashboardM.filterStackCall(saveToDb, saveToDb.userId); // save it to DB. runs twice??
+			await dashboardM.addNewStackToDB(saveToDb, saveToDb.userId); // save it to DB. runs twice??
 			console.log(saveToDb);	
 		}
 		res.redirect('/dashboard');
