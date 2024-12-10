@@ -82,7 +82,7 @@ exports.saveJWTtoUser = async function (jwt, userId) {
             
         if(verify.length == 0) {
             
-            const [res] = await db.execute("INSERT INTO Options (optionsName, optionValue, optionsLastUpdate) VALUES (?, ?, ?)", ["JWT", jwt, new Date()])
+            const [res] = await db.execute("INSERT INTO Options (optionsName, optionsValue, optionsLastUpdate) VALUES (?, ?, ?)", ["JWT", jwt, new Date()])
             if(res.insertId) {
                 const [affectedRows] = await db.execute("UPDATE Users SET FK_options = ? WHERE userId = ?", [res.insertId, userId])
                 if(affectedRows < 1) {
@@ -110,7 +110,7 @@ exports.getJWTfromUser = async function (userId) {
         if(!userId) {
             throw new Error("The supplied userId, is undefined")
         }
-        const [rows] = await db.query(`SELECT optionValue as jwt FROM Users 
+        const [rows] = await db.query(`SELECT optionsValue as jwt FROM Users 
                                     INNER JOIN Options ON Users.FK_options = Options.optionsId
                                     WHERE userId = ?`, [userId]);
         

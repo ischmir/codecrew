@@ -11,5 +11,10 @@ exports.teams = () => {
 // description: 'Yeeeehaw!!!!!        ',
 // expire: '2024-12-28'
 exports.addTeamToDB = async function (team) {
-	await db.query('INSERT INTO Teams (teamName, teamCreationDate) VALUES (?, NOW());', [team.name]);
+	await db.query(
+		`INSERT INTO Teams (teamName, teamCreationDate, teamDescription, teamExpireDate) 
+		VALUES 
+		(?, NOW(),?,?);`,
+		[team.name, team.description, team.expire]
+	);
 };

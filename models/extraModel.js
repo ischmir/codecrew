@@ -9,7 +9,7 @@ exports.updateJWTtoUser = async function (jwt, lastUpdate, userId) {
     let hours = Math.floor(minutes/60);    
     
     if(hours >= 8) {
-        const [up] = await db.execute("UPDATE Options SET optionValue = ?, optionsLastUpdate = ? where optionsId = (select FK_options FROM Users WHERE userId = ? )", [jwt, new Date(), userId]);
+        const [up] = await db.execute("UPDATE Options SET optionsValue = ?, optionsLastUpdate = ? where optionsId = (select FK_options FROM Users WHERE userId = ? )", [jwt, new Date(), userId]);
         
         return up.affectedRows;
     }
