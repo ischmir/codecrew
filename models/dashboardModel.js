@@ -96,10 +96,7 @@ exports.portainerSystemStatus = async function (token) {
 }
 
 // Function to fetch Portainer stacks
-exports.portainerStacks = async function (token) {
-    console.log(token);
-    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJjb2RlY3JldyIsInJvbGUiOjIsInNjb3BlIjoiZGVmYXVsdCIsImZvcmNlQ2hhbmdlUGFzc3dvcmQiOmZhbHNlLCJleHAiOjE3MzM4NjI0MzYsImlhdCI6MTczMzgzMzYzNiwianRpIjoiMWVjMzM5MmItYjQ1Yi00OTk2LWE5OTEtNDk0YzVkZWQzNjc4In0.d571eNxiIDx1R0JiXfyfD1lTDlwnl-lXe5jnBbg0RMI"
-    
+exports.portainerStacks = async function (token) {    
     try {
         const stacksUrl = `${portainerBaseUrl}/stacks`;
         const response = await axios.get(stacksUrl, {
