@@ -65,7 +65,7 @@
             </div>
         </div>
         {{#each stack}}
-            <button class="accordion" data-id="{{id}}">
+            <button class="accordion">
                 <span class="stack_info_name">{{name}}</span>
                 <span class="stack_info_author">{{author}}</span>
                 <span class="stack_info_creation_date">{{creationDate}}</span>
@@ -82,7 +82,17 @@
                     <p class="panel_info_last_active">Last Active: {{lastActive}}</p>
                     <p class="panel_info_creation_date_mobile">Creation Date:{{creationDate}}</p>
                     <div class="stack_actions">
-                        <i onclick="myFunction(this)" class={{#if status}}"uil-stop-circle"{{else}}"uil-play-circle"{{/if}}></i>
+                        {{#if status}}
+                        <form action="/stopStack" method="post">
+                            <input type="hidden" name="stackId" value="{{portainerStackId}}">
+                            <button type="submit"> <i class="uil-stop-circle"></i></button>
+                        </form>
+                        {{else}}
+                        <form action="/startStack" method="post">
+                            <input type="hidden" name="stackId" value="{{portainerStackId}}">
+                            <button type="submit"> <i class="uil-play-circle"></i></button>
+                        </form>
+                        {{/if}}
                         <i class="uil-redo"></i>
                         <i class="uil uil-trash-alt"></i>
                     </div>

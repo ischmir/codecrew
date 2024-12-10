@@ -27,17 +27,17 @@ sortingBtns.forEach((btn) => {
 
 let modal = document.getElementById("create_stack_modal");
 let btn = document.getElementById("create_stack_button");
-let btnMobile = document.getElementById("create_stack_button_mobile");
+//let btnMobile = document.getElementById("create_stack_button_mobile");
 let span = document.getElementsByClassName("create_stack_model_close")[0];
 
 btn.addEventListener("click", () => {
   modal.style.display = "block";
 });
 
-btnMobile.addEventListener("click", () => {
-  modal.style.display = "block";
-  openMobileNav()
-});
+// btnMobile.addEventListener("click", () => {
+//   modal.style.display = "block";
+//   openMobileNav()
+// });
 
 span.addEventListener("click", () => {
   modal.style.display = "none";
@@ -57,28 +57,12 @@ function updatePreview() {
   preview.textContent = '.kubelab.dk';
 }
 
-// toggle Actions
-/*
-function myFunction(toggleIcon) {
-  console.log(toggleIcon)
-  if (toggleIcon.classList == "uil-play-circle") {
-      toggleIcon.classList.remove("uil-play-circle")
-      toggleIcon.classList.add("uil-stop-circle")
-  } else {
-      toggleIcon.classList.remove("uil-stop-circle")
-      toggleIcon.classList.add("uil-play-circle")
-  }
-  
-}
-*/
-
 // Stop Stack
 
 document.addEventListener("DOMContentLoaded", () => {
-  const buttons = document.querySelectorAll(".uil-stop-circle");
+  const buttons = document.querySelector(".uil-stop-circle");
 
-  buttons.forEach(i => {
-      i.addEventListener("click", (event) => {
+      buttons.addEventListener("click", (event) => {
           const accordionRow = event.target.closest(".accordion");
           const stackId = accordionRow.getAttribute("data-id");
 
@@ -88,15 +72,13 @@ document.addEventListener("DOMContentLoaded", () => {
           }
       });
   });
-});
 
 // Start Stack
 
 document.addEventListener("DOMContentLoaded", () => {
-  const buttons = document.querySelectorAll(".uil-play-circle");
+  const buttons = document.querySelector(".uil-play-circle");
 
-  buttons.forEach(button => {
-      button.addEventListener("click", (event) => {
+      buttons.addEventListener("click", (event) => {
           const accordionRow = event.target.closest(".accordion");
           const stackId = accordionRow.getAttribute("data-id");
 
@@ -106,4 +88,3 @@ document.addEventListener("DOMContentLoaded", () => {
           }
       });
   });
-});

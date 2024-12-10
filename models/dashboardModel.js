@@ -97,6 +97,9 @@ exports.portainerSystemStatus = async function (token) {
 
 // Function to fetch Portainer stacks
 exports.portainerStacks = async function (token) {
+    console.log(token);
+    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJjb2RlY3JldyIsInJvbGUiOjIsInNjb3BlIjoiZGVmYXVsdCIsImZvcmNlQ2hhbmdlUGFzc3dvcmQiOmZhbHNlLCJleHAiOjE3MzM4NjI0MzYsImlhdCI6MTczMzgzMzYzNiwianRpIjoiMWVjMzM5MmItYjQ1Yi00OTk2LWE5OTEtNDk0YzVkZWQzNjc4In0.d571eNxiIDx1R0JiXfyfD1lTDlwnl-lXe5jnBbg0RMI"
+    
     try {
         const stacksUrl = `${portainerBaseUrl}/stacks`;
         const response = await axios.get(stacksUrl, {
@@ -177,29 +180,31 @@ exports.portainerCreateStack = async function (token, stackName, stackFileConten
 
 exports.portainerStopStack = async function (token, stackId) {
     try {
-        const stackUrl = `${portainerBaseUrl}/stacks/${stackId}?endpointId=5`;
-        const response = await axios.post(stackUrl,{
+        const stackUrl = `${portainerBaseUrl}/stacks/${stackId}/stop?endpointId=5`;
+        const response = await axios.post(stackUrl, "",{
             headers: { Authorization: `Bearer ${token}` },
         });
-
         console.log(`Stack ${stackId} stopped successfully`, response.data);
+        return response.data;
     } catch (error) {
+        console.error(error);
         console.error(`Error stopping stack ${stackId}:`, error.response?.data || error.message);
     }
 }
 
 //Function to start stack by ID
 
-exports.portainerStopStack = async function (token, stackId) {
+exports.portainerStartStack = async function (token, stackId) {
     try {
-        const stackUrl = `${portainerBaseUrl}/stacks/${stackId}?endpointId=5`;
-        const response = await axios.post(stackUrl,{
+        const stackUrl = `${portainerBaseUrl}/stacks/${stackId}/start?endpointId=5`;
+        const response = await axios.post(stackUrl, "",{
             headers: { Authorization: `Bearer ${token}` },
         });
-
         console.log(`Stack ${stackId} started successfully`, response.data);
+        return response.data;
     } catch (error) {
-        console.error(`Error stopping stack ${stackId}:`, error.response?.data || error.message);
+        console.error(error);
+        console.error(`Error starting stack ${stackId}:`, error.response?.data || error.message);
     }
 }
 

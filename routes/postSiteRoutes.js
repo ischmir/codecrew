@@ -11,5 +11,6 @@ module.exports = function(app) {
     app.post("/templateCreation", templateC.templateCreation);
     app.post("/deleteTemplate", templateC.deleteTemplate);
     app.post("/createStack", stackC.createStack);
-
+    app.post("/startStack", stackC.startStack);
+    app.post("/stopStack", stackC.stopStack);
 }

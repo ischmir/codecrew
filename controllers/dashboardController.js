@@ -3,16 +3,20 @@ const userM = require('../models/userModel');
 const templateM = require('../models/templateModel');
 const extraM = require("../models/extraModel");
 
+async function getJWT(userId) {
+	return await userM.getJWTfromUser(userId) || await dashboardM.portainerSystemAuth()  // last half shouldn't reaaaaly be there. but we dont have to login then
+} 
+
+
 exports.dashboard = async function (req, res) {
 	try {
 		if(!req.session.userDetails) {
 		     throw new Error("You are not logged in")
 		}
-		const jwt = await userM.getJWTfromUser(req.session.userDetails.userId) || await dashboardM.portainerSystemAuth(); // last half shouldn't reaaaaly be there. but we dont have to login then
 
 		let response;
 
-		const stacks = await dashboardM.portainerStacks(jwt);
+		const stacks = await dashboardM.portainerStacks(await getJWT(req.session.userDetails.userId));
 		
 		const allStacks = [];
 
@@ -64,10 +68,10 @@ exports.createStack = async function (req, res) {
 
 		const { stack_name, domain_name, chosen_template } = req.body; // get content from form
 		
-		const jwt = await userM.getJWTfromUser(req.session.userDetails.userId) // gets the logged in user's JWT
+		// const await getJWT() = await userM.getJWTfromUser(req.session.userDetails.userId) // gets the logged in user's JWT
 		const template = await templateM.replacePlaceholder(chosen_template, domain_name) // if the choosen template has "CHANGEME" and/or "SUBDOMAIN" it will be replaced with the subDomain and return the whole template.
 
-		//const result = await dashboardM.portainerCreateStack(jwt, stack_name, template); // comment, so we dont create a new stack, on the live server by accident.
+		//const result = await dashboardM.portainerCreateStack(await getJWT(req.session.userDetails.userId), stack_name, template); // comment, so we dont create a new stack, on the live server by accident.
 		console.log(result);
 		
 		if(result) {
@@ -87,7 +91,7 @@ exports.createStack = async function (req, res) {
 				author: `${req.session.userDetails.firstName} ${req.session.userDetails.lastName}`,
 				portainerId: result.Id,
 			}
-			await dashboardM.portainerDeleteStack(jwt, result.Id); // just if we want to delete the stack right after creation, so we dont flod the live server. we still get whatever we log.
+			await dashboardM.portainerDeleteStack(await getJWT(req.session.userDetails.userId), result.Id); // just if we want to delete the stack right after creation, so we dont flod the live server. we still get whatever we log.
 			await dashboardM.filterStackCall(saveToDb, saveToDb.userId); // save it to DB. runs twice??
 			console.log(saveToDb);	
 		}
@@ -98,3 +102,33 @@ exports.createStack = async function (req, res) {
 		res.redirect('/dashboard');
 	}
 };
+
+exports.stopStack = async function (req, res) {
+	try {
+		console.log("welp");
+		console.log(req.body);
+		
+		await dashboardM.portainerStartStack(await getJWT(req.session.userDetails.userId), req.body.stackId);
+		res.redirect('/dashboard');
+	}
+	
+	catch(error) {
+		console.warn("Dashboard : " + error);
+		res.redirect('/dashboard');
+	}
+}
+
+exports.startStack = async function (req, res) {
+	try {
+		console.log("welp");
+		console.log(req.body);
+		
+		await dashboardM.portainerStartStack(await getJWT(req.session.userDetails.userId), req.body.stackId);
+		res.redirect('/dashboard');
+	}
+	
+	catch(error) {
+		console.warn("Dashboard : " + error);
+		res.redirect('/dashboard');
+	}
+}
