@@ -379,7 +379,7 @@ form#create_stack_form {
 		align-items: flex-start;
 		margin: 0 auto;
 		width: 80%;
-		margin-top: 6em;
+		margin-top: 1em;
 		margin-bottom: 2em;
 		justify-content: flex-start;
 	}
