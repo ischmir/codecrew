@@ -32,12 +32,32 @@ app.use(session({
 // Middlewares
 app.use(express.static('public'));
 app.use(fetchHeaderUserDetails.userDetails);
-app.use(bodyParser.urlencoded({ extended: false })); // HEEKING... den SKAL være før routes.. den irreterede mig lidt :D (bruger den til at få data fra forms)
+app.use(bodyParser.urlencoded({ extended: false }));
 
 
+app.all('*', loginRequired);
+
+function loginRequired(req, res, next) {
+  // Exclude the `/login` route and other public routes as needed
+  const excludedPaths = ['/login', '/register']; // Add other routes to exclude if necessary
+  if (excludedPaths.includes(req.path)) {
+    return next(); // Skip the middleware for these paths
+  }
+  console.log(req.session.userDetails);
+  
+  // Check if the user is logged in
+  if (!req.session.userDetails) {
+    return res.redirect("/login");
+  }
+
+  // Continue to the next middleware or route
+  return next();
+};
 
 require('./routes/getSiteRoutes')(app); // GET routes
 require('./routes/postSiteRoutes')(app); // POST routes
+
+
 
 app.engine(
 	'hbs',
