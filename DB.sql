@@ -88,18 +88,76 @@ INSERT INTO Options (optionsName, optionValue, optionsLastUpdate) VALUES
 -- TEMPLATES
 INSERT INTO Templates (templateTitle, templateContent, templateCreationDate, templateLastUpdate)
 VALUES 
-    ('Server Configuration', 
-    'version: "3.8"\nservices:\n  web:\n    image: nginx\n    ports:\n      - "80:80"\n', 
-    '2024-10-29', 
-    '2024-10-29'),
-
-    ('Database Setup', 
-    'databases:\n  - name: mainDB\n    user: admin\n    password: pass123\n  - name: testDB\n    user: tester\n    password: test123\n', 
+    ('Nginx', 
+    'networks:
+  traefik-proxy:
+    external: true
+services:
+  test:
+    image: nginx:latest
+    networks:
+      - traefik-proxy
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.http.routers.CHANGEME.rule=Host(`SUBDOMAIN.kubelab.dk`)
+        - traefik.http.routers.CHANGEME.entrypoints=web,websecure
+        - traefik.http.routers.CHANGEME.tls.certresolver=letsencrypt
+        - traefik.http.services.CHANGEME.loadbalancer.server.port=80
+', 
     '2024-10-20', 
     '2024-10-25'),
 
-    ('Application Config', 
-    'app:\n  name: Kubelab\n  environment: production\n  logging:\n    level: info\n', 
+    ('Wordpress', 
+    'networks:
+  traefik-proxy:
+    external: true
+  wp-network:
+    driver: overlay
+services:
+  wordpress:
+    image: wordpress:latest
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: wppassword
+      WORDPRESS_DB_NAME: wpdatabase
+    networks:
+      - traefik-proxy
+      - wp-network
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.http.routers.CHANGEME01.rule=Host(`SUBDOMAIN01.kubelab.dk`)
+        - traefik.http.routers.CHANGEME01.entrypoints=web,websecure
+        - traefik.http.routers.CHANGEME01.tls.certresolver=letsencrypt
+        - traefik.http.services.CHANGEME01.loadbalancer.server.port=80
+  db:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: wpdatabase
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: wppassword
+    networks:
+      - wp-network
+  phpmyadmin:
+    image: phpmyadmin:latest
+    environment:
+      PMA_HOST: db
+      PMA_USER: wpuser
+      PMA_PASSWORD: wppassword
+    networks:
+      - traefik-proxy
+      - wp-network
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.http.routers.CHANGEME02.rule=Host(`SUBDOMAIN02.kubelab.dk`)
+        - traefik.http.routers.CHANGEME02.entrypoints=web,websecure
+        - traefik.http.routers.CHANGEME02.tls.certresolver=letsencrypt
+        - traefik.http.services.CHANGEME02.loadbalancer.server.port=80
+', 
     '2024-10-10', 
     '2024-10-15');
 
