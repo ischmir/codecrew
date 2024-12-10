@@ -57,7 +57,7 @@ exports.templateCreation = async function (req, res) {
         }
 
         content = String(content).replace(/,\s*$/gm, '');   // removes the trailing comma
-        yaml.load(content) // validating yaml content
+        //yaml.load(content) // validating yaml content
     
         const result = await templateM.templateCreation(title, content);
     
