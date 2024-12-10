@@ -65,7 +65,7 @@
             </div>
         </div>
         {{#each stack}}
-            <button class="accordion">
+            <button class="accordion" data-id="{{id}}">
                 <span class="stack_info_name">{{name}}</span>
                 <span class="stack_info_author">{{author}}</span>
                 <span class="stack_info_creation_date">{{creationDate}}</span>
@@ -82,7 +82,7 @@
                     <p class="panel_info_last_active">Last Active: {{lastActive}}</p>
                     <p class="panel_info_creation_date_mobile">Creation Date:{{creationDate}}</p>
                     <div class="stack_actions">
-                        <i onclick="myFunction(this)" class="uil-play-circle"></i>
+                        <i onclick="myFunction(this)" class={{#if status}}"uil-stop-circle"{{else}}"uil-play-circle"{{/if}}></i>
                         <i class="uil-redo"></i>
                         <i class="uil uil-trash-alt"></i>
                     </div>
@@ -100,6 +100,7 @@
     //console.log(pData)
     //let fName = '{{userDetails.firstName}}' + ' ' + 'Hinsch'
 </script>
+<<<<<<< Updated upstream
 <script defer="" type="text/javascript" src="/script/dashboard.js"></script>
 <!--
 {{#if ifEven}}
@@ -109,3 +110,6 @@
         {{/if}}
             <div class="stack_accordion_panel">
             -->
+=======
+<script defer type="text/javascript" src="/script/dashboard.js"></script>
+>>>>>>> Stashed changes

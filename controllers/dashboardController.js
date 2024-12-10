@@ -31,10 +31,17 @@ exports.dashboard = async function (req, res) {
 				subDomain: 'ehhh, brain no work',
 				lastActive: extraM.convertingDateFormat(new Date()),
 				author: 'welp', // firstname lastname function based on userId
+				portainerStackId: stacks[i].Id
 			});
 		}
 
+<<<<<<< Updated upstream
 		await dashboardM.filterStackCall(allStacks);
+=======
+
+		//console.log(await dashboardM.filterStackCall(reeeeee));
+		await dashboardM.filterStackCall(reeeeee);
+>>>>>>> Stashed changes
 
 		const allTemplates = await templateM.getAllTemplatesIdAndTitle();			
 		response = {
@@ -64,9 +71,9 @@ exports.createStack = async function (req, res) {
 		const { stack_name, domain_name, chosen_template } = req.body; // get content from form
 		
 		const jwt = await userM.getJWTfromUser(req.session.userDetails.userId) // gets the logged in user's JWT
-		const template = await templateM.replacePlaceholder(chosen_template, domain_name) // if the choosen template has "CHANGEME" and/or "SUBDOMAIN" it will be replace with the subDomain and return the whole template.
+		const template = await templateM.replacePlaceholder(chosen_template, domain_name) // if the choosen template has "CHANGEME" and/or "SUBDOMAIN" it will be replaced with the subDomain and return the whole template.
 
-		//const result = await dashboardM.portainerCreateStack(jwt, stack_name, template); // comment, so we dont create a new stack, on the live server by accident. 
+		//const result = await dashboardM.portainerCreateStack(jwt, stack_name, template); // comment, so we dont create a new stack, on the live server by accident.
 		console.log(result);
 		
 		if(result) {

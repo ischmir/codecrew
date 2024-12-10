@@ -14,19 +14,6 @@ for (i = 0; i < acc.length; i++) {
   });
 }
 
-// toggle Actions
-
-function myFunction(toggleIcon) {
-  console.log(toggleIcon)
-  if (toggleIcon.classList == "uil-play-circle") {
-      toggleIcon.classList.remove("uil-play-circle")
-      toggleIcon.classList.add("uil-stop-circle")
-  } else {
-      toggleIcon.classList.remove("uil-stop-circle")
-      toggleIcon.classList.add("uil-play-circle")
-  }
-  
-}
 /*on click show stacks where author equals userName*/
 
 const sortingBtns = document.querySelectorAll(".sort");
@@ -69,3 +56,54 @@ function updatePreview() {
   const inputValue = inputField.value.trim();
   preview.textContent = '.kubelab.dk';
 }
+
+// toggle Actions
+/*
+function myFunction(toggleIcon) {
+  console.log(toggleIcon)
+  if (toggleIcon.classList == "uil-play-circle") {
+      toggleIcon.classList.remove("uil-play-circle")
+      toggleIcon.classList.add("uil-stop-circle")
+  } else {
+      toggleIcon.classList.remove("uil-stop-circle")
+      toggleIcon.classList.add("uil-play-circle")
+  }
+  
+}
+*/
+
+// Stop Stack
+
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".uil-stop-circle");
+
+  buttons.forEach(i => {
+      i.addEventListener("click", (event) => {
+          const accordionRow = event.target.closest(".accordion");
+          const stackId = accordionRow.getAttribute("data-id");
+
+          if (stackId) {
+              console.log(`Stopping stack with ID: ${stackId}`);
+              stopStack(stackId);
+          }
+      });
+  });
+});
+
+// Start Stack
+
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".uil-play-circle");
+
+  buttons.forEach(button => {
+      button.addEventListener("click", (event) => {
+          const accordionRow = event.target.closest(".accordion");
+          const stackId = accordionRow.getAttribute("data-id");
+
+          if (stackId) {
+              console.log(`Starting stack with ID: ${stackId}`);
+              stopStack(stackId);
+          }
+      });
+  });
+});

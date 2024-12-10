@@ -7,7 +7,7 @@ exports.mockData = async function() {
         stack: [
             {
                 id: 0,
-                name: "sandra-nginx",
+                name: "test-sandra-nginx",
                 author: "Sandra Storm",
                 creationDate: "29.10.2024",
                 status: 1,
@@ -18,7 +18,7 @@ exports.mockData = async function() {
             },
             {
                 id: 1,
-                name: "timm-nginx",
+                name: "test-timm-nginx",
                 author: "Timm Hinsch",
                 creationDate: "20.10.2024",
                 status: 0,
@@ -29,7 +29,7 @@ exports.mockData = async function() {
             },
             {
                 id: 3,
-                name: "timm-nginx",
+                name: "test-timm-nginx",
                 author: "Timm Hinsch",
                 creationDate: "20.10.2024",
                 status: 0,
@@ -170,6 +170,36 @@ exports.portainerCreateStack = async function (token, stackName, stackFileConten
 
     } catch (error) {
         console.error(`Error creating stack "${stackName}":`, error.message);
+    }
+}
+
+//Function to stop stack by ID
+
+exports.portainerStopStack = async function (token, stackId) {
+    try {
+        const stackUrl = `${portainerBaseUrl}/stacks/${stackId}?endpointId=5`;
+        const response = await axios.post(stackUrl,{
+            headers: { Authorization: `Bearer ${token}` },
+        });
+
+        console.log(`Stack ${stackId} stopped successfully`, response.data);
+    } catch (error) {
+        console.error(`Error stopping stack ${stackId}:`, error.response?.data || error.message);
+    }
+}
+
+//Function to start stack by ID
+
+exports.portainerStopStack = async function (token, stackId) {
+    try {
+        const stackUrl = `${portainerBaseUrl}/stacks/${stackId}?endpointId=5`;
+        const response = await axios.post(stackUrl,{
+            headers: { Authorization: `Bearer ${token}` },
+        });
+
+        console.log(`Stack ${stackId} started successfully`, response.data);
+    } catch (error) {
+        console.error(`Error stopping stack ${stackId}:`, error.response?.data || error.message);
     }
 }
 
