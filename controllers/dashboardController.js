@@ -35,13 +35,7 @@ exports.dashboard = async function (req, res) {
 			});
 		}
 
-<<<<<<< Updated upstream
 		await dashboardM.filterStackCall(allStacks);
-=======
-
-		//console.log(await dashboardM.filterStackCall(reeeeee));
-		await dashboardM.filterStackCall(reeeeee);
->>>>>>> Stashed changes
 
 		const allTemplates = await templateM.getAllTemplatesIdAndTitle();			
 		response = {
