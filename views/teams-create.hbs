@@ -9,35 +9,42 @@
   <div class="team-container container">
     <!-- Venstre Sektion -->
     <div class="team-setup">
-      <h2>Create team or edit existing team</h2>
+      <h2>Create team</h2>
 
       <!-- Tabs til Create og Edit -->
       <div class="tabs">
-        <button class="tab active">Create team</button>
-        <button class="tab">Edit existing team</button>
+        <a class="tab active">Create team</a>
+           <a href="/teams-edit" class="tab"> Edit existing team</a>
       </div>
       
 	  </div>
+
+
     <div class="teamContainer">
+      <form action="/createTeam" class="" method="post"> 
 		 <!-- Team name imput-->
-        <select id="add-name">
-          <option value="0">Team name</option>
-          <option value="1">Team 1</option>
-          <option value="2">Team 2</option>
-          <option value="3">Team 3</option>
-        </select>
-<div class="teamContainer">   <label for="description">Description</label>
-        <textarea id="description" rows="3" placeholder="Enter team description" class="">
+
+				<div class="input_container">
+						<div class="entryarea">
+						<input type="text" name="name" class="inputtext" required>
+						<div class="labelline">Team name</div>
+					</div>
+				</div>
+
+<div class="teamContainer">   
+  <label for="description">Description</label>
+        <textarea id="description" rows="3" placeholder="Enter team description" name="description" class="">
         </textarea></div>
      
-<div class="TeamContainer">
+<div class="teamContainer">
    <label for="expiration" >Expiration date</label>
-        <input type="date" class="input_group date" id="expiration" />
+        <input type="date" name="expire" class="input_group date" id="expiration" />
 </div>
        
 
         <button type="submit" class="create-button button">Create team
         </button>
+        </form>
 	  </div>
  
 
