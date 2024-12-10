@@ -1,0 +1,47 @@
+
+	<link rel="stylesheet" href="css/teams.css" />
+<script src="/script/teams-create.js" defer></script>
+
+{{> nav}}
+<main class="main_settings">
+	{{> header}}
+  
+  <div class="team-container container">
+    <!-- Venstre Sektion -->
+    <div class="team-setup">
+      <h2>Create team or edit existing team</h2>
+
+      <!-- Tabs til Create og Edit -->
+      <div class="tabs">
+        <button class="tab active">Create team</button>
+        <button class="tab">Edit existing team</button>
+      </div>
+      
+	  </div>
+    <div class="teamContainer">
+		 <!-- Team name imput-->
+        <select id="add-name">
+          <option value="0">Team name</option>
+          <option value="1">Team 1</option>
+          <option value="2">Team 2</option>
+          <option value="3">Team 3</option>
+        </select>
+<div class="teamContainer">   <label for="description">Description</label>
+        <textarea id="description" rows="3" placeholder="Enter team description" class="">
+        </textarea></div>
+     
+<div class="TeamContainer">
+   <label for="expiration" >Expiration date</label>
+        <input type="date" class="input_group date" id="expiration" />
+</div>
+       
+
+        <button type="submit" class="create-button button">Create team
+        </button>
+	  </div>
+ 
+
+
+    </div>
+  </div>
+</main>

@@ -3,6 +3,14 @@
 	justify-content: space-between;
 	gap: 2rem;
 	margin: 2rem 0;
+	flex-direction: column;
+}
+.TeamContainer {
+	display: flex;
+	flex-direction: column;
+}
+
+.date {
 }
 
 .team-setup,
@@ -24,21 +32,34 @@
 	padding: 14px 20px;
 	margin: 8px 0;
 	border: none;
+	flex: 1;
 	cursor: pointer;
 	width: 100%;
 	font-family: var(--primary-font-family);
-	border-radius: var(--primary-square-button-border-radius);
+	/* border-radius: var(--primary-square-button-border-radius); */
+	border-radius: 0;
 	cursor: pointer;
 	transition: all 0.3s ease;
 }
+.tab:first-child {
+	border-radius: 50px 0 0 50px; /* Rounded left side */
+}
+
+.tab:last-child {
+	border-radius: 0 50px 50px 0; /* Rounded right side */
+}
 
 .tab.active {
-	background-color: var(--primary-darkmode-button-color);
+	/* background-color: var(--primary-darkmode-button-color); */
 	color: var(--primary-darkmode-font-color);
 	background-image: var(--primary-gradient-background-image);
 }
 .tab:hover {
 	background-color: var(--primary-link-color);
+}
+
+label {
+	color: var(--primary-darkmode-inactive-font-color);
 }
 
 /* .select {
@@ -63,6 +84,18 @@ textarea {
 	margin-bottom: 1rem;
 	box-sizing: border-box;
 }
+
+.input_group.date::-webkit-calendar-picker-indicator {
+	filter: invert(1); /* Gør ikonet hvidt */
+	cursor: pointer; /* Ændrer musen til en pointer */
+}
+
+/* Tilføj dette for bedre fokusindikation */
+.input_group.date:focus {
+	outline: none;
+	border-color: var(--primary-link-color); /* Fokusfarve */
+}
+
 .button {
 	margin: 8px 0px;
 }
@@ -84,10 +117,4 @@ textarea {
 	color: var(--primary-darkmode-font-color);
 	border-radius: 4px;
 	margin-bottom: 0.5rem;
-}
-
-@media only screen and (max-width: 600px) {
-	.team-container {
-		flex-direction: column;
-	}
 }
