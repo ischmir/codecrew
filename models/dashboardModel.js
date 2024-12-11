@@ -1,4 +1,7 @@
 const db = require("../config/db");
+
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'; // gør vi pt kan tilgå portainer. ved at slå sikkerhed fra
+
 // Import the Axios library for making HTTP requests
 const axios = require('axios'); 
 exports.mockData = async function() {   
@@ -104,13 +107,6 @@ exports.portainerStacks = async function (token) {
         });
         //console.log("Portainer Stacks:", response.data);
 
-
-
-        // find hvad vi skal bruge og læg lortet i en array
-        // gem lortet i db 
-        // return den filteret array
-        // win
-
         return response.data;
     } catch (error) {        
         console.error("Error fetching Portainer stacks:", error.message);
@@ -118,20 +114,11 @@ exports.portainerStacks = async function (token) {
     }
 }
 
-exports.addNewStackToDB = async function(res) { // rename should happen
-    let data = {
-        
-        res
-    };
-
-    // data.res.creationDate = new Date(data.res.creationDate * 1000);
-    // data.res.lastUpdate = data.res.lastUpdate == 0 ? data.res.creationDate : new Date(data.res.lastUpdate * 1000);
-     // why sql error (ncorrect datetime value: '56858-07-16 07:03:20.000' for column 'stackCreationDate' at row 2)
-     // but it executes the query correctly 
-    await db.query("INSERT INTO Stacks (subDomain, FK_templateId, FK_userId, stackName, stackCreationDate, stackLastUpdate, stackLastActive) VALUES (?,(SELECT templateId FROM Templates WHERE templateTitle = 'welp'),?,?,?,?,?)", 
-        [data.res.subDomain/*, data.res.template*/, res.userId, data.res.name, data.res.creationDate, data.res.lastUpdate, data.lastActive]
+exports.addNewStackToDB = async function(res) {
+    const [rows] = await db.execute("INSERT INTO Stacks (subDomain, FK_templateId, FK_userId, stackName, stackCreationDate, stackLastUpdate, stackLastActive, portainerStackId) VALUES (?,(SELECT templateId FROM Templates WHERE templateTitle = 'welp'),?,?,?,?,?,?)", 
+        [res.subDomain/*, res.template*/, res.userId, res.name, res.creationDate, res.lastUpdate, res.lastActive, res.portainerStackId]
     )
-    return data;
+    return rows;
 }
 // Function to fetch Portainer endpoints
 exports.portainerEndpoints = async function (token) {
@@ -240,4 +227,13 @@ exports.amountOfStacksByUser = async function (userId) {
         
     }
 }
-exports.getAllStacksFromDB
+exports.getAllStacksFromDB = async function () {
+    try {
+        const [rows] = await db.query("SELECT * FROM Stacks;")
+
+        return rows;
+    } catch (error) {
+        console.log("error getting all stacks: " +error);
+        
+    }
+}

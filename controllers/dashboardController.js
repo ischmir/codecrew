@@ -17,12 +17,41 @@ exports.dashboard = async function (req, res) {
 		let response;
 
 		const stacks = await dashboardM.portainerStacks(await getJWT(req.session.userDetails.userId));
-		
-		const allStacks = [];
+		const allStacksDB = await dashboardM.getAllStacksFromDB();
+		const allStacks = [];		
 
+		// for (let i = 0; i < stacks.length; i++) { // for getting data from portainer to the db. but we cant get info on some things, so we have dummy there, only use it for catch up.
+		// 	const stack = stacks[i];
+			
+		// 	if(!allStacksDB.some(k => k.portainerStackId == stack.Id)) { // check if the db is missing a stack. 
+		// 		const newStack = {
+		// 			userId: req.session.userDetails.userId || 8, // dummy
+		// 			name: stack.Name,
+		// 			status: stack.Status === 1,
+		// 			creationDate: new Date(stack.CreationDate * 1000),
+		// 			lastUpdate:
+		// 				stack.UpdateDate == 0
+		// 					? new Date(stack.CreationDate * 1000)
+		// 					: new Date(stack.UpdateDate * 1000),
+		// 			createdBy: stack.CreatedBy,
+		// 			template: stack.EntryPoint,
+		// 			subDomain: 'ehhh, brain no work', // dummy
+		// 			lastActive: new Date(), 
+		// 			author: 'welp', // dummy
+		// 			portainerStackId: stack.Id,
+		// 		}
+				
+		// 		await dashboardM.addNewStackToDB(newStack, req.session.userDetails.userId); 
+		// 	}
+		// }
+
+		
 		for (let i = 0; i < stacks.length; i++) {
+			let findDBstack = allStacksDB.find((k) => k.portainerStackId == stacks[i].Id)
+			let fullName = await userM.getNameOfUserById(findDBstack.FK_userId)
+			
 			allStacks.push({
-				userId: req.session.userDetails.userId || 8,
+				userId: findDBstack.FK_userId,
 				name: stacks[i].Name,
 				status: stacks[i].Status === 1,
 				creationDate: extraM.convertingDateFormat(stacks[i].CreationDate * 1000),
@@ -32,14 +61,14 @@ exports.dashboard = async function (req, res) {
 						: extraM.convertingDateFormat(stacks[i].UpdateDate * 1000),
 				createdBy: stacks[i].CreatedBy,
 				template: stacks[i].EntryPoint,
-				subDomain: 'ehhh, brain no work',
+				subDomain: findDBstack.subDomain,
 				lastActive: extraM.convertingDateFormat(new Date()),
-				author: 'welp', // firstname lastname function based on userId
+				author: fullName.firstName + " " + fullName.lastName, // firstname lastname function based on userId
 				portainerStackId: stacks[i].Id,
-				isCreator: true // should be an if statement with (req.session.userDetails.userId == FK_userId) from the Stacks table
+				isCreator: req.session.userDetails.userId == findDBstack.FK_userId // should be an if statement with (req.session.userDetails.userId == FK_userId) from the Stacks table
 			});
 		}
-
+		
 		const allTemplates = await templateM.getAllTemplatesIdAndTitle();			
 		response = {
 			stack: allStacks,
@@ -67,7 +96,6 @@ exports.createStack = async function (req, res) {
 
 		const { stack_name, domain_name, chosen_template } = req.body; // get content from form
 		
-		// const await getJWT() = await userM.getJWTfromUser(req.session.userDetails.userId) // gets the logged in user's JWT
 		const template = await templateM.replacePlaceholder(chosen_template, domain_name) // if the choosen template has "CHANGEME" and/or "SUBDOMAIN" it will be replaced with the subDomain and return the whole template.
 
 		//const result = await dashboardM.portainerCreateStack(await getJWT(req.session.userDetails.userId), stack_name, template); // comment, so we dont create a new stack, on the live server by accident.

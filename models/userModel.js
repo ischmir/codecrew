@@ -44,6 +44,19 @@ exports.getSingelUserByIdWithAllData = async function (userId) {
     return rows;
 }
 
+exports.getNameOfUserById = async function (userId) {
+    const [rows, fields] = await db.query(`
+        SELECT    
+            firstName, 
+            lastName 
+        FROM Users
+        WHERE Users.UserId = ?
+        `, 
+        [userId])
+
+    return rows[0];
+}
+
 exports.getSingelUserByEmailWithAllData = async function (userEmail) {
     const [rows, fields] = await db.query(`
             SELECT
