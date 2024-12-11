@@ -109,7 +109,7 @@ exports.stopStack = async function (req, res) {
 		console.log("welp");
 		console.log(req.body);
 		
-		await dashboardM.portainerStartStack(await getJWT(req.session.userDetails.userId), req.body.stackId);
+		await dashboardM.portainerStopStack(await getJWT(req.session.userDetails.userId), req.body.stackId);
 		res.redirect('/dashboard');
 	}
 	

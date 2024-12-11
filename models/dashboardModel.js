@@ -55,11 +55,12 @@ const credentials = {
 	password: 'Ladida.12',
 };
 
-const agent = new https.Agent({
-	rejectUnauthorized: false,
-});
+
 async function portainerCall(endpoint, body, token) {
 	//! Remove me after portainer is working again
+    const agent = new https.Agent({
+        rejectUnauthorized: false,
+    });
 
 	const config = {
 		httpsAgent: agent,
