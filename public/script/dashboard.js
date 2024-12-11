@@ -62,29 +62,48 @@ function updatePreview() {
 document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelector(".uil-stop-circle");
 
-      buttons.addEventListener("click", (event) => {
-          const accordionRow = event.target.closest(".accordion");
-          const stackId = accordionRow.getAttribute("data-id");
+  buttons.addEventListener("click", (event) => {
+    const accordionRow = event.target.closest(".accordion");
+    const stackId = accordionRow.getAttribute("data-id");
 
-          if (stackId) {
-              console.log(`Stopping stack with ID: ${stackId}`);
-              stopStack(stackId);
-          }
-      });
+    if (stackId) {
+      console.log(`Stopping stack with ID: ${stackId}`);
+      stopStack(stackId);
+    }
   });
+});
 
 // Start Stack
 
 document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelector(".uil-play-circle");
 
-      buttons.addEventListener("click", (event) => {
-          const accordionRow = event.target.closest(".accordion");
-          const stackId = accordionRow.getAttribute("data-id");
+  buttons.addEventListener("click", (event) => {
+      const accordionRow = event.target.closest(".accordion");
+      const stackId = accordionRow.getAttribute("data-id");
 
-          if (stackId) {
-              console.log(`Starting stack with ID: ${stackId}`);
-              stopStack(stackId);
-          }
-      });
+      if (stackId) {
+          console.log(`Starting stack with ID: ${stackId}`);
+          stopStack(stackId);
+      }
   });
+});
+
+  // Restart Stack
+
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelector(".uil-redo");
+
+  buttons.addEventListener("click", (event) => {
+      const accordionRow = event.target.closest(".accordion");
+      const stackId = accordionRow.getAttribute("data-id");
+
+      if (stackId) {
+          console.log(`Stopping stack with ID: ${stackId}`);
+          stopStack(stackId);
+      } else if (stackId) {
+        console.log(`starting stack with ID: ${stackId}`);
+        startStack(stackId);
+      }
+  });
+});

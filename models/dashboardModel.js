@@ -206,6 +206,36 @@ exports.portainerStartStack = async function (token, stackId) {
     }
 }
 
+//Function to restart stack by ID
+
+exports.portainerRestartStack = async function (token, stackId) {
+    try {
+        const stackUrl = `${portainerBaseUrl}/stacks/${stackId}/stop?endpointId=5`;
+        const response = await axios.post(stackUrl, "",{
+            headers: { Authorization: `Bearer ${token}` },
+        });
+        console.log(`Stack ${stackId} stopped successfully`, response.data);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        console.error(`Error stopping stack ${stackId}:`, error.response?.data || error.message);
+    }
+
+    try {
+        const stackUrl = `${portainerBaseUrl}/stacks/${stackId}/start?endpointId=5`;
+        const response = await axios.post(stackUrl, "",{
+            headers: { Authorization: `Bearer ${token}` },
+        });
+        console.log(`Stack ${stackId} started successfully`, response.data);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        console.error(`Error starting stack ${stackId}:`, error.response?.data || error.message);
+    }
+
+}
+
+
 // Function to delete a stack by ID
 exports.portainerDeleteStack = async function (token, stackId) {
     try {
