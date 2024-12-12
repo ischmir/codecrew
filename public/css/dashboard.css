@@ -52,6 +52,10 @@
 	font-family: verdana;
 	text-decoration: none;
 }
+button.sort {
+	background-color: transparent;
+	border: none;
+}
 #sorting {
 	display: flex;
 	justify-content: space-around;

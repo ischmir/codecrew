@@ -12,7 +12,11 @@
         <div class="sort_section">
             <div id="sorting">
                 <a id="sort_my_projects" class="sort highlight">My Projects</a>
-                <a id="sort_other_projects" class="sort">Others' Projects</a>
+                {{#if isSuperAdmin}} <!-- this is ass -->
+                <form action="/othersStacks" method="post">
+                    <button type="submit" id="sort_other_projects" class="sort">Others' Projects</button>
+                </form>
+                {{/if}}
             </div>
             <div>
                 <button id="create_stack_button" class="create_button">Create New Project</button>
@@ -65,7 +69,10 @@
             </div>
         </div>
         {{#each stack}}
-            {{#if isCreator}}
+            <div id="ifTesto"></div>
+            <script>
+                document.getElementById("ifTesto").innerHTML = "{{#if isCreator}}"
+            </script>
                 <button class="accordion">
                     <span class="stack_info_name">{{name}}</span>
                     <span class="stack_info_author">{{author}}</span>
@@ -106,6 +113,7 @@
 </main>
 
 <script>
+    
     //let data = {{{datas}}}
     //console.log(data)
     //let pData = JSON.parse({{{stack}}});

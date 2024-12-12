@@ -63,18 +63,19 @@ exports.dashboard = async function (req, res) {
 				template: stacks[i].EntryPoint,
 				subDomain: findDBstack.subDomain,
 				lastActive: extraM.convertingDateFormat(new Date()),
-				author: fullName.firstName + " " + fullName.lastName, // firstname lastname function based on userId
+				author: fullName.firstName + " " + fullName.lastName,
 				portainerStackId: stacks[i].Id,
-				isCreator: req.session.userDetails.userId == findDBstack.FK_userId // should be an if statement with (req.session.userDetails.userId == FK_userId) from the Stacks table
+				isCreator: req.session.userDetails.userId == findDBstack.FK_userId 
 			});
 		}
 		
-		const allTemplates = await templateM.getAllTemplatesIdAndTitle();			
+		const allTemplates = await templateM.getAllTemplatesIdAndTitle();					
 		response = {
 			stack: allStacks,
 			templates: allTemplates,
             title: "Dashboard",
-			isNewStackAllowed: req.session.userDetails.isNewStackAllowed
+			isNewStackAllowed: req.session.userDetails.isNewStackAllowed,
+			isSuperAdmin: req.session.userDetails.accessLevel == "superAdmin"
 		};
 
 		res.render('dashboard', response);
