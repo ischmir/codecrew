@@ -139,18 +139,12 @@ exports.startStack = async function (req, res) {
 
 exports.restartStack = async function (req, res) {
 	try {
-		console.log("welp");
-		console.log(re.body);
-
-		await dashboardM.portainerStopStack(await getJWT(req.session.userDetails.userId), req.body.stackId);
-		console.error("error stopping stack");
-		
-		await dashboardM.portainerStartStack(await getJWT(req.session.userDetails.userId), req.body.stackId);
-		console.error("error starting stack");
+		await dashboardM.portainerRestartStack(await getJWT(req.session.userDetails.userId), req.body.stackId);
 	}
 
 	catch(error) {
 		console.warn("Dashboard : " + error);
-		res.redirect('/dashboard');
 	}
+
+	res.redirect('/dashboard');
 }

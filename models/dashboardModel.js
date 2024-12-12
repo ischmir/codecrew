@@ -55,12 +55,11 @@ const credentials = {
 	password: 'Ladida.12',
 };
 
-
 async function portainerCall(endpoint, body, token) {
 	//! Remove me after portainer is working again
-    const agent = new https.Agent({
-        rejectUnauthorized: false,
-    });
+	const agent = new https.Agent({
+		rejectUnauthorized: false,
+	});
 
 	const config = {
 		httpsAgent: agent,
@@ -201,7 +200,7 @@ exports.portainerCreateStack = async function (token, stackName, stackFileConten
 
 //Function to stop stack by ID
 
-exports.portainerStopStack = async function (token, stackId) {
+async function portainerStopStack(token, stackId) {
 	try {
 		const stackUrl = `stacks/${stackId}/stop?endpointId=5`;
 		const response = await portainerCall(stackUrl, '', token);
@@ -211,11 +210,12 @@ exports.portainerStopStack = async function (token, stackId) {
 		console.error(error);
 		console.error(`Error stopping stack ${stackId}:`, error.response?.data || error.message);
 	}
-};
+}
+exports.portainerStopStack = portainerStopStack;
 
 //Function to start stack by ID
 
-exports.portainerStartStack = async function (token, stackId) {
+async function portainerStartStack(token, stackId) {
 	try {
 		const stackUrl = `stacks/${stackId}/start?endpointId=5`;
 		const response = await portainerCall(stackUrl, '', token);
@@ -225,30 +225,15 @@ exports.portainerStartStack = async function (token, stackId) {
 		console.error(error);
 		console.error(`Error starting stack ${stackId}:`, error.response?.data || error.message);
 	}
-};
+}
+exports.portainerStartStack = portainerStartStack;
 
 //Function to restart stack by ID
 
 exports.portainerRestartStack = async function (token, stackId) {
-	try {
-		const stackUrl = `stacks/${stackId}/stop?endpointId=5`;
-		const response = await portainerCall(stackUrl, '', token);
-		console.log(`Stack ${stackId} stopped successfully`, response.data);
-		return response.data;
-	} catch (error) {
-		console.error(error);
-		console.error(`Error stopping stack ${stackId}:`, error.response?.data || error.message);
-	}
+	await portainerStopStack(token, stackId);
 
-	try {
-		const stackUrl = `stacks/${stackId}/start?endpointId=5`;
-		const response = await portainerCall(stackUrl, '', token);
-		console.log(`Stack ${stackId} started successfully`, response.data);
-		return response.data;
-	} catch (error) {
-		console.error(error);
-		console.error(`Error starting stack ${stackId}:`, error.response?.data || error.message);
-	}
+	await portainerStartStack(token, stackId);
 };
 
 // Function to delete a stack by ID
