@@ -14,5 +14,6 @@ module.exports = function (app) {
 	app.post('/createStack', stackC.createStack);
 	app.post('/startStack', stackC.startStack);
 	app.post('/stopStack', stackC.stopStack);
+    app.post('/restartStack', stackC.restartStack);
 	app.post('/createTeam', teamController.postNewTeam);
 };

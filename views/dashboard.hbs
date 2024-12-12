@@ -5,7 +5,10 @@
     {{> header}}
     
     <div class="search">
-        <input class="search_bar" type="text" placeholder="search"></input>
+        <div class="entryarea">
+			<input type="text" class="search_bar" required>
+			<div class="labelline">Search</div>
+		</div>
         <button class="search_button">Search</button>
     </div>
     <div class="stack_sorting">
@@ -98,11 +101,11 @@
                             {{else}}
                             <form action="/startStack" method="post">
                                 <input type="hidden" name="stackId" value="{{portainerStackId}}">
-                                <button type="submit"> <i class="uil-play-circle"></i></button>
+                                <button class="actions_button" type="submit"> <i class="uil-play-circle"></i></button>
                             </form>
                             {{/if}}
-                            <i class="uil-redo"></i>
-                            <i class="uil uil-trash-alt"></i>
+                            <button class="actions_button"><i class="uil-redo"></i></button>
+                            <button class="actions_button"><i class="uil uil-trash-alt"></i></button>
                         </div>
                     </div>
                     
