@@ -98,13 +98,16 @@
                                 <input type="hidden" name="stackId" value="{{portainerStackId}}">
                                 <button type="submit"> <i class="uil-stop-circle"></i></button>
                             </form>
+                            <form action="/restartStack" method="post">
+                                <input type="hidden" name="stackId" value="{{portainerStackId}}">
+                                <button class="actions_button" type="submit"> <i class="uil-redo"></i></button>
+                            </form>
                             {{else}}
                             <form action="/startStack" method="post">
                                 <input type="hidden" name="stackId" value="{{portainerStackId}}">
                                 <button class="actions_button" type="submit"> <i class="uil-play-circle"></i></button>
                             </form>
                             {{/if}}
-                            <button class="actions_button"><i class="uil-redo"></i></button>
                             <button class="actions_button"><i class="uil uil-trash-alt"></i></button>
                         </div>
                     </div>
