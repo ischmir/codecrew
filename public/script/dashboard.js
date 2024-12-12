@@ -107,3 +107,20 @@ document.addEventListener("DOMContentLoaded", () => {
       }
   });
 });
+
+// dynamic search input
+document.querySelector('#searchInput').addEventListener('input', function (event) {
+  const searchTerm = event.target.value.toLowerCase();
+  const listItems = document.querySelectorAll('.accordion');
+
+      listItems.forEach(function (item) {
+          const nameElement = item.querySelector('.stack_info_name');
+          const itemText = nameElement.textContent.toLowerCase();
+
+          if (itemText.includes(searchTerm)) {
+              item.style.display = 'grid';
+          } else {
+              item.style.display = 'none';
+          }
+      });
+  });

@@ -83,7 +83,7 @@ async function portainerCall(endpoint, body, token) {
 exports.portainerSystemAuth = async function () {
 	try {
 		const response = await portainerCall('auth', credentials);
-		console.log('Authentication successful.', response);
+		console.log('Authentication successful.', response.data);
 		return response.data.jwt;
 	} catch (error) {
 		console.error('Error authenticating:', error.message);

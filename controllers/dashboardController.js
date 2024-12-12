@@ -130,15 +130,13 @@ exports.createStack = async function (req, res) {
 		res.redirect('/dashboard');
 	}
 };
-
 // Stop Stack
-
 exports.stopStack = async function (req, res) {
 	try {
 		console.log("welp");
 		console.log(req.body);
 		
-		await dashboardM.portainerStopStack(await getJWT(req.session.userDetails.userId), req.body.stackId);
+		await dashboardM.portainerStartStack(await getJWT(req.session.userDetails.userId), req.body.stackId);
 		res.redirect('/dashboard');
 	}
 	
@@ -147,9 +145,7 @@ exports.stopStack = async function (req, res) {
 		res.redirect('/dashboard');
 	}
 }
-
 // Start Stack
-
 exports.startStack = async function (req, res) {
 	try {
 		console.log("welp");
