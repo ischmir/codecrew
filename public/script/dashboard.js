@@ -77,16 +77,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelector(".uil-play-circle");
+  if(buttons) {
+    buttons.addEventListener("click", (event) => {
+        const accordionRow = event.target.closest(".accordion");
+        const stackId = accordionRow.getAttribute("data-id");
 
-  buttons.addEventListener("click", (event) => {
-      const accordionRow = event.target.closest(".accordion");
-      const stackId = accordionRow.getAttribute("data-id");
-
-      if (stackId) {
-          console.log(`Starting stack with ID: ${stackId}`);
-          stopStack(stackId);
-      }
-  });
+        if (stackId) {
+            console.log(`Starting stack with ID: ${stackId}`);
+            stopStack(stackId);
+        }
+    });
+  }
 });
 
   // Restart Stack
@@ -124,3 +125,81 @@ document.querySelector('#searchInput').addEventListener('input', function (event
           }
       });
   });
+
+//////////////////////
+// sorting 
+
+const accordionsArray = Array.from(document.querySelectorAll(".accordion"));
+let isNameAscending = true; // which order asc/desc. stack name
+let isAuthorAscending = true; // which order asc/desc. author of stack
+let isDateAscending = true; // which order asc/desc. creationDate of stack
+
+// SORTS ON STACK NAME
+document.querySelector(".list_info_name").addEventListener("click", () => {
+    accordionsArray.sort((a, b) => {
+        const nameA = a.querySelector('.stack_info_name').textContent.trim().toLowerCase();
+        const nameB = b.querySelector('.stack_info_name').textContent.trim().toLowerCase();
+
+        return isNameAscending ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA); // Toggle order. localeCompare compares strings alphabetically
+    });
+
+    const parentNode = accordionsArray[0].parentNode;
+    accordionsArray.forEach(button => {
+        parentNode.appendChild(button); 
+    });
+
+    // Toggle the sort order for the next click
+    isNameAscending = !isNameAscending;
+});
+
+// SORTS ON AUTHOR
+document.querySelector(".list_info_author").addEventListener("click", () => { 
+  accordionsArray.sort((a, b) => {
+      const nameA = a.querySelector('.stack_info_author').textContent.trim().toLowerCase();
+      const nameB = b.querySelector('.stack_info_author').textContent.trim().toLowerCase();
+
+      return isAuthorAscending ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA); // Toggle order. localeCompare compares alphabetically
+  });
+
+  const parentNode = accordionsArray[0].parentNode;
+  accordionsArray.forEach(button => {
+      parentNode.appendChild(button);
+  });
+
+  // Toggle the sort order for the next click
+  isAuthorAscending = !isAuthorAscending;
+});
+
+function convertDateForComparison(input) {
+  // Split the date and time
+  const [date, time] = input.split(' ');
+
+  // Split the date into day, month, year
+  const [day, month, year] = date.split('-');
+
+  // Create a new date string in the format YYYY-MM-DDTHH:mm:ss
+  const formattedDateString = `${year}-${month}-${day}T${time}`;
+
+  return new Date(formattedDateString).getTime();
+}
+
+// // SORTS ON CREATION DATE
+document.querySelector(".list_info_creation_date").addEventListener("click", () => {   
+  accordionsArray.sort((a, b) => {
+      const dateA = convertDateForComparison(a.querySelector('.stack_info_creation_date').textContent.trim());
+      const dateB = convertDateForComparison(b.querySelector('.stack_info_creation_date').textContent.trim());
+
+      return isDateAscending ? dateA - dateB : dateB - dateA; // Toggle order
+  });
+
+  const parentNode = accordionsArray[0].parentNode;
+  accordionsArray.forEach(button => {
+      parentNode.appendChild(button);
+  });
+
+  // Toggle the sort order for the next click
+  isDateAscending = !isDateAscending;
+});
+
+////////////////
+// end of sorting

@@ -26,7 +26,10 @@
 
 <script src="script/nav.js"></script>
 <script defer>
-	let body = document.querySelector("body") if(localStorage.getItem("dyslexia") === "true") {
-	body.classList.add("dyslexia_mode") } body.style.fontSize = localStorage.getItem("fontSize"); body.style.lineHeight =
-	localStorage.getItem("lineHeight");
+	let body = document.querySelector("body"); 
+	if(localStorage.getItem("dyslexia") === "true") {
+		body.classList.add("dyslexia_mode"); 
+	}
+	body.style.fontSize = localStorage.getItem("fontSize"); 
+	body.style.lineHeight =	localStorage.getItem("lineHeight");
 </script>
