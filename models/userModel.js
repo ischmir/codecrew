@@ -44,6 +44,19 @@ exports.getSingelUserByIdWithAllData = async function (userId) {
     return rows;
 }
 
+exports.getNameOfUserById = async function (userId) {
+    const [rows, fields] = await db.query(`
+        SELECT    
+            firstName, 
+            lastName 
+        FROM Users
+        WHERE Users.UserId = ?
+        `, 
+        [userId])
+
+    return rows[0];
+}
+
 exports.getSingelUserByEmailWithAllData = async function (userEmail) {
     const [rows, fields] = await db.query(`
             SELECT
@@ -97,12 +110,13 @@ exports.saveJWTtoUser = async function (jwt, userId) {
         const result = await extra.updateJWTtoUser(jwt, verify[0].lastUpdate, userId);
         
         if(result < 1) {
-            console.log("updateJWt fail " + result);
-            throw new Error("Update for jwt on user, failed");
+            console.log("updateJWT fail " + result);
+            
         }
     } 
     catch (error) {
         console.error(error);
+        throw new Error("Update for jwt on user, failed " + error);
     }
 }
 exports.getJWTfromUser = async function (userId) {

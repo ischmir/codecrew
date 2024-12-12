@@ -6,7 +6,7 @@
     
     <div class="search">
         <div class="entryarea">
-			<input type="text" class="search_bar" required>
+			<input type="text" class="search_bar" id="searchInput" required>
 			<div class="labelline">Search</div>
 		</div>
         <button class="search_button">Search</button>
@@ -15,7 +15,11 @@
         <div class="sort_section">
             <div id="sorting">
                 <a id="sort_my_projects" class="sort highlight">My Projects</a>
-                <a id="sort_other_projects" class="sort">Others' Projects</a>
+                {{#if isSuperAdmin}}
+                <form action="/othersStacks" method="post">
+                    <button type="submit" id="sort_other_projects" class="sort">Others' Projects</button>
+                </form>
+                {{/if}}
             </div>
             <div>
                 <button id="create_stack_button" class="create_button">Create New Project</button>

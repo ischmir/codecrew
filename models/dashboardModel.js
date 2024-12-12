@@ -83,7 +83,7 @@ async function portainerCall(endpoint, body, token) {
 exports.portainerSystemAuth = async function () {
 	try {
 		const response = await portainerCall('auth', credentials);
-		console.log('Authentication successful.', response);
+		console.log('Authentication successful.', response.data);
 		return response.data.jwt;
 	} catch (error) {
 		console.error('Error authenticating:', error.message);
@@ -136,29 +136,12 @@ exports.portainerStacks = async function (token) {
 	}
 };
 
-exports.addNewStackToDB = async function (res) {
-	// rename should happen
-	let data = {
-		res,
-	};
-
-	// data.res.creationDate = new Date(data.res.creationDate * 1000);
-	// data.res.lastUpdate = data.res.lastUpdate == 0 ? data.res.creationDate : new Date(data.res.lastUpdate * 1000);
-	// why sql error (ncorrect datetime value: '56858-07-16 07:03:20.000' for column 'stackCreationDate' at row 2)
-	// but it executes the query correctly
-	await db.query(
-		"INSERT INTO Stacks (subDomain, FK_templateId, FK_userId, stackName, stackCreationDate, stackLastUpdate, stackLastActive) VALUES (?,(SELECT templateId FROM Templates WHERE templateTitle = 'welp'),?,?,?,?,?)",
-		[
-			data.res.subDomain /*, data.res.template*/,
-			res.userId,
-			data.res.name,
-			data.res.creationDate,
-			data.res.lastUpdate,
-			data.lastActive,
-		]
-	);
-	return data;
-};
+exports.addNewStackToDB = async function(res) {
+    const [rows] = await db.execute("INSERT INTO Stacks (subDomain, FK_templateId, FK_userId, stackName, stackCreationDate, stackLastUpdate, stackLastActive, portainerStackId) VALUES (?,(SELECT templateId FROM Templates WHERE templateTitle = 'welp'),?,?,?,?,?,?)", 
+        [res.subDomain/*, res.template*/, res.userId, res.name, res.creationDate, res.lastUpdate, res.lastActive, res.portainerStackId]
+    )
+    return rows;
+}
 // Function to fetch Portainer endpoints
 exports.portainerEndpoints = async function (token) {
 	try {
@@ -264,9 +247,19 @@ exports.amountOfStacksByUser = async function (userId) {
 	try {
 		const [rows] = await db.query('SELECT COUNT(*) as amount FROM Stacks WHERE FK_userId = ?', [userId]);
 
-		return rows[0].amount;
-	} catch (error) {
-		console.error(error);
-	}
-};
-exports.getAllStacksFromDB;
+        return rows[0].amount
+    } catch (error) {
+        console.error(error);
+        
+    }
+}
+exports.getAllStacksFromDB = async function () {
+    try {
+        const [rows] = await db.query("SELECT * FROM Stacks;")
+
+        return rows;
+    } catch (error) {
+        console.log("error getting all stacks: " +error);
+        
+    }
+}
