@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="css/teams.css" />
+<link rel="stylesheet" href="/css/teams.css" />
 <script src="/script/teams-edit.js" defer></script>
 
 {{> nav}}
@@ -13,33 +13,59 @@
       <!-- Tabs til Create og Edit -->
       <div class="tabs">
         <a href="/teams" class="tab"> Create team</a>
-        <a class="tab active">Edit existing team</a>
+        <a href="/teams-edit" class="tab active">Edit existing team</a>
       </div>
 
+{{!-- Aad members to teams form --}}
 
 
-<!-- add member imputfelt-->
-<select id="add-members">
-	<option value="0">Add team member</option>
-	<option value="1">Mai</option>
-	<option value="2">Michael</option>
-	<option value="3">Bob</option>
-</select>
+{{#if teamId}}
+<form action="/addTeamMember/{{teamId}}" method="POST">
+	<!-- add member imputfelt-->
+	<select name="member">
+		<option value="0">Add team member</option>
+		{{#if members}}
+				{{#each members}}
+					<option value="{{userId}}">{{firstName}} {{lastName}}</option>
+				
+				{{/each}}
+		{{/if}}
+	</select>
 
-<!-- or udload CSV fil-->
-<div class="or-section">
-	<span>Or</span>
-	<div id="csv-dropzone" class="button">Upload CSV File</div>
-	<input type="file" id="csv-file-input" accept=".csv" hidden />
-</div>
-<textarea id="csv-textbox" rows="5" placeholder="Indsæt eller upload CSV-indhold her..."></textarea>
+	{{!-- knap til at tilføje medlemmer til teams --}}
+	<button class="button" type="submit">Add member to team</button>
+		</form>
 
-<!-- Højre Sektion -->
-<div class="team-members">
-	<h2>Added Team members</h2>
-	<ul id="added-members-list">
-		<li>Markus</li>
-		<li>Markus</li>
-		<li>Markus</li>
-	</ul>
-</div>
+	<!-- or udload CSV fil-->
+	<div class="or-section">
+		<span>Or</span>
+		<div id="csv-dropzone" class="button">Upload CSV File</div>
+		<input type="file" id="csv-file-input" accept=".csv" hidden />
+	</div>
+	<textarea id="csv-textbox" rows="5" placeholder="Indsæt eller upload CSV-indhold her..."></textarea>
+
+	<!-- Højre Sektion -->
+	<div class="team-members">
+		<h2>Added Team members</h2>
+		<ul id="added-members-list">
+			{{#each teamMembers}}
+				<li>{{firstName}} {{lastName}}</li>
+			{{/each}}	
+		</ul>
+	</div>
+{{else}}
+<table>
+	<thead>
+		<th>id</th>
+		<th>name</th>
+		<th></th>
+	</thead>
+ 	{{#each teams}}
+		<tr>
+			<td>{{teamId}}</td>
+			<td>{{teamName}}</td>
+			<td><a href="/teams-edit/{{teamId}}" class="button">Edit</a></td>
+		</tr>
+	{{/each}}	
+</table>
+{{/if}}
