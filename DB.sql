@@ -67,6 +67,7 @@ CREATE table Stacks (
     stackCreationDate date,
     stackLastUpdate datetime,
     stackLastActive datetime,
+    portainerStackId int,
     FOREIGN KEY (FK_templateId) REFERENCES Templates(templateId),
     FOREIGN KEY (FK_userId) REFERENCES Users(userId)
 );
