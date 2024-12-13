@@ -171,10 +171,7 @@ document.querySelector(".list_info_author").addEventListener("click", () => {
 });
 
 function convertDateForComparison(input) {
-  // Split the date and time
   const [date, time] = input.split(' ');
-
-  // Split the date into day, month, year
   const [day, month, year] = date.split('-');
 
   // Create a new date string in the format YYYY-MM-DDTHH:mm:ss
@@ -183,7 +180,7 @@ function convertDateForComparison(input) {
   return new Date(formattedDateString).getTime();
 }
 
-// // SORTS ON CREATION DATE
+// SORTS ON CREATION DATE
 document.querySelector(".list_info_creation_date").addEventListener("click", () => {   
   accordionsArray.sort((a, b) => {
       const dateA = convertDateForComparison(a.querySelector('.stack_info_creation_date').textContent.trim());

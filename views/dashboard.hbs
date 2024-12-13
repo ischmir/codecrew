@@ -3,7 +3,6 @@
     
 <main class="dashboard_main">
     {{> header}}
-    
     <div class="search">
         <div class="entryarea">
 			<input type="text" class="search_bar" id="searchInput" required>
@@ -16,9 +15,7 @@
             <div id="sorting">
                 <a id="sort_my_projects" class="sort highlight">My Projects</a>
                 {{#if isSuperAdmin}}
-                <form action="/othersStacks" method="post">
-                    <button type="submit" id="sort_other_projects" class="sort">Others' Projects</button>
-                </form>
+                    <a type="submit" id="sort_other_projects" class="sort">Others' Projects</a>
                 {{/if}}
             </div>
             <div>
@@ -111,15 +108,74 @@
                     
                 </div> 
             {{/if}}
+
+            {{!-- {{#if isSuperAdmin}} --}}
+                <button class="accordion" data-role="superAdmin">
+                    <span class="stack_info_name">{{name}}</span>
+                    <span class="stack_info_author">{{author}}</span>
+                    <span class="stack_info_creation_date">{{creationDate}}</span>
+                    <span class={{#if status}}"stack_info_status online"{{else}}"stack_info_status offline"{{/if}}>{{#if status}}Online{{else}}Offline{{/if}}</span>
+                </button>
+                <div class="panel" data-role="superAdmin">
+                    <div>
+                        <p class="panel_info_author_mobile">Author: {{author}}</p>
+                        <p class="panel_info_team">Team: {{team}}</p>
+                        <p class="panel_info_sub_domain">Subdomain: {{subDomain}}</p>
+                        <p class="panel_info_template">Template: {{template}}</p>
+                    </div>
+                    <div>
+                        <p class="panel_info_last_active">Last Active: {{lastActive}}</p>
+                        <p class="panel_info_creation_date_mobile">Creation Date:{{creationDate}}</p>
+                        <div class="stack_actions">
+                            {{#if status}}
+                            <form action="/stopStack" method="post">
+                                <input type="hidden" name="stackId" value="{{portainerStackId}}">
+                                <button type="submit"> <i class="uil-stop-circle"></i></button>
+                            </form>
+                            <form action="/restartStack" method="post">
+                                <input type="hidden" name="stackId" value="{{portainerStackId}}">
+                                <button class="actions_button" type="submit"> <i class="uil-redo"></i></button>
+                            </form>
+                            {{else}}
+                            <form action="/startStack" method="post">
+                                <input type="hidden" name="stackId" value="{{portainerStackId}}">
+                                <button class="actions_button" type="submit"> <i class="uil-play-circle"></i></button>
+                            </form>
+                            {{/if}}
+                            <button class="actions_button"><i class="uil uil-trash-alt"></i></button>
+                        </div>
+                    </div>
+                    
+                </div> 
+            {{!-- {{/if}} --}}
+
+
+
         {{/each}}
     </div>
 </main>
 
 <script>
     
+    let superAdminRows = document.querySelectorAll("[data-role ='superAdmin']");
+console.log(superAdminRows)
+    superAdminRows.forEach((k) => {
+        k.style.display = "none";
+    })
 
+    document.getElementById("sort_other_projects").addEventListener("click", () => {
+        console.log("wlep")
+        superAdminRows.forEach((k) => {
+            k.style.display = "grid";
+        })
+    })
 
-
+    document.getElementById("sort_my_projects").addEventListener("click", () => {
+        superAdminRows.forEach((k) => {
+            k.style.display = "none";
+        });
+        
+    })
     //let data = {{{datas}}}
     //console.log(data)
     //let pData = JSON.parse({{{stack}}});

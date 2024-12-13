@@ -65,7 +65,7 @@ exports.dashboard = async function (req, res) {
 				lastActive: extraM.convertingDateFormat(new Date()),
 				author: fullName.firstName + " " + fullName.lastName,
 				portainerStackId: stacks[i].Id,
-				isCreator: req.session.userDetails.userId == findDBstack.FK_userId 
+				isCreator: req.session.userDetails.userId == findDBstack.FK_userId
 			});
 		}
 		
@@ -92,7 +92,7 @@ exports.createStack = async function (req, res) {
 	try {
 
 		if(req.session.userDetails.isNewStackAllowed) {
-			res.redirect("back");
+			res.redirect("dashboard");
 		}
 
 		const { stack_name, domain_name, chosen_template } = req.body; // get content from form
