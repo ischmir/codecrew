@@ -94,10 +94,6 @@
 	font-family: verdana;
 	text-decoration: none;
 }
-button.sort {
-	background-color: transparent;
-	border: none;
-}
 #sorting {
 	display: flex;
 	justify-content: space-around;
@@ -109,7 +105,8 @@ button.sort {
 	padding: 1em;
 }
 
-.accordion {
+.accordion,
+.accordionRemoved {
 	background-color: var(--secondary-darkmode-background-color);
 	color: var(--primary-darkmode-font-color);
 	cursor: pointer;
@@ -125,11 +122,14 @@ button.sort {
 	align-items: center;
 }
 
-.accordion:nth-of-type(odd) {
+/* .accordion:nth-of-type(odd),
+.accordionRemoved:nth-of-type(odd),  */
+.odd {
 	background-color: var(--fourth-darkmode-background-color);
 }
 
-.accordion:after {
+.accordion:after,
+.accordionRemoved:after {
 	font-family: "Font Awesome 5 Free";
 	content: "\f107";
 	color: var(--primary-darkmode-font-color);
@@ -168,7 +168,8 @@ button.sort {
     background-color: var(--positive-status-color);
 }
 
-.panel {
+.panel,
+.panelRemoved {
 	background-color: var(--primary-darkmode-list-info-background-color);
 	max-height: 0;
 	overflow: hidden;
@@ -202,7 +203,8 @@ i.uil-redo {
 	padding: 0;
 }
 
-.panel p {
+.panel p,
+.panelRemoved p {
 	line-height: 2em;
 	padding: 0 2em;
 }
@@ -384,7 +386,8 @@ form#create_stack_form {
 		grid-template-columns: 50% 25% 25%;
 	}
 
-	.accordion {
+	.accordion,
+	.accordionRemoved {
 		grid-template-columns: 50% 25% 25%;
 	}
 
@@ -518,12 +521,14 @@ form#create_stack_form {
 		display: block;
 	}
 
-	.accordion {
+	.accordion,
+	.accordionRemoved {
 		grid-template-columns: 25% 25% 20% 20% 10%;
 	}
 
 	.active,
-	.accordion:hover {
+	.accordion:hover,
+	.accordionRemoved:hover {
 		background-color: var(--secondary-darkmode-list-info-background-color);
 	}
 

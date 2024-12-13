@@ -1,4 +1,4 @@
-		<link rel="stylesheet" href="css/dashboard.css" />
+<link rel="stylesheet" href="css/dashboard.css" />
 {{> nav}}
     
 <main class="dashboard_main">
@@ -109,7 +109,6 @@
                 </div> 
             {{/if}}
 
-            {{!-- {{#if isSuperAdmin}} --}}
                 <button class="accordion" data-role="superAdmin">
                     <span class="stack_info_name">{{name}}</span>
                     <span class="stack_info_author">{{author}}</span>
@@ -147,39 +146,8 @@
                     </div>
                     
                 </div> 
-            {{!-- {{/if}} --}}
-
-
-
         {{/each}}
     </div>
 </main>
 
-<script>
-    
-    let superAdminRows = document.querySelectorAll("[data-role ='superAdmin']");
-console.log(superAdminRows)
-    superAdminRows.forEach((k) => {
-        k.style.display = "none";
-    })
-
-    document.getElementById("sort_other_projects").addEventListener("click", () => {
-        console.log("wlep")
-        superAdminRows.forEach((k) => {
-            k.style.display = "grid";
-        })
-    })
-
-    document.getElementById("sort_my_projects").addEventListener("click", () => {
-        superAdminRows.forEach((k) => {
-            k.style.display = "none";
-        });
-        
-    })
-    //let data = {{{datas}}}
-    //console.log(data)
-    //let pData = JSON.parse({{{stack}}});
-    //console.log(pData)
-    //let fName = '{{userDetails.firstName}}' + ' ' + 'Hinsch'
-</script>
 <script defer type="text/javascript" src="/script/dashboard.js"></script>
