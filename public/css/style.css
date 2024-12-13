@@ -140,6 +140,15 @@ p {
 .button_selected {
 	background-color: var(--third-darkmode-background-color);
 }
+
+.container {
+	padding: 0px;
+	padding: 1.5rem;
+	border-radius: 8px;
+	background-color: var(--secondary-darkmode-background-color);
+	filter: var(--dropshadow);
+}
+
 /*Mobile and tablet*/
 @media only screen and (max-width: 900px) {
 	body {

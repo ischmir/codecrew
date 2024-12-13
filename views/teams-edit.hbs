@@ -54,18 +54,26 @@
 		</ul>
 	</div>
 {{else}}
-<table>
-	<thead>
-		<th>id</th>
-		<th>name</th>
-		<th></th>
-	</thead>
- 	{{#each teams}}
-		<tr>
-			<td>{{teamId}}</td>
-			<td>{{teamName}}</td>
-			<td><a href="/teams-edit/{{teamId}}" class="button">Edit</a></td>
-		</tr>
-	{{/each}}	
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each teams}}
+      <tr class="teamContainer2">
+        <td class="teamsId teamStyling">{{teamId}}</td>
+        <td class="teamsName teamStyling">{{teamName}}</td>
+        <td><a href="/teams-edit/{{teamId}}" class="button">Edit</a></td>
+      </tr>
+    {{/each}}	
+  </tbody>
 </table>
 {{/if}}
+
+  </div>
+    </div>
+</main>

@@ -1,20 +1,14 @@
-.team-container {
+/* .team-container {
 	display: flex;
+	align-items: center;
 	justify-content: space-between;
 	gap: 2rem;
 	margin: 2rem 0;
 	flex-direction: column;
-}
+} */
 .teamContainer {
 	display: flex;
 	flex-direction: column;
-}
-.team-setup,
-.team-members {
-	flex: 1;
-	/* background-color: var(--secondary-darkmode-background-color); */
-	padding: 1.5rem;
-	border-radius: 8px;
 }
 
 .tabs {
@@ -25,7 +19,6 @@
 .tab {
 	background-color: var(--primary-darkmode-inactive-font-color);
 	color: var(--primary-darkmode-font-color);
-	padding: 14px 20px;
 	margin: 8px 0;
 	border: none;
 	flex: 1;
@@ -36,6 +29,8 @@
 	border-radius: 0;
 	cursor: pointer;
 	transition: all 0.3s ease;
+	padding: 10px;
+	white-space: nowrap;
 }
 .tab:first-child {
 	border-radius: 50px 0 0 50px; /* Rounded left side */
@@ -49,6 +44,7 @@
 	/* background-color: var(--primary-darkmode-button-color); */
 	color: var(--primary-darkmode-font-color);
 	background-image: var(--primary-gradient-background-image);
+	white-space: nowrap;
 }
 .tab:hover {
 	background-color: var(--primary-link-color);
@@ -57,17 +53,6 @@
 label {
 	color: var(--primary-darkmode-inactive-font-color);
 }
-
-/* .select {
-	outline: none;
-	padding: 0 30px;
-	line-height: 43px;
-	border-radius: 5px;
-	border: 2px solid var(--primary-darkmode-border-color);
-	background: transparent;
-	transition: 0.1s ease;
-	z-index: 1111;
-} */
 
 .input_group,
 textarea {
@@ -93,7 +78,8 @@ textarea {
 }
 
 .button {
-	margin: 8px 0px;
+	/* margin: 8px 0px; */
+	padding: 9px 30px;
 }
 
 .team-members {
@@ -113,4 +99,52 @@ textarea {
 	color: var(--primary-darkmode-font-color);
 	border-radius: 4px;
 	margin-bottom: 0.5rem;
+}
+
+table {
+	padding: 0px;
+}
+
+.styled-table {
+	width: 100%;
+	margin: 20px 0;
+}
+.styled-table thead th {
+	color: var(--primary-darkmode-font-color);
+	padding: 10px;
+	text-align: left;
+	text-transform: uppercase;
+}
+
+.button {
+	display: inline-block; /* Sørg for, at knapperne ikke opfører sig som blokke */
+	margin: 5px 0; /* Giv vertikalt mellemrum over og under hver knap */
+}
+
+.team-members {
+	padding: 1.5rem;
+	border-radius: 8px;
+	background-color: var(--secondary-darkmode-background-color);
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+@media only screen and (min-width: 600px) {
+	.team-container {
+		width: 45rem;
+		padding: 25px;
+	}
+
+	.tab {
+		padding: 14px 20px;
+	}
+	.main_settings {
+		margin: 0 auto;
+		width: 80%;
+		margin-top: 1em;
+		margin-bottom: 2em;
+		display: flex;
+		justify-content: flex-start;
+		flex-direction: column;
+		align-items: center;
+	}
 }
