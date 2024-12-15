@@ -24,16 +24,19 @@
 
 .entryarea {
 	display: flex;
+    position: relative;
+    height: 60px;
+    line-height: 60px;
+    padding: 5 0px;
+    width: 100%;
+    align-items: center;
+}
 
-	position: relative;
-	height: 80px;
-	line-height: 60px;
-	padding: 5 0px;
-	width: 65%;
+div .entryarea.modal {
+ color: green;
 }
 
 .search_bar {
-	position: absolute;
 	width: 100%;
 	outline: none;
 	padding: 0 30px;
@@ -47,10 +50,8 @@
 
 .labelline {
 	position: absolute;
-	/* font-size: 1.6em; */
 	color: var(--primary-darkmode-font-color);
 	padding: 0 25px;
-	/* margin: 0 20px; */
 	background-color: var(--primary-darkmode-background-color);
 	transition: 0.25s ease;
 	line-height: 50px;
@@ -67,7 +68,7 @@
 	color: var(--primary-darkmode-font-color);
 	height: 30px;
 	line-height: 30px;
-	transform: translate(20px, -16px) scale(0.88);
+	transform: translate(20px, -25px) scale(0.88);
 	z-index: 1111;
 	padding: 0 10px;
 }
@@ -277,6 +278,7 @@ i.uil-redo {
 	height: 100%;
 	background-color: #23222aba;
 	overflow: auto;
+	z-index: 1112;
 }
 
 .create_stack_modal_content {
@@ -307,6 +309,17 @@ form#create_stack_form {
 	width: 80%;
 }
 
+
+/*
+.input_area {
+    position: relative;
+    line-height: 20px;
+    padding: 5px 0;
+    margin: 5px 0;
+    width: 100%;
+}
+
+
 .create_stack_input,
 .create_stack_input_domain {
 	background-color: var(--secondary-darkmode-background-color);
@@ -316,14 +329,77 @@ form#create_stack_form {
 	font-size: larger;
 	border: 1px solid var(--primary-darkmode-border-color);
 	border-radius: 6px;
+	width: 100%
+	
+	color: var(--primary-darkmode-font-color);
 	width: 100%;
+	outline: none;
+	padding: 0 30px;
+	line-height: 45px;
+	border-radius: 6px;
+	background: transparent;
+	transition: 0.1s ease;
+	z-index: 1111;
+	border: 2px solid var(--primary-darkmode-border-color);
+}*/
+
+
+
+
+/* ======================================= */
+.input_area,
+.create_stack_input_domain_container {
+	position: relative;
+	height: 80px;
+	line-height: 60px;
+	padding: 5 0px;
 }
 
+.create_stack_input,
+.create_stack_input_domain {
+	position: absolute;
+	width: 100%;
+	outline: none;
+	/* font-size: 2.2em; */
+	padding: 10px;
+	line-height: 50px;
+	border-radius: 5px;
+	border: 2px solid var(--primary-darkmode-border-color);
+	background: transparent;
+	transition: 0.1s ease;
+	z-index: 1111;
+}
+
+.placeholder_line {
+	position: absolute;
+	/* font-size: 1.6em; */
+	color: var(--primary-darkmode-font-color);
+	padding: 0 25px;
+	/* margin: 0 20px; */
+	background-color: var(--secondary-darkmode-background-color);
+	transition: 0.25s ease;
+}
+
+.create_stack_input:focus {
+	color: var(--primary-darkmode-font-color);
+	border: 4px solid var(--primary-darkmode-font-color);
+}
+
+.create_stack_input + .placeholder_line,
+.create_stack_input + .placeholder_line {
+	color: var(--primary-darkmode-font-color);
+	height: 30px;
+	line-height: 30px;
+	transform: translate(20px, -16px) scale(0.88);
+	z-index: 1111;
+	padding: 0 10px;
+}
+/*
 .create_stack_input_domain_container {
 	display: flex;
 	align-items: center;
 	position: relative;
-}
+}*/
 
 #domain_preview {
 	padding-right: 10px;
@@ -351,6 +427,11 @@ form#create_stack_form {
 	}
 
 	/*Tablet - Search bar and button*/
+
+	.entryarea {
+		width: 60%;
+	}
+
 	.search {
 		display: flex;
 		justify-content: flex-start;
@@ -360,8 +441,7 @@ form#create_stack_form {
 		margin-bottom: 5em;
 	}
 	.search_bar {
-		width: 60%;
-		margin-right: 1em;
+		width: 98%;
 	}
 
 	.create_stack_modal_content {
@@ -411,14 +491,19 @@ form#create_stack_form {
 		color: var(--primary-darkmode-font-color);
 		border: 0px;
 		border-radius: 25px;
-		padding: 0.5em 1em;
 		font-size: 1em;
 		font-family: verdana;
 		display: block;
 		margin: 5px 0;
 	}
+
+	.search_button {
+		padding: 0.5 2em;
+	}
+
 	.create_button {
 		border-radius: 6px;
+		padding: 0.5em 1em;
 	}
 }
 
@@ -442,6 +527,10 @@ form#create_stack_form {
 
 	/*Search bar and button*/
 
+	.entryarea {
+		width: 60%;
+	}
+
 	.search {
 		width: 70%;
 		justify-content: flex-start;
@@ -449,8 +538,7 @@ form#create_stack_form {
 	}
 
 	.search_bar {
-		width: 60%;
-		margin-right: 1em;
+		width: 98%;
 	}
 
 	/*.search_bar:hover {
@@ -471,11 +559,28 @@ form#create_stack_form {
 		font-family: verdana;
 		cursor: pointer;
 		margin: 5px 0;
+		transition: transform 0.3s ease; 
 	}
 
 	.search_button,
 	.create_button {
 		display: block;
+	}
+
+	.search_button {
+		padding: 0.5 2em;
+	}
+
+	.search_button:hover {
+		transform: scale(1.1); 
+	}
+
+	.create_button {
+		border-radius: 6px;
+	}
+
+	.create_button:hover {
+		transform: scale(1.1); 
 	}
 
 	.create_button,

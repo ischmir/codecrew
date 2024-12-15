@@ -20,30 +20,30 @@ exports.dashboard = async function (req, res) {
 		const allStacksDB = await dashboardM.getAllStacksFromDB();
 		const allStacks = [];		
 
-		// for (let i = 0; i < stacks.length; i++) { // for getting data from portainer to the db. but we cant get info on some things, so we have dummy there, only use it for catch up.
-		// 	const stack = stacks[i];
+		for (let i = 0; i < stacks.length; i++) { // for getting data from portainer to the db. but we cant get info on some things, so we have dummy there, only use it for catch up.
+			const stack = stacks[i];
 			
-		// 	if(!allStacksDB.some(k => k.portainerStackId == stack.Id)) { // check if the db is missing a stack. 
-		// 		const newStack = {
-		// 			userId: req.session.userDetails.userId || 8, // dummy
-		// 			name: stack.Name,
-		// 			status: stack.Status === 1,
-		// 			creationDate: new Date(stack.CreationDate * 1000),
-		// 			lastUpdate:
-		// 				stack.UpdateDate == 0
-		// 					? new Date(stack.CreationDate * 1000)
-		// 					: new Date(stack.UpdateDate * 1000),
-		// 			createdBy: stack.CreatedBy,
-		// 			template: stack.EntryPoint,
-		// 			subDomain: 'ehhh, brain no work', // dummy
-		// 			lastActive: new Date(), 
-		// 			author: 'welp', // dummy
-		// 			portainerStackId: stack.Id,
-		// 		}
+			if(!allStacksDB.some(k => k.portainerStackId == stack.Id)) { // check if the db is missing a stack. 
+				const newStack = {
+					userId: req.session.userDetails.userId || 8, // dummy
+					name: stack.Name,
+					status: stack.Status === 1,
+					creationDate: new Date(stack.CreationDate * 1000),
+					lastUpdate:
+						stack.UpdateDate == 0
+							? new Date(stack.CreationDate * 1000)
+							: new Date(stack.UpdateDate * 1000),
+					createdBy: stack.CreatedBy,
+					template: stack.EntryPoint,
+					subDomain: 'ehhh, brain no work', // dummy
+					lastActive: new Date(), 
+					author: 'welp', // dummy
+					portainerStackId: stack.Id,
+				}
 				
-		// 		await dashboardM.addNewStackToDB(newStack, req.session.userDetails.userId); 
-		// 	}
-		// }
+				await dashboardM.addNewStackToDB(newStack, req.session.userDetails.userId); 
+			}
+		}
 
 		
 		for (let i = 0; i < stacks.length; i++) {
@@ -65,7 +65,7 @@ exports.dashboard = async function (req, res) {
 				lastActive: extraM.convertingDateFormat(new Date()),
 				author: fullName.firstName + " " + fullName.lastName,
 				portainerStackId: stacks[i].Id,
-				isCreator: req.session.userDetails.userId == findDBstack.FK_userId
+				isCreator: req.session.userDetails.userId == findDBstack.FK_userId 
 			});
 		}
 		
@@ -92,7 +92,7 @@ exports.createStack = async function (req, res) {
 	try {
 
 		if(req.session.userDetails.isNewStackAllowed) {
-			res.redirect("dashboard");
+			res.redirect("back");
 		}
 
 		const { stack_name, domain_name, chosen_template } = req.body; // get content from form
