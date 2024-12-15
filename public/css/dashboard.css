@@ -131,7 +131,7 @@ div .entryarea.modal {
 
 .accordion:after,
 .accordionRemoved:after {
-	font-family: "Font Awesome 5 Free";
+	font-family: "FontAwesome";
 	content: "\f107";
 	color: var(--primary-darkmode-font-color);
 	font-weight: bold;
@@ -142,7 +142,7 @@ div .entryarea.modal {
 }
 
 .active:after {
-	font-family: "Font Awesome 5 Free";
+	font-family: "FontAwesome";
 	content: "\f106";
 }
 
@@ -309,8 +309,6 @@ form#create_stack_form {
 	width: 80%;
 }
 
-
-/*
 .input_area {
     position: relative;
     line-height: 20px;
@@ -321,7 +319,8 @@ form#create_stack_form {
 
 
 .create_stack_input,
-.create_stack_input_domain {
+.create_stack_input_domain,
+.create_stack_select {
 	background-color: var(--secondary-darkmode-background-color);
 	color: var(--primary-darkmode-font-colo);
 	padding: 10px;
@@ -329,39 +328,50 @@ form#create_stack_form {
 	font-size: larger;
 	border: 1px solid var(--primary-darkmode-border-color);
 	border-radius: 6px;
-	width: 100%
-	
-	color: var(--primary-darkmode-font-color);
 	width: 100%;
-	outline: none;
-	padding: 0 30px;
-	line-height: 45px;
-	border-radius: 6px;
-	background: transparent;
-	transition: 0.1s ease;
-	z-index: 1111;
-	border: 2px solid var(--primary-darkmode-border-color);
-}*/
+	-webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+label.wrap_create_stack {
+    overflow: hidden; 
+    position: relative;
+    display: block;
+}
+
+label.wrap_create_stack:after {
+    font-family: "FontAwesome";
+	content: "\f107";
+    color: var(--primary-darkmode-font-color);
+    position: absolute; 
+    right: 0; 
+	top: 1.5em;
+    z-index: 1115;
+    width: 2em;
+    height: 100%;  
+    pointer-events: none;    
+}
 
 
 
 
 /* ======================================= */
-.input_area,
+/*
 .create_stack_input_domain_container {
 	position: relative;
 	height: 80px;
 	line-height: 60px;
 	padding: 5 0px;
-}
-
+}*/
+/*
 .create_stack_input,
 .create_stack_input_domain {
 	position: absolute;
 	width: 100%;
 	outline: none;
 	/* font-size: 2.2em; */
-	padding: 10px;
+	/* padding: 10px;
 	line-height: 50px;
 	border-radius: 5px;
 	border: 2px solid var(--primary-darkmode-border-color);
@@ -373,14 +383,14 @@ form#create_stack_form {
 .placeholder_line {
 	position: absolute;
 	/* font-size: 1.6em; */
-	color: var(--primary-darkmode-font-color);
-	padding: 0 25px;
+	/* color: var(--primary-darkmode-font-color);
+	padding: 0 25px; */
 	/* margin: 0 20px; */
-	background-color: var(--secondary-darkmode-background-color);
+	/* background-color: var(--secondary-darkmode-background-color);
 	transition: 0.25s ease;
-}
+} */
 
-.create_stack_input:focus {
+/* .create_stack_input:focus {
 	color: var(--primary-darkmode-font-color);
 	border: 4px solid var(--primary-darkmode-font-color);
 }
@@ -393,13 +403,13 @@ form#create_stack_form {
 	transform: translate(20px, -16px) scale(0.88);
 	z-index: 1111;
 	padding: 0 10px;
-}
-/*
+} */
+
 .create_stack_input_domain_container {
 	display: flex;
 	align-items: center;
 	position: relative;
-}*/
+}
 
 #domain_preview {
 	padding-right: 10px;

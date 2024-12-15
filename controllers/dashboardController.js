@@ -136,7 +136,7 @@ exports.stopStack = async function (req, res) {
 		console.log("welp");
 		console.log(req.body);
 		
-		await dashboardM.portainerStartStack(await getJWT(req.session.userDetails.userId), req.body.stackId);
+		await dashboardM.portainerStopStack(await getJWT(req.session.userDetails.userId), req.body.stackId);
 		res.redirect('/dashboard');
 	}
 	
@@ -169,7 +169,20 @@ exports.restartStack = async function (req, res) {
 
 	catch(error) {
 		console.warn("Dashboard : " + error);
+		res.redirect('/dashboard');
 	}
 
-	res.redirect('/dashboard');
+	
 }
+
+exports.deleteStack = async function (req, res) {
+	try {
+		await dashboardM.portainerDeleteStack(await getJWT(req.session.userDetails.userId), result.Id); 
+	}
+
+	catch(error) {
+		console.warn("Dashboard : " + error);
+		res.redirect('/dashboard');
+	}
+}
+

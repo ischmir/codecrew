@@ -28,23 +28,22 @@
             <span class="create_stack_model_close">&times;</span>
             <h2> Create New Project</h2>
             <form id="create_stack_form" method="post" action="/createStack">
-            <div class="entryarea modal">
-                <input id="create_stack_name" class="create_stack_input" type="text" name="stack_name">
-                <div class="placeholder_line">Project Name</div>
-            </div>
-            <div class="entryarea modal">
-                <input id="create_stack_domain" class="create_stack_input_domain" oninput="updatePreview()" type="text" name="domain_name">
+                <input id="create_stack_name" class="create_stack_input" type="text" name="stack_name" placeholder="Project Name">
+            <div class="create_stack_input_domain_container">
+                <input id="create_stack_domain" class="create_stack_input_domain" oninput="updatePreview()" type="text" name="domain_name" placeholder="DomainName">
                 <span id="domain_preview" class="preview">.kubelab.dk</span>
-                <div class="placeholder_line">DomainName</div>
             </div>
-            <select name="add_team" id="create_stack_select_team">
+            <label class="wrap_create_stack">
+            <select name="add_team" id="create_stack_select_team" class="create_stack_select">
                 <option value="" disabled selected>Add Team Member</option>
                 <option value="">none</option>
                 <option value="User1">Sandra</option>
                 <option value="User2">Mai</option>
                 <option value="User3">Markus</option>
             </select>
-            <select name="chosen_template" id="create_stack_select_template">
+            </label>
+            <label class="wrap_create_stack">
+            <select name="chosen_template" id="create_stack_select_template" class="create_stack_select">
                 <option value="" disabled selected>Choose Template</option>
                 {{#if templates}}
                     {{#each templates}}
@@ -56,6 +55,7 @@
                     <option value="User3">Other</option>
                 {{/if}}
             </select>
+            </label>
                 <input class="create_modal_submit_button" type="submit" value="Submit">
             </form>
         </div>
@@ -104,7 +104,10 @@
                                 <button class="actions_button" type="submit"> <i class="uil-play-circle"></i></button>
                             </form>
                             {{/if}}
-                            <button class="actions_button"><i class="uil uil-trash-alt"></i></button>
+                            <form action="/deleteStack" method="delete">
+                                <input type="hidden" name="stackId" value="{{portainerStackId}}">
+                                <button class="actions_button" type="submit"><i class="uil-trash-alt"></i></button>
+                            </form>
                         </div>
                     </div>
                     

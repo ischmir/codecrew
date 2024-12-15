@@ -50,7 +50,7 @@ window.addEventListener("click", (event) => {
 });
 
 
-
+/////////////////////////////////////////////
 // Stop Stack
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   buttons.addEventListener("click", (event) => {
     const accordionRow = event.target.closest(".accordion");
-    const stackId = accordionRow.getAttribute("data-id");
+    const stackId = accordionRow.getAttribute("value");
 
     if (stackId) {
       console.log(`Stopping stack with ID: ${stackId}`);
@@ -67,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+/////////////////////////////////////////////
 // Start Stack
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -74,16 +75,17 @@ document.addEventListener("DOMContentLoaded", () => {
   if(buttons) {
     buttons.addEventListener("click", (event) => {
         const accordionRow = event.target.closest(".accordion");
-        const stackId = accordionRow.getAttribute("data-id");
+        const stackId = accordionRow.getAttribute("value");
 
         if (stackId) {
             console.log(`Starting stack with ID: ${stackId}`);
-            stopStack(stackId);
+            startStack(stackId);
         }
     });
   }
 });
 
+/////////////////////////////////////////////
   // Restart Stack
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -91,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   buttons.addEventListener("click", (event) => {
       const accordionRow = event.target.closest(".accordion");
-      const stackId = accordionRow.getAttribute("data-id");
+      const stackId = accordionRow.getAttribute("value");
 
       if (stackId) {
           console.log(`Stopping stack with ID: ${stackId}`);
@@ -103,6 +105,26 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+/////////////////////////////////////////////
+// Delete Stack
+
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelector(".uil-trash-alt");
+  if(buttons) {
+    buttons.addEventListener("click", (event) => {
+        const accordionRow = event.target.closest(".accordion");
+        const stackId = accordionRow.getAttribute("value");
+
+        if (stackId) {
+            console.log(`Delete stack with ID: ${stackId}`);
+            startStack(stackId);
+        }
+    });
+  }
+});
+
+
+/////////////////////////////////////////////
 // dynamic search input
 document.querySelector('#searchInput').addEventListener('input', function (event) {
   const searchTerm = event.target.value.toLowerCase();
@@ -120,7 +142,7 @@ document.querySelector('#searchInput').addEventListener('input', function (event
       });
   });
 
-//////////////////////
+/////////////////////////////////////////////
 // sorting 
 
 const accordionsArray = Array.from(document.querySelectorAll(".accordion"));
