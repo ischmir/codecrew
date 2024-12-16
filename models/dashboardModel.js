@@ -219,28 +219,40 @@ exports.portainerRestartStack = async function (token, stackId) {
 	await portainerStartStack(token, stackId);
 };
 
-// Function to delete a stack by ID
-/*
-exports.portainerDeleteStack = async function (token, stackId, portainerStackId) {
+// Function to delete a stack by ID from DB
+
+exports.deleteStackFromDB = async function (portainerStackId) { 
 	try {
 		const query = 'DELETE FROM stacks WHERE portainerStackId = ?';
 
-		const stackUrl = `${portainerBaseUrl}/stacks/${stackId}?endpointId=5`;
-		
 		const [result] = await db.execute(query, [portainerStackId]);
+		return result;
+	} catch {
+		console.error(`Error deleting stack with ID ${portainerStackId}:`, error.message);
+	}
+};
+
+// Function to delete a stack by ID from Portainer
+
+exports.portainerDeleteStack = async function (token, portainerStackId) {
+	try {
+		const stackUrl = `${portainerBaseUrl}/stacks/${portainerStackId}?endpointId=5`;
 
 		const response = await axios.delete(stackUrl, {
 			headers: { Authorization: `Bearer ${token}` },
 			params: { external: false },
 		});
+		console.log(response.data);
+		console.log(response.status);
+		
 
-		console.log(`Stack with ID ${stackId} deleted successfully.`);
-		return rows, response.data;
+		console.log(`Stack with ID ${portainerStackId} deleted successfully.`);
+		return response.status;
 	} catch (error) {
-		console.error(`Error deleting stack with ID ${stackId}:`, error.message);
+		console.error(`Error deleting stack with ID ${portainerStackId}:`, error.message);
 	}
 };
-*/
+
 exports.stackLimitForUser = async function (userAccess) {
 	try {
 		const [rows] = await db.query('SELECT stackLimit FROM Roles WHERE accessLevel = ?', [userAccess]);
