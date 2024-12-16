@@ -165,50 +165,37 @@ exports.startStack = async function (req, res) {
 exports.restartStack = async function (req, res) {
 	try {
 		await dashboardM.portainerRestartStack(await getJWT(req.session.userDetails.userId), req.body.stackId);
+		res.redirect('/dashboard');
 	}
+	
 
 	catch(error) {
 		console.warn("Dashboard : " + error);
 		res.redirect('/dashboard');
 	}
-
-	
 }
-/*
+
 exports.deleteStack = async function (req, res) {
 	
 	try {
-		await dashboardM.portainerDeleteStack(await getJWT(req.session.userDetails.userId), result.Id); 
-		
 		const {portainerStackId} = req.params;
 
-		const isDeleted = await dashboardM.portainerDeleteStack(portainerStackId);
-
-		if (isDeleted) {
-            res.status(200).json({ message: 'Stack deleted successfully.' });
-        } else {
-            res.status(404).json({ message: 'Stack not found.' });
-        }
+		const isDeleted = await dashboardM.portainerDeleteStack(await getJWT(req.session.userDetails.userId), portainerStackId); // Portainer
+		const isDeletedDB = await dashboardM.deleteStackFromDB(portainerStackId); // DB
 		
-		const {stackId} = req.body
-
-		if(!stackId) {
-			throw new Error("There was no stackId with the request");
-		}
-
-		if(result.affectedRows < 1) {
+		
+		if(isDeleted.statusCode != 204 && isDeletedDB.affectedRows < 1) {
 			// it didnt update in the db
 			throw new Error("Nothing got updated")
-		} 
-		else {
-			stackFromDB[0].stackTitle ? stackFromDB[0].stackTitle : ""
-			req.session.message = { type: "success", text: stackFromDB[0].stackTitle + " got utterly destroyed" };
-			res.redirect("/dashboard")
 		}
+		else {
+            stackFromDB[0].stackName ? stackFromDB[0].stackName : ""
+			req.session.message = { type: "success", text: stackFromDB[0].stackName + " got utterly destroyed" };
+			res.redirect("/dashboard")
+        }
 	}
-
 	catch(error) {
 		console.warn("Dashboard : " + error);
 		res.redirect('/dashboard');
 	}
-}*/
+}

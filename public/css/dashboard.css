@@ -198,6 +198,10 @@ i.uil-redo {
 	color: var(--sunset-status-color);
 }
 
+i.uil-trash-alt {
+	color: var(--primary-darkmode-font-color);
+}
+
 .actions_button {
 	background-color: transparent;
 	border: none;
@@ -322,7 +326,7 @@ form#create_stack_form {
 .create_stack_input_domain,
 .create_stack_select {
 	background-color: var(--secondary-darkmode-background-color);
-	color: var(--primary-darkmode-font-colo);
+	color: var(--primary-darkmode-font-color);
 	padding: 10px;
 	margin: 8px 0;
 	font-size: larger;

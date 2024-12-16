@@ -16,7 +16,7 @@
             <div id="sorting">
                 <a id="sort_my_projects" class="sort highlight">My Projects</a>
                 {{#if isSuperAdmin}}
-                    <a type="submit" id="sort_other_projects" class="sort">Others' Projects</a>
+                    <a type="submit" id="sort_other_projects" class="sort">Other's Projects</a>
                 {{/if}}
             </div>
             <div>
@@ -105,8 +105,7 @@
                                 <button class="actions_button" type="submit"> <i class="uil-play-circle"></i></button>
                             </form>
                             {{/if}}
-                            <form action="/deleteStack" method="post">
-                                <input type="hidden" name="stackId" value="{{portainerStackId}}">
+                            <form action="/deleteStack/{{portainerStackId}}" method="post">
                                 <button class="actions_button" type="submit"><i class="uil-trash-alt"></i></button>
                             </form>
                         </div>
@@ -161,11 +160,10 @@
                             <button class="actions_button" type="submit"> <i class="uil-play-circle"></i></button>
                         </form>
                         {{/if}}
-                        <form class="delete_stack_modal_form" action="/deleteStack" method="post">
-                            <input type="hidden" name="stackId" value="{{portainerStackId}}">
-                            <button type="submit">Yes, delete</button>
+                        <form class="delete_stack_modal_form" action="/deleteStack/{{portainerStackId}}" method="delete">
+                            <button type="submit" class="actions_button"><i class="uil uil-trash-alt"></i></button>
                         </form>
-                        <button class="actions_button"><i class="uil uil-trash-alt"></i></button>
+                        
                     </div>
                 </div>
                 

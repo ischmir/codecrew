@@ -62,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (stackId) {
       console.log(`Stopping stack with ID: ${stackId}`);
-      stopStack(stackId);
     }
   });
 });
@@ -79,7 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (stackId) {
             console.log(`Starting stack with ID: ${stackId}`);
-            startStack(stackId);
         }
     });
   }
@@ -100,7 +98,6 @@ document.addEventListener("DOMContentLoaded", () => {
           stopStack(stackId);
       } else if (stackId) {
         console.log(`starting stack with ID: ${stackId}`);
-        startStack(stackId);
       }
   });
 });
@@ -129,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //         closeModal();
     //     }
     // }
-/*
+
 document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelector(".uil-trash-alt");
   if(buttons) {
@@ -139,16 +136,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (stackId) {
             console.log(`Delete stack with ID: ${stackId}`);
-            startStack(stackId);
         }
     });
   }
 });
-*/
+
 /////////////////////////////////////////////
 // dynamic search input
 
-/*
+
 document.querySelector('#searchInput').addEventListener('input', function (event) {
   const searchTerm = event.target.value.toLowerCase();
   const listItems = document.querySelectorAll('.accordion');
@@ -164,7 +160,7 @@ document.querySelector('#searchInput').addEventListener('input', function (event
           }
       });
   });
-*/
+
 /////////////////////////////////////////////
 // sorting 
 
