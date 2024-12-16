@@ -97,7 +97,6 @@ exports.replacePlaceholder = async function (id, domain) {
         if (!rows[0]) {
             throw new Error(`No template found with id: ${id}`);
         }
-        console.log(rows[0].updatedContent);
         
         return rows[0].updatedContent;
     } catch (error) {

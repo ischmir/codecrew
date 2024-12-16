@@ -95,13 +95,11 @@ exports.createStack = async function (req, res) {
 			res.redirect("dashboard");
 		}
 
-		const { stack_name, domain_name, chosen_template } = req.body; // get content from form
-		
-		const template = await templateM.replacePlaceholder(chosen_template, domain_name) // if the choosen template has "CHANGEME" and/or "SUBDOMAIN" it will be replaced with the subDomain and return the whole template.
+		const { stack_name, domain_name, chosen_template } = req.body; // get content from form		
+		const template = await templateM.replacePlaceholder(chosen_template, domain_name) // if the choosen template has "CHANGEME" and/or "SUBDOMAIN" it will be replaced with randoms the "SUBDOMAIN" will be the user written subDomain. returns the whole template with the changes.
 
 		const result = await dashboardM.portainerCreateStack(await getJWT(req.session.userDetails.userId), stack_name, template); // comment, so we dont create a new stack, on the live server by accident.
-		console.log(result);
-		
+
 		if(result) {
 			let saveToDb = {
 				userId: req.session.userDetails.userId || 8,
@@ -119,8 +117,10 @@ exports.createStack = async function (req, res) {
 				author: `${req.session.userDetails.firstName} ${req.session.userDetails.lastName}`,
 				portainerId: result.Id,
 			}
-			await dashboardM.portainerDeleteStack(await getJWT(req.session.userDetails.userId), result.Id); // just if we want to delete the stack right after creation, so we dont flod the live server. we still get whatever we log.
 			await dashboardM.addNewStackToDB(saveToDb, saveToDb.userId); // save it to DB. runs twice??
+
+			const isDeleted = await dashboardM.portainerDeleteStack(await getJWT(req.session.userDetails.userId), result.Id); // Portainer
+			const isDeletedDB = await dashboardM.deleteStackFromDB(result.Id); // DB
 			console.log(saveToDb);	
 		}
 		res.redirect('/dashboard');
@@ -184,9 +184,10 @@ exports.deleteStack = async function (req, res) {
 		const isDeletedDB = await dashboardM.deleteStackFromDB(portainerStackId); // DB
 		
 		
-		if(isDeleted.statusCode != 204 && isDeletedDB.affectedRows < 1) {
+		if(isDeleted != 204 && isDeletedDB.affectedRows < 1) {
 			// it didnt update in the db
-			throw new Error("Nothing got updated")
+			throw new Error("Nothing got deleted");
+
 		}
 		else {
             stackFromDB[0].stackName ? stackFromDB[0].stackName : ""

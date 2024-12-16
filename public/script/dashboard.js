@@ -1,19 +1,29 @@
 // Toggle Accordion
 
-var acc = document.getElementsByClassName("accordion");
-
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    let panel = this.nextElementSibling;
+//var acc = document.getElementsByClassName("accordion");
+function toggleActive(acc) {
+    acc.classList.toggle("active");
+    let panel = acc.nextElementSibling;
+    console.log(panel);
+    
     if (panel.style.maxHeight) {
       panel.style.maxHeight = null;
     } else {
       panel.style.maxHeight = panel.scrollHeight + "px";
     } 
-  });
 }
 
+// for (i = 0; i < acc.length; i++) {
+//   acc[i].addEventListener("click", function() {
+//     this.classList.toggle("active");
+//     let panel = this.nextElementSibling;
+//     if (panel.style.maxHeight) {
+//       panel.style.maxHeight = null;
+//     } else {
+//       panel.style.maxHeight = panel.scrollHeight + "px";
+//     } 
+//   });
+// }
 /*on click show stacks where author equals userName*/
 
 const sortingBtns = document.querySelectorAll(".sort");
@@ -170,28 +180,50 @@ let isAuthorAscending = true; // which order asc/desc. author of stack
 let isDateAscending = true; // which order asc/desc. creationDate of stack
 
 // SORTS ON STACK NAME
-document.querySelector(".list_info_name").addEventListener("click", () => {
-    accordionsArray.sort((a, b) => {
-        const nameA = a.querySelector('.stack_info_name').textContent.trim().toLowerCase();
-        const nameB = b.querySelector('.stack_info_name').textContent.trim().toLowerCase();
-
-        return isNameAscending ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA); // Toggle order. localeCompare compares strings alphabetically
-    });
-
-    const parentNode = accordionsArray[0].parentNode;
-    accordionsArray.forEach(button => {
-        parentNode.appendChild(button); 
-    });
-
+function sortOn(sortBtn, sortContent) {
+  document.querySelector(sortBtn).addEventListener("click", () => {
+    const wrapper = document.querySelector(".dashboard_list");
+    const content = Array.from(wrapper.children); // Get all content of the wrapper as an array, so we can sort on it.
+                                                 // when using querySelectorAll(osv), we get an nodeList, which we can't sort on.
+  
+    // get only accordion and panel
+    const pairs = [];
+    for (let i = 1; i < content.length; i++) {
+        const accordion = content[i];
+        const panel = content[i + 1];
+  
+        if (accordion.classList.contains("accordion") && panel.classList.contains("panel")) {
+            pairs.push({ accordion, panel });
+            i++;
+        }
+    }
+  
     // Toggle the sort order for the next click
     isNameAscending = !isNameAscending;
-});
+  
+    pairs.sort((a, b) => {
+        const nameA = a.accordion.querySelector(sortContent).textContent.trim().toLowerCase();
+        const nameB = b.accordion.querySelector(sortContent).textContent.trim().toLowerCase();
+        return isNameAscending ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
+    });
+  
+    pairs.forEach(({ accordion, panel }) => {
+        wrapper.appendChild(accordion);
+        wrapper.appendChild(panel);
+    });
+  });  
+}
+sortOn(".list_info_name", ".stack_info_name"); // sort on stack name
+sortOn(".list_info_author", ".stack_info_author"); // sort on author
+
+
+
 
 // SORTS ON AUTHOR
-document.querySelector(".list_info_author").addEventListener("click", () => { 
+document.querySelector().addEventListener("click", () => { 
   accordionsArray.sort((a, b) => {
       const nameA = a.querySelector('.stack_info_author').textContent.trim().toLowerCase();
-      const nameB = b.querySelector('.stack_info_author').textContent.trim().toLowerCase();
+      const nameB = b.querySelector().textContent.trim().toLowerCase();
 
       return isAuthorAscending ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA); // Toggle order. localeCompare compares alphabetically
   });
@@ -216,7 +248,7 @@ function convertDateForComparison(input) {
 }
 
 // SORTS ON CREATION DATE
-document.querySelector(".list_info_creation_date").addEventListener("click", () => {   
+document.querySelector(".list_info_creation_date").addEventListener("click", () => {   // TODO
   accordionsArray.sort((a, b) => {
       const dateA = convertDateForComparison(a.querySelector('.stack_info_creation_date').textContent.trim());
       const dateB = convertDateForComparison(b.querySelector('.stack_info_creation_date').textContent.trim());
@@ -239,6 +271,7 @@ document.querySelector(".list_info_creation_date").addEventListener("click", () 
 ///////////////
 // filter
 let superAdminRows = document.querySelectorAll("[data-role='superAdmin']"); // ryder op senere. 
+// TODO toggle active på filter
 
 // Hide superAdmin rows initially
 superAdminRows.forEach((k) => {
