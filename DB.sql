@@ -131,10 +131,10 @@ services:
     deploy:
       labels:
         - traefik.enable=true
-        - traefik.http.routers.CHANGEME01.rule=Host(`SUBDOMAIN01.kubelab.dk`)
-        - traefik.http.routers.CHANGEME01.entrypoints=web,websecure
-        - traefik.http.routers.CHANGEME01.tls.certresolver=letsencrypt
-        - traefik.http.services.CHANGEME01.loadbalancer.server.port=80
+        - traefik.http.routers.CHANGEME.rule=Host(`SUBDOMAIN.kubelab.dk`)
+        - traefik.http.routers.CHANGEME.entrypoints=web,websecure
+        - traefik.http.routers.CHANGEME.tls.certresolver=letsencrypt
+        - traefik.http.services.CHANGEME.loadbalancer.server.port=80
   db:
     image: mariadb:latest
     environment:
@@ -156,10 +156,10 @@ services:
     deploy:
       labels:
         - traefik.enable=true
-        - traefik.http.routers.CHANGEME02.rule=Host(`SUBDOMAIN02.kubelab.dk`)
-        - traefik.http.routers.CHANGEME02.entrypoints=web,websecure
-        - traefik.http.routers.CHANGEME02.tls.certresolver=letsencrypt
-        - traefik.http.services.CHANGEME02.loadbalancer.server.port=80
+        - traefik.http.routers.CHANGEME01.rule=Host(`SUBDOMAIN01.kubelab.dk`)
+        - traefik.http.routers.CHANGEME01.entrypoints=web,websecure
+        - traefik.http.routers.CHANGEME01.tls.certresolver=letsencrypt
+        - traefik.http.services.CHANGEME01.loadbalancer.server.port=80
 ', 
     '2024-10-10', 
     '2024-10-15');

@@ -90,9 +90,9 @@ exports.replacePlaceholder = async function (id, domain) {
     try {
         const [rows] = await db.query(`
             SELECT 
-                REPLACE(REPLACE(REPLACE(templateContent, 'CHANGEME', ?), 'SUBDOMAIN01', ?), 'SUBDOMAIN02', ?) AS updatedContent
+                REPLACE(REPLACE(REPLACE(REPLACE(templateContent, 'CHANGEME', ?), 'CHANGEME01', ?), 'SUBDOMAIN', ?), 'SUBDOMAIN01', ?) AS updatedContent
             FROM Templates WHERE templateId = ?;
-        `, [generateRandomString(5), domain, generateRandomString(5), id]); // det er vist kun SUBDOMAIN01 som skal være det som brugeren skriver. resten skal være random. skal lige dobbelt tjekkes
+        `, [generateRandomString(5), generateRandomString(5), domain, generateRandomString(5), id]); // det er vist kun SUBDOMAIN01 som skal være det som brugeren skriver. resten skal være random. skal lige dobbelt tjekkes
 
         if (!rows[0]) {
             throw new Error(`No template found with id: ${id}`);
