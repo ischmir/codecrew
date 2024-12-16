@@ -108,6 +108,28 @@ document.addEventListener("DOMContentLoaded", () => {
 /////////////////////////////////////////////
 // Delete Stack
 
+
+
+    // // Get the modal
+    // var deleteModal = document.getElementById("confirmDeleteModal");
+
+    // // Function to show the modal
+    // function popUpForm() {
+    //     modal.style.display = "block";
+    // }
+
+    // // Function to close the modal
+    // function closeModal() {
+    //     modal.style.display = "none";
+    // }
+
+    // // Close the modal if the user clicks anywhere outside of the modal
+    // window.onclick = function(event) {
+    //     if (event.target == modal) {
+    //         closeModal();
+    //     }
+    // }
+/*
 document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelector(".uil-trash-alt");
   if(buttons) {
@@ -122,10 +144,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-
-
+*/
 /////////////////////////////////////////////
 // dynamic search input
+
+/*
 document.querySelector('#searchInput').addEventListener('input', function (event) {
   const searchTerm = event.target.value.toLowerCase();
   const listItems = document.querySelectorAll('.accordion');
@@ -141,7 +164,7 @@ document.querySelector('#searchInput').addEventListener('input', function (event
           }
       });
   });
-
+*/
 /////////////////////////////////////////////
 // sorting 
 
