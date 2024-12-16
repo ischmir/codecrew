@@ -91,15 +91,15 @@ exports.dashboardRedirect = function (req, res) {
 exports.createStack = async function (req, res) {
 	try {
 
-		if(req.session.userDetails.isNewStackAllowed) {
-			res.redirect("back");
+		if(!req.session.userDetails.isNewStackAllowed) {
+			res.redirect("dashboard");
 		}
 
 		const { stack_name, domain_name, chosen_template } = req.body; // get content from form
 		
 		const template = await templateM.replacePlaceholder(chosen_template, domain_name) // if the choosen template has "CHANGEME" and/or "SUBDOMAIN" it will be replaced with the subDomain and return the whole template.
 
-		//const result = await dashboardM.portainerCreateStack(await getJWT(req.session.userDetails.userId), stack_name, template); // comment, so we dont create a new stack, on the live server by accident.
+		const result = await dashboardM.portainerCreateStack(await getJWT(req.session.userDetails.userId), stack_name, template); // comment, so we dont create a new stack, on the live server by accident.
 		console.log(result);
 		
 		if(result) {

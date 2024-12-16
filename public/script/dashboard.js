@@ -242,49 +242,6 @@ document.querySelector(".list_info_creation_date").addEventListener("click", () 
 
 ///////////////
 // filter
-
-// let superAdminRows = document.querySelectorAll("[data-role ='superAdmin']");
-// superAdminRows.forEach((k) => {
-//     k.style.display = "none";
-// })
-
-// document.getElementById("sort_other_projects").addEventListener("click", () => {
-//     document.querySelectorAll(".accordion, .panel").forEach((j) => {
-//       if(j.style.display != "none") {      
-//           if(j.classList.contains("accordion"))
-//               j.classList.replace("accordion", "accordionRemoved");
-
-//           if(j.classList.contains("panel"))
-//               j.classList.replace("panel", "panelRemoved")
-//           j.style.display = "none";
-//         }
-//     })
-//     superAdminRows.forEach((k) => { // displays all stacks
-//       if(k.dataset.role == "superAdmin")
-//           k.style.display = "grid";
-//     })
-// })
-
-// document.getElementById("sort_my_projects").addEventListener("click", () => {
-//     document.querySelectorAll(".accordionRemoved, .panelRemoved").forEach((j) => {
-//       if(j.classList.contains("accordionRemoved"))
-//           j.classList.replace("accordionRemoved", "accordion");
-
-//       if(j.classList.contains("panelRemoved"))
-//           j.classList.replace("panelRemoved", "panel")
-
-//       if(j.tagName == "BUTTON") {
-//         j.style.display = "grid";
-//       }
-//       else {
-//         j.style.display = "block";
-//       }
-//     })
-//     superAdminRows.forEach((k) => { // undisplays all stacks
-//         k.style.display = "none";
-//     });
-// })
-
 let superAdminRows = document.querySelectorAll("[data-role='superAdmin']"); // ryder op senere. 
 
 // Hide superAdmin rows initially
