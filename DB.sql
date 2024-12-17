@@ -131,10 +131,10 @@ services:
     deploy:
       labels:
         - traefik.enable=true
-        - traefik.http.routers.CHANGEME01.rule=Host(`SUBDOMAIN01.kubelab.dk`)
-        - traefik.http.routers.CHANGEME01.entrypoints=web,websecure
-        - traefik.http.routers.CHANGEME01.tls.certresolver=letsencrypt
-        - traefik.http.services.CHANGEME01.loadbalancer.server.port=80
+        - traefik.http.routers.CHANGEME.rule=Host(`SUBDOMAIN.kubelab.dk`)
+        - traefik.http.routers.CHANGEME.entrypoints=web,websecure
+        - traefik.http.routers.CHANGEME.tls.certresolver=letsencrypt
+        - traefik.http.services.CHANGEME.loadbalancer.server.port=80
   db:
     image: mariadb:latest
     environment:
@@ -156,10 +156,10 @@ services:
     deploy:
       labels:
         - traefik.enable=true
-        - traefik.http.routers.CHANGEME02.rule=Host(`SUBDOMAIN02.kubelab.dk`)
-        - traefik.http.routers.CHANGEME02.entrypoints=web,websecure
-        - traefik.http.routers.CHANGEME02.tls.certresolver=letsencrypt
-        - traefik.http.services.CHANGEME02.loadbalancer.server.port=80
+        - traefik.http.routers.CHANGEME01.rule=Host(`SUBDOMAIN01.kubelab.dk`)
+        - traefik.http.routers.CHANGEME01.entrypoints=web,websecure
+        - traefik.http.routers.CHANGEME01.tls.certresolver=letsencrypt
+        - traefik.http.services.CHANGEME01.loadbalancer.server.port=80
 ', 
     '2024-10-10', 
     '2024-10-15');
@@ -184,7 +184,7 @@ INSERT INTO Users (username, firstName, lastName, userEmail, userPassword, userP
     ('bob82134', 'Bob', 'Johnson', 'bob.johnson@example.com', 'Password@456', NULL, '2024-06-15', 1, 2),
     ('chbr22231', 'Charlie', 'Brown', 'charlie.brown@example.com', 'Password@789', NULL, '2024-07-01', 2, 2),
     ('depr99132', 'Diana', 'Prince', 'diana.prince@example.com', 'Password@101', NULL, '2024-05-20', 2, 2),
-    ('edke02496', 'Edward', 'Kennedy', 'edward.kennedy@example.com', 'Password@112', NULL, '2025-03-10', 2, 1),
+    ('edke02496', 'Jakob', 'Varring Jensen', 'Jakob@example.com', 'Password@112', NULL, '2025-03-10', 2, 1),
     ('figr12345', 'Fiona', 'Green', 'fiona.green@example.com', 'Password@131', NULL, '2024-10-29', 1, 2),
     ('gomi13375', 'George', 'Miller', 'george.miller@example.com', 'Password@415', NULL, '2024-11-15', 1, 3),
     ('hawm09090', 'Hannah', 'Williams', 'hannah.williams@example.com', 'Password@161', NULL, '2026-01-31', 3, 2),

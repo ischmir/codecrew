@@ -242,9 +242,6 @@ exports.portainerDeleteStack = async function (token, portainerStackId) {
 			headers: { Authorization: `Bearer ${token}` },
 			params: { external: false },
 		});
-		console.log(response.data);
-		console.log(response.status);
-		
 
 		console.log(`Stack with ID ${portainerStackId} deleted successfully.`);
 		return response.status;

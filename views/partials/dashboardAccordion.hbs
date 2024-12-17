@@ -1,0 +1,39 @@
+<button class="accordion" onclick="toggleActive(this)">
+    <span class="stack_info_name">{{name}}</span>
+    <span class="stack_info_author">{{author}}</span>
+    <span class="stack_info_creation_date">{{creationDate}}</span>
+    <span class={{#if status}}"stack_info_status online"{{else}}"stack_info_status offline"{{/if}}>{{#if status}}Online{{else}}Offline{{/if}}</span>
+</button>
+<div class="panel">
+    <div>
+        <p class="panel_info_author_mobile">Author: {{author}}</p>
+        <p class="panel_info_team">Team: {{team}}</p>
+        <p class="panel_info_sub_domain">Subdomain: {{subDomain}}</p>
+        <p class="panel_info_template">Template: {{template}}</p>
+    </div>
+    <div>
+        <p class="panel_info_last_active">Last Active: {{lastActive}}</p>
+        <p class="panel_info_creation_date_mobile">Creation Date:{{creationDate}}</p>
+        <div class="stack_actions">
+            {{#if status}}
+            <form action="/stopStack" method="post">
+                <input type="hidden" name="stackId" value="{{portainerStackId}}">
+                <button class="actions_button" type="submit"> <i class="uil-stop-circle"></i></button>
+            </form>
+            <form action="/restartStack" method="post">
+                <input type="hidden" name="stackId" value="{{portainerStackId}}">
+                <button class="actions_button" type="submit"> <i class="uil-redo"></i></button>
+            </form>
+            {{else}}
+            <form action="/startStack" method="post">
+                <input type="hidden" name="stackId" value="{{portainerStackId}}">
+                <button class="actions_button" type="submit"> <i class="uil-play-circle"></i></button>
+            </form>
+            {{/if}}
+            <form action="/deleteStack/{{portainerStackId}}" method="post">
+                <button class="actions_button" type="submit"><i class="uil-trash-alt"></i></button>
+            </form>
+        </div>
+    </div>
+    
+</div> 
