@@ -44,7 +44,7 @@ div .entryarea.modal {
 	border-radius: 30px;
 	background: transparent;
 	transition: 0.1s ease;
-	z-index: 1111;
+	z-index: 1;
 	border: 2px solid var(--primary-darkmode-border-color);
 }
 
@@ -69,7 +69,7 @@ div .entryarea.modal {
 	height: 30px;
 	line-height: 30px;
 	transform: translate(20px, -25px) scale(0.88);
-	z-index: 1111;
+	z-index: 1;
 	padding: 0 10px;
 }
 
@@ -552,10 +552,6 @@ label.wrap_create_stack:after {
 	.search_bar {
 		width: 98%;
 	}
-
-	/*.search_bar:hover {
-		background-color: var(--primary-darkmode-list-info-background-color);
-	}*/
 
 	/*Buttons - Search and Create new stack*/
 	.search_button,

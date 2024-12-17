@@ -207,6 +207,7 @@ p {
 		z-index: 1;
 		margin-top: -1em;
 		flex-direction: column;
+		z-index: 2;
 	}
 
 	.nav-overlay.navActive {
@@ -257,7 +258,7 @@ p {
 	.desktopNav {
 		background-color: var(--primary-darkmode-background-color);
 		width: 18vw;
-		height: 100vh;
+		height: auto;
 		align-items: center;
 		display: flex;
 		flex-direction: column;
