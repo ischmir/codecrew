@@ -81,25 +81,35 @@ exports.templateCreation = async function (req, res) {
 }
 
 exports.deleteTemplate = async function (req, res) {
-    const {templateId} = req.body
+    try {
+        const {templateId} = req.body
 
-    if(!templateId) {
-        throw new Error("There was no templateId with the request");
-    }
-
-    const templateFromDB = (await templateM.getTemplateById(templateId))
-    if(templateFromDB.length == 0) {
-        // could not find any template with that id
-    }
-
-    const result = await templateM.templateDeletion(templateId);
-    if(result.affectedRows < 1) {
-        // it didnt update in the db
-        throw new Error("Nothing got updated")
-    } 
-    else {
-        templateFromDB[0].templateTitle ? templateFromDB[0].templateTitle : ""
-        req.session.message = { type: "success", text: templateFromDB[0].templateTitle + " got utterly destroyed" };
+        if(!templateId) {
+            throw new Error("There was no templateId with the request");
+        }
+    
+        const templateFromDB = (await templateM.getTemplateById(templateId))
+        if(templateFromDB.length == 0) {
+            // could not find any template with that id
+        }
+    
+        const result = await templateM.templateDeletion(templateId);
+        if(!result) {
+            // should send a error to the site
+            res.redirect("/template")
+        }
+        else if(result.affectedRows < 1) {
+            // it didnt update in the db
+            throw new Error("Nothing got updated")
+        } 
+        else {
+            templateFromDB[0].templateTitle ? templateFromDB[0].templateTitle : ""
+            req.session.message = { type: "success", text: templateFromDB[0].templateTitle + " got utterly destroyed" };
+            res.redirect("/template")
+        }    
+    } catch (error) {
+        req.session.errMsg = error;
         res.redirect("/template")
     }
+    
 }

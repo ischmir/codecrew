@@ -223,7 +223,7 @@ function convertDateForComparison(input) {
   return new Date(formattedDateString).getTime();
 }
 
-// Sorts on creation date
+// Sorts on creation date. we need two different ways to do sorting. since date needs to be handled abit different then string
 document.querySelector(".list_info_creation_date").addEventListener("click", () => {
     const wrapper = document.querySelector(".dashboard_list");
     const content = Array.from(wrapper.children);
@@ -255,8 +255,6 @@ document.querySelector(".list_info_creation_date").addEventListener("click", () 
         wrapper.appendChild(panel);
     });
 });
-
-
 ////////////////
 // end of sorting
 

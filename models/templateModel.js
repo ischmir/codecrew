@@ -69,9 +69,16 @@ exports.templateCreation = async function (title, content) {
     return rows;
 }
 exports.templateDeletion = async function (id) {
-    const [rows] = await db.execute("DELETE FROM Templates WHERE templateId = ?", [id])
+    try {
+        const [rows] = await db.execute("DELETE FROM Templates WHERE templateId = ?", [id])
 
-    return rows;
+        return rows;
+    }
+    catch(error) {
+        console.error(error);
+        return false;
+    }
+    
 }
 
 
