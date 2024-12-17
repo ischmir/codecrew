@@ -11,6 +11,10 @@
 	flex-direction: column;
 }
 
+.teamContainer2 {
+	color: var(--primary-darkmode-font-color);
+}
+
 .tabs {
 	display: flex;
 	margin-bottom: 1rem;
