@@ -84,12 +84,10 @@ h5 {
 /* Specifik styling pr. overskriftsniveau */
 h1 {
 	font-size: 2rem;
-	color: var(--primary-darkmode-font-color);
 }
 
 h2 {
 	font-size: 1.5rem;
-	color: var(--primary-darkmode-font-color);
 }
 
 h3 {
@@ -99,7 +97,6 @@ h3 {
 
 h4 {
 	font-size: 1.1rem;
-	color: var(--secondary-darkmode-font-color);
 }
 
 h5 {
@@ -204,6 +201,10 @@ select {
 	border: 1px solid var(--primary-darkmode-border-color);
 	border-radius: 6px;
 	width: 100%;
+}
+
+.settingsText {
+	padding-left: 10px;
 }
 
 /*Mobile and tablet*/
