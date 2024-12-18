@@ -32,8 +32,8 @@ exports.dashboard = async function (req, res) {
 					creationDate: new Date(stack.CreationDate * 1000),
 					lastUpdate: stack.UpdateDate == 0 ? new Date(stack.CreationDate * 1000) : new Date(stack.UpdateDate * 1000),
 					createdBy: stack.CreatedBy,
-					template: stack.EntryPoint,
-					subDomain: 'ehhh, brain no work', // dummy
+					template: 19 || 2,  // dummy
+					subDomain: 'dummyDomain', // dummy
 					lastActive: new Date(),
 					author: 'welp', // dummy
 					portainerStackId: stack.Id,
@@ -44,7 +44,7 @@ exports.dashboard = async function (req, res) {
 		}
 
 		for (let i = 0; i < stacks.length; i++) {
-			let findDBstack = allStacksDB.find(k => k.portainerStackId == stacks[i].Id);
+			let findDBstack = await allStacksDB.find(k => k.portainerStackId == stacks[i].Id);
 			let fullName = await userM.getNameOfUserById(findDBstack.FK_userId);
 
 			allStacks.push({
@@ -86,46 +86,45 @@ exports.dashboardRedirect = function (req, res) {
 	res.redirect('/dashboard');
 };
 exports.createStack = async function (req, res) {
-	try {
-		if (!req.session.userDetails.isNewStackAllowed) {
-			res.redirect('dashboard');
-		}
+    try {
+        if (!req.session.userDetails.isNewStackAllowed) {
+            return res.redirect('/dashboard'); 
+        }
 
-		const { stack_name, domain_name, chosen_template } = req.body; // get content from form
-		const template = await templateM.replacePlaceholder(chosen_template, domain_name); // if the choosen template has "CHANGEME" and/or "SUBDOMAIN" it will be replaced with randoms the "SUBDOMAIN" will be the user written subDomain. returns the whole template with the changes.
+        const { stack_name, domain_name, chosen_template } = req.body;
+        const template = await templateM.replacePlaceholder(chosen_template, domain_name);
 
-		const result = await dashboardM.portainerCreateStack(
-			await getJWT(req.session.userDetails.userId),
-			stack_name,
-			template
-		); // comment, so we dont create a new stack, on the live server by accident.
+        const result = await dashboardM.portainerCreateStack(
+            await getJWT(req.session.userDetails.userId),
+            stack_name,
+            template
+        );
 
-		if (result) {
-			let saveToDb = {
-				userId: req.session.userDetails.userId || 8,
-				name: result.Name,
-				status: result.Status == 1,
-				creationDate: new Date(result.CreationDate * 1000),
-				lastUpdate: result.UpdateDate == 0 ? new Date(result.CreationDate * 1000) : new Date(result.UpdateDate * 1000),
-				createdBy: result.CreatedBy,
-				template: chosen_template,
-				subDomain: domain_name,
-				lastActive: Date.now(),
-				author: `${req.session.userDetails.firstName} ${req.session.userDetails.lastName}`,
-				portainerId: result.Id,
-			};
-			await dashboardM.addNewStackToDB(saveToDb, saveToDb.userId); // save it to DB. runs twice??
-
-			const isDeleted = await dashboardM.portainerDeleteStack(await getJWT(req.session.userDetails.userId), result.Id); // Portainer
-			const isDeletedDB = await dashboardM.deleteStackFromDB(result.Id); // DB
-			console.log(saveToDb);
-		}
-		res.redirect('/dashboard');
-	} catch (error) {
-		console.warn('Dashboard : ' + error);
-		res.redirect('/dashboard');
-	}
+        if (result) {
+            const saveToDb = {
+                userId: req.session.userDetails.userId || 8,
+                name: result.Name,
+                status: result.Status == 1,
+                creationDate: new Date(result.CreationDate * 1000),
+                lastUpdate: result.UpdateDate == 0 ? new Date(result.CreationDate * 1000) : new Date(result.UpdateDate * 1000),
+                createdBy: result.CreatedBy,
+                template: chosen_template,
+                subDomain: domain_name,
+                lastActive: new Date(),
+                author: `${req.session.userDetails.firstName} ${req.session.userDetails.lastName}`,
+                portainerStackId: result.Id,
+            };
+			
+            await dashboardM.addNewStackToDB(saveToDb);
+            
+        }
+        return res.redirect('/dashboard');
+    } catch (error) {
+        console.warn('Dashboard : ' + error);
+        return res.redirect('/dashboard'); 
+    }
 };
+
 // Stop Stack
 exports.stopStack = async function (req, res) {
 	try {

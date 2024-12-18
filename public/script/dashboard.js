@@ -1,6 +1,5 @@
 // Toggle Accordion
 
-//var acc = document.getElementsByClassName("accordion");
 function toggleActive(acc) {
     acc.classList.toggle("active");
     let panel = acc.nextElementSibling;
@@ -12,19 +11,6 @@ function toggleActive(acc) {
       panel.style.maxHeight = panel.scrollHeight + "px";
     } 
 }
-
-// for (i = 0; i < acc.length; i++) {
-//   acc[i].addEventListener("click", function() {
-//     this.classList.toggle("active");
-//     let panel = this.nextElementSibling;
-//     if (panel.style.maxHeight) {
-//       panel.style.maxHeight = null;
-//     } else {
-//       panel.style.maxHeight = panel.scrollHeight + "px";
-//     } 
-//   });
-// }
-/*on click show stacks where author equals userName*/
 
 const sortingBtns = document.querySelectorAll(".sort");
 
@@ -261,28 +247,23 @@ document.querySelector(".list_info_creation_date").addEventListener("click", () 
 ///////////////
 // filter
 let superAdminRows = document.querySelectorAll("[data-role='superAdmin']");
-// TODO toggle active på filter
 
-// Hide superAdmin rows initially
 superAdminRows.forEach((k) => {
     k.style.display = "none";
 });
 
-// Function to update odd/even styling for visible accordions
 function updateOddEvenStyling() {
     const visibleAccordions = Array.from(document.querySelectorAll(".accordion")).filter(
         (el) => el.style.display !== "none"
     );
 
     visibleAccordions.forEach((el, index) => {
-        // Clear previous odd/even styles
         el.classList.remove("odd", "even");
         // Apply new odd/even styles
         el.classList.add(index % 2 === 0 ? "odd" : "even");
     });
 }
 
-// Sort "Other Projects" click event
 document.getElementById("sort_other_projects").addEventListener("click", () => {
     document.querySelectorAll(".accordion, .panel").forEach((j) => {
         if (j.style.display !== "none") {
@@ -296,11 +277,9 @@ document.getElementById("sort_other_projects").addEventListener("click", () => {
         if (k.dataset.role === "superAdmin") k.style.display = "grid";
     });
 
-    // Update styles after visibility changes
     updateOddEvenStyling();
 });
 
-// Sort "My Projects" click event
 document.getElementById("sort_my_projects").addEventListener("click", () => {
     document.querySelectorAll(".accordionRemoved, .panelRemoved").forEach((j) => {
         if (j.classList.contains("accordionRemoved")) j.classList.replace("accordionRemoved", "accordion");
@@ -317,11 +296,9 @@ document.getElementById("sort_my_projects").addEventListener("click", () => {
         k.style.display = "none";
     });
 
-    // Update styles after visibility changes
     updateOddEvenStyling();
 });
 
-// Initial odd/even update
 updateOddEvenStyling();
 
 ////////////////

@@ -12,7 +12,7 @@ exports.login = function (req, res) {
 async function isNewStackAllowed(accessLevel, userId) {
 	const stackLimit = await dashboardM.stackLimitForUser(accessLevel);
 	const amountOfStacksByUser = await dashboardM.amountOfStacksByUser(userId);
-
+	
 	if(stackLimit <= amountOfStacksByUser) {
 		return false;
 	}

@@ -122,12 +122,6 @@ exports.portainerSystemStatus = async function (token) {
 exports.portainerStacks = async function (token) {
 	try {
 		const response = await portainerCall('stacks', undefined, token);
-		//console.log("Portainer Stacks:", response.data);
-
-		// find hvad vi skal bruge og læg lortet i en array
-		// gem lortet i db
-		// return den filteret array
-		// win
 
 		return response.data;
 	} catch (error) {
@@ -136,11 +130,36 @@ exports.portainerStacks = async function (token) {
 	}
 };
 
-exports.addNewStackToDB = async function(res) {
-    const [rows] = await db.execute("INSERT INTO Stacks (subDomain, FK_templateId, FK_userId, stackName, stackCreationDate, stackLastUpdate, stackLastActive, portainerStackId) VALUES (?,(SELECT templateId FROM Templates WHERE templateTitle = 'welp'),?,?,?,?,?,?)", 
-        [res.subDomain/*, res.template*/, res.userId, res.name, res.creationDate, res.lastUpdate, res.lastActive, res.portainerStackId]
-    )
-    return rows;
+exports.addNewStackToDB = async function(res) {	
+	try {
+		// Sanitize inputs to avoid undefined values
+		const subDomain = res.subDomain || null; // Convert 'undefined' to SQL NULL
+		const template = res.template || null;
+		const userId = res.userId || null;
+		const stackName = res.name || null;
+		const creationDate = res.creationDate || null;
+		const lastUpdate = res.lastUpdate || null;
+		const lastActive = res.lastActive || null;
+		const portainerStackId = res.portainerStackId || null;
+	
+		console.log("Insert parameters:", {
+			subDomain, template, userId, stackName, creationDate, lastUpdate, lastActive, portainerStackId
+		});
+	
+		// Execute the query
+		const [rows] = await db.execute(
+			`INSERT INTO Stacks 
+			 (subDomain, FK_templateId, FK_userId, stackName, stackCreationDate, stackLastUpdate, stackLastActive, portainerStackId) 
+			 VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+			[subDomain, template, userId, stackName, creationDate, lastUpdate, lastActive, portainerStackId]
+		);
+	
+		console.log("Insert successful. Rows affected:", rows.affectedRows);
+		return rows;
+	} catch (error) {
+		console.error("Error inserting into Stacks:", error);
+	}
+	
 }
 // Function to fetch Portainer endpoints
 exports.portainerEndpoints = async function (token) {
@@ -223,9 +242,11 @@ exports.portainerRestartStack = async function (token, stackId) {
 
 exports.deleteStackFromDB = async function (portainerStackId) { 
 	try {
-		const query = 'DELETE FROM stacks WHERE portainerStackId = ?';
+		const query = 'DELETE FROM Stacks WHERE portainerStackId = ?';
 
 		const [result] = await db.execute(query, [portainerStackId]);
+		console.log(`Deleted stack with portainerStackId: ${portainerStackId} succesfully`);
+		
 		return result;
 	} catch {
 		console.error(`Error deleting stack with ID ${portainerStackId}:`, error.message);
