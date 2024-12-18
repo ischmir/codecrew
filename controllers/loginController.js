@@ -5,14 +5,14 @@ const userM = require('../models/userModel');
 exports.login = function (req, res) {
 	res.locals.loginErrorMsg = "";
 	if(req.session && req.session.userDetails) {
-		res.redirect("/dashboard") // this if statement redirects, if we are allready logged in.
+		// res.redirect("/dashboard") // this if statement redirects, if we are allready logged in.
 	}
 	res.render('login');
 };
 async function isNewStackAllowed(accessLevel, userId) {
 	const stackLimit = await dashboardM.stackLimitForUser(accessLevel);
 	const amountOfStacksByUser = await dashboardM.amountOfStacksByUser(userId);
-	
+
 	if(stackLimit <= amountOfStacksByUser) {
 		return false;
 	}
@@ -50,7 +50,7 @@ exports.postLogin = async function (req, res) {
 				  return res.redirect('/login');
 				}
 				res.redirect('/dashboard');
-			  });
+			  }); // to save it immediatly. if not, we would have to refresh the first site we use after login. which is dashboard.
 		} else {
 			res.locals.loginErrorMsg = "Wrong creditials. Cant find a user with that email and password";
 			console.log('wrong login credientals');

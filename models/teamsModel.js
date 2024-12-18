@@ -48,3 +48,11 @@ exports.addMemberToTeam = async function (memberId, teamId) {
 		[memberId, teamId]
 	);
 };
+
+// exports.teamMembers = async function () {
+// 	const [rows] = await db.query(
+// 		`SELECT userId, firstName, lastName
+// 		FROM Users`
+// 	);
+// 	return rows;
+// };

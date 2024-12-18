@@ -12,45 +12,41 @@
     <div class="templateWrapper">
         <h3>{{templateTitle}}</h3>
 
-        <p><b>Creation Date:</b> {{creationDate}}</p>
-        <p><b>Last Update:</b> {{lastUpdate}}</p>
+        <p> <b>Creation Date: </b> {{creationDate}}</p>
+        <p> <b>Last Update: </b>{{lastUpdate}}</p>
     
         <form action="/updateTemplate" method="post">
-            <textarea name="newContent">{{templateContent}}</textarea>
+            <textarea name="newContent" id="">{{templateContent}}</textarea>
             <input type="hidden" name="templateId" value="{{templateId}}">
             <br>
             <div class="templateFormBtn_wrapper">
                 <button class="templateSaveBtn" type="submit">Save</button>
-                <button 
-                    type="button" 
-                    class="templateDeletionBtn" 
-                    onclick="popUpForm('{{templateId}}')"
-                >
-                    Utterly Destruction
-                </button>
+                <button type="button" class="templateDeletionBtn" onclick="popUpForm()">Utterly Destruction</button>
             </div>
         </form>
 
-        <div id="confirmModal-{{templateId}}" class="templateFormModal_wrapper">
+        <div id="confirmModal" class="templateFormModal_wrapper">
             <div class="templateFormModal_content">
-                <span class="close" onclick="closeModal('{{templateId}}')">&times;</span>
+                <span class="close" onclick="closeModal()">&times;</span>
                 <h2>Are you sure you want to delete <br> "{{templateTitle}}"?</h2>
                 <div>
                     <form class="templateModalForm_deletion" action="/deleteTemplate" method="post">
                         <input type="hidden" name="templateId" value="{{templateId}}">
                         <button type="submit">Yes, delete</button>
                     </form>
-                    <button onclick="closeModal('{{templateId}}')" class="templateFormModalBtn_cancel">Cancel</button>
+                    <button onclick="closeModal()" class="templateFormModalBtn_cancel">Cancel</button>
                 </div>
             </div>
         </div>
-    </div>
-{{/each}}
 
+    </div>
+    {{/each}}
 
     <div class="toast-overlay" 
 		id="toast-overlay"></div>
 
+	{{!-- {{#if message}} --}}
+		 
 	<script>
 		// We need make a variable to pass on a value from handlebars to script file.
 		const messageType = "{{message.type}}";
@@ -58,30 +54,27 @@
 	</script>
     <script src="script/updatePasswordToast.js"></script>
 
-<script>
+    {{!-- {{/if}} --}}
 
-    function popUpForm(templateId) {
-        const modal = document.getElementById(`confirmModal-${templateId}`);
-        if (modal) {
+    <script>
+        // Get the modal
+        var modal = document.getElementById("confirmModal");
+
+        // Function to show the modal
+        function popUpForm() {
             modal.style.display = "block";
         }
-    }
 
-    function closeModal(templateId) {
-        const modal = document.getElementById(`confirmModal-${templateId}`);
-        if (modal) {
+        // Function to close the modal
+        function closeModal() {
             modal.style.display = "none";
         }
-    }
 
-    // Close the modal if the user clicks anywhere outside of the modal
-    window.onclick = function(event) {
-        const modals = document.getElementsByClassName("templateFormModal_wrapper");
-        for (let modal of modals) {
-            if (event.target === modal) {
-                modal.style.display = "none";
+        // Close the modal if the user clicks anywhere outside of the modal
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
             }
         }
-    };
-</script>
+    </script>
 </main>

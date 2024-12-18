@@ -3,6 +3,7 @@ const https = require('https');
 // Import the Axios library for making HTTP requests
 const axios = require('axios');
 exports.mockData = async function () {
+	// Corrected example data :)
 	let data = {
 		stack: [
 			{
@@ -121,6 +122,12 @@ exports.portainerSystemStatus = async function (token) {
 exports.portainerStacks = async function (token) {
 	try {
 		const response = await portainerCall('stacks', undefined, token);
+		//console.log("Portainer Stacks:", response.data);
+
+		// find hvad vi skal bruge og læg lortet i en array
+		// gem lortet i db
+		// return den filteret array
+		// win
 
 		return response.data;
 	} catch (error) {
@@ -129,22 +136,11 @@ exports.portainerStacks = async function (token) {
 	}
 };
 
-exports.addNewStackToDB = async function(res) {	
-	try {
-		console.log(res);
-		
-		const [rows] = await db.execute(
-			`INSERT INTO Stacks 
-			 (subDomain, FK_templateId, FK_userId, stackName, stackCreationDate, stackLastUpdate, stackLastActive, portainerStackId) 
-			 VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-			[res.subDomain, res.template, res.userId, res.name, res.creationDate, res.lastUpdate, res.lastActive, res.portainerStackId]
-		);
-		console.log("added new stack to the database. stack name: " + res.name);
-		return rows;
-	} catch (error) {
-		console.error("Error inserting into Stacks:", error);
-	}
-	
+exports.addNewStackToDB = async function(res) {
+    const [rows] = await db.execute("INSERT INTO Stacks (subDomain, FK_templateId, FK_userId, stackName, stackCreationDate, stackLastUpdate, stackLastActive, portainerStackId) VALUES (?,(SELECT templateId FROM Templates WHERE templateTitle = 'welp'),?,?,?,?,?,?)", 
+        [res.subDomain/*, res.template*/, res.userId, res.name, res.creationDate, res.lastUpdate, res.lastActive, res.portainerStackId]
+    )
+    return rows;
 }
 // Function to fetch Portainer endpoints
 exports.portainerEndpoints = async function (token) {
@@ -167,7 +163,7 @@ exports.portainerCreateStack = async function (token, stackName, stackFileConten
 		fromTemplate: 'false',
 		name: stackName,
 		stackFileContent: stackFileContent,
-		swarmId: 'v1pkdou24tzjtncewxhvpmjms', // its static and therefor we can just hardcode it.
+		swarmId: 'v1pkdou24tzjtncewxhvpmjms', // i think its static and therefor we can just hardcode it.
 	};
 
 	try {
@@ -227,11 +223,9 @@ exports.portainerRestartStack = async function (token, stackId) {
 
 exports.deleteStackFromDB = async function (portainerStackId) { 
 	try {
-		const query = 'DELETE FROM Stacks WHERE portainerStackId = ?';
+		const query = 'DELETE FROM stacks WHERE portainerStackId = ?';
 
 		const [result] = await db.execute(query, [portainerStackId]);
-		console.log(`Deleted stack with portainerStackId: ${portainerStackId} succesfully`);
-		
 		return result;
 	} catch {
 		console.error(`Error deleting stack with ID ${portainerStackId}:`, error.message);
