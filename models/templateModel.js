@@ -12,7 +12,7 @@ exports.getAllTemplates = async function(message) {
     
     templates.forEach((d) => {
         d.creationDate = extraM.convertingDateFormat(d.creationDate),
-        d.lastUpdate = extraM.convertingDateFormat(d.lastUpdate)
+        d.lastUpdate = extraM.convertingDateFormat(d.lastUpdate)   
     });
     const data = {
         title: "Template",
@@ -70,6 +70,8 @@ exports.templateCreation = async function (title, content) {
 }
 exports.templateDeletion = async function (id) {
     try {
+        console.log(id);
+        
         const [rows] = await db.execute("DELETE FROM Templates WHERE templateId = ?", [id])
 
         return rows;
