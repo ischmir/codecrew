@@ -3,7 +3,6 @@ const https = require('https');
 // Import the Axios library for making HTTP requests
 const axios = require('axios');
 exports.mockData = async function () {
-	// Corrected example data :)
 	let data = {
 		stack: [
 			{
@@ -168,7 +167,7 @@ exports.portainerCreateStack = async function (token, stackName, stackFileConten
 		fromTemplate: 'false',
 		name: stackName,
 		stackFileContent: stackFileContent,
-		swarmId: 'v1pkdou24tzjtncewxhvpmjms', // i think its static and therefor we can just hardcode it.
+		swarmId: 'v1pkdou24tzjtncewxhvpmjms', // its static and therefor we can just hardcode it.
 	};
 
 	try {

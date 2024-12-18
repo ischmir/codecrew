@@ -35,13 +35,7 @@
                 <span id="domain_preview" class="preview">.kubelab.dk</span>
             </div>
             <label class="wrap_create_stack">
-            <select name="add_team" id="create_stack_select_team" class="create_stack_select">
-                <option value="" disabled selected>Add Team Member</option>
-                <option value="">none</option>
-                <option value="User1">Sandra</option>
-                <option value="User2">Mai</option>
-                <option value="User3">Markus</option>
-            </select>
+            
             </label>
             <label class="wrap_create_stack">
             <select name="chosen_template" id="create_stack_select_template" class="create_stack_select">
@@ -75,20 +69,6 @@
             {{#if isCreator}}
                 {{> dashboardAccordion}}
             {{/if}}
-            
-            {{!-- <div id="confirmDeleteModal" class="delete_stack_modal_wrapper">
-                <div class="delete_stack_modal_content">
-                    <span class="close" onclick="closeModal()">&times;</span>
-                    <h2>Are you sure you want to delete <br> "{{stackName}}"?</h2>
-                    <div>
-                        <form class="delete_stack_modal_form" action="/deleteStack" method="post">
-                            <input type="hidden" name="stackId" value="{{portainerStackId}}">
-                            <button type="submit">Yes, delete</button>
-                        </form>
-                        <button onclick="closeModal()" class="delete_stack_modal_btn_cancel">Cancel</button>
-                    </div>
-                </div>
-            </div> --}}
 
             {{> dashboardAccordionSuperAdmin}}
         {{/each}}

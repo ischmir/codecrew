@@ -31,7 +31,7 @@ exports.upgradeUser = async function (req, res) {
 		res.redirect("/admin_user_settings"); // if there wasn't any change in the db. mostly becourse there was no match, typo.
 	}
 	else {
-		res.redirect("/admin_user_settings"); // on success, send a toast?
+		res.redirect("/admin_user_settings");
 	}
 }
 

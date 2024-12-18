@@ -4,7 +4,7 @@ const templateM = require('../models/templateModel');
 const extraM = require('../models/extraModel');
 
 async function getJWT(userId) {
-	return (await userM.getJWTfromUser(userId)) || (await dashboardM.portainerSystemAuth()); // last half shouldn't reaaaaly be there. but we dont have to login then
+	return (await userM.getJWTfromUser(userId)) || (await dashboardM.portainerSystemAuth());
 }
 
 exports.dashboard = async function (req, res) {
@@ -176,7 +176,6 @@ exports.deleteStack = async function (req, res) {
 		const isDeletedDB = await dashboardM.deleteStackFromDB(portainerStackId); // DB
 
 		if (isDeleted != 204 && isDeletedDB.affectedRows < 1) {
-			// it didnt update in the db
 			throw new Error('Nothing got deleted');
 		} else {
 			res.redirect('/dashboard');
