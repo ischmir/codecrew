@@ -1,6 +1,5 @@
 // Toggle Accordion
 
-//var acc = document.getElementsByClassName("accordion");
 function toggleActive(acc) {
     acc.classList.toggle("active");
     let panel = acc.nextElementSibling;
@@ -13,19 +12,6 @@ function toggleActive(acc) {
     } 
 }
 
-// for (i = 0; i < acc.length; i++) {
-//   acc[i].addEventListener("click", function() {
-//     this.classList.toggle("active");
-//     let panel = this.nextElementSibling;
-//     if (panel.style.maxHeight) {
-//       panel.style.maxHeight = null;
-//     } else {
-//       panel.style.maxHeight = panel.scrollHeight + "px";
-//     } 
-//   });
-// }
-/*on click show stacks where author equals userName*/
-
 const sortingBtns = document.querySelectorAll(".sort");
 
 sortingBtns.forEach((btn) => {
@@ -37,17 +23,11 @@ sortingBtns.forEach((btn) => {
 
 let modal = document.getElementById("create_stack_modal");
 let btn = document.getElementById("create_stack_button");
-//let btnMobile = document.getElementById("create_stack_button_mobile");
 let span = document.getElementsByClassName("create_stack_model_close")[0];
 
 btn.addEventListener("click", () => {
   modal.style.display = "block";
 });
-
-// btnMobile.addEventListener("click", () => {
-//   modal.style.display = "block";
-//   openMobileNav()
-// });
 
 span.addEventListener("click", () => {
   modal.style.display = "none";
@@ -112,31 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-/////////////////////////////////////////////
-// Delete Stack
-
-
-
-    // // Get the modal
-    // var deleteModal = document.getElementById("confirmDeleteModal");
-
-    // // Function to show the modal
-    // function popUpForm() {
-    //     modal.style.display = "block";
-    // }
-
-    // // Function to close the modal
-    // function closeModal() {
-    //     modal.style.display = "none";
-    // }
-
-    // // Close the modal if the user clicks anywhere outside of the modal
-    // window.onclick = function(event) {
-    //     if (event.target == modal) {
-    //         closeModal();
-    //     }
-    // }
-
 document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelector(".uil-trash-alt");
   if(buttons) {
@@ -153,8 +108,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /////////////////////////////////////////////
 // dynamic search input
-
-
 document.querySelector('#searchInput').addEventListener('input', function (event) {
   const searchTerm = event.target.value.toLowerCase();
   const listItems = document.querySelectorAll('.accordion');
@@ -175,20 +128,17 @@ document.querySelector('#searchInput').addEventListener('input', function (event
 // sorting 
 
 const accordionsArray = Array.from(document.querySelectorAll(".accordion"));
-let isNameAscending = true; // which order asc/desc. stack name
-let isAuthorAscending = true; // which order asc/desc. author of stack
-let isDateAscending = true; // which order asc/desc. creationDate of stack
+let isAscending = true; // which order asc/desc. 
 
-// SORTS ON STACK NAME
+// SORTS 
 function sortOn(sortBtn, sortContent) {
   document.querySelector(sortBtn).addEventListener("click", () => {
     const wrapper = document.querySelector(".dashboard_list");
     const content = Array.from(wrapper.children); // Get all content of the wrapper as an array, so we can sort on it.
-                                                 // when using querySelectorAll(osv), we get an nodeList, which we can't sort on.
+                                                 // when using querySelectorAll() and a like, we get a nodeList, which we can't sort on.
   
-    // get only accordion and panel
     const pairs = [];
-    for (let i = 1; i < content.length; i++) {
+    for (let i = 1; i < content.length; i++) { // we start the loop on 1 instead of 0 becourse, we want to ignore the first child (.list_info)
         const accordion = content[i];
         const panel = content[i + 1];
   
@@ -199,12 +149,12 @@ function sortOn(sortBtn, sortContent) {
     }
   
     // Toggle the sort order for the next click
-    isNameAscending = !isNameAscending;
+    isAscending = !isAscending;
   
     pairs.sort((a, b) => {
         const nameA = a.accordion.querySelector(sortContent).textContent.trim().toLowerCase();
         const nameB = b.accordion.querySelector(sortContent).textContent.trim().toLowerCase();
-        return isNameAscending ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
+        return isAscending ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
     });
   
     pairs.forEach(({ accordion, panel }) => {
@@ -217,82 +167,72 @@ sortOn(".list_info_name", ".stack_info_name"); // sort on stack name
 sortOn(".list_info_author", ".stack_info_author"); // sort on author
 
 
-
-
-// SORTS ON AUTHOR
-document.querySelector().addEventListener("click", () => { 
-  accordionsArray.sort((a, b) => {
-      const nameA = a.querySelector('.stack_info_author').textContent.trim().toLowerCase();
-      const nameB = b.querySelector().textContent.trim().toLowerCase();
-
-      return isAuthorAscending ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA); // Toggle order. localeCompare compares alphabetically
-  });
-
-  const parentNode = accordionsArray[0].parentNode;
-  accordionsArray.forEach(button => {
-      parentNode.appendChild(button);
-  });
-
-  // Toggle the sort order for the next click
-  isAuthorAscending = !isAuthorAscending;
-});
-
 function convertDateForComparison(input) {
   const [date, time] = input.split(' ');
   const [day, month, year] = date.split('-');
 
-  // Create a new date string in the format YYYY-MM-DDTHH:mm:ss
+  // Create a date string in the format YYYY-MM-DDTHH:mm:ss
+  // so js Date can work with it.
   const formattedDateString = `${year}-${month}-${day}T${time}`;
 
   return new Date(formattedDateString).getTime();
 }
 
-// SORTS ON CREATION DATE
-document.querySelector(".list_info_creation_date").addEventListener("click", () => {   // TODO
-  accordionsArray.sort((a, b) => {
-      const dateA = convertDateForComparison(a.querySelector('.stack_info_creation_date').textContent.trim());
-      const dateB = convertDateForComparison(b.querySelector('.stack_info_creation_date').textContent.trim());
+// Sorts on creation date. we need two different ways to do sorting. since date needs to be handled abit different then string
+document.querySelector(".list_info_creation_date").addEventListener("click", () => {
+    const wrapper = document.querySelector(".dashboard_list");
+    const content = Array.from(wrapper.children);
 
-      return isDateAscending ? dateA - dateB : dateB - dateA; // Toggle order
-  });
+    
+    const pairs = [];
+    for (let i = 1; i < content.length; i++) { // we start the loop on 1 instead of 0 becourse, we want to ignore the first child (.list_info)
+        const accordion = content[i];
+        const panel = content[i + 1];
 
-  const parentNode = accordionsArray[0].parentNode;
-  accordionsArray.forEach(button => {
-      parentNode.appendChild(button);
-  });
+      if (accordion.classList.contains("accordion") && panel.classList.contains("panel")) {
+          pairs.push({ accordion, panel });
+          i++;
+      }
+    }
 
-  // Toggle the sort order for the next click
-  isDateAscending = !isDateAscending;
+    isAscending = !isAscending;
+
+    pairs.sort((a, b) => {
+        const dateA = convertDateForComparison(
+            a.accordion.querySelector(".stack_info_creation_date").textContent.trim());
+        const dateB = convertDateForComparison(
+            b.accordion.querySelector(".stack_info_creation_date").textContent.trim());
+        return isAscending ? dateA - dateB : dateB - dateA;
+    });
+
+    pairs.forEach(({ accordion, panel }) => {
+        wrapper.appendChild(accordion);
+        wrapper.appendChild(panel);
+    });
 });
-
 ////////////////
 // end of sorting
 
 ///////////////
 // filter
-let superAdminRows = document.querySelectorAll("[data-role='superAdmin']"); // ryder op senere. 
-// TODO toggle active på filter
+let superAdminRows = document.querySelectorAll("[data-role='superAdmin']");
 
-// Hide superAdmin rows initially
 superAdminRows.forEach((k) => {
     k.style.display = "none";
 });
 
-// Function to update odd/even styling for visible accordions
 function updateOddEvenStyling() {
     const visibleAccordions = Array.from(document.querySelectorAll(".accordion")).filter(
         (el) => el.style.display !== "none"
     );
 
     visibleAccordions.forEach((el, index) => {
-        // Clear previous odd/even styles
         el.classList.remove("odd", "even");
         // Apply new odd/even styles
         el.classList.add(index % 2 === 0 ? "odd" : "even");
     });
 }
 
-// Sort "Other Projects" click event
 document.getElementById("sort_other_projects").addEventListener("click", () => {
     document.querySelectorAll(".accordion, .panel").forEach((j) => {
         if (j.style.display !== "none") {
@@ -306,11 +246,9 @@ document.getElementById("sort_other_projects").addEventListener("click", () => {
         if (k.dataset.role === "superAdmin") k.style.display = "grid";
     });
 
-    // Update styles after visibility changes
     updateOddEvenStyling();
 });
 
-// Sort "My Projects" click event
 document.getElementById("sort_my_projects").addEventListener("click", () => {
     document.querySelectorAll(".accordionRemoved, .panelRemoved").forEach((j) => {
         if (j.classList.contains("accordionRemoved")) j.classList.replace("accordionRemoved", "accordion");
@@ -327,9 +265,10 @@ document.getElementById("sort_my_projects").addEventListener("click", () => {
         k.style.display = "none";
     });
 
-    // Update styles after visibility changes
     updateOddEvenStyling();
 });
 
-// Initial odd/even update
 updateOddEvenStyling();
+
+////////////////
+// end of fliter

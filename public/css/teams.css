@@ -19,6 +19,9 @@
 	display: flex;
 	margin-bottom: 1rem;
 }
+a {
+	text-decoration: none;
+}
 
 .tab {
 	background-color: var(--primary-darkmode-inactive-font-color);
