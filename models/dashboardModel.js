@@ -132,29 +132,15 @@ exports.portainerStacks = async function (token) {
 
 exports.addNewStackToDB = async function(res) {	
 	try {
-		// Sanitize inputs to avoid undefined values
-		const subDomain = res.subDomain || null; // Convert 'undefined' to SQL NULL
-		const template = res.template || null;
-		const userId = res.userId || null;
-		const stackName = res.name || null;
-		const creationDate = res.creationDate || null;
-		const lastUpdate = res.lastUpdate || null;
-		const lastActive = res.lastActive || null;
-		const portainerStackId = res.portainerStackId || null;
-	
-		console.log("Insert parameters:", {
-			subDomain, template, userId, stackName, creationDate, lastUpdate, lastActive, portainerStackId
-		});
-	
-		// Execute the query
+		console.log(res);
+		
 		const [rows] = await db.execute(
 			`INSERT INTO Stacks 
 			 (subDomain, FK_templateId, FK_userId, stackName, stackCreationDate, stackLastUpdate, stackLastActive, portainerStackId) 
 			 VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-			[subDomain, template, userId, stackName, creationDate, lastUpdate, lastActive, portainerStackId]
+			[res.subDomain, res.template, res.userId, res.name, res.creationDate, res.lastUpdate, res.lastActive, res.portainerStackId]
 		);
-	
-		console.log("Insert successful. Rows affected:", rows.affectedRows);
+		console.log("added new stack to the database. stack name: " + res.name);
 		return rows;
 	} catch (error) {
 		console.error("Error inserting into Stacks:", error);

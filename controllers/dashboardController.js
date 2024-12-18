@@ -19,6 +19,8 @@ exports.dashboard = async function (req, res) {
 		const allStacksDB = await dashboardM.getAllStacksFromDB();
 		const allStacks = [];
 
+
+
 		for (let i = 0; i < stacks.length; i++) {
 			// for getting data from portainer to the db. but we cant get info on some things, so we have dummy there, only use it for catch up.
 			const stack = stacks[i];
@@ -26,20 +28,20 @@ exports.dashboard = async function (req, res) {
 			if (!allStacksDB.some(k => k.portainerStackId == stack.Id)) {
 				// check if the db is missing a stack.
 				const newStack = {
-					userId: req.session.userDetails.userId || 8, // dummy
+					userId: req.session.userDetails.userId, // dummy
 					name: stack.Name,
 					status: stack.Status === 1,
 					creationDate: new Date(stack.CreationDate * 1000),
 					lastUpdate: stack.UpdateDate == 0 ? new Date(stack.CreationDate * 1000) : new Date(stack.UpdateDate * 1000),
 					createdBy: stack.CreatedBy,
-					template: 19 || 2,  // dummy
+					template: null,  // dummy
 					subDomain: 'dummyDomain', // dummy
 					lastActive: new Date(),
-					author: 'welp', // dummy
+					author: "Can't find. " + stack.createdBy, // dummy
 					portainerStackId: stack.Id,
 				};
 
-				await dashboardM.addNewStackToDB(newStack, req.session.userDetails.userId);
+				await dashboardM.addNewStackToDB(newStack);
 			}
 		}
 
@@ -57,7 +59,7 @@ exports.dashboard = async function (req, res) {
 						? extraM.convertingDateFormat(stacks[i].CreationDate * 1000)
 						: extraM.convertingDateFormat(stacks[i].UpdateDate * 1000),
 				createdBy: stacks[i].CreatedBy,
-				template: stacks[i].EntryPoint,
+				template: findDBstack.template,
 				subDomain: findDBstack.subDomain,
 				lastActive: extraM.convertingDateFormat(new Date()),
 				author: fullName.firstName + ' ' + fullName.lastName,
@@ -177,8 +179,6 @@ exports.deleteStack = async function (req, res) {
 			// it didnt update in the db
 			throw new Error('Nothing got deleted');
 		} else {
-			stackFromDB[0].stackName ? stackFromDB[0].stackName : '';
-			req.session.message = { type: 'success', text: stackFromDB[0].stackName + ' got utterly destroyed' };
 			res.redirect('/dashboard');
 		}
 	} catch (error) {
