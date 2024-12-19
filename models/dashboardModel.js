@@ -131,8 +131,6 @@ exports.portainerStacks = async function (token) {
 
 exports.addNewStackToDB = async function(res) {	
 	try {
-		console.log(res);
-		
 		const [rows] = await db.execute(
 			`INSERT INTO Stacks 
 			 (subDomain, FK_templateId, FK_userId, stackName, stackCreationDate, stackLastUpdate, stackLastActive, portainerStackId) 

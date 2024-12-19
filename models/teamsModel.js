@@ -25,10 +25,7 @@ exports.teams = async function (teamId) {
 		teamMembers: teamMemberRows,
 	};
 };
-// team =
-// name: 'Howdy Team',
-// description: 'Yeeeehaw!!!!!        ',
-// expire: '2024-12-28'
+
 exports.addTeamToDB = async function (team) {
 	const [response] = await db.query(
 		`INSERT INTO Teams (teamName, teamCreationDate, teamDescription, teamExpireDate) 
