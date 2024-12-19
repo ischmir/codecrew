@@ -39,8 +39,8 @@ app.all('*', loginRequired); // target ALLE routes/sider
 
 function loginRequired(req, res, next) {
 
-    const allowedSites = ['/login', '/signup', '/forgot_password']; // sider man godt må komme på, hvis man ikke er logged ind
-    if (allowedSites.includes(req.path)) {
+    const excludedPaths = ['/login', '/signup', '/forgot_password']; // sider man godt må komme på, hvis man ikke er logged ind
+    if (excludedPaths.includes(req.path)) {
         return next();
     }
     
@@ -54,6 +54,7 @@ function loginRequired(req, res, next) {
 
 require('./routes/getSiteRoutes')(app); // GET routes
 require('./routes/postSiteRoutes')(app); // POST routes
+
 
 
 app.engine(

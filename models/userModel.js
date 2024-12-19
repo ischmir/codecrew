@@ -92,8 +92,9 @@ exports.saveJWTtoUser = async function (jwt, userId) {
         const [verify] = await db.query(`SELECT optionsLastUpdate as lastUpdate FROM Users 
                                         INNER JOIN Options On Users.FK_options = Options.optionsId
                                         WHERE userId = ?`, [userId]);
-                    
+            
         if(verify.length == 0) {
+            
             const [res] = await db.execute("INSERT INTO Options (optionsName, optionsValue, optionsLastUpdate) VALUES (?, ?, ?)", ["JWT", jwt, new Date()])
             if(res.insertId) {
                 const [affectedRows] = await db.execute("UPDATE Users SET FK_options = ? WHERE userId = ?", [res.insertId, userId])
@@ -104,11 +105,14 @@ exports.saveJWTtoUser = async function (jwt, userId) {
             else {
                 throw new Error("There was an error with inserting the jwt to database.");
             }    
-        } 
-        else {
-            await extra.updateJWTtoUser(jwt, verify[0].lastUpdate, userId);
         }
         
+        const result = await extra.updateJWTtoUser(jwt, verify[0].lastUpdate, userId);
+        
+        if(result < 1) {
+            console.log("updateJWT fail " + result);
+            
+        }
     } 
     catch (error) {
         console.error(error);

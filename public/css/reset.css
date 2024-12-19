@@ -1,23 +1,25 @@
-/* 1. Use a more-intuitive box-sizing model */
+/* link: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+/* 1. Brug en mere intuitiv box-sizing model */
 *,
 *::before,
 *::after {
 	box-sizing: border-box;
 }
 
-/* 2. Remove default margin */
+/* 2. Fjern standard margin */
 * {
 	margin: 0;
 }
 
 body {
-	/* 3. Add accessible line-height */
+	/* 3. Tilføj tilgængelig linjehøjde */
 	line-height: 1.5;
-	/* 4. Improve text rendering */
+	/* 4. Forbedr tekstgengivelsen */
 	-webkit-font-smoothing: antialiased;
 }
 
-/* 5. Improve media defaults */
+/* 5. Forbedr standardindstillinger for medier */
 img,
 picture,
 video,
@@ -27,7 +29,7 @@ svg {
 	max-width: 100%;
 }
 
-/* 6. Inherit fonts for form controls */
+/* 6. Arv skrifttyper for formularfelter */
 input,
 button,
 textarea,
@@ -35,7 +37,7 @@ select {
 	font: inherit;
 }
 
-/* 7. Avoid text overflows */
+/* 7. Undgå tekstoverløb */
 p,
 h1,
 h2,
@@ -46,7 +48,7 @@ h6 {
 	overflow-wrap: break-word;
 }
 
-/* 8. Improve line wrapping */
+/* 8. Forbedr linjeopdeling */
 p {
 	text-wrap: pretty;
 }
@@ -60,7 +62,7 @@ h6 {
 }
 
 /*
-    9. Create a root stacking context
+    9. Opret et root stacking context
   */
 #root,
 #__next {

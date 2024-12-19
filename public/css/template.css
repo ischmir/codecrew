@@ -81,7 +81,7 @@
 	padding-top: 4em;
 }
 
-.templateFormModal_wrapper .templateFormModal_content {
+#confirmModal .templateFormModal_content {
 	background-color: var(--primary-darkmode-font-color);
 	margin: 0 auto;
 	padding: 30px;
@@ -91,7 +91,7 @@
 	box-shadow: 0 4px 15px var(--box-shadow-color);
 }
 
-.templateFormModal_wrapper .close {
+#confirmModal .close {
 	color: var(--primary-link-color);
 	font-size: 2em;
 	font-weight: bold;
@@ -101,29 +101,29 @@
 	cursor: pointer;
 }
 
-.templateFormModal_wrapper .close:hover,
-.templateFormModal_wrapper .close:focus {
+#confirmModal .close:hover,
+#confirmModal .close:focus {
 	color: var(--primary-darkmode-background-color);
 	text-decoration: none;
 }
 
-.templateFormModal_wrapper h2 {
+#confirmModal h2 {
 	text-align: center;
 	margin-bottom: 1em;
 	color: var(--secondary-darkmode-background-color);
 }
 
-.templateFormModal_wrapper .templateModalForm_deletion button {
+#confirmModal .templateModalForm_deletion button {
 	width: 100%;
 }
-.templateFormModal_wrapper .templateModalForm_deletion {
+#confirmModal .templateModalForm_deletion {
 	width: 33%;
 }
 .templateFormModal_content div {
 	display: flex;
 	justify-content: space-around;
 }
-.templateFormModal_wrapper button {
+#confirmModal button {
 	font-size: 1em;
 	border: none;
 	padding: 1em 1.5em;
@@ -132,24 +132,24 @@
 	transition: background-color 0.3s ease;
 }
 
-.templateFormModal_wrapper .templateModalForm_deletion button[type="submit"] {
+#confirmModal .templateModalForm_deletion button[type="submit"] {
 	background-color: var(--negative-status-color);
 	color: var(--primary-darkmode-border-color);
 }
 
-.templateFormModal_wrapper .templateModalForm_deletion button[type="submit"]:hover {
+#confirmModal .templateModalForm_deletion button[type="submit"]:hover {
 	background-color: var(--negative-status-color);
 }
 
-.templateFormModal_wrapper .templateFormModalBtn_cancel {
+#confirmModal .templateFormModalBtn_cancel {
 	height: fit-content;
 	width: 33%;
 	background-color: var(--third-darkmode-background-color);
 	color: var(--primary-darkmode-border-color);
 }
 
-.templateFormModal_wrapper .templateFormModalBtn_cancel:hover {
-	background-color: var(--secondary-darkmode-background-color);
+#confirmModal .templateFormModalBtn_cancel:hover {
+	background-color: var(--secondary-darkmode-background-c);
 }
 
 .templateFormBtn_wrapper {
@@ -188,9 +188,4 @@
 .templateDeletionBtn:hover {
 	background-color: var(--negative-status-color);
 	border-color: var(--danger-color);
-}
-.templateCreationLink_back {
-	color: var(--primary-link-color);
-	text-decoration: none;
-	padding: 0.5em 2.5em;
 }

@@ -84,10 +84,12 @@ h5 {
 /* Specifik styling pr. overskriftsniveau */
 h1 {
 	font-size: 2rem;
+	color: var(--primary-darkmode-font-color);
 }
 
 h2 {
 	font-size: 1.5rem;
+	color: var(--primary-darkmode-font-color);
 }
 
 h3 {
@@ -97,6 +99,7 @@ h3 {
 
 h4 {
 	font-size: 1.1rem;
+	color: var(--secondary-darkmode-font-color);
 }
 
 h5 {
@@ -203,10 +206,6 @@ select {
 	width: 100%;
 }
 
-.settingsText {
-	padding-left: 10px;
-}
-
 /*Mobile and tablet*/
 @media only screen and (max-width: 900px) {
 	body {
@@ -265,6 +264,7 @@ select {
 		z-index: 1;
 		margin-top: -1em;
 		flex-direction: column;
+		z-index: 2;
 	}
 
 	.nav-overlay.navActive {
@@ -315,7 +315,7 @@ select {
 	.desktopNav {
 		background-color: var(--primary-darkmode-background-color);
 		width: 18vw;
-		height: 100vh;
+		height: auto;
 		align-items: center;
 		display: flex;
 		flex-direction: column;

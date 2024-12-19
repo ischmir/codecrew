@@ -16,9 +16,10 @@
 	<ul>
 		<li><a href="/dashboard">Dashboard</a></li>
 		<li><a href="/teams">Teams</a></li>
-		{{#if userDetails.isAdmin}}
-			<li><a href="/admin_user_settings">Admin settings</a></li>
-		{{/if}}
+		<li><a href="/settings">User settings</a></li>
+		{{!-- {{#if isAdmin}}  it works. aslong as the controller sends a isAdmin with it --}}
+		<li><a href="/admin_user_settings">Admin settings</a></li>
+		{{!-- {{/if}} --}}
 	</ul>
 
 </nav>
