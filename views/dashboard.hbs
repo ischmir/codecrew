@@ -74,6 +74,8 @@
         {{#each stack}}
             {{#if isCreator}}
                 {{> dashboardAccordion}}
+            {{else}}
+                {{> dashboardAccordionSuperAdmin}}
             {{/if}}
             
             {{!-- <div id="confirmDeleteModal" class="delete_stack_modal_wrapper">
@@ -90,7 +92,6 @@
                 </div>
             </div> --}}
 
-            {{> dashboardAccordionSuperAdmin}}
         {{/each}}
     </div>
 </main>
