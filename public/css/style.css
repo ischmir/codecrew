@@ -38,6 +38,14 @@
 	--nav-shadow-color: #151515;
 }
 
+[data-theme="light"] svg.logo .logoLabText {
+	fill: #000000;
+}
+
+[data-theme="light"] svg.logo .logoFrame {
+	stroke: #000000;
+}
+
 [data-theme="light"] {
 	/*Lightmode Background Color Variables*/
 	--primary-darkmode-background-color: #efefef;
