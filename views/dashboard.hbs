@@ -19,8 +19,14 @@
                     <a type="submit" id="sort_other_projects" class="sort">Other's Projects</a>
                 {{/if}}
             </div>
-            <div>
+            <div class="function_buttons">
+                <div id="expandedButtons" class="hidden">
+                    <button class="action-button">Start</button>
+                    <button class="action-button">Stop</button>
+                    <button class="action-button">Delete</button>
+                </div>
                 <button id="create_stack_button" class="create_button">Create New Project</button>
+                
             </div>
         </div>
     </div>
@@ -64,6 +70,7 @@
     <div class="dashboard_list">
         <div class="list_info">
             <div class="list_spacer">
+                <input type="checkbox" id="toggleCheckbox"/>
                 <span class="list_info_name">Name</span>
                 <span class="list_info_author">Author</span>
                 <span class="list_info_creation_date">Creation Date</span>

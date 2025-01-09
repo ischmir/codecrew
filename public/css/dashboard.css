@@ -75,6 +75,7 @@ div .entryarea.modal {
 
 
 .search_button,
+.actions_button,
 .create_button {
 	display: none;
 }
@@ -509,6 +510,14 @@ label.wrap_create_stack:after {
 		margin: 5px 0;
 	}
 
+	.actions_button {
+		display: block;
+	}
+
+	.function_buttons {
+		display: flex;
+	}
+
 	.search_button {
 		padding: 0.5 2em;
 	}
@@ -566,8 +575,9 @@ label.wrap_create_stack:after {
 		font-size: 1em;
 		font-family: verdana;
 		cursor: pointer;
-		margin: 5px 0;
+		margin: 5px 0 0 15px;
 		transition: transform 0.3s ease; 
+		
 	}
 
 	.search_button,
@@ -579,14 +589,11 @@ label.wrap_create_stack:after {
 		padding: 0.5 2em;
 	}
 
-	.search_button:hover {
-		transform: scale(1.1); 
-	}
-
 	.create_button {
 		border-radius: 6px;
 	}
 
+	.search_button:hover,
 	.create_button:hover {
 		transform: scale(1.1); 
 	}
@@ -598,6 +605,43 @@ label.wrap_create_stack:after {
 
 	.create_stack_modal_content {
 		width: 30%;
+	}
+
+	.function_buttons {
+		display: flex;
+	}
+
+	/* Style for the expanded buttons */
+	
+	button.action-button {
+	  	font-size: 1em;
+	  	font-family: verdana;
+	  	border: solid #fff;
+	  	border-radius: 6px;
+	  	margin: 5px 15px;
+	  	padding: 0.5em 1em;
+	  	color: #fff;
+	  	cursor: pointer;
+	}
+
+	button.action-button:hover {
+		background-color: var(--secondary-darkmode-list-info-background-color);
+		transform: scale(1.1); 
+	}
+	#expandedButtons.hidden {
+		opacity: 0;
+  		transform: scaleX(0);
+  		transform-origin: right;
+  		transition: opacity 0.3s ease, transform 0.3s ease;
+  		pointer-events: none;
+	}
+
+	#expandedButtons.visible {
+		opacity: 1;
+  		transform: scaleX(1);
+		transform-origin: right;
+		transition: opacity 0.3s ease, transform 0.3s ease;
+  		pointer-events: auto;
 	}
 
 	/*Sorting Section*/
@@ -624,7 +668,8 @@ label.wrap_create_stack:after {
 	}
 
 	.list_spacer {
-		grid-template-columns: 25% 25% 20% 20% 10%;
+		/* grid-template-columns: 25% 25% 20% 20% 10%; */
+		grid-template-columns: 3% 22% 25% 25% 15% 10%;
 	}
 
 	.list_info_creation_date,
@@ -636,7 +681,14 @@ label.wrap_create_stack:after {
 
 	.accordion,
 	.accordionRemoved {
-		grid-template-columns: 25% 25% 20% 20% 10%;
+	/* grid-template-columns: 25% 25% 20% 20% 10%; */
+	grid-template-columns: 3% 22% 25% 25% 15% 10%;
+	}
+
+	#toggleCheckbox,
+	input#toggleCheckbox\ accordionCheckbox {
+		width: 1em;
+		margin: auto;
 	}
 
 	.active,

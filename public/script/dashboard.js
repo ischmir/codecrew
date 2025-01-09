@@ -1,17 +1,74 @@
-// Toggle Accordion
+/* 
+Mine udfordringer:
+1. Når checkbox i accordion markeres enten ved at clicke på den eller ved at bulkCheckBox markerer dem 
+skal der dukke nogle knapper op ved siden af create new project.
 
-//var acc = document.getElementsByClassName("accordion");
-function toggleActive(acc) {
-    acc.classList.toggle("active");
-    let panel = acc.nextElementSibling;
-    console.log(panel);
-    
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
+2. min accordion fungerer ikke correct. når der anvendes onclick="toggleActive(this)" kan jeg toggle min accordion
+men der kan jeg ikke få stoppropagation til at fungere. men hvis jeg bruger nedenstående kode kører den ikke toggle active funktionen.
+
+const accordion = document.querySelectorAll("#accordionButton");
+
+accordion.addEventListener("click"), () => {
+  toggleActive(accordion);
+};
+
+herudover skal jeg lige finde ud af hvordan jeg forbinder det med de forskellige funktioner 
+der kalder på api for at stoppe, starte, slette en stack
+
+*/
+// Get all checkboxes and the buttons container
+const checkBox = document.querySelectorAll("#accordionCheckbox");
+const bulkCheckBox = document.querySelector("#toggleCheckbox");
+const expandedButtons = document.querySelector("#expandedButtons");
+
+  bulkCheckBox.addEventListener("change", () => {
+    if (bulkCheckBox.checked) {
+      checkBox.forEach(checkBox => {
+        checkBox.checked = true;
+      });
     } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    } 
-}
+        checkBox.forEach(checkBox => {
+        checkBox.checked = false;
+      });
+    }
+  });
+
+  checkBox.addEventListener("change", () => {
+    if (checkbox.checked) {
+      expandedButtons.classList.remove("hidden");
+    expandedButtons.classList.add("visible");
+    } else {
+      expandedButtons.classList.remove("visible");
+      expandedButtons.classList.add("hidden");
+    }
+  });
+
+// Stop Propagation - Stop Accordion from expanding
+checkBox.forEach(checkbox => {
+  checkbox.addEventListener("click", event => {
+    event.stopPropagation();
+    console.log("Accordion checkbox clicked");
+  })
+});
+
+// Toggle Accordion
+const accordion = document.querySelectorAll("#accordionButton");
+
+accordion.addEventListener("click"), () => {
+  toggleActive(accordion);
+};
+
+function toggleActive (acc) {
+  acc.classList.toggle("active");
+  let panel = acc.nextElementSibling;
+
+  if (panel.style.maxHeight) {
+    panel.style.maxHeight = null;
+  } else {
+    panel.style.maxHeight = panel.scrollHeight + "px";
+  }
+};
+
 
 // for (i = 0; i < acc.length; i++) {
 //   acc[i].addEventListener("click", function() {
