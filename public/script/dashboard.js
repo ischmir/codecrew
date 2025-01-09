@@ -35,7 +35,7 @@ const expandedButtons = document.querySelector("#expandedButtons");
 
   // Handle bulk checkbox change
   bulkCheckBox.addEventListener("change", () => {
-    checkBoxes.forEach(checkBox => {
+    checkBox.forEach(checkBox => {
       checkBox.checked = bulkCheckBox.checked;
       checkBox.dispatchEvent(new Event("change")); // Trigger the change event
     });
