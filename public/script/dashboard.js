@@ -13,7 +13,7 @@ accordion.addEventListener("click"), () => {
 };
 
 herudover skal jeg lige finde ud af hvordan jeg forbinder det med de forskellige funktioner 
-der kalder på api for at stoppe, starte, slette en stack
+der kalder på api for at stoppe, starte, slette en stack. men det er jeg ikke kommet til endnu
 
 */
 // Get all checkboxes and the buttons container
