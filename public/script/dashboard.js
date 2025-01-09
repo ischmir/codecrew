@@ -34,7 +34,7 @@ const expandedButtons = document.querySelector("#expandedButtons");
   });
 
   checkBox.addEventListener("change", () => {
-    if (checkbox.checked) {
+    if (checkBox.checked) {
       expandedButtons.classList.remove("hidden");
     expandedButtons.classList.add("visible");
     } else {
