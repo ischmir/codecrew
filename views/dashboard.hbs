@@ -24,6 +24,24 @@
                     <button class="action-button">Start</button>
                     <button class="action-button">Stop</button>
                     <button class="action-button">Delete</button>
+                    {{!-- {{#if status}}
+                        <form action="/stopStack" method="post">
+                            <input type="hidden" name="stackId" value="{{portainerStackId}}">
+                            <button class="actions_button" type="submit"> <i class="uil-stop-circle"></i></button>
+                        </form>
+                        <form action="/restartStack" method="post">
+                            <input type="hidden" name="stackId" value="{{portainerStackId}}">
+                            <button class="actions_button" type="submit"> <i class="uil-redo"></i></button>
+                        </form>
+                    {{else}}
+                        <form action="/startStack" method="post">
+                            <input type="hidden" name="stackId" value="{{portainerStackId}}">
+                            <button class="actions_button" type="submit"> <i class="uil-play-circle"></i></button>
+                        </form>
+                    {{/if}}
+                    <form action="/deleteStack/{{portainerStackId}}" method="post">
+                        <button class="actions_button" type="submit"><i class="uil-trash-alt"></i></button>
+                    </form> --}}
                 </div>
                 <button id="create_stack_button" class="create_button">Create New Project</button>
                 

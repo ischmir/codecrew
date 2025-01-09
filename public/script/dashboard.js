@@ -1,9 +1,7 @@
 /* 
 Mine udfordringer:
-1. Når checkbox i accordion markeres enten ved at clicke på den eller ved at bulkCheckBox markerer dem 
-skal der dukke nogle knapper op ved siden af create new project.
 
-2. min accordion fungerer ikke correct. når der anvendes onclick="toggleActive(this)" kan jeg toggle min accordion
+1. min accordion fungerer ikke correct. når der anvendes onclick="toggleActive(this)" kan jeg toggle min accordion
 men der kan jeg ikke få stoppropagation til at fungere. men hvis jeg bruger nedenstående kode kører den ikke toggle active funktionen.
 
 const accordion = document.querySelectorAll("#accordionButton");
@@ -24,26 +22,45 @@ const expandedButtons = document.querySelector("#expandedButtons");
   bulkCheckBox.addEventListener("change", () => {
     if (bulkCheckBox.checked) {
       checkBox.forEach(checkBox => {
-        checkBox.checked = true;
+      checkBox.checked = true;
+      checkBox.dispatchEvent(new Event("change"));
       });
     } else {
-        checkBox.forEach(checkBox => {
-        checkBox.checked = false;
+      checkBox.forEach(checkBox => {
+      checkBox.checked = false;
+      checkBox.dispatchEvent(new Event("change"));
       });
     }
   });
 
-  checkBox.addEventListener("change", () => {
-    if (checkBox.checked) {
+  // Handle bulk checkbox change
+  bulkCheckBox.addEventListener("change", () => {
+    checkBoxes.forEach(checkBox => {
+      checkBox.checked = bulkCheckBox.checked;
+      checkBox.dispatchEvent(new Event("change")); // Trigger the change event
+    });
+  });
+
+  // Handle individual checkbox change
+  checkBox.forEach(checkBox => {
+    checkBox.addEventListener("change", updateExpButtonVisibility);
+  });
+
+  //check if checkbox is checked - ExpandedButtons Visible
+  function updateExpButtonVisibility() {
+    const anyChecked = Array.from(checkBox).some(checkbox => checkbox.checked);
+    if(anyChecked) {
       expandedButtons.classList.remove("hidden");
-    expandedButtons.classList.add("visible");
+      expandedButtons.classList.add("visible");
+      console.log("Atleast one checkbox checked")
     } else {
       expandedButtons.classList.remove("visible");
       expandedButtons.classList.add("hidden");
+      console.log("No checkbox checked")
     }
-  });
+  };
 
-// Stop Propagation - Stop Accordion from expanding
+// Stop Propagation
 checkBox.forEach(checkbox => {
   checkbox.addEventListener("click", event => {
     event.stopPropagation();
@@ -54,7 +71,7 @@ checkBox.forEach(checkbox => {
 // Toggle Accordion
 const accordion = document.querySelectorAll("#accordionButton");
 
-accordion.addEventListener("click"), () => {
+accordion.addEventListener("click"), function() {
   toggleActive(accordion);
 };
 
