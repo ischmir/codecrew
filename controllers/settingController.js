@@ -22,7 +22,7 @@ exports.accessibility = async function (req, res) {
 
 exports.upgradeUser = async function (req, res) {
 	if(req.body.userId <= 0 || req.body.userRole == "") {
-		res.redirect("admin_user_settings") // should be send with a error message. 
+		res.redirect("admin_user_settings")
 	}
 	
 	const affectedRows = await adminSettingsM.upgradeUser(req.body.userId, req.body.userRole);
@@ -30,11 +30,11 @@ exports.upgradeUser = async function (req, res) {
 		res.redirect("/admin_user_settings"); // if there wasn't any change in the db. mostly becourse there was no match, typo.
 	}
 	else {
-		res.redirect("/admin_user_settings"); // on success, send a toast?
+		res.redirect("/admin_user_settings");
 	}
 }
 
-exports.updateStackLimit = async function (req, res) { // should be a different redirect URL
+exports.updateStackLimit = async function (req, res) {
 	if(req.body.newStackLimit < 0 || req.body.accessLevel == "") {
 		res.redirect('/admin_user_settings') // should be send with a error message. but the frontend should also handle this case.
 	}
@@ -44,14 +44,16 @@ exports.updateStackLimit = async function (req, res) { // should be a different 
 		res.redirect("/admin_user_settings"); // if there wasn't any change in the db. mostly becourse there was no match, typo.
 	}
 	else {
-		res.redirect("/admin_user_settings"); // on success, send a toast?
+		res.redirect("/admin_user_settings");
 	}
 }
 
 exports.updatePassword = async function(req, res) {
 	if(req.session.userDetails != undefined) {
 		if (await userSettingsM.CheckIfPasswordMatch(req.body.curPassword, req.session.userDetails.email)) {
-			req.session.message = { type: "success", text: "Psst! Password changed - don't tell anyone!" };
+			await userSettingsM.UpdatePassword(req.body.newPassword, req.session.userDetails.email, req.body.curPassword)
+			req.session.message = { type: "success", text: "Password changed!" };
+			res.redirect('/settings-password');
 			res.redirect('/settings-password');
 		} else {
 			req.session.message = { type: 'danger', text: "Wrong current password." };

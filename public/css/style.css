@@ -269,7 +269,6 @@ select {
 		align-items: center;
 		justify-content: start;
 		transition: left 0.4s ease;
-		z-index: 1;
 		margin-top: -1em;
 		flex-direction: column;
 		z-index: 2;
@@ -324,6 +323,7 @@ select {
 		background-color: var(--primary-darkmode-background-color);
 		width: 18vw;
 		height: auto;
+		min-height: 100vh;
 		align-items: center;
 		display: flex;
 		flex-direction: column;
