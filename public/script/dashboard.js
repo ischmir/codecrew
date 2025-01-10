@@ -1,19 +1,3 @@
-/* 
-Mine udfordringer:
-
-1. min accordion fungerer ikke correct. når der anvendes onclick="toggleActive(this)" kan jeg toggle min accordion
-men der kan jeg ikke få stoppropagation til at fungere. men hvis jeg bruger nedenstående kode kører den ikke toggle active funktionen.
-
-const accordion = document.querySelectorAll("#accordionButton");
-
-accordion.addEventListener("click"), () => {
-  toggleActive(accordion);
-};
-
-herudover skal jeg lige finde ud af hvordan jeg forbinder det med de forskellige funktioner 
-der kalder på api for at stoppe, starte, slette en stack. men det er jeg ikke kommet til endnu
-
-*/
 // Get all checkboxes and the buttons container
 const checkBox = document.querySelectorAll("#accordionCheckbox");
 const bulkCheckBox = document.querySelector("#toggleCheckbox");
