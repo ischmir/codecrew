@@ -116,8 +116,8 @@ exports.createStack = async function (req, res) {
 			};
 			await dashboardM.addNewStackToDB(saveToDb, saveToDb.userId); // save it to DB. runs twice??
 
-			const isDeleted = await dashboardM.portainerDeleteStack(await getJWT(req.session.userDetails.userId), result.Id); // Portainer
-			const isDeletedDB = await dashboardM.deleteStackFromDB(result.Id); // DB
+			//const isDeleted = await dashboardM.portainerDeleteStack(await getJWT(req.session.userDetails.userId), result.Id); // Portainer
+			//const isDeletedDB = await dashboardM.deleteStackFromDB(result.Id); // DB
 			console.log(saveToDb);
 		}
 		res.redirect('/dashboard');
@@ -186,24 +186,24 @@ exports.deleteStack = async function (req, res) {
 	}
 };
 
-exports.deleteStack = async function (req, res) {
-	try {
-		const { portainerStackId } = req.params;
+// exports.deleteStack = async function (req, res) {
+// 	try {
+// 		const { portainerStackId } = req.params;
 
-		const isDeleted = await dashboardM.portainerDeleteStack(
-			await getJWT(req.session.userDetails.userId),
-			portainerStackId
-		); // Portainer
-		const isDeletedDB = await dashboardM.deleteStackFromDB(portainerStackId); // DB
+// 		const isDeleted = await dashboardM.portainerDeleteStack(
+// 			await getJWT(req.session.userDetails.userId),
+// 			portainerStackId
+// 		); // Portainer
+// 		const isDeletedDB = await dashboardM.deleteStackFromDB(portainerStackId); // DB
 
-		if (isDeleted != 204 && isDeletedDB.affectedRows < 1) {
-			// it didnt update in the db
-			throw new Error('Nothing got deleted');
-		} else {
-			res.redirect('/dashboard');
-		}
-	} catch (error) {
-		console.warn('Dashboard : ' + error);
-		res.redirect('/dashboard');
-	}
-};
+// 		if (isDeleted != 204 && isDeletedDB.affectedRows < 1) {
+// 			// it didnt update in the db
+// 			throw new Error('Nothing got deleted');
+// 		} else {
+// 			res.redirect('/dashboard');
+// 		}
+// 	} catch (error) {
+// 		console.warn('Dashboard : ' + error);
+// 		res.redirect('/dashboard');
+// 	}
+// };
