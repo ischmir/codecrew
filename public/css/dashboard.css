@@ -185,28 +185,8 @@ i.uil-redo {
 	font-size: 2em;
 	cursor: pointer;
 	user-select: none;
-}
-
-i.uil-stop-circle {
-	color: var(--negative-status-color);
-}
-
-i.uil-play-circle {
-	color: var(--positive-status-color);
-}
-
-i.uil-redo {
-	color: var(--sunset-status-color);
-}
-
-i.uil-trash-alt {
 	color: var(--primary-darkmode-font-color);
-}
-
-.actions_button {
-	background-color: transparent;
-	border: none;
-	padding: 0;
+	font-size: 1em;
 }
 
 .panel p,
@@ -357,56 +337,6 @@ label.wrap_create_stack:after {
     height: 100%;  
     pointer-events: none;    
 }
-
-
-/* ======================================= */
-/*
-.create_stack_input_domain_container {
-	position: relative;
-	height: 80px;
-	line-height: 60px;
-	padding: 5 0px;
-}*/
-/*
-.create_stack_input,
-.create_stack_input_domain {
-	position: absolute;
-	width: 100%;
-	outline: none;
-	/* font-size: 2.2em; */
-	/* padding: 10px;
-	line-height: 50px;
-	border-radius: 5px;
-	border: 2px solid var(--primary-darkmode-border-color);
-	background: transparent;
-	transition: 0.1s ease;
-	z-index: 1111;
-}
-
-.placeholder_line {
-	position: absolute;
-	/* font-size: 1.6em; */
-	/* color: var(--primary-darkmode-font-color);
-	padding: 0 25px; */
-	/* margin: 0 20px; */
-	/* background-color: var(--secondary-darkmode-background-color);
-	transition: 0.25s ease;
-} */
-
-/* .create_stack_input:focus {
-	color: var(--primary-darkmode-font-color);
-	border: 4px solid var(--primary-darkmode-font-color);
-}
-
-.create_stack_input + .placeholder_line,
-.create_stack_input + .placeholder_line {
-	color: var(--primary-darkmode-font-color);
-	height: 30px;
-	line-height: 30px;
-	transform: translate(20px, -16px) scale(0.88);
-	z-index: 1111;
-	padding: 0 10px;
-} */
 
 .create_stack_input_domain_container {
 	display: flex;
@@ -575,7 +505,7 @@ label.wrap_create_stack:after {
 		font-size: 1em;
 		font-family: verdana;
 		cursor: pointer;
-		margin: 5px 0 0 15px;
+		margin: 5px 15px;
 		transition: transform 0.3s ease; 
 		
 	}
@@ -613,35 +543,66 @@ label.wrap_create_stack:after {
 
 	/* Style for the expanded buttons */
 	
-	button.action-button {
+	button.action_button_stop,
+	button.action_button_restart,
+	button.action_button_start,
+	button.action_button_delete {
 	  	font-size: 1em;
 	  	font-family: verdana;
-	  	border: solid #fff;
+		border: none;
 	  	border-radius: 6px;
 	  	margin: 5px 15px;
 	  	padding: 0.5em 1em;
 	  	color: #fff;
 	  	cursor: pointer;
+		transition: transform 0.3s ease; 
 	}
 
-	button.action-button:hover {
-		background-color: var(--secondary-darkmode-list-info-background-color);
-		transform: scale(1.1); 
+	.hidden .action_button_stop,
+	.hidden .action_button_restart,
+	.hidden .action_button_start,
+	.hidden .action_button_delete {
+		background-color: var(--primary-darkmode-list-info-background-color);
+		color: var(--primary-darkmode-inactive-font-color);
+		cursor: not-allowed;
+		
 	}
+
+	.visible .action_button_stop{
+		background-color: var(--negative-status-color);
+	}
+	
+	.visible .action_button_restart {
+		background-color: var(--sunset-status-color);
+	}
+
+	.visible .action_button_start {
+		background-color: var(--positive-status-color);
+	}
+
+	.visible .action_button_delete {
+		background-color: var(--negative-status-color);
+	}
+
+	.visible .action_button_start:hover,
+	.visible .action_button_restart:hover,
+	.visible .action_button_stop:hover,
+	.visible .action_button_delete:hover {
+		transform: scale(1.1);
+	}
+	#expandedButtons {
+	display: flex;
+	}
+
 	#expandedButtons.hidden {
-		opacity: 0;
-  		transform: scaleX(0);
-  		transform-origin: right;
-  		transition: opacity 0.3s ease, transform 0.3s ease;
-  		pointer-events: none;
+		opacity: 0.5;
+		transition: opacity 0.3s ease;
+		
 	}
 
 	#expandedButtons.visible {
 		opacity: 1;
-  		transform: scaleX(1);
-		transform-origin: right;
-		transition: opacity 0.3s ease, transform 0.3s ease;
-  		pointer-events: auto;
+		transition: opacity 0.3s ease;
 	}
 
 	/*Sorting Section*/

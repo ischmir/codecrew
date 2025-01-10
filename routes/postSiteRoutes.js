@@ -17,5 +17,6 @@ module.exports = function (app) {
 	app.post('/restartStack', stackC.restartStack);
 	app.post('/createTeam', teamController.postNewTeam);
 	app.post('/addTeamMember/:teamId', teamController.postAddTeamMember);
-	app.post('/deleteStack/:portainerStackId', stackC.deleteStack)
+	app.post('/deleteStacks', stackC.deleteStack)
+	// app.post('/deleteStack/:portainerStackId', stackC.deleteStack)
 };

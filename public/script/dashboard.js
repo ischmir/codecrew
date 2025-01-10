@@ -69,11 +69,11 @@ checkBox.forEach(checkbox => {
 });
 
 // Toggle Accordion
-const accordion = document.querySelectorAll("#accordionButton");
-
-accordion.addEventListener("click"), function() {
-  toggleActive(accordion);
-};
+document.querySelectorAll("#accordionButton").forEach(accordion => {
+  accordion.addEventListener("click", () => {
+    toggleActive(accordion);
+  }); 
+});
 
 function toggleActive (acc) {
   acc.classList.toggle("active");
@@ -111,17 +111,11 @@ sortingBtns.forEach((btn) => {
 
 let modal = document.getElementById("create_stack_modal");
 let btn = document.getElementById("create_stack_button");
-//let btnMobile = document.getElementById("create_stack_button_mobile");
 let span = document.getElementsByClassName("create_stack_model_close")[0];
 
 btn.addEventListener("click", () => {
   modal.style.display = "block";
 });
-
-// btnMobile.addEventListener("click", () => {
-//   modal.style.display = "block";
-//   openMobileNav()
-// });
 
 span.addEventListener("click", () => {
   modal.style.display = "none";
@@ -133,97 +127,153 @@ window.addEventListener("click", (event) => {
   }
 });
 
-
 /////////////////////////////////////////////
 // Stop Stack
-
 document.addEventListener("DOMContentLoaded", () => {
-  const buttons = document.querySelector(".uil-stop-circle");
+  const stopButton = document.querySelector(".action_button_stop");
 
-  buttons.addEventListener("click", (event) => {
-    const accordionRow = event.target.closest(".accordion");
-    const stackId = accordionRow.getAttribute("value");
-
-    if (stackId) {
-      console.log(`Stopping stack with ID: ${stackId}`);
+  stopButton.addEventListener("click", () => {
+    const checkedCheckboxes = document.querySelectorAll(".accordion input[type='checkbox']:checked");
+    checkedCheckboxes.forEach((checkbox) => {
+      const accordionRow = checkbox.closest(".accordion");
+      const stackId = accordionRow.getAttribute("value");
+      if (stackId) {
+        console.log(`Stopping stack with ID: ${stackId}`);
+      }
+    });
+    if (checkedCheckboxes.length === 0) {
+      console.log("No stacks selected for stopping.");
     }
   });
 });
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const buttons = document.querySelector(".uil-stop-circle");
+
+//   buttons.addEventListener("click", (event) => {
+//     const accordionRow = event.target.closest(".accordion");
+//     const stackId = accordionRow.getAttribute("value");
+
+//     if (stackId) {
+//       console.log(`Stopping stack with ID: ${stackId}`);
+//     }
+//   });
+// });
 
 /////////////////////////////////////////////
 // Start Stack
 
 document.addEventListener("DOMContentLoaded", () => {
-  const buttons = document.querySelector(".uil-play-circle");
-  if(buttons) {
-    buttons.addEventListener("click", (event) => {
-        const accordionRow = event.target.closest(".accordion");
-        const stackId = accordionRow.getAttribute("value");
+  const startButton = document.querySelector(".action_button_start");
 
-        if (stackId) {
-            console.log(`Starting stack with ID: ${stackId}`);
-        }
+  startButton.addEventListener("click", () => {
+    const checkedCheckboxes = document.querySelectorAll(".accordion input[type='checkbox']:checked");
+    checkedCheckboxes.forEach((checkbox) => {
+      const accordionRow = checkbox.closest(".accordion");
+      const stackId = accordionRow.getAttribute("value");
+      if (stackId) {
+        console.log(`Starting stack with ID: ${stackId}`);
+      }
     });
-  }
+    if (checkedCheckboxes.length === 0) {
+      console.log("No stacks selected for starting.");
+    }
+  });
 });
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const buttons = document.querySelector(".uil-play-circle");
+//   if(buttons) {
+//     buttons.addEventListener("click", (event) => {
+//         const accordionRow = event.target.closest(".accordion");
+//         const stackId = accordionRow.getAttribute("value");
+
+//         if (stackId) {
+//             console.log(`Starting stack with ID: ${stackId}`);
+//         }
+//     });
+//   }
+// });
 
 /////////////////////////////////////////////
   // Restart Stack
 
 document.addEventListener("DOMContentLoaded", () => {
-  const buttons = document.querySelector(".uil-redo");
+  const restartButton = document.querySelector(".action_button_restart");
 
-  buttons.addEventListener("click", (event) => {
-      const accordionRow = event.target.closest(".accordion");
+  restartButton.addEventListener("click", () => {
+    const checkedCheckboxes = document.querySelectorAll(".accordion input[type='checkbox']:checked");
+    checkedCheckboxes.forEach((checkbox) => {
+      const accordionRow = checkbox.closest(".accordion");
       const stackId = accordionRow.getAttribute("value");
-
       if (stackId) {
-          console.log(`Stopping stack with ID: ${stackId}`);
-          stopStack(stackId);
-      } else if (stackId) {
-        console.log(`starting stack with ID: ${stackId}`);
+        console.log(`Restarting stack with ID: ${stackId}`);
+        stopStack(stackId);
       }
+    });
+    if (checkedCheckboxes.length === 0) {
+      console.log("No stacks selected for restart.");
+      startStack(stackId);
+    }
   });
 });
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const buttons = document.querySelector(".uil-redo");
+
+//   buttons.addEventListener("click", (event) => {
+//       const accordionRow = event.target.closest(".accordion");
+//       const stackId = accordionRow.getAttribute("value");
+
+//       if (stackId) {
+//           console.log(`Stopping stack with ID: ${stackId}`);
+//           stopStack(stackId);
+//       } else if (stackId) {
+//         console.log(`starting stack with ID: ${stackId}`);
+//         startStack(stackId);
+//       }
+//   });
+// });
 
 /////////////////////////////////////////////
 // Delete Stack
 
-
-
-    // // Get the modal
-    // var deleteModal = document.getElementById("confirmDeleteModal");
-
-    // // Function to show the modal
-    // function popUpForm() {
-    //     modal.style.display = "block";
-    // }
-
-    // // Function to close the modal
-    // function closeModal() {
-    //     modal.style.display = "none";
-    // }
-
-    // // Close the modal if the user clicks anywhere outside of the modal
-    // window.onclick = function(event) {
-    //     if (event.target == modal) {
-    //         closeModal();
-    //     }
-    // }
-
 document.addEventListener("DOMContentLoaded", () => {
-  const buttons = document.querySelector(".uil-trash-alt");
-  if(buttons) {
-    buttons.addEventListener("click", (event) => {
-        const accordionRow = event.target.closest(".accordion");
-        const stackId = accordionRow.getAttribute("value");
+  const deleteButton = document.querySelector(".action_button_delete");
 
-        if (stackId) {
-            console.log(`Delete stack with ID: ${stackId}`);
-        }
+  deleteButton.addEventListener("click", () => {
+    const checkedCheckboxes = document.querySelectorAll(".accordion input[type='checkbox']:checked");
+    const stackIds = []; 
+
+    checkedCheckboxes.forEach((checkbox) => {
+      const accordionRow = checkbox.closest(".accordion");
+      const stackId = accordionRow.getAttribute("value");
+      if (stackId) {
+        stackIds.push(stackId);
+        console.log(`Deleting stack with ID: ${stackId}`);
+      }
     });
-  }
+
+    if (checkedCheckboxes.length === 0) {
+      console.log("No stacks selected for deletion.");
+      return;
+    }
+  });
 });
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const buttons = document.querySelector(".uil-trash-alt");
+//   if(buttons) {
+//     buttons.addEventListener("click", (event) => {
+//         const accordionRow = event.target.closest(".accordion");
+//         const stackId = accordionRow.getAttribute("value");
+
+//         if (stackId) {
+//             console.log(`Delete stack with ID: ${stackId}`);
+//         }
+//     });
+//   }
+// });
 
 /////////////////////////////////////////////
 // dynamic search input
@@ -322,6 +372,7 @@ function convertDateForComparison(input) {
 }
 
 // SORTS ON CREATION DATE
+
 document.querySelector(".list_info_creation_date").addEventListener("click", () => {   // TODO
   accordionsArray.sort((a, b) => {
       const dateA = convertDateForComparison(a.querySelector('.stack_info_creation_date').textContent.trim());

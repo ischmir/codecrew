@@ -172,7 +172,7 @@ exports.portainerCreateStack = async function (token, stackName, stackFileConten
 		fromTemplate: 'false',
 		name: stackName,
 		stackFileContent: stackFileContent,
-		swarmId: 'v1pkdou24tzjtncewxhvpmjms', // i think its static and therefor we can just hardcode it.
+		swarmId: 'v1pkdou24tzjtncewxhvpmjms', // its static and therefor we can just hardcode it.
 	};
 
 	try {
@@ -230,34 +230,64 @@ exports.portainerRestartStack = async function (token, stackId) {
 
 // Function to delete a stack by ID from DB
 
-exports.deleteStackFromDB = async function (portainerStackId) { 
-	try {
-		const query = 'DELETE FROM stacks WHERE portainerStackId = ?';
+exports.deleteStackFromDB = async function (portainerStackIds) { 
+    try {
+        if (!Array.isArray(portainerStackIds) || portainerStackIds.length === 0) {
+            throw new Error("No stack IDs provided for deletion.");
+        }
 
-		const [result] = await db.execute(query, [portainerStackId]);
-		return result;
-	} catch {
-		console.error(`Error deleting stack with ID ${portainerStackId}:`, error.message);
-	}
+        const placeholders = portainerStackIds.map(() => '?').join(', ');
+        const query = `DELETE FROM Stacks WHERE portainerStackId IN (${placeholders})`;
+
+        const [result] = await db.execute(query, portainerStackIds);
+        return result;
+    } catch (error) {
+        console.error(`Error deleting stacks with IDs ${portainerStackIds}:`, error.message);
+        throw error;
+    }
 };
+
+
+// exports.deleteStackFromDB = async function (portainerStackId) { 
+// 	try {
+// 		const query = 'DELETE FROM stacks WHERE portainerStackId = ?';
+
+// 		const [result] = await db.execute(query, [portainerStackId]);
+// 		return result;
+// 	} catch {
+// 		console.error(`Error deleting stack with ID ${portainerStackId}:`, error.message);
+// 	}
+// };
 
 // Function to delete a stack by ID from Portainer
 
-exports.portainerDeleteStack = async function (token, portainerStackId) {
-	try {
-		const stackUrl = `${portainerBaseUrl}/stacks/${portainerStackId}?endpointId=5`;
+exports.portainerDeleteStack = async function (token, portainerStackIds) {
+	const results = [];
 
-		const response = await axios.delete(stackUrl, {
-			headers: { Authorization: `Bearer ${token}` },
-			params: { external: false },
-		});
-
-		console.log(`Stack with ID ${portainerStackId} deleted successfully.`);
-		return response.status;
-	} catch (error) {
-		console.error(`Error deleting stack with ID ${portainerStackId}:`, error.message);
+	if (!Array.isArray(portainerStackIds)) {
+		portainerStackIds = [portainerStackIds];
 	}
+
+	for (const portainerStackId of portainerStackIds) {
+		try {
+			const stackUrl = `${portainerBaseUrl}/stacks/${portainerStackId}?endpointId=5`;
+
+			const response = await axios.delete(stackUrl, {
+				headers: { Authorization: `Bearer ${token}` },
+				params: { external: false },
+			});
+			console.log(`Stack with ID ${portainerStackId} deleted successfully.`);
+			results.push({ id: portainerStackId, status: response.status }); 
+		} catch (error) {
+			console.error(`Error deleting stack with ID ${portainerStackId}:`, error.message);
+      		results.push({ id: portainerStackId, status: 'error', message: error.message });
+		}
+	}
+
+	return results;
 };
+
+// Stack limit for users
 
 exports.stackLimitForUser = async function (userAccess) {
 	try {
@@ -268,6 +298,7 @@ exports.stackLimitForUser = async function (userAccess) {
 		console.error(error);
 	}
 };
+
 exports.amountOfStacksByUser = async function (userId) {
 	try {
 		const [rows] = await db.query('SELECT COUNT(*) as amount FROM Stacks WHERE FK_userId = ?', [userId]);
