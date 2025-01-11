@@ -124,8 +124,10 @@ document.addEventListener("DOMContentLoaded", () => {
       event.preventDefault(); // Prevent default form submission
 
       const checkedCheckboxes = document.querySelectorAll(".accordion input[type='checkbox']:checked");
+      
       const stackIds = Array.from(checkedCheckboxes).map((checkbox) => checkbox.value);
       
+      console.log("Checked checkboxes:", stackIds);
 
       if (stackIds.length === 0) {
           console.log("No stacks selected for stopping.");
@@ -142,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
           .then((response) => {
               if (response.ok) {
                   console.log("Stacks stopped successfully.");
-                  window.location.reload();
+                  // window.location.reload();
               } else {
                   console.error("Failed to stop stacks.");
               }

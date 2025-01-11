@@ -137,7 +137,7 @@ exports.stopStack = async function (req, res) {
         if (!Array.isArray(stackIds) || stackIds.length === 0) {
             throw new Error("No stacks selected for stopping.");
         }
-
+		
         const token = await getJWT(req.session.userDetails.userId);
 
         const stopResults = await Promise.all(
@@ -160,18 +160,18 @@ exports.stopStack = async function (req, res) {
 };
 
 
-exports.stopStack = async function (req, res) {
-	try {
-		console.log('welp');
-		console.log(req.body);
+// exports.stopStack = async function (req, res) {
+// 	try {
+// 		console.log('welp');
+// 		console.log(req.body);
 
-		await dashboardM.portainerStopStack(await getJWT(req.session.userDetails.userId), req.body.stackId);
-		res.redirect('/dashboard');
-	} catch (error) {
-		console.warn('Dashboard : ' + error);
-		res.redirect('/dashboard');
-	}
-};
+// 		await dashboardM.portainerStopStack(await getJWT(req.session.userDetails.userId), req.body.stackId);
+// 		res.redirect('/dashboard');
+// 	} catch (error) {
+// 		console.warn('Dashboard : ' + error);
+// 		res.redirect('/dashboard');
+// 	}
+// };
 
 // Start Stack
 exports.startStack = async function (req, res) {
