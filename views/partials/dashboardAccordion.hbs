@@ -1,5 +1,7 @@
 <button class="accordion" id="accordionButton">
-    <input type="checkbox" id="accordionCheckbox"/>
+    <form action="/stopStack" method="post"></form>
+    <input type="checkbox" id="accordionCheckbox" name="stackId" value="{{portainerStackId}}"/>
+    </form>
     <span class="stack_info_name">{{name}}</span>
     <span class="stack_info_author">{{author}}</span>
     <span class="stack_info_creation_date">{{creationDate}}</span>
@@ -19,7 +21,7 @@
             {{#if status}}
             <form action="/stopStack" method="post">
                 <input type="hidden" name="stackId" value="{{portainerStackId}}">
-                <button class="actions_button" type="submit"> <i class="uil-stop-circle"></i></button>
+                <button type="submit"> <i class="uil-stop-circle"></i></button>
             </form>
             <form action="/restartStack" method="post">
                 <input type="hidden" name="stackId" value="{{portainerStackId}}">
@@ -31,10 +33,9 @@
                 <button class="actions_button" type="submit"> <i class="uil-play-circle"></i></button>
             </form>
             {{/if}}
-            <form action="/deleteStack/{{portainerStackId}}" method="post">
-                <button class="actions_button" type="submit"><i class="uil-trash-alt"></i></button>
+            <form class="delete_stack_modal_form" action="/deleteStack/{{portainerStackId}}" method="post">
+                <button type="submit" class="actions_button"><i class="uil uil-trash-alt"></i></button>
             </form>
         </div>
     </div>
-    
 </div> 

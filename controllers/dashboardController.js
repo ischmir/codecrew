@@ -117,7 +117,7 @@ exports.createStack = async function (req, res) {
 			await dashboardM.addNewStackToDB(saveToDb, saveToDb.userId); // save it to DB. runs twice??
 
 			//const isDeleted = await dashboardM.portainerDeleteStack(await getJWT(req.session.userDetails.userId), result.Id); // Portainer
-			//const isDeletedDB = await dashboardM.deleteStackFromDB(result.Id); // DB
+			const isDeletedDB = await dashboardM.deleteStackFromDB(result.Id); // DB
 			console.log(saveToDb);
 		}
 		res.redirect('/dashboard');
@@ -128,6 +128,38 @@ exports.createStack = async function (req, res) {
 };
 
 // Stop Stack
+
+exports.stopStack = async function (req, res) {
+	console.log(req.body);
+    try {
+        const {stackIds} = req.body;
+
+        if (!Array.isArray(stackIds) || stackIds.length === 0) {
+            throw new Error("No stacks selected for stopping.");
+        }
+
+        const token = await getJWT(req.session.userDetails.userId);
+
+        const stopResults = await Promise.all(
+            stackIds.map((stackId) => dashboardM.portainerStopStack(token, stackId))
+        );
+
+        stopResults.forEach((result, index) => {
+            if (result) {
+                console.log(`Successfully stopped stack with ID: ${stackIds[index]}`);
+            } else {
+                console.error(`Failed to stop stack with ID: ${stackIds[index]}`);
+            }
+        });
+
+        res.redirect("/dashboard");
+    } catch (error) {
+        console.warn("Dashboard : " + error);
+        res.redirect("/dashboard");
+    }
+};
+
+
 exports.stopStack = async function (req, res) {
 	try {
 		console.log('welp');
@@ -140,6 +172,7 @@ exports.stopStack = async function (req, res) {
 		res.redirect('/dashboard');
 	}
 };
+
 // Start Stack
 exports.startStack = async function (req, res) {
 	try {
@@ -170,6 +203,10 @@ exports.deleteStack = async function (req, res) {
 		const {portainerStackId} = req.params;
 		const stackIdsToBeDeleted = Array.isArray(portainerStackId) ? portainerStackId : [portainerStackId];
 		const results = await dashboardM.portainerDeleteStack(await getJWT(req.session.userDetails.userId), stackIdsToBeDeleted);
+		
+
+		//const isDeleted = await dashboardM.portainerDeleteStack(await getJWT(req.session.userDetails.userId), result.Id); // Portainer
+		//const isDeletedDB = await dashboardM.deleteStackFromDB(result.Id); // DB
 
 		results.forEach(result => {
 			if (result.status === 204) {

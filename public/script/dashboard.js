@@ -113,23 +113,61 @@ window.addEventListener("click", (event) => {
 
 /////////////////////////////////////////////
 // Stop Stack
+
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("JavaScript loaded and listening for button clicks.");
+  
   const stopButton = document.querySelector(".action_button_stop");
 
-  stopButton.addEventListener("click", () => {
-    const checkedCheckboxes = document.querySelectorAll(".accordion input[type='checkbox']:checked");
-    checkedCheckboxes.forEach((checkbox) => {
-      const accordionRow = checkbox.closest(".accordion");
-      const stackId = accordionRow.getAttribute("value");
-      if (stackId) {
-        console.log(`Stopping stack with ID: ${stackId}`);
+  stopButton.addEventListener("click", (event) => {
+      console.log("Stop button clicked!");
+      event.preventDefault(); // Prevent default form submission
+
+      const checkedCheckboxes = document.querySelectorAll(".accordion input[type='checkbox']:checked");
+      const stackIds = Array.from(checkedCheckboxes).map((checkbox) => checkbox.value);
+      
+
+      if (stackIds.length === 0) {
+          console.log("No stacks selected for stopping.");
+          return;
       }
-    });
-    if (checkedCheckboxes.length === 0) {
-      console.log("No stacks selected for stopping.");
-    }
+
+      console.log(`Stopping stacks with IDs: ${stackIds.join(", ")}`);
+
+      fetch("/stopStack", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ stackIds }),
+      })
+          .then((response) => {
+              if (response.ok) {
+                  console.log("Stacks stopped successfully.");
+                  window.location.reload();
+              } else {
+                  console.error("Failed to stop stacks.");
+              }
+          })
+          .catch((error) => console.error("Error stopping stacks:", error));
   });
 });
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const stopButton = document.querySelector(".action_button_stop");
+
+//   stopButton.addEventListener("click", () => {
+//     const checkedCheckboxes = document.querySelectorAll(".accordion input[type='checkbox']:checked");
+//     checkedCheckboxes.forEach((checkbox) => {
+//       const accordionRow = checkbox.closest(".accordion");
+//       const stackId = accordionRow.getAttribute("value");
+//       if (stackId) {
+//         console.log(`Stopping stack with ID: ${stackId}`);
+//       }
+//     });
+//     if (checkedCheckboxes.length === 0) {
+//       console.log("No stacks selected for stopping.");
+//     }
+//   });
+// });
 
 // document.addEventListener("DOMContentLoaded", () => {
 //   const buttons = document.querySelector(".uil-stop-circle");
@@ -328,32 +366,32 @@ sortOn(".list_info_author", ".stack_info_author"); // sort on author
 
 
 // SORTS ON AUTHOR
-document.querySelector().addEventListener("click", () => { 
-  accordionsArray.sort((a, b) => {
-      const nameA = a.querySelector('.stack_info_author').textContent.trim().toLowerCase();
-      const nameB = b.querySelector().textContent.trim().toLowerCase();
+// document.querySelector().addEventListener("click", () => { 
+//   accordionsArray.sort((a, b) => {
+//       const nameA = a.querySelector('.stack_info_author').textContent.trim().toLowerCase();
+//       const nameB = b.querySelector().textContent.trim().toLowerCase();
 
-      return isAuthorAscending ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA); // Toggle order. localeCompare compares alphabetically
-  });
+//       return isAuthorAscending ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA); // Toggle order. localeCompare compares alphabetically
+//   });
 
-  const parentNode = accordionsArray[0].parentNode;
-  accordionsArray.forEach(button => {
-      parentNode.appendChild(button);
-  });
+//   const parentNode = accordionsArray[0].parentNode;
+//   accordionsArray.forEach(button => {
+//       parentNode.appendChild(button);
+//   });
 
-  // Toggle the sort order for the next click
-  isAuthorAscending = !isAuthorAscending;
-});
+//   // Toggle the sort order for the next click
+//   isAuthorAscending = !isAuthorAscending;
+// });
 
-function convertDateForComparison(input) {
-  const [date, time] = input.split(' ');
-  const [day, month, year] = date.split('-');
+// function convertDateForComparison(input) {
+//   const [date, time] = input.split(' ');
+//   const [day, month, year] = date.split('-');
 
-  // Create a new date string in the format YYYY-MM-DDTHH:mm:ss
-  const formattedDateString = `${year}-${month}-${day}T${time}`;
+//   // Create a new date string in the format YYYY-MM-DDTHH:mm:ss
+//   const formattedDateString = `${year}-${month}-${day}T${time}`;
 
-  return new Date(formattedDateString).getTime();
-}
+//   return new Date(formattedDateString).getTime();
+// }
 
 // SORTS ON CREATION DATE
 

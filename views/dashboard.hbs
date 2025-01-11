@@ -23,22 +23,22 @@
                 <div id="expandedButtons" class="hidden">
                     {{!-- {{#if status}} --}}
                     <form action="/startStack" method="post"></form>
-                        <input type="hidden" name="stackId" value="{{portainerStackId}}">
-                        <button class="action_button_start"><i class="uil-play-circle"></i> Start</button>
+                        <input type="hidden" name="stackId">
+                        <button class="action_button_start" type="submit"><i class="uil-play-circle"></i> Start</button>
                     </form>
-                    <form action="/stopStack" method="post"></form>
-                        <input type="hidden" name="stackId" value="{{portainerStackId}}">
+                    <form id="stopStacksForm" action="/stopStack" method="post"></form>
                         <button class="action_button_stop" type="submit"><i class="uil-square"></i> Stop</button>
                     </form>
                     {{!-- {{else}} --}}
                     </form>
                     <form action="/restartStack" method="post"></form>
-                        <input type="hidden" name="stackId" value="{{portainerStackId}}">
-                        <button class="action_button_restart"><i class="uil-redo"></i> Restart</button>
+                        <input type="hidden" name="stackId" value="{{portainerStackIds}}">
+                        <button class="action_button_restart" type="submit"><i class="uil-redo"></i> Restart</button>
                     </form>
                     {{!-- {{/if}} --}}
-                    <form action="/deleteStack/{{portainerStackId}}" method="post">
-                        <button class="action_button_delete"><i class="uil-trash-alt"></i> Delete</button>
+                    <form action="/deleteStack" method="post">
+                    <input type="hidden" name="stackId" value="{{portainerStackId}}">
+                        <button class="action_button_delete" type="submit"><i class="uil-trash-alt"></i> Delete</button>
                     </form>
                 </div>
                 <button id="create_stack_button" class="create_button">Create New Project</button>

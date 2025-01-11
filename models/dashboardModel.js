@@ -193,17 +193,33 @@ exports.portainerCreateStack = async function (token, stackName, stackFileConten
 //Function to stop stack by ID
 
 async function portainerStopStack(token, stackId) {
-	try {
-		const stackUrl = `stacks/${stackId}/stop?endpointId=5`;
-		const response = await portainerCall(stackUrl, '', token);
-		console.log(`Stack ${stackId} stopped successfully`, response.data);
-		return response.data;
-	} catch (error) {
-		console.error(error);
-		console.error(`Error stopping stack ${stackId}:`, error.response?.data || error.message);
-	}
+    try {
+        const stackUrl = `stacks/${stackId}/stop?endpointId=5`;
+        const response = await portainerCall(stackUrl, '', token);
+        console.log(`Stack ${stackId} stopped successfully`, response.data);
+        return response.data;
+    } catch (error) {
+        console.error(`Error stopping stack ${stackId}:`, error.response?.data || error.message);
+        return null;
+    }
 }
+
 exports.portainerStopStack = portainerStopStack;
+
+
+
+// async function portainerStopStack(token, stackId) {
+// 	try {
+// 		const stackUrl = `stacks/${stackId}/stop?endpointId=5`;
+// 		const response = await portainerCall(stackUrl, '', token);
+// 		console.log(`Stack ${stackId} stopped successfully`, response.data);
+// 		return response.data;
+// 	} catch (error) {
+// 		console.error(error);
+// 		console.error(`Error stopping stack ${stackId}:`, error.response?.data || error.message);
+// 	}
+// }
+// exports.portainerStopStack = portainerStopStack;
 
 //Function to start stack by ID
 

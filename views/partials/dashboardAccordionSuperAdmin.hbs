@@ -1,5 +1,5 @@
-<button class="accordion" id="accordionButton" data-role="superAdmin">
-    <input type="checkbox" id="accordionCheckbox"/>
+<button class="accordion" id="accordionButton" data-role="superAdmin" value="{{portainerStackId}}">
+    <input type="checkbox" id="accordionCheckbox"  value="{{portainerStackId}}"/>
     <span class="stack_info_name">{{name}}</span>
     <span class="stack_info_author">{{author}}</span>
     <span class="stack_info_creation_date">{{creationDate}}</span>
@@ -34,7 +34,6 @@
             <form class="delete_stack_modal_form" action="/deleteStack/{{portainerStackId}}" method="post">
                 <button type="submit" class="actions_button"><i class="uil uil-trash-alt"></i></button>
             </form>
-            
         </div>
     </div>
 </div> 
