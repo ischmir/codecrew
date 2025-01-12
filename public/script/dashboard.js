@@ -21,7 +21,7 @@ const expandedButtons = document.querySelector("#expandedButtons");
   bulkCheckBox.addEventListener("change", () => {
     checkBox.forEach(checkBox => {
       checkBox.checked = bulkCheckBox.checked;
-      checkBox.dispatchEvent(new Event("change")); // Trigger the change event
+      checkBox.dispatchEvent(new Event("change"));
     });
   });
 
@@ -121,10 +121,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   stopButton.addEventListener("click", (event) => {
       console.log("Stop button clicked!");
-      event.preventDefault(); // Prevent default form submission
+      event.preventDefault();
 
       const checkedCheckboxes = document.querySelectorAll(".accordion input[type='checkbox']:checked");
-      
       const stackIds = Array.from(checkedCheckboxes).map((checkbox) => checkbox.value);
       
       console.log("Checked checkboxes:", stackIds);
@@ -133,8 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
           console.log("No stacks selected for stopping.");
           return;
       }
-
-      console.log(`Stopping stacks with IDs: ${stackIds.join(", ")}`);
+      console.log("Sending stackIds:", stackIds);
 
       fetch("/stopStack", {
           method: "POST",
@@ -144,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
           .then((response) => {
               if (response.ok) {
                   console.log("Stacks stopped successfully.");
-                  // window.location.reload();
+                  window.location.reload();
               } else {
                   console.error("Failed to stop stacks.");
               }
@@ -188,22 +186,66 @@ document.addEventListener("DOMContentLoaded", () => {
 // Start Stack
 
 document.addEventListener("DOMContentLoaded", () => {
-  const startButton = document.querySelector(".action_button_start");
+  console.log("JavaScript loaded and listening for button clicks.");
+  
+  const stopButton = document.querySelector(".action_button_start");
 
-  startButton.addEventListener("click", () => {
-    const checkedCheckboxes = document.querySelectorAll(".accordion input[type='checkbox']:checked");
-    checkedCheckboxes.forEach((checkbox) => {
-      const accordionRow = checkbox.closest(".accordion");
-      const stackId = accordionRow.getAttribute("value");
-      if (stackId) {
-        console.log(`Starting stack with ID: ${stackId}`);
+  stopButton.addEventListener("click", (event) => {
+      console.log("Start button clicked!");
+      event.preventDefault(); // Prevent default form submission
+
+      const checkedCheckboxes = document.querySelectorAll(".accordion input[type='checkbox']:checked");
+      const stackIds = Array.from(checkedCheckboxes).map((checkbox) => checkbox.value);
+      
+      console.log("Checked checkboxes:", stackIds);
+
+      if (stackIds.length === 0) {
+          console.log("No stacks selected for starting.");
+          return;
       }
-    });
-    if (checkedCheckboxes.length === 0) {
-      console.log("No stacks selected for starting.");
-    }
+      console.log("Sending stackIds:", stackIds);
+
+      fetch("/startStack", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ stackIds }),
+      })
+          .then((response) => {
+              if (response.ok) {
+                  console.log("Stacks started successfully.");
+                  window.location.reload();
+              } else {
+                  console.error("Failed to start stacks.");
+              }
+          })
+          .catch((error) => console.error("Error starting stacks:", error));
   });
 });
+
+
+
+
+
+
+
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const startButton = document.querySelector(".action_button_start");
+
+//   startButton.addEventListener("click", () => {
+//     const checkedCheckboxes = document.querySelectorAll(".accordion input[type='checkbox']:checked");
+//     checkedCheckboxes.forEach((checkbox) => {
+//       const accordionRow = checkbox.closest(".accordion");
+//       const stackId = accordionRow.getAttribute("value");
+//       if (stackId) {
+//         console.log(`Starting stack with ID: ${stackId}`);
+//       }
+//     });
+//     if (checkedCheckboxes.length === 0) {
+//       console.log("No stacks selected for starting.");
+//     }
+//   });
+// });
 
 // document.addEventListener("DOMContentLoaded", () => {
 //   const buttons = document.querySelector(".uil-play-circle");
@@ -222,25 +264,63 @@ document.addEventListener("DOMContentLoaded", () => {
 /////////////////////////////////////////////
   // Restart Stack
 
-document.addEventListener("DOMContentLoaded", () => {
-  const restartButton = document.querySelector(".action_button_restart");
 
-  restartButton.addEventListener("click", () => {
-    const checkedCheckboxes = document.querySelectorAll(".accordion input[type='checkbox']:checked");
-    checkedCheckboxes.forEach((checkbox) => {
-      const accordionRow = checkbox.closest(".accordion");
-      const stackId = accordionRow.getAttribute("value");
-      if (stackId) {
-        console.log(`Restarting stack with ID: ${stackId}`);
-        stopStack(stackId);
-      }
+  document.addEventListener("DOMContentLoaded", () => {
+    console.log("JavaScript loaded and listening for button clicks.");
+    
+    const stopButton = document.querySelector(".action_button_restart");
+  
+    stopButton.addEventListener("click", (event) => {
+        console.log("Restart button clicked!");
+        event.preventDefault(); // Prevent default form submission
+  
+        const checkedCheckboxes = document.querySelectorAll(".accordion input[type='checkbox']:checked");
+        const stackIds = Array.from(checkedCheckboxes).map((checkbox) => checkbox.value);
+        
+        console.log("Checked checkboxes:", stackIds);
+  
+        if (stackIds.length === 0) {
+            console.log("No stacks selected for restart.");
+            return;
+        }
+        console.log("Sending stackIds:", stackIds);
+  
+        fetch("/restartStack", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ stackIds }),
+        })
+            .then((response) => {
+                if (response.ok) {
+                    console.log("Stacks restarted successfully.");
+                    window.location.reload();
+                } else {
+                    console.error("Failed to restart stacks.");
+                }
+            })
+            .catch((error) => console.error("Error restarting stacks:", error));
     });
-    if (checkedCheckboxes.length === 0) {
-      console.log("No stacks selected for restart.");
-      startStack(stackId);
-    }
   });
-});
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const restartButton = document.querySelector(".action_button_restart");
+
+//   restartButton.addEventListener("click", () => {
+//     const checkedCheckboxes = document.querySelectorAll(".accordion input[type='checkbox']:checked");
+//     checkedCheckboxes.forEach((checkbox) => {
+//       const accordionRow = checkbox.closest(".accordion");
+//       const stackId = accordionRow.getAttribute("value");
+//       if (stackId) {
+//         console.log(`Restarting stack with ID: ${stackId}`);
+//         stopStack(stackId);
+//       }
+//     });
+//     if (checkedCheckboxes.length === 0) {
+//       console.log("No stacks selected for restart.");
+//       startStack(stackId);
+//     }
+//   });
+// });
 
 // document.addEventListener("DOMContentLoaded", () => {
 //   const buttons = document.querySelector(".uil-redo");
@@ -260,30 +340,76 @@ document.addEventListener("DOMContentLoaded", () => {
 // });
 
 /////////////////////////////////////////////
-// Delete Stack
+
+// Bulk Delete Stack
 
 document.addEventListener("DOMContentLoaded", () => {
-  const deleteButton = document.querySelector(".action_button_delete");
+  console.log("JavaScript loaded and listening for button clicks.");
+  
+  const stopButton = document.querySelector(".action_button_delete");
 
-  deleteButton.addEventListener("click", () => {
-    const checkedCheckboxes = document.querySelectorAll(".accordion input[type='checkbox']:checked");
-    const stackIds = []; 
+  stopButton.addEventListener("click", (event) => {
+      console.log("Stop button clicked!");
+      event.preventDefault(); // Prevent default form submission
 
-    checkedCheckboxes.forEach((checkbox) => {
-      const accordionRow = checkbox.closest(".accordion");
-      const stackId = accordionRow.getAttribute("value");
-      if (stackId) {
-        stackIds.push(stackId);
-        console.log(`Deleting stack with ID: ${stackId}`);
+      const checkedCheckboxes = document.querySelectorAll(".accordion input[type='checkbox']:checked");
+      
+      const stackIds = Array.from(checkedCheckboxes).map((checkbox) => checkbox.value);
+      
+      console.log("Checked checkboxes:", stackIds);
+
+      if (stackIds.length === 0) {
+          console.log("No thank you to stacks selected for deletion.");
+          return;
       }
-    });
 
-    if (checkedCheckboxes.length === 0) {
-      console.log("No stacks selected for deletion.");
-      return;
-    }
+      console.log(`Deleting stacks with IDs: ${stackIds.join(", ")}`);
+
+      fetch("/deleteStack", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ stackIds }),
+      })
+          .then((response) => {
+              if (response.ok) {
+                  console.log("Stacks deleted successfully.");
+                  window.location.reload();
+              } else {
+                  console.error("Failed to delete stacks.");
+              }
+          })
+          .catch((error) => console.error("Error deleting stacks:", error));
   });
 });
+
+
+
+
+
+// Delete Stack
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const deleteButton = document.querySelector(".action_button_delete");
+
+//   deleteButton.addEventListener("click", () => {
+//     const checkedCheckboxes = document.querySelectorAll(".accordion input[type='checkbox']:checked");
+//     const stackIds = []; 
+
+//     checkedCheckboxes.forEach((checkbox) => {
+//       const accordionRow = checkbox.closest(".accordion");
+//       const stackId = accordionRow.getAttribute("value");
+//       if (stackId) {
+//         stackIds.push(stackId);
+//         console.log(`Deleting stack with ID: ${stackId}`);
+//       }
+//     });
+
+//     if (checkedCheckboxes.length === 0) {
+//       console.log("No stacks selected for deletion.");
+//       return;
+//     }
+//   });
+// });
 
 // document.addEventListener("DOMContentLoaded", () => {
 //   const buttons = document.querySelector(".uil-trash-alt");

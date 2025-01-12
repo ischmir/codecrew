@@ -33,6 +33,7 @@ app.use(session({
 app.use(express.static('public'));
 app.use(fetchHeaderUserDetails.userDetails);
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
 
 
 app.all('*', loginRequired); // target ALLE routes/sider

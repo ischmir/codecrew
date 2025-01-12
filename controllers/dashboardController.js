@@ -137,7 +137,7 @@ exports.stopStack = async function (req, res) {
         if (!Array.isArray(stackIds) || stackIds.length === 0) {
             throw new Error("No stacks selected for stopping.");
         }
-		
+
         const token = await getJWT(req.session.userDetails.userId);
 
         const stopResults = await Promise.all(
@@ -174,54 +174,168 @@ exports.stopStack = async function (req, res) {
 // };
 
 // Start Stack
-exports.startStack = async function (req, res) {
-	try {
-		console.log('welp');
-		console.log(req.body);
 
-		await dashboardM.portainerStartStack(await getJWT(req.session.userDetails.userId), req.body.stackId);
-		res.redirect('/dashboard');
-	} catch (error) {
-		console.warn('Dashboard : ' + error);
-		res.redirect('/dashboard');
-	}
+exports.startStack = async function (req, res) {
+	console.log(req.body);
+    try {
+        const {stackIds} = req.body;
+
+        if (!Array.isArray(stackIds) || stackIds.length === 0) {
+            throw new Error("No stacks selected for starting.");
+        }
+
+        const token = await getJWT(req.session.userDetails.userId);
+
+        const startResults = await Promise.all(
+            stackIds.map((stackId) => dashboardM.portainerStartStack(token, stackId))
+        );
+
+        startResults.forEach((result, index) => {
+            if (result) {
+                console.log(`Successfully started stack with ID: ${stackIds[index]}`);
+            } else {
+                console.error(`Failed to start stack with ID: ${stackIds[index]}`);
+            }
+        });
+
+        res.redirect("/dashboard");
+    } catch (error) {
+        console.warn("Dashboard : " + error);
+        res.redirect("/dashboard");
+    }
 };
+
+
+// exports.startStack = async function (req, res) {
+// 	try {
+// 		console.log('welp');
+// 		console.log(req.body);
+
+// 		await dashboardM.portainerStartStack(await getJWT(req.session.userDetails.userId), req.body.stackId);
+// 		res.redirect('/dashboard');
+// 	} catch (error) {
+// 		console.warn('Dashboard : ' + error);
+// 		res.redirect('/dashboard');
+// 	}
+// };
+
 // Restart Stack
 
 exports.restartStack = async function (req, res) {
-	try {
-		await dashboardM.portainerRestartStack(await getJWT(req.session.userDetails.userId), req.body.stackId);
-		res.redirect('/dashboard');
-	} catch (error) {
-		console.warn('Dashboard : ' + error);
-		res.redirect('/dashboard');
-	}
+	console.log(req.body);
+    try {
+        const {stackIds} = req.body;
+
+        if (!Array.isArray(stackIds) || stackIds.length === 0) {
+            throw new Error("No stacks selected for starting.");
+        }
+
+        const token = await getJWT(req.session.userDetails.userId);
+
+        const restartResults = await Promise.all(
+            stackIds.map((stackId) => dashboardM.portainerRestartStack(token, stackId))
+        );
+
+        restartResults.forEach((result, index) => {
+            if (result) {
+                console.log(`Successfully restarted stack with ID: ${stackIds[index]}`);
+            } else {
+                console.error(`Failed to restart stack with ID: ${stackIds[index]}`);
+            }
+        });
+
+        res.redirect("/dashboard");
+    } catch (error) {
+        console.warn("Dashboard : " + error);
+        res.redirect("/dashboard");
+    }
 };
+
+// exports.restartStack = async function (req, res) {
+// 	try {
+// 		await dashboardM.portainerRestartStack(await getJWT(req.session.userDetails.userId), req.body.stackId);
+// 		res.redirect('/dashboard');
+// 	} catch (error) {
+// 		console.warn('Dashboard : ' + error);
+// 		res.redirect('/dashboard');
+// 	}
+// };
+
+////////////////////////////
+
+// Delete Stack
 
 exports.deleteStack = async function (req, res) {
-	try {
-		const {portainerStackId} = req.params;
-		const stackIdsToBeDeleted = Array.isArray(portainerStackId) ? portainerStackId : [portainerStackId];
-		const results = await dashboardM.portainerDeleteStack(await getJWT(req.session.userDetails.userId), stackIdsToBeDeleted);
+    console.log(req.body);
+    try {
+        const { stackIds } = req.body;
+
+        if (!Array.isArray(stackIds) || stackIds.length === 0) {
+            throw new Error("No stacks selected for deletion.");
+        }
+		
+        const token = await getJWT(req.session.userDetails.userId);
+
+        // Call the delete function for each stack ID in Portainer
+        const deleteResults = await Promise.all(
+            stackIds.map((stackId) => dashboardM.portainerDeleteStack(token, stackId))
+        );
+
+        // Log results of deletion from Portainer
+        const successfulDeletions = [];
+        deleteResults.forEach((result, index) => {
+            if (result) {
+                console.log(`Successfully deleted stack with ID: ${stackIds[index]}`);
+                successfulDeletions.push(stackIds[index]); // Collect successful IDs for DB deletion
+            } else {
+                console.error(`Failed to delete stack with ID: ${stackIds[index]}`);
+            }
+        });
+
+        // Now delete from the database only the successfully deleted stack IDs
+        if (successfulDeletions.length > 0) {
+            await dashboardM.deleteStackFromDB(successfulDeletions);
+            console.log(`Successfully deleted stacks from DB with IDs: ${successfulDeletions.join(', ')}`);
+        } else {
+            console.warn("No stacks were successfully deleted from Portainer, so skipping DB deletion.");
+        }
+
+        res.redirect("/dashboard");
+    } catch (error) {
+        console.warn("Dashboard: " + error);
+        res.redirect("/dashboard");
+    }
+};
+
+
+////////////////////////////
+
+// exports.deleteStack = async function (req, res) {
+// 	try {
+// 		const {portainerStackId} = req.params;
+// 		const stackIdsToBeDeleted = Array.isArray(portainerStackId) ? portainerStackId : [portainerStackId];
+// 		const results = await dashboardM.portainerDeleteStack(await getJWT(req.session.userDetails.userId), stackIdsToBeDeleted);
 		
 
-		//const isDeleted = await dashboardM.portainerDeleteStack(await getJWT(req.session.userDetails.userId), result.Id); // Portainer
-		//const isDeletedDB = await dashboardM.deleteStackFromDB(result.Id); // DB
+// 		//const isDeleted = await dashboardM.portainerDeleteStack(await getJWT(req.session.userDetails.userId), result.Id); // Portainer
+// 		//const isDeletedDB = await dashboardM.deleteStackFromDB(result.Id); // DB
 
-		results.forEach(result => {
-			if (result.status === 204) {
-			  console.log(`Successfully deleted stack with ID: ${result.id}`);
-			} else {
-			  console.error(`Failed to delete stack with ID: ${result.id}. Error: ${result.message}`);
-			}
-		});
+// 		results.forEach(result => {
+// 			if (result.status === 204) {
+// 			  console.log(`Successfully deleted stack with ID: ${result.id}`);
+// 			} else {
+// 			  console.error(`Failed to delete stack with ID: ${result.id}. Error: ${result.message}`);
+// 			}
+// 		});
 
-		res.redirect('/dashboard');
-	} catch (error) {
-		console.warn('Dashboard : ' + error);
-		res.redirect('/dashboard');
-	}
-};
+// 		res.redirect('/dashboard');
+// 	} catch (error) {
+// 		console.warn('Dashboard : ' + error);
+// 		res.redirect('/dashboard');
+// 	}
+// };
+
+////////////////////////////
 
 // exports.deleteStack = async function (req, res) {
 // 	try {

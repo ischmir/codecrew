@@ -249,7 +249,7 @@ exports.portainerRestartStack = async function (token, stackId) {
 exports.deleteStackFromDB = async function (portainerStackIds) { 
     try {
         if (!Array.isArray(portainerStackIds) || portainerStackIds.length === 0) {
-            throw new Error("No stack IDs provided for deletion.");
+            throw new Error("No stack IDs provided for deletion in DB.");
         }
 
         const placeholders = portainerStackIds.map(() => '?').join(', ');
@@ -258,7 +258,7 @@ exports.deleteStackFromDB = async function (portainerStackIds) {
         const [result] = await db.execute(query, portainerStackIds);
         return result;
     } catch (error) {
-        console.error(`Error deleting stacks with IDs ${portainerStackIds}:`, error.message);
+        console.error(`Error deleting stacks from DB with IDs ${portainerStackIds}:`, error.message);
         throw error;
     }
 };
@@ -292,10 +292,10 @@ exports.portainerDeleteStack = async function (token, portainerStackIds) {
 				headers: { Authorization: `Bearer ${token}` },
 				params: { external: false },
 			});
-			console.log(`Stack with ID ${portainerStackId} deleted successfully.`);
+			console.log(`Stack with ID ${portainerStackId} deleted from portainer successfully.`);
 			results.push({ id: portainerStackId, status: response.status }); 
 		} catch (error) {
-			console.error(`Error deleting stack with ID ${portainerStackId}:`, error.message);
+			console.error(`Error deleting stack from portainer with ID ${portainerStackId}:`, error.message);
       		results.push({ id: portainerStackId, status: 'error', message: error.message });
 		}
 	}
