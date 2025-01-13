@@ -241,7 +241,7 @@ exports.portainerRestartStack = async function (token, stackId) {
 
 exports.deleteStackFromDB = async function (portainerStackId) {
 	try {
-		const query = 'DELETE FROM stacks WHERE portainerStackId = ?';
+		const query = 'DELETE FROM Stacks WHERE portainerStackId = ?';
 
 		const [result] = await db.execute(query, [portainerStackId]);
 		return result;

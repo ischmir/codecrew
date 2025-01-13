@@ -32,9 +32,9 @@ exports.dashboard = async function (req, res) {
 					lastUpdate: stack.UpdateDate == 0 ? new Date(stack.CreationDate * 1000) : new Date(stack.UpdateDate * 1000),
 					createdBy: stack.CreatedBy,
 					template: 1,
-					subDomain: 'ehhh, brain no work', // dummy
+					subDomain: 'dummyDomain', // dummy
 					lastActive: new Date(),
-					author: 'welp', // dummy
+					author: "Can't find. " + stack.createdBy, // dummy
 					portainerStackId: stack.Id,
 				};
 
