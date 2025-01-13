@@ -2,7 +2,10 @@ const teamsModel = require('../models/teamsModel');
 // Håndterer forespørgsler for teams
 
 exports.teams = async function (requst, respons) {
-	// Henter alle teams fra databasen
+	if (!requst.session.userDetails.isTeamAllowed) {
+		respons.redirect('/dashboard');
+		return;
+	}
 	respons.render('teams-create', await teamsModel.teams());
 	// Render teams-create-view med alle teams
 };
@@ -14,6 +17,10 @@ exports.teamsEdit = async function (requst, respons) {
 };
 
 exports.postNewTeam = async function (requst, respons) {
+	if (!requst.session.userDetails.isTeamAllowed) {
+		respons.redirect('/dashboard');
+		return;
+	}
 	// Gemme daten i databasen
 	const teamId = await teamsModel.addTeamToDB(requst.body);
 	// Tilføjer et team til databasen
