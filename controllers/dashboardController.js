@@ -115,9 +115,9 @@ exports.createStack = async function (req, res) {
 			};
 			await dashboardM.addNewStackToDB(saveToDb, saveToDb.userId); // save it to DB. runs twice??
 
-			const isDeleted = await dashboardM.portainerDeleteStack(await getJWT(req.session.userDetails.userId), result.Id); // Portainer
+			// const isDeleted = await dashboardM.portainerDeleteStack(await getJWT(req.session.userDetails.userId), result.Id); // Portainer
 			const isDeletedDB = await dashboardM.deleteStackFromDB(result.Id); // DB
-			console.log(saveToDb);
+			console.log(isDeletedDB);
 		}
 		res.redirect('/dashboard');
 	} catch (error) {
