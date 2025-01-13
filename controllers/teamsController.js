@@ -1,29 +1,31 @@
 const teamsModel = require('../models/teamsModel');
+// Håndterer forespørgsler for teams
 
 exports.teams = async function (requst, respons) {
+	// Henter alle teams fra databasen
 	respons.render('teams-create', await teamsModel.teams());
+	// Render teams-create-view med alle teams
 };
 
 exports.teamsEdit = async function (requst, respons) {
+	// Render teams-edit-view med et specifikt team
 	respons.render('teams-edit', await teamsModel.teams(requst.params.id));
+	// Render teams-edit-view med et specifikt team
 };
-// Request.body =
-// name: 'Howdy Team',
-// description: 'Yeeeehaw!!!!!        ',
-// expire: '2024-12-28'
+
 exports.postNewTeam = async function (requst, respons) {
 	// Gemme daten i databasen
 	const teamId = await teamsModel.addTeamToDB(requst.body);
-	// Redirect til Edit exsisting team
+	// Tilføjer et team til databasen
 	respons.redirect('/teams-edit/' + teamId);
-	// console.log(requst.body);
+	// Redirect til Edit exsisting team
 };
 exports.postAddTeamMember = async function (requst, respons) {
 	// Gemme daten i databasen
 	console.log('Tilføj member', requst.body.member);
-	// await
+	// Tilføjer et medlem til et team
 	await teamsModel.addMemberToTeam(requst.body.member, requst.params.teamId);
-	// Redirect til Edit exsisting team
+	// Tilføjer et medlem til et team
 	respons.redirect('/teams-edit/' + requst.params.teamId);
-	// console.log(requst.body);
+	// Redirect til Edit exsisting team
 };
