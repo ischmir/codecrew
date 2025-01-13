@@ -24,7 +24,7 @@ async function getUserPermissions(accessLevel, userId) {
 	const permissions = {
 		isNewStackAllowed: await isNewStackAllowed(accessLevel, userId),
 		isTeamAllowed: accessLevel === 'admin' || accessLevel === 'superAdmin',
-		isTemplateAllowed: accessLevel === 'admin' || accessLevel === 'superAdmin',
+		isTemplateAllowed: accessLevel === 'superAdmin',
 		isAdmin: accessLevel === 'admin' || accessLevel === 'superAdmin',
 	};
 	return permissions;
