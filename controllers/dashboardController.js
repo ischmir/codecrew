@@ -227,7 +227,7 @@ exports.restartStack = async function (req, res) {
         const {stackIds} = req.body;
 
         if (!Array.isArray(stackIds) || stackIds.length === 0) {
-            throw new Error("No stacks selected for starting.");
+            throw new Error("No stacks selected for restarting.");
         }
 
         const token = await getJWT(req.session.userDetails.userId);
@@ -276,7 +276,6 @@ exports.deleteStack = async function (req, res) {
 		
         const token = await getJWT(req.session.userDetails.userId);
 
-        // Call the delete function for each stack ID in Portainer
         const deleteResults = await Promise.all(
             stackIds.map((stackId) => dashboardM.portainerDeleteStack(token, stackId))
         );
