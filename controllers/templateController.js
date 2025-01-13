@@ -2,7 +2,7 @@ const templateM = require('../models/templateModel');
 const yaml = require('js-yaml');
 
 exports.allTemplates = async function (req, res) {
-	if (!requst.session.userDetails.isTemplateAllowed) {
+	if (!req.session.userDetails.isTemplateAllowed) {
 		respons.redirect('/dashboard');
 		return;
 	}
@@ -13,7 +13,7 @@ exports.allTemplates = async function (req, res) {
 	res.render('template', await templateM.getAllTemplates(message));
 };
 exports.createTemplate = async function (req, res) {
-	if (!requst.session.userDetails.isTemplateAllowed) {
+	if (!req.session.userDetails.isTemplateAllowed) {
 		respons.redirect('/dashboard');
 		return;
 	}
@@ -25,7 +25,7 @@ exports.createTemplate = async function (req, res) {
 };
 
 exports.updateTemplate = async function (req, res) {
-	if (!requst.session.userDetails.isTemplateAllowed) {
+	if (!req.session.userDetails.isTemplateAllowed) {
 		respons.redirect('/dashboard');
 		return;
 	}
@@ -57,7 +57,7 @@ exports.updateTemplate = async function (req, res) {
 };
 
 exports.templateCreation = async function (req, res) {
-	if (!requst.session.userDetails.isTemplateAllowed) {
+	if (!req.session.userDetails.isTemplateAllowed) {
 		respons.redirect('/dashboard');
 		return;
 	}
@@ -102,7 +102,7 @@ exports.templateCreation = async function (req, res) {
 };
 
 exports.deleteTemplate = async function (req, res) {
-	if (!requst.session.userDetails.isTemplateAllowed) {
+	if (!req.session.userDetails.isTemplateAllowed) {
 		respons.redirect('/dashboard');
 		return;
 	}
