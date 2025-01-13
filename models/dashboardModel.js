@@ -136,21 +136,30 @@ exports.portainerStacks = async function (token) {
 	}
 };
 
-exports.addNewStackToDB = async function(res) {	
+exports.addNewStackToDB = async function (res) {
 	try {
+		const subDomain = res.subDomain || null; // Convert 'undefined' to SQL NULL
+		const template = res.template || null;
+		const userId = res.userId || null;
+		const stackName = res.name || null;
+		const creationDate = res.creationDate || null;
+		const lastUpdate = new Date(res.lastUpdate || null);
+		const lastActive = new Date(res.lastActive || null);
+		const portainerStackId = res.portainerStackId || null;
+
 		const [rows] = await db.execute(
 			`INSERT INTO Stacks 
 			 (subDomain, FK_templateId, FK_userId, stackName, stackCreationDate, stackLastUpdate, stackLastActive, portainerStackId) 
 			 VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-			[res.subDomain, res.template, res.userId, res.name, res.creationDate, res.lastUpdate, res.lastActive, res.portainerStackId]
+			[subDomain, template, userId, stackName, creationDate, lastUpdate, lastActive, portainerStackId]
 		);
-		console.log("added new stack to the database. stack name: " + res.name);
+
+		console.log('added new stack to the database. stack name: ' + res.name);
 		return rows;
 	} catch (error) {
-		console.error("Error inserting into Stacks:", error);
+		console.error('Error inserting into Stacks:', error);
 	}
-	
-}
+};
 // Function to fetch Portainer endpoints
 exports.portainerEndpoints = async function (token) {
 	try {
@@ -230,7 +239,7 @@ exports.portainerRestartStack = async function (token, stackId) {
 
 // Function to delete a stack by ID from DB
 
-exports.deleteStackFromDB = async function (portainerStackId) { 
+exports.deleteStackFromDB = async function (portainerStackId) {
 	try {
 		const query = 'DELETE FROM stacks WHERE portainerStackId = ?';
 
@@ -272,19 +281,17 @@ exports.amountOfStacksByUser = async function (userId) {
 	try {
 		const [rows] = await db.query('SELECT COUNT(*) as amount FROM Stacks WHERE FK_userId = ?', [userId]);
 
-        return rows[0].amount
-    } catch (error) {
-        console.error(error);
-        
-    }
-}
+		return rows[0].amount;
+	} catch (error) {
+		console.error(error);
+	}
+};
 exports.getAllStacksFromDB = async function () {
-    try {
-        const [rows] = await db.query("SELECT * FROM Stacks;")
+	try {
+		const [rows] = await db.query('SELECT * FROM Stacks;');
 
-        return rows;
-    } catch (error) {
-        console.log("error getting all stacks: " +error);
-        
-    }
-}
+		return rows;
+	} catch (error) {
+		console.log('error getting all stacks: ' + error);
+	}
+};
