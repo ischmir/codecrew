@@ -172,7 +172,7 @@ INSERT INTO Roles (roleName, stackLimit, accessLevel) VALUES
 
 -- TEAMS
 INSERT INTO Teams (teamName, teamCreationDate,teamDescription,teamExpireDate) VALUES 
-    ('No Team', '2000-01-01', 'team tech', '2001-01-01'),
+    ('No Team', '2000-01-01', 'Team tech', '2001-01-01'),
     ('Development Team', '2024-10-01','Team Deeppink','2025-10-01'),
     ('Design Team', '2024-10-05', 'Selfies foran Biltema!!', '2025-10-05'),
     ('QA Team', '2024-10-10', 'The test team!!', '2025-10-10' );

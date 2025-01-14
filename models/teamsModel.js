@@ -9,7 +9,7 @@ exports.teams = async function (teamId) {
 	);
 
 	const [teamRows] = await db.query(
-		`SELECT teamId, teamName
+		`SELECT teamId, teamName, teamDescription
 		FROM Teams`
 		// returnerer alle teamID og teamName fra databasen
 	);
