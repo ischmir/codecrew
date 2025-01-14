@@ -99,26 +99,6 @@ exports.createStack = async function (req, res) {
 			template
 		); // comment, so we dont create a new stack, on the live server by accident.
 
-		if (result) {
-			let saveToDb = {
-				userId: req.session.userDetails.userId || 8,
-				name: result.Name,
-				status: result.Status == 1,
-				creationDate: new Date(result.CreationDate * 1000),
-				lastUpdate: result.UpdateDate == 0 ? new Date(result.CreationDate * 1000) : new Date(result.UpdateDate * 1000),
-				createdBy: result.CreatedBy,
-				template: chosen_template,
-				subDomain: domain_name,
-				lastActive: Date.now(),
-				author: `${req.session.userDetails.firstName} ${req.session.userDetails.lastName}`,
-				portainerId: result.Id,
-			};
-			await dashboardM.addNewStackToDB(saveToDb, saveToDb.userId); // save it to DB. runs twice??
-
-			// const isDeleted = await dashboardM.portainerDeleteStack(await getJWT(req.session.userDetails.userId), result.Id); // Portainer
-			const isDeletedDB = await dashboardM.deleteStackFromDB(result.Id); // DB
-			console.log(isDeletedDB);
-		}
 		res.redirect('/dashboard');
 	} catch (error) {
 		console.warn('Dashboard : ' + error);

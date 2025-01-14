@@ -288,7 +288,7 @@ exports.amountOfStacksByUser = async function (userId) {
 };
 exports.getAllStacksFromDB = async function () {
 	try {
-		const [rows] = await db.query('SELECT * FROM Stacks;');
+		const [rows] = await db.query('SELECT * FROM Stacks WHERE portainerStackId IS NOT null;');
 
 		return rows;
 	} catch (error) {
