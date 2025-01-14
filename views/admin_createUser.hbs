@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="/css/adminUserCreation.css" />
+
+{{> nav}}
+
+<main class="template_main">
+    {{> header}}
+    <a href="/template" class="templateSavebtn templateCreationLink_back">Back</a>
+    
+    <form action="/BulkCreateUser" method="post" class="templateCreationForm">
+        <fieldset>
+            <label for="bulkUser">Upload CSV file for creating new users</label>
+            <input type="file" accept="csv,txt" name="bulkUser" id="bulkUser_input">    
+        </fieldset>
+        <fieldset class="csvContent_field">
+            <textarea name="csvContent" id="users"></textarea>
+        </fieldset>
+        <button type="submit" class="button">Upload</button>
+    </form>
+
+</main>
+
+<script>
+    const fileInput = document.querySelector("#bulkUser_input")
+    const contentDisplay = document.querySelector("#users")
+    // Handle file selection
+    fileInput.addEventListener('change', () => {
+    const file = fileInput.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            contentDisplay.value = event.target.result; // Populate textarea
+            contentDisplay.parentElement.style.display = "inline-block";
+            console.log(contentDisplay.scrollHeight)
+            contentDisplay.parentElement.style.height = contentDisplay.scrollHeight + "px"; // dynamic scale the fieldset to its child (textarea)
+        };
+        reader.readAsText(file); // Read the file as text
+    }
+    });
+</script>

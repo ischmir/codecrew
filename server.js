@@ -63,6 +63,11 @@ app.engine(
 		defaultLayout: 'main',
 		extname: '.hbs',
 		partialsDir: path.join(__dirname, 'views/partials'),
+        helpers: {
+            eq: function (arg1, arg2) {
+                return arg1 === arg2;
+            },
+        },
 	})
 );
 

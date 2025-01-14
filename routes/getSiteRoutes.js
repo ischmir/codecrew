@@ -3,6 +3,7 @@ const loginC = require('../controllers/loginController');
 const settingsC = require('../controllers/settingController');
 const teamsC = require('../controllers/teamsController');
 const templateC = require('../controllers/templateController');
+const userC = require('../controllers/userController');
 
 module.exports = function (app) {
 	app.get('/', dashboardC.dashboardRedirect);
@@ -20,4 +21,6 @@ module.exports = function (app) {
 	app.get('/forgot_password', loginC.forgot_password);
 	app.get('/template', templateC.allTemplates);
 	app.get('/create_template', templateC.createTemplate);
+	app.get('/admin_createUsers', settingsC.createUsers);
+	app.get('/admin_showUsers', userC.getAllUsers);
 };

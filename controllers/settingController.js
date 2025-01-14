@@ -19,20 +19,10 @@ exports.upgrade = async function (req, res) {
 exports.accessibility = async function (req, res) {
 	res.render('accessibility', await userSettingsM.accessibility())
 }
-
-exports.upgradeUser = async function (req, res) {
-	if(req.body.userId <= 0 || req.body.userRole == "") {
-		res.redirect("admin_user_settings") // should be send with a error message. 
-	}
-	
-	const affectedRows = await adminSettingsM.upgradeUser(req.body.userId, req.body.userRole);
-	if(affectedRows < 1) {
-		res.redirect("/admin_user_settings"); // if there wasn't any change in the db. mostly becourse there was no match, typo.
-	}
-	else {
-		res.redirect("/admin_user_settings"); // on success, send a toast?
-	}
+exports.createUsers = async function (req, res) {
+	res.render('admin_createUser', userSettingsM.createUsers())
 }
+
 
 exports.updateStackLimit = async function (req, res) { // should be a different redirect URL
 	if(req.body.newStackLimit < 0 || req.body.accessLevel == "") {
@@ -62,4 +52,34 @@ exports.updatePassword = async function(req, res) {
 		req.session.message = { type: 'danger', text: "Not logged in" };
 		res.redirect('/settings-password');
 	}   
+}
+exports.bulkCreateUserFromCSV = async function (req, res) {
+	const rows = req.body.csvContent.split("\n");
+	rows.pop(); // last is empty
+    const headers = rows[0].split(",");
+
+    const users = [];
+    for (let i = 1; i < rows.length; i++) {
+
+        const values = rows[i].split(",");
+		
+        const obj = [];
+
+        for (let j = 0; j < headers.length; j++) {
+
+            const key = headers[j].trim();
+            let value = values[j].trim();
+			
+			if(key == "FK_role") {
+				value = Number.parseInt(value);
+			}
+			obj.push(value)
+        }
+
+        users.push(obj);
+    }
+	await adminSettingsM.bulkCreateUsersFromCSVToDB(users);
+	
+	console.log(users);
+	res.redirect("/admin_createUsers")
 }

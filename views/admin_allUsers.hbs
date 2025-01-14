@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="/css/user.css" />
+
+{{> nav}}
+
+<main class="userMain">
+    {{> header}}
+<h2 style="text-align: center;">List of all users</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each users}}
+        <tr>
+            <td>{{username}}</td>
+            <td>{{fullName}}</td>
+            <td>{{userEmail}}</td>
+            <td>
+                <form action="">
+                    <select name="userRole" id="userRole" onchange="showUpgradeBtn(this)">
+                        {{#each ../roles}}
+                            <option value="{{roleId}}" {{#if (eq ../roleName roleName)}}selected{{/if}}>{{roleName}}</option>
+                        {{/each}}
+                    </select>
+                    <input type="submit" class="button userRoleChange_btn" value="Upgrade user">
+                </form>    
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+    
+</main>
+
+<script>
+    function showUpgradeBtn(sel) {
+        const nextElement = sel.nextElementSibling; // Get the next sibling element
+        if (nextElement && nextElement.tagName === 'INPUT') { // Check if it's an input element
+            nextElement.style.display = 'block'; // Make the button visible
+        }
+    }
+
+</script>

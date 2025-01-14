@@ -31,3 +31,30 @@ exports.upgradeUser = async function (userId, newRoleId) {
     const [result] = await db.execute("UPDATE Users SET FK_role = ? WHERE userId = ?", [newRoleId, userId])
     return result.affectedRows;
 }
+exports.bulkCreateUsersFromCSVToDB = async function (csvContent) {
+    try {
+        console.log('CSV Content:', csvContent);
+
+        if (csvContent.length === 0) {
+            throw new Error('Invalid CSV content');
+        }
+        
+        const [result] = await db.query(
+            `INSERT INTO Users (
+                username,
+                firstName,
+                lastName,
+                userEmail,
+                userPassword,
+                userExpirationDate,
+                FK_role
+            )
+            VALUES ?`,
+            [csvContent]
+        );
+
+        return result.affectedRows;
+    } catch (error) {
+        console.error('Error in bulkInsert:', error.message);
+    }
+};

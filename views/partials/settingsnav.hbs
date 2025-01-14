@@ -11,7 +11,7 @@
 			<p>Accessibility</p>
 		</a>
 	</div>
-	{{!-- {{#if userDetails.isAdmin}} works --}}
+	{{#if userDetails.isAdmin}} 
 	<h4>Admin settings</h4>
 	<div class="settingsText">
 		<a href="/admin_user_settings" class="Link">
@@ -20,6 +20,12 @@
 		<a href="/template" class="Link">
 			<p>Templates</p>
 		</a>
+		<a href="/admin_createUsers" class="Link">
+			<p>Create new users</p>
+		</a>
+		<a href="/admin_showUsers" class="Link">
+			<p>Show users</p>
+		</a>
 	</div>
-	{{!-- {{/if}} --}}
+	{{/if}}
 </div>

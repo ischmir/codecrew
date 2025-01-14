@@ -189,3 +189,8 @@
 	background-color: var(--negative-status-color);
 	border-color: var(--danger-color);
 }
+.templateCreationLink_back {
+	color: var(--primary-link-color);
+	text-decoration: none;
+	padding: 0.5em 2.5em;
+}

@@ -26,16 +26,16 @@ exports.dashboard = async function (req, res) {
 			if (!allStacksDB.some(k => k.portainerStackId == stack.Id)) {
 				// check if the db is missing a stack.
 				const newStack = {
-					userId: req.session.userDetails.userId || 8, // dummy
+					userId: req.session.userDetails.userId, // dummy
 					name: stack.Name,
 					status: stack.Status === 1,
 					creationDate: new Date(stack.CreationDate * 1000),
 					lastUpdate: stack.UpdateDate == 0 ? new Date(stack.CreationDate * 1000) : new Date(stack.UpdateDate * 1000),
 					createdBy: stack.CreatedBy,
-					template: stack.EntryPoint,
-					subDomain: 'ehhh, brain no work', // dummy
+					template: 1,
+					subDomain: 'Could not find domain', // dummy
 					lastActive: new Date(),
-					author: 'welp', // dummy
+					author: stack.CreatedBy, // dummy
 					portainerStackId: stack.Id,
 				};
 
@@ -45,6 +45,7 @@ exports.dashboard = async function (req, res) {
 
 		for (let i = 0; i < stacks.length; i++) {
 			let findDBstack = allStacksDB.find(k => k.portainerStackId == stacks[i].Id);
+			if(findDBstack == undefined) break;
 			let fullName = await userM.getNameOfUserById(findDBstack.FK_userId);
 
 			allStacks.push({
@@ -57,7 +58,7 @@ exports.dashboard = async function (req, res) {
 						? extraM.convertingDateFormat(stacks[i].CreationDate * 1000)
 						: extraM.convertingDateFormat(stacks[i].UpdateDate * 1000),
 				createdBy: stacks[i].CreatedBy,
-				template: stacks[i].EntryPoint,
+				template: 1,
 				subDomain: findDBstack.subDomain,
 				lastActive: extraM.convertingDateFormat(new Date()),
 				author: fullName.firstName + ' ' + fullName.lastName,
@@ -114,10 +115,8 @@ exports.createStack = async function (req, res) {
 				author: `${req.session.userDetails.firstName} ${req.session.userDetails.lastName}`,
 				portainerId: result.Id,
 			};
-			await dashboardM.addNewStackToDB(saveToDb, saveToDb.userId); // save it to DB. runs twice??
+			await dashboardM.addNewStackToDB(saveToDb);
 
-			const isDeleted = await dashboardM.portainerDeleteStack(await getJWT(req.session.userDetails.userId), result.Id); // Portainer
-			const isDeletedDB = await dashboardM.deleteStackFromDB(result.Id); // DB
 			console.log(saveToDb);
 		}
 		res.redirect('/dashboard');

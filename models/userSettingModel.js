@@ -35,3 +35,11 @@ exports.userSettingsPassword = (message) => {
 
     return data;
 }
+
+exports.createUsers = () => {
+    const data = {
+        title: "Admin Settings"    
+    }
+
+    return data;
+}

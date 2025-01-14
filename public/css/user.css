@@ -1,0 +1,22 @@
+.userMain {
+    width: 80%;
+}
+table {
+    margin: 0 auto;
+    width: 95%;
+}
+table td {
+    padding: 0 1em;
+}
+td:has(form) {
+    max-width: 10rem;
+}
+.userRoleChange_btn {
+    padding: 0.5em;
+    display: none;
+}
+
+.userRoleChange_btn,
+td select {
+    width: 100%;
+}

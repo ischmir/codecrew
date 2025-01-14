@@ -3,6 +3,7 @@
 
 <main class="template_main">
     {{> header}}
+    <a href="/template" class="templateSavebtn templateCreationLink_back">Back</a>
 
     <form action="/templateCreation" method="post" class="templateCreationForm">
         <fieldset>
@@ -26,26 +27,26 @@
         <div class="toast-overlay" 
 		id="toast-overlay"></div>
 
-        <script>
-            const fileInput = document.querySelector("#fileInput")
-            const contentDisplay = document.querySelector("#yamlContent")
-            // Handle file selection
-            fileInput.addEventListener('change', () => {
-            const file = fileInput.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (event) {
-                contentDisplay.value = event.target.result; // Populate textarea
-                };
-                reader.readAsText(file); // Read the file as text
-            }
-            });
-        </script>
+<script>
+    const fileInput = document.querySelector("#fileInput")
+    const contentDisplay = document.querySelector("#yamlContent")
+    // Handle file selection
+    fileInput.addEventListener('change', () => {
+    const file = fileInput.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+        contentDisplay.value = event.target.result; // Populate textarea
+        };
+        reader.readAsText(file); // Read the file as text
+    }
+    });
+</script>
 
-	<script>
-		// We need make a variable to pass on a value from handlebars to script file.
-		const messageType = "{{message.type}}";
-		const messageText = "{{message.text}}";
-	</script>
-    <script src="script/updatePasswordToast.js"></script>
+<script>
+    // We need make a variable to pass on a value from handlebars to script file.
+    const messageType = "{{message.type}}";
+    const messageText = "{{message.text}}";
+</script>
+<script src="script/updatePasswordToast.js"></script>
 </main>
