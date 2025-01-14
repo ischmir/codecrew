@@ -21,8 +21,8 @@ exports.accessibility = async function (req, res) {
 };
 
 exports.upgradeUser = async function (req, res) {
-	if (req.body.userId <= 0 || req.body.userRole == '') {
-		res.redirect('admin_user_settings'); // should be send with a error message.
+	if (!req.session.userDetails.isAdmin) {
+		return res.redirect('admin_user_settings'); // should be send with a error message.
 	}
 
 	const affectedRows = await adminSettingsM.upgradeUser(req.body.userId, req.body.userRole);
