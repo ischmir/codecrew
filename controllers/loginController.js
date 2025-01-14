@@ -50,7 +50,7 @@ exports.postLogin = async function (req, res) {
 				firstName: finalResult.firstName,
 				lastName: finalResult.lastName,
 				...permissions,
-				// Tilføjer alle tilladelser fra permissions objektet til userData objektet
+				// Tilføjer alle tilladelser fra getUserPermissions objektet til userData objektet
 			};
 
 			req.session.userDetails = userData;

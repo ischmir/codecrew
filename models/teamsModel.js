@@ -1,7 +1,7 @@
 const db = require('../config/db');
 // Håndterer database-operationer for teams
 exports.teams = async function (teamId) {
-	// Henter alle medlemmer fra databasen
+	// Henter alle teams fra databasen
 	const [memberRows] = await db.query(
 		`SELECT userId, firstName, lastName
 		FROM Users`
