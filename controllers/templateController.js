@@ -3,7 +3,7 @@ const yaml = require('js-yaml');
 
 exports.allTemplates = async function (req, res) {
 	if (!req.session.userDetails.isTemplateAllowed) {
-		respons.redirect('/dashboard');
+		res.redirect('/dashboard');
 		return;
 	}
 
@@ -14,7 +14,7 @@ exports.allTemplates = async function (req, res) {
 };
 exports.createTemplate = async function (req, res) {
 	if (!req.session.userDetails.isTemplateAllowed) {
-		respons.redirect('/dashboard');
+		res.redirect('/dashboard');
 		return;
 	}
 
@@ -26,7 +26,7 @@ exports.createTemplate = async function (req, res) {
 
 exports.updateTemplate = async function (req, res) {
 	if (!req.session.userDetails.isTemplateAllowed) {
-		respons.redirect('/dashboard');
+		res.redirect('/dashboard');
 		return;
 	}
 
@@ -58,7 +58,7 @@ exports.updateTemplate = async function (req, res) {
 
 exports.templateCreation = async function (req, res) {
 	if (!req.session.userDetails.isTemplateAllowed) {
-		respons.redirect('/dashboard');
+		res.redirect('/dashboard');
 		return;
 	}
 
@@ -103,7 +103,7 @@ exports.templateCreation = async function (req, res) {
 
 exports.deleteTemplate = async function (req, res) {
 	if (!req.session.userDetails.isTemplateAllowed) {
-		respons.redirect('/dashboard');
+		res.redirect('/dashboard');
 		return;
 	}
 	try {
