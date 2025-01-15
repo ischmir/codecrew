@@ -55,6 +55,7 @@ const credentials = {
 	password: 'Ladida.12',
 };
 
+// Portainer API call, problemer med axios
 async function portainerCall(endpoint, body, token) {
 	//! Remove me after portainer is working again
 	const agent = new https.Agent({

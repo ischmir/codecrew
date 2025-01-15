@@ -20,7 +20,7 @@ exports.dashboard = async function (req, res) {
 		const allStacks = [];
 
 		for (let i = 0; i < stacks.length; i++) {
-			// for getting data from portainer to the db. but we cant get info on some things, so we have dummy there, only use it for catch up.
+			// Tjekker om vi har det i databasen, ellers opretter
 			const stack = stacks[i];
 			if (!allStacksDB.some(k => k.portainerStackId == stack.Id)) {
 				// check if the db is missing a stack.
