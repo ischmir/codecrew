@@ -8,6 +8,7 @@ const MySQLStore = require('express-mysql-session')(session);
 const fetchHeaderUserDetails = require('./models/headerModel');
 
 const app = express();
+// Express server
 
 // we set up a connection to our DB, so the package can use it to store the session, automaticly.
 // that way, we have a persistent session, since its stored in the db, instead of the browser.
