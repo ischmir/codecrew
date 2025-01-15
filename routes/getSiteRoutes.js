@@ -1,9 +1,10 @@
+//controllere
 const dashboardC = require('../controllers/dashboardController');
 const loginC = require('../controllers/loginController');
 const settingsC = require('../controllers/settingController');
 const teamsC = require('../controllers/teamsController');
 const templateC = require('../controllers/templateController');
-
+//routes
 module.exports = function (app) {
 	app.get('/', dashboardC.dashboardRedirect);
 	app.get('/dashboard', dashboardC.dashboard);

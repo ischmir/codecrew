@@ -20,9 +20,8 @@ exports.dashboard = async function (req, res) {
 		const allStacks = [];
 
 		for (let i = 0; i < stacks.length; i++) {
-			// for getting data from portainer to the db. but we cant get info on some things, so we have dummy there, only use it for catch up.
+			// Tjekker om vi har det i databasen, ellers opretter
 			const stack = stacks[i];
-
 			if (!allStacksDB.some(k => k.portainerStackId == stack.Id)) {
 				// check if the db is missing a stack.
 				const newStack = {
@@ -32,10 +31,10 @@ exports.dashboard = async function (req, res) {
 					creationDate: new Date(stack.CreationDate * 1000),
 					lastUpdate: stack.UpdateDate == 0 ? new Date(stack.CreationDate * 1000) : new Date(stack.UpdateDate * 1000),
 					createdBy: stack.CreatedBy,
-					template: stack.EntryPoint,
-					subDomain: 'ehhh, brain no work', // dummy
+					template: 1,
+					subDomain: 'dummyDomain', // dummy
 					lastActive: new Date(),
-					author: 'welp', // dummy
+					author: "Can't find. " + stack.createdBy, // dummy
 					portainerStackId: stack.Id,
 				};
 
@@ -88,7 +87,7 @@ exports.dashboardRedirect = function (req, res) {
 exports.createStack = async function (req, res) {
 	try {
 		if (!req.session.userDetails.isNewStackAllowed) {
-			res.redirect('dashboard');
+			return res.redirect('/dashboard');
 		}
 
 		const { stack_name, domain_name, chosen_template } = req.body; // get content from form
@@ -100,26 +99,6 @@ exports.createStack = async function (req, res) {
 			template
 		); // comment, so we dont create a new stack, on the live server by accident.
 
-		if (result) {
-			let saveToDb = {
-				userId: req.session.userDetails.userId || 8,
-				name: result.Name,
-				status: result.Status == 1,
-				creationDate: new Date(result.CreationDate * 1000),
-				lastUpdate: result.UpdateDate == 0 ? new Date(result.CreationDate * 1000) : new Date(result.UpdateDate * 1000),
-				createdBy: result.CreatedBy,
-				template: chosen_template,
-				subDomain: domain_name,
-				lastActive: Date.now(),
-				author: `${req.session.userDetails.firstName} ${req.session.userDetails.lastName}`,
-				portainerId: result.Id,
-			};
-			await dashboardM.addNewStackToDB(saveToDb, saveToDb.userId); // save it to DB. runs twice??
-
-			const isDeleted = await dashboardM.portainerDeleteStack(await getJWT(req.session.userDetails.userId), result.Id); // Portainer
-			const isDeletedDB = await dashboardM.deleteStackFromDB(result.Id); // DB
-			console.log(saveToDb);
-		}
 		res.redirect('/dashboard');
 	} catch (error) {
 		console.warn('Dashboard : ' + error);

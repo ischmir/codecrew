@@ -1,29 +1,52 @@
 const teamsModel = require('../models/teamsModel');
+// Håndterer forespørgsler for teams
 
 exports.teams = async function (requst, respons) {
+	if (!requst.session.userDetails.isTeamAllowed) {
+		respons.redirect('/dashboard');
+		return;
+		//hvis brugeren ikke har tilladelse til at se teams, redirectes de til dashboard siden.
+	}
+
 	respons.render('teams-create', await teamsModel.teams());
+	// Render teams-create-view med alle teams
 };
 
 exports.teamsEdit = async function (requst, respons) {
+	if (!requst.session.userDetails.isTeamAllowed) {
+		respons.redirect('/dashboard');
+		return;
+		// hvis bruger ikke har tilladelse til at se teams edit siden, redirectes de til dashboard siden.
+	}
+
 	respons.render('teams-edit', await teamsModel.teams(requst.params.id));
+	// Render teams-edit-view med et specifikt team
 };
-// Request.body =
-// name: 'Howdy Team',
-// description: 'Yeeeehaw!!!!!        ',
-// expire: '2024-12-28'
+
 exports.postNewTeam = async function (requst, respons) {
+	if (!requst.session.userDetails.isTeamAllowed) {
+		respons.redirect('/dashboard');
+		return;
+		// hvis bruger ikk har tilladelse til postNewTeam, redirectes de til dashboard siden.
+	}
 	// Gemme daten i databasen
 	const teamId = await teamsModel.addTeamToDB(requst.body);
-	// Redirect til Edit exsisting team
+	// Tilføjer et team til databasen
 	respons.redirect('/teams-edit/' + teamId);
-	// console.log(requst.body);
+	// Redirect til Edit exsisting team
 };
 exports.postAddTeamMember = async function (requst, respons) {
+	if (!requst.session.userDetails.isTeamAllowed) {
+		respons.redirect('/dashboard');
+		return;
+		// hvis bruger ikk har tilladelse til postAddTeamMember, redirectes de til dashboard siden.
+	}
+
 	// Gemme daten i databasen
 	console.log('Tilføj member', requst.body.member);
-	// await
+	// Tilføjer et medlem til et team
 	await teamsModel.addMemberToTeam(requst.body.member, requst.params.teamId);
-	// Redirect til Edit exsisting team
+	// Tilføjer et medlem til et team
 	respons.redirect('/teams-edit/' + requst.params.teamId);
-	// console.log(requst.body);
+	// Redirect til Edit exsisting team
 };

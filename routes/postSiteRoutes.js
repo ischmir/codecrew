@@ -1,9 +1,10 @@
+//controller
 const loginC = require('../controllers/loginController');
 const settingC = require('../controllers/settingController');
 const templateC = require('../controllers/templateController');
 const stackC = require('../controllers/dashboardController');
 const teamController = require('../controllers/teamsController');
-
+// routes
 module.exports = function (app) {
 	app.post('/login', loginC.postLogin, loginC.sendJWTtoUser);
 	app.post('/settings-password', settingC.updatePassword);
@@ -17,5 +18,5 @@ module.exports = function (app) {
 	app.post('/restartStack', stackC.restartStack);
 	app.post('/createTeam', teamController.postNewTeam);
 	app.post('/addTeamMember/:teamId', teamController.postAddTeamMember);
-	app.post('/deleteStack/:portainerStackId', stackC.deleteStack)
+	app.post('/deleteStack/:portainerStackId', stackC.deleteStack);
 };
