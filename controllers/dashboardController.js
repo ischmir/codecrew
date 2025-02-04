@@ -4,165 +4,165 @@ const templateM = require('../models/templateModel');
 const extraM = require('../models/extraModel');
 
 async function getJWT(userId) {
-	return (await userM.getJWTfromUser(userId)) || (await dashboardM.portainerSystemAuth()); // last half shouldn't reaaaaly be there. but we dont have to login then
+  return (await userM.getJWTfromUser(userId)) || (await dashboardM.portainerSystemAuth()); // last half shouldn't reaaaaly be there. but we dont have to login then
 }
 
 exports.dashboard = async function (req, res) {
-	try {
-		if (!req.session.userDetails) {
-			throw new Error('You are not logged in');
-		}
+  try {
+    if (!req.session.userDetails) {
+      throw new Error('You are not logged in');
+    }
 
-		let response;
+    let response;
 
-		const stacks = await dashboardM.portainerStacks(await getJWT(req.session.userDetails.userId));
-		const allStacksDB = await dashboardM.getAllStacksFromDB();
-		const allStacks = [];
+    const stacks = await dashboardM.portainerStacks(await getJWT(req.session.userDetails.userId));
+    const allStacksDB = await dashboardM.getAllStacksFromDB();
+    const allStacks = [];
 
-		for (let i = 0; i < stacks.length; i++) {
-			// Tjekker om vi har det i databasen, ellers opretter
-			const stack = stacks[i];
-			if (!allStacksDB.some(k => k.portainerStackId == stack.Id)) {
-				// check if the db is missing a stack.
-				const newStack = {
-					userId: req.session.userDetails.userId || 8, // dummy
-					name: stack.Name,
-					status: stack.Status === 1,
-					creationDate: new Date(stack.CreationDate * 1000),
-					lastUpdate: stack.UpdateDate == 0 ? new Date(stack.CreationDate * 1000) : new Date(stack.UpdateDate * 1000),
-					createdBy: stack.CreatedBy,
-					template: 1,
-					subDomain: 'dummyDomain', // dummy
-					lastActive: new Date(),
-					author: "Can't find. " + stack.createdBy, // dummy
-					portainerStackId: stack.Id,
-				};
+    for (let i = 0; i < stacks.length; i++) {
+      // Tjekker om vi har det i databasen, ellers opretter
+      const stack = stacks[i];
+      if (!allStacksDB.some(k => k.portainerStackId == stack.Id)) {
+        // check if the db is missing a stack.
+        const newStack = {
+          userId: req.session.userDetails.userId || 8, // dummy
+          name: stack.Name,
+          status: stack.Status === 1,
+          creationDate: new Date(stack.CreationDate * 1000),
+          lastUpdate: stack.UpdateDate == 0 ? new Date(stack.CreationDate * 1000) : new Date(stack.UpdateDate * 1000),
+          createdBy: stack.CreatedBy,
+          template: 1,
+          subDomain: 'dummyDomain', // dummy
+          lastActive: new Date(),
+          author: 'Can\'t find. ' + stack.createdBy, // dummy
+          portainerStackId: stack.Id,
+        };
 
-				await dashboardM.addNewStackToDB(newStack, req.session.userDetails.userId);
-			}
-		}
+        await dashboardM.addNewStackToDB(newStack, req.session.userDetails.userId);
+      }
+    }
 
-		for (let i = 0; i < stacks.length; i++) {
-			let findDBstack = allStacksDB.find(k => k.portainerStackId == stacks[i].Id);
-			let fullName = await userM.getNameOfUserById(findDBstack.FK_userId);
+    for (let i = 0; i < stacks.length; i++) {
+      const findDBstack = allStacksDB.find(k => k.portainerStackId == stacks[i].Id);
+      const fullName = await userM.getNameOfUserById(findDBstack.FK_userId);
 
-			allStacks.push({
-				userId: findDBstack.FK_userId,
-				name: stacks[i].Name,
-				status: stacks[i].Status === 1,
-				creationDate: extraM.convertingDateFormat(stacks[i].CreationDate * 1000),
-				lastUpdate:
+      allStacks.push({
+        userId: findDBstack.FK_userId,
+        name: stacks[i].Name,
+        status: stacks[i].Status === 1,
+        creationDate: extraM.convertingDateFormat(stacks[i].CreationDate * 1000),
+        lastUpdate:
 					stacks[i].UpdateDate == 0
-						? extraM.convertingDateFormat(stacks[i].CreationDate * 1000)
-						: extraM.convertingDateFormat(stacks[i].UpdateDate * 1000),
-				createdBy: stacks[i].CreatedBy,
-				template: stacks[i].EntryPoint,
-				subDomain: findDBstack.subDomain,
-				lastActive: extraM.convertingDateFormat(new Date()),
-				author: fullName.firstName + ' ' + fullName.lastName,
-				portainerStackId: stacks[i].Id,
-				isCreator: req.session.userDetails.userId == findDBstack.FK_userId,
-			});
-		}
+					  ? extraM.convertingDateFormat(stacks[i].CreationDate * 1000)
+					  : extraM.convertingDateFormat(stacks[i].UpdateDate * 1000),
+        createdBy: stacks[i].CreatedBy,
+        template: stacks[i].EntryPoint,
+        subDomain: findDBstack.subDomain,
+        lastActive: extraM.convertingDateFormat(new Date()),
+        author: fullName.firstName + ' ' + fullName.lastName,
+        portainerStackId: stacks[i].Id,
+        isCreator: req.session.userDetails.userId == findDBstack.FK_userId,
+      });
+    }
 
-		const allTemplates = await templateM.getAllTemplatesIdAndTitle();
-		response = {
-			stack: allStacks,
-			templates: allTemplates,
-			title: 'Dashboard',
-			isNewStackAllowed: req.session.userDetails.isNewStackAllowed,
-			isSuperAdmin: req.session.userDetails.accessLevel == 'superAdmin',
-		};
+    const allTemplates = await templateM.getAllTemplatesIdAndTitle();
+    response = {
+      stack: allStacks,
+      templates: allTemplates,
+      title: 'Dashboard',
+      isNewStackAllowed: req.session.userDetails.isNewStackAllowed,
+      isSuperAdmin: req.session.userDetails.accessLevel == 'superAdmin',
+    };
 
-		res.render('dashboard', response);
-	} catch (error) {
-		console.log(error);
-		res.render('dashboard', await dashboardM.mockData());
-	}
+    res.render('dashboard', response);
+  } catch (error) {
+    console.log(error);
+    res.render('dashboard', await dashboardM.mockData());
+  }
 };
 
 exports.dashboardRedirect = function (req, res) {
-	res.redirect('/dashboard');
+  res.redirect('/dashboard');
 };
 exports.createStack = async function (req, res) {
-	try {
-		if (!req.session.userDetails.isNewStackAllowed) {
-			return res.redirect('/dashboard');
-		}
+  try {
+    if (!req.session.userDetails.isNewStackAllowed) {
+      return res.redirect('/dashboard');
+    }
 
-		const { stack_name, domain_name, chosen_template } = req.body; // get content from form
-		const template = await templateM.replacePlaceholder(chosen_template, domain_name); // if the choosen template has "CHANGEME" and/or "SUBDOMAIN" it will be replaced with randoms the "SUBDOMAIN" will be the user written subDomain. returns the whole template with the changes.
+    const { stack_name, domain_name, chosen_template } = req.body; // get content from form
+    const template = await templateM.replacePlaceholder(chosen_template, domain_name); // if the choosen template has "CHANGEME" and/or "SUBDOMAIN" it will be replaced with randoms the "SUBDOMAIN" will be the user written subDomain. returns the whole template with the changes.
 
-		const result = await dashboardM.portainerCreateStack(
-			await getJWT(req.session.userDetails.userId),
-			stack_name,
-			template
-		); // comment, so we dont create a new stack, on the live server by accident.
+    const result = await dashboardM.portainerCreateStack(
+      await getJWT(req.session.userDetails.userId),
+      stack_name,
+      template,
+    ); // comment, so we dont create a new stack, on the live server by accident.
 
-		res.redirect('/dashboard');
-	} catch (error) {
-		console.warn('Dashboard : ' + error);
-		res.redirect('/dashboard');
-	}
+    res.redirect('/dashboard');
+  } catch (error) {
+    console.warn('Dashboard : ' + error);
+    res.redirect('/dashboard');
+  }
 };
 // Stop Stack
 exports.stopStack = async function (req, res) {
-	try {
-		console.log('welp');
-		console.log(req.body);
+  try {
+    console.log('welp');
+    console.log(req.body);
 
-		await dashboardM.portainerStopStack(await getJWT(req.session.userDetails.userId), req.body.stackId);
-		res.redirect('/dashboard');
-	} catch (error) {
-		console.warn('Dashboard : ' + error);
-		res.redirect('/dashboard');
-	}
+    await dashboardM.portainerStopStack(await getJWT(req.session.userDetails.userId), req.body.stackId);
+    res.redirect('/dashboard');
+  } catch (error) {
+    console.warn('Dashboard : ' + error);
+    res.redirect('/dashboard');
+  }
 };
 // Start Stack
 exports.startStack = async function (req, res) {
-	try {
-		console.log('welp');
-		console.log(req.body);
+  try {
+    console.log('welp');
+    console.log(req.body);
 
-		await dashboardM.portainerStartStack(await getJWT(req.session.userDetails.userId), req.body.stackId);
-		res.redirect('/dashboard');
-	} catch (error) {
-		console.warn('Dashboard : ' + error);
-		res.redirect('/dashboard');
-	}
+    await dashboardM.portainerStartStack(await getJWT(req.session.userDetails.userId), req.body.stackId);
+    res.redirect('/dashboard');
+  } catch (error) {
+    console.warn('Dashboard : ' + error);
+    res.redirect('/dashboard');
+  }
 };
 // Restart Stack
 
 exports.restartStack = async function (req, res) {
-	try {
-		await dashboardM.portainerRestartStack(await getJWT(req.session.userDetails.userId), req.body.stackId);
-		res.redirect('/dashboard');
-	} catch (error) {
-		console.warn('Dashboard : ' + error);
-		res.redirect('/dashboard');
-	}
+  try {
+    await dashboardM.portainerRestartStack(await getJWT(req.session.userDetails.userId), req.body.stackId);
+    res.redirect('/dashboard');
+  } catch (error) {
+    console.warn('Dashboard : ' + error);
+    res.redirect('/dashboard');
+  }
 };
 
 exports.deleteStack = async function (req, res) {
-	try {
-		const { portainerStackId } = req.params;
+  try {
+    const { portainerStackId } = req.params;
 
-		const isDeleted = await dashboardM.portainerDeleteStack(
-			await getJWT(req.session.userDetails.userId),
-			portainerStackId
-		); // Portainer
-		const isDeletedDB = await dashboardM.deleteStackFromDB(portainerStackId); // DB
+    const isDeleted = await dashboardM.portainerDeleteStack(
+      await getJWT(req.session.userDetails.userId),
+      portainerStackId,
+    ); // Portainer
+    const isDeletedDB = await dashboardM.deleteStackFromDB(portainerStackId); // DB
 
-		if (isDeleted != 204 && isDeletedDB.affectedRows < 1) {
-			// it didnt update in the db
-			throw new Error('Nothing got deleted');
-		} else {
-			stackFromDB[0].stackName ? stackFromDB[0].stackName : '';
-			req.session.message = { type: 'success', text: stackFromDB[0].stackName + ' got utterly destroyed' };
-			res.redirect('/dashboard');
-		}
-	} catch (error) {
-		console.warn('Dashboard : ' + error);
-		res.redirect('/dashboard');
-	}
+    if (isDeleted != 204 && isDeletedDB.affectedRows < 1) {
+      // it didnt update in the db
+      throw new Error('Nothing got deleted');
+    } else {
+      stackFromDB[0].stackName ? stackFromDB[0].stackName : '';
+      req.session.message = { type: 'success', text: stackFromDB[0].stackName + ' got utterly destroyed' };
+      res.redirect('/dashboard');
+    }
+  } catch (error) {
+    console.warn('Dashboard : ' + error);
+    res.redirect('/dashboard');
+  }
 };
