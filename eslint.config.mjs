@@ -8,10 +8,11 @@ export default [
     languageOptions: { 
       globals: {
         ...globals.browser,
-        '__dirname': 'readonly',
-        'process': 'readonly',
-        'require': 'readonly',
-        'module': 'readonly',
+        ...globals.node,
+        // '__dirname': 'readonly',
+        // 'process': 'readonly',
+        // 'require': 'readonly',
+        // 'module': 'readonly',
       },
     },
   },
